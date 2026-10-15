@@ -1,0 +1,93 @@
+{
+  "format_version": 1,
+  "sources": [
+    {
+      "id": "source_terminologia_formas",
+      "file_reference": "knowledge/sources/pdfs/Terminología de las formas.pdf",
+      "size_bytes": 135651,
+      "sha256": "e55bf3a70e2f77fbf227464dd0c861e8a35edc16d48c324bbfb7186a33481381",
+      "title": "TERMINOLOGÍA DE LAS TÉCNICAS DE ATAQUE Y DEFENSA DE LAS FORMAS",
+      "organization": null,
+      "author": null,
+      "edition": null,
+      "language": "es",
+      "pdf_pages": 7,
+      "metadata_evidence": "Título e idioma observados en la página PDF 1; total de páginas informado por el lector PDF local.",
+      "coverage": [
+        { "topic": "Terminología de técnicas de las formas y ejercicios fundamentales", "pdf_page_start": 1, "pdf_page_end": 7 }
+      ],
+      "review_status": "pending_human_review",
+      "redistribution_status": "unknown",
+      "notes": "Inspección documental inicial; no contiene por sí sola aprobación curricular ni una secuencia completa validada. Autoría, organización y edición pendientes."
+    },
+    {
+      "id": "source_teoria_completa_web",
+      "file_reference": "knowledge/sources/pdfs/TEORIA COMPLETA WEB.pdf",
+      "size_bytes": 1343679,
+      "sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "title": "MANUAL DE EXAMEN",
+      "organization": "ORGANIZACIÓN NACIONAL DE TAEKWON-DO",
+      "author": null,
+      "edition": null,
+      "language": "es",
+      "pdf_pages": 29,
+      "metadata_evidence": "Título y organización observados en la página PDF 1, donde también figura Eduardo Oviedo; su aparición no se toma como prueba suficiente de autoría. Idioma observado en el texto; total de páginas informado por el lector PDF local.",
+      "coverage": [
+        { "topic": "Definición, historia, principios y etiqueta", "pdf_page_start": 2, "pdf_page_end": 8 },
+        { "topic": "Combate y secciones del cuerpo", "pdf_page_start": 8, "pdf_page_end": 10 },
+        { "topic": "Vocabulario", "pdf_page_start": 11, "pdf_page_end": 12 },
+        { "topic": "Teoría del poder y fundamentos", "pdf_page_start": 13, "pdf_page_end": 20 },
+        { "topic": "Significados de formas", "pdf_page_start": 21, "pdf_page_end": 23 },
+        { "topic": "Posiciones", "pdf_page_start": 24, "pdf_page_end": 26 },
+        { "topic": "Temario de examen; entrada 10º a 9º Gup en página 27", "pdf_page_start": 27, "pdf_page_end": 29 }
+      ],
+      "review_status": "pending_human_review",
+      "redistribution_status": "unknown",
+      "notes": "No se infiere fecha ni edición. Comparar con source_teoria_ont sin fusionarlos ni elegir autoridad automáticamente. Cobertura orientativa, no transcripción ni aprobación del temario de la escuela."
+    },
+    {
+      "id": "source_teoria_ont",
+      "file_reference": "knowledge/sources/pdfs/Teoria ONT(2)(1).pdf",
+      "size_bytes": 905804,
+      "sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "title": "MANUAL DE EXAMEN",
+      "organization": "ORGANIZACIÓN NACIONAL DE TAEKWON-DO",
+      "author": null,
+      "edition": null,
+      "language": "es",
+      "pdf_pages": 38,
+      "metadata_evidence": "Título observado en la página PDF 1; organización y nombre Eduardo Oviedo en página 2. No se infiere autoría por esa mención. Idioma observado en el texto; total de páginas informado por el lector PDF local.",
+      "coverage": [
+        { "topic": "Definición, historia, principios y etiqueta", "pdf_page_start": 2, "pdf_page_end": 9 },
+        { "topic": "Combate y secciones del cuerpo", "pdf_page_start": 10, "pdf_page_end": 13 },
+        { "topic": "Vocabulario", "pdf_page_start": 13, "pdf_page_end": 16 },
+        { "topic": "Teoría del poder y fundamentos", "pdf_page_start": 16, "pdf_page_end": 27 },
+        { "topic": "Significados de formas", "pdf_page_start": 27, "pdf_page_end": 31 },
+        { "topic": "Posiciones", "pdf_page_start": 31, "pdf_page_end": 35 },
+        { "topic": "Temario de examen; entrada 10º a 9º Gup en página 35", "pdf_page_start": 35, "pdf_page_end": 38 }
+      ],
+      "review_status": "pending_human_review",
+      "redistribution_status": "unknown",
+      "notes": "El nombre del archivo no identifica una edición. La página PDF 17 conserva una nota editorial de contenido incompleto; requiere revisión antes de extraer esa sección."
+    },
+    {
+      "id": "source_enciclopedia_taekwondo",
+      "file_reference": "knowledge/sources/pdfs/291264914-Enciclopedia-Taekwondo.pdf",
+      "size_bytes": 41960307,
+      "sha256": "ec42024a885d2fb7dca86f02ecd8f885be83f31760a560152dbf94642fbeced3",
+      "title": "TAEKWON-DO (El arte coreano de la defensa personal)",
+      "organization": "International Taekwon-Do Federation",
+      "author": "General Choi Hong Hi",
+      "edition": "Primera Edición en Castellano 1996",
+      "language": "es",
+      "pdf_pages": 764,
+      "metadata_evidence": "Inspección visual local con Windows.Data.Pdf: título y atribución de autor en página PDF 3; autor, edición y entidad editora en página PDF 4; cobertura general según índice en página PDF 5. Total de 764 páginas informado por PdfDocument.PageCount. Se observaron páginas PDF 1 a 8, no una lectura completa.",
+      "coverage": [
+        { "topic": "Índice general: teoría, historia, posiciones, herramientas, técnicas de mano y pie, ejercicios, formas, enfrentamiento, defensa personal, rango, examen y competencia; cobertura declarada por el índice, no capítulos leídos", "pdf_page_start": 5, "pdf_page_end": 5 }
+      ],
+      "review_status": "pending_human_review",
+      "redistribution_status": "unknown",
+      "notes": "La página PDF 4 contiene aviso de derechos reservados y exige permiso escrito para reproducción. redistribution_status unknown significa que no hay permiso de redistribución registrado, no que falte aviso de copyright. PDF y vistas previas solo locales. La página PDF 3 muestra folio impreso 1 y la PDF 5, folio 3; no se asume ese desplazamiento para todo el libro. Los datos bibliográficos transcriben la copia observada, sin autenticarla ni establecer autoridad curricular. Inspección inicial completada, no revisión íntegra de las 764 páginas."
+    }
+  ]
+}

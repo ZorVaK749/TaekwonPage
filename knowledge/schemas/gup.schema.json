@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taekwonpage:schema:gup:1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format_version", "id", "gup", "requirements", "citation_ids", "review_status"],
+  "properties": {
+    "format_version": { "const": 1 },
+    "id": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/canonical_id" },
+    "gup": { "type": "integer", "minimum": 1, "maximum": 10 },
+    "citation_ids": { "$ref": "urn:taekwonpage:schema:content_entry:1#/$defs/citation_ids" },
+    "review_status": { "const": "pending_human_review" },
+    "requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["position_ids", "theory_ids", "tul_ids", "vocabulary_ids", "body_tool_ids", "kick_ids", "combat_ids"],
+      "properties": {
+        "position_ids": { "$ref": "urn:taekwonpage:schema:content_entry:1#/$defs/ids" },
+        "theory_ids": { "$ref": "urn:taekwonpage:schema:content_entry:1#/$defs/ids" },
+        "tul_ids": { "$ref": "urn:taekwonpage:schema:content_entry:1#/$defs/ids" },
+        "vocabulary_ids": { "$ref": "urn:taekwonpage:schema:content_entry:1#/$defs/ids" },
+        "body_tool_ids": { "$ref": "urn:taekwonpage:schema:content_entry:1#/$defs/ids" },
+        "kick_ids": { "$ref": "urn:taekwonpage:schema:content_entry:1#/$defs/ids" },
+        "combat_ids": { "$ref": "urn:taekwonpage:schema:content_entry:1#/$defs/ids" }
+      }
+    }
+  }
+}

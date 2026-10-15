@@ -1,0 +1,42 @@
+{
+  "format_version": 1,
+  "catalog_type": "vocabulary",
+  "items": [
+    {
+      "id": "dobok",
+      "name": "Dobok",
+      "description": "Nombre del uniforme de práctica en los vocabularios consultados.",
+      "translation": "Uniforme de práctica",
+      "aliases": [],
+      "citation_ids": ["citation_dobok_web_p11", "citation_dobok_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "ti",
+      "name": "Ti",
+      "description": "Término utilizado para el cinturón en los vocabularios consultados.",
+      "translation": "Cinturón",
+      "aliases": [],
+      "citation_ids": ["citation_ti_web_p11", "citation_ti_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "dojang",
+      "name": "Dojang",
+      "description": "Nombre del recinto de práctica; las copias consultadas muestran las grafías Dojang y Do jang.",
+      "translation": "Recinto de práctica",
+      "aliases": ["Do jang"],
+      "citation_ids": ["citation_dojang_web_p11", "citation_dojang_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "boo_sabum_nim",
+      "name": "Boo Sabum Nim",
+      "description": "Los manuales lo clasifican como instructor asistente o instructor nacional para I, II y III Dan.",
+      "translation": "Instructor asistente o instructor nacional",
+      "aliases": ["Busabonim"],
+      "citation_ids": ["citation_boo_sabum_nim_web_p6", "citation_boo_sabum_nim_ont_p7"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}

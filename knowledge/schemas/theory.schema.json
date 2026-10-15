@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taekwonpage:schema:theory:1",
+  "allOf": [{ "$ref": "urn:taekwonpage:schema:content_entry:1" }],
+  "type": "object",
+  "unevaluatedProperties": false
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taekwonpage:schema:source_inventory:1",
+  "title": "Inventario documental, formato 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format_version", "sources"],
+  "properties": {
+    "format_version": { "const": 1 },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "urn:taekwonpage:schema:source:1" }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "def_taekwondo": {
+    "titulo": "¿Qué es el Taekwon-Do?",
+    "desglose_etimologico": {
+      "Tae": "Pie, patear, saltar o destruir con el pie",
+      "Kwon": "Puño, golpear o destruir con la mano",
+      "Do": "Arte, camino o vía filosófica"
+    },
+    "descripcion": "Es un arte marcial coreano de defensa personal sin armas, caracterizado por el uso científico del cuerpo para maximizar la potencia."
+  },
+  "historia_choi_hong_hi_basica": {
+    "titulo": "Fundador y Creación",
+    "fundador": "General Choi Hong Hi",
+    "fecha_fundacion": "11 de abril de 1955",
+    "resumen": "El General Choi Hong Hi combinó elementos del antiguo Taekkyon coreano con el Karate-Do japonés que estudió en Tokio, creando el Taekwon-Do moderno e institucionalizándolo mediante la ITF (International Taekwon-Do Federation)."
+  },
+  "reglas_dojang": {
+    "titulo": "Principios del Taekwon-Do y Etiqueta",
+    "principios": [
+      "Cortesía (Ye Ui)",
+      "Integridad (Yom Chi)",
+      "Perseverancia (In Nae)",
+      "Autocontrol (Guk Gi)",
+      "Espíritu Indomable (Baekjul Boolgool)"
+    ],
+    "etiqueta_basica": [
+      "Saludar al entrar y salir del Dojang",
+      "Saludar al Instructor y a los cinturones superiores antes de dirigirse a ellos",
+      "Mantener el Dobok (uniforme) impecable y pulcro"
+    ]
+  }
+}

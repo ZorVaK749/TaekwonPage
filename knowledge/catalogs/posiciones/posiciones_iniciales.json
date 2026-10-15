@@ -1,0 +1,38 @@
+{
+  "format_version": 1,
+  "catalog_type": "position",
+  "items": [
+    {
+      "id": "charyot_sogi",
+      "name": "Charyot sogui",
+      "description": "Posición denominada de atención en los manuales, con los puños bajos y los codos ligeramente flexionados.",
+      "biomechanics": null,
+      "citation_ids": ["citation_charyot_sogi_web_p24", "citation_charyot_sogi_ont_p31"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "gunnun_sogi",
+      "name": "Gunnun Sogui",
+      "description": "Posición para caminar con la pierna delantera flexionada, la pierna opuesta extendida y reparto equitativo del peso entre ambas piernas.",
+      "biomechanics": {
+        "weight": { "front_percent": 50, "rear_percent": 50 },
+        "front_foot": null,
+        "rear_foot": null
+      },
+      "citation_ids": ["citation_gunnun_sogi_web_p24", "citation_gunnun_sogi_ont_p32"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "niunja_sogi",
+      "name": "Niunja Sogui",
+      "description": "Posición en L con la pierna trasera flexionada y mayor proporción del peso sobre ella.",
+      "biomechanics": {
+        "weight": { "front_percent": 30, "rear_percent": 70 },
+        "front_foot": null,
+        "rear_foot": null
+      },
+      "citation_ids": ["citation_niunja_sogi_web_p24", "citation_niunja_sogi_ont_p32"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}

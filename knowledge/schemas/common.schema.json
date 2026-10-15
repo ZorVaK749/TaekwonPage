@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taekwonpage:schema:common:1",
+  "$defs": {
+    "positive_integer": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "nullable_positive_integer": {
+      "anyOf": [
+        { "$ref": "#/$defs/positive_integer" },
+        { "type": "null" }
+      ]
+    },
+    "canonical_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)*$"
+    },
+    "text": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "nullable_text": {
+      "anyOf": [
+        { "$ref": "#/$defs/text" },
+        { "type": "null" }
+      ]
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "pdf_page": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "nullable_pdf_page": {
+      "anyOf": [
+        { "$ref": "#/$defs/pdf_page" },
+        { "type": "null" }
+      ]
+    }
+  }
+}

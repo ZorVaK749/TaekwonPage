@@ -1,0 +1,71 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_charyot_sogi_web_p24",
+      "content_id": "charyot_sogi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 24,
+      "printed_page": null,
+      "section": "Posiciones: Posición de atención (Charyot sogui)",
+      "review_status": "pending_human_review",
+      "notes": "Respalda el nombre y la síntesis cualitativa. No se descompone el ángulo entre pies en dos rotaciones individuales ni se asigna peso delantero/trasero a partir del borrador previo."
+    },
+    {
+      "id": "citation_charyot_sogi_ont_p31",
+      "content_id": "charyot_sogi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 31,
+      "printed_page": null,
+      "section": "Posiciones: Posición de atención (Charyot sogui)",
+      "review_status": "pending_human_review",
+      "notes": "Síntesis contrastada visualmente con la sección de atención de la otra copia. La ficha no reproduce todas las indicaciones de la postura."
+    },
+    {
+      "id": "citation_gunnun_sogi_web_p24",
+      "content_id": "gunnun_sogi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 24,
+      "printed_page": null,
+      "section": "Posiciones: Posición para caminar (Gunnun Sogui)",
+      "review_status": "pending_human_review",
+      "notes": "Reparto equitativo entre dos piernas normalizado aritméticamente como 50/50; no es una medición nueva ni un valor copiado del ejemplo del informe. Las longitudes y orientaciones no se convierten a coordenadas o rotaciones de renderizado."
+    },
+    {
+      "id": "citation_gunnun_sogi_ont_p32",
+      "content_id": "gunnun_sogi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 32,
+      "printed_page": null,
+      "section": "Posiciones: Posición para caminar (Gunnun Sogui)",
+      "review_status": "pending_human_review",
+      "notes": "Confirma el reparto equitativo y la descripción de ambas piernas. Una línea angular aparece parcialmente tapada en la imagen de esta copia; no se reconstruye para completar campos."
+    },
+    {
+      "id": "citation_niunja_sogi_web_p24",
+      "content_id": "niunja_sogi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 24,
+      "printed_page": null,
+      "section": "Posiciones: Posición en L (Niunja Sogui)",
+      "review_status": "pending_human_review",
+      "notes": "Respalda la denominación y flexión de la pierna trasera. La imagen consultada no muestra el reparto porcentual; los valores 30/70 de la ficha se atribuyen exclusivamente a la cita ONT de página PDF 32. No se infiere una continuación ausente."
+    },
+    {
+      "id": "citation_niunja_sogi_ont_p32",
+      "content_id": "niunja_sogi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 32,
+      "printed_page": null,
+      "section": "Posiciones: Posición en L (Niunja Sogui)",
+      "review_status": "pending_human_review",
+      "notes": "Se observan los valores 70% para la pierna trasera y 30% para la adelantada; se asignan rear_percent y front_percent respectivamente. El final de la línea está parcialmente tapado por el gráfico; no se completa texto ni se extraen rotaciones."
+    }
+  ]
+}

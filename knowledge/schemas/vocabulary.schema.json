@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taekwonpage:schema:vocabulary:1",
+  "allOf": [{ "$ref": "urn:taekwonpage:schema:content_entry:1" }],
+  "type": "object",
+  "unevaluatedProperties": false,
+  "required": ["translation", "aliases"],
+  "properties": {
+    "translation": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/text" },
+    "aliases": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/text" }
+    }
+  }
+}

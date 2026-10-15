@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taekwonpage:schema:position:1",
+  "allOf": [{ "$ref": "urn:taekwonpage:schema:content_entry:1" }],
+  "type": "object",
+  "unevaluatedProperties": false,
+  "required": ["biomechanics"],
+  "properties": {
+    "biomechanics": {
+      "anyOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["weight", "front_foot", "rear_foot"],
+          "properties": {
+            "weight": {
+              "anyOf": [
+                { "type": "null" },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["front_percent", "rear_percent"],
+                  "properties": {
+                    "front_percent": { "type": "number", "minimum": 0, "maximum": 100 },
+                    "rear_percent": { "type": "number", "minimum": 0, "maximum": 100 }
+                  }
+                }
+              ]
+            },
+            "front_foot": { "$ref": "#/$defs/foot" },
+            "rear_foot": { "$ref": "#/$defs/foot" }
+          }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "foot": {
+      "anyOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["rotation_deg"],
+          "properties": {
+            "rotation_deg": { "type": "number", "minimum": 0, "exclusiveMaximum": 360 }
+          }
+        }
+      ]
+    }
+  }
+}

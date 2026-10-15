@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taekwonpage:schema:tul:1",
+  "allOf": [{ "$ref": "urn:taekwonpage:schema:content_entry:1" }],
+  "type": "object",
+  "unevaluatedProperties": false,
+  "required": ["movement_count", "initial_position_id", "sequence_complete", "steps"],
+  "properties": {
+    "movement_count": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/nullable_positive_integer" },
+    "initial_position_id": {
+      "anyOf": [
+        { "type": "null" },
+        { "$ref": "urn:taekwonpage:schema:common:1#/$defs/canonical_id" }
+      ]
+    },
+    "sequence_complete": { "type": "boolean" },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["step_number", "position_id", "description", "citation_ids"],
+        "properties": {
+          "step_number": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/positive_integer" },
+          "position_id": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/canonical_id" },
+          "description": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/text" },
+          "citation_ids": { "$ref": "urn:taekwonpage:schema:content_entry:1#/$defs/citation_ids" }
+        }
+      }
+    }
+  }
+}

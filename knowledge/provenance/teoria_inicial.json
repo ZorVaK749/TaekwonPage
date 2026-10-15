@@ -1,0 +1,71 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_def_taekwondo_web_p2",
+      "content_id": "def_taekwondo",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 2,
+      "printed_page": null,
+      "section": "Definición de Taekwon-Do",
+      "review_status": "pending_human_review",
+      "notes": "Síntesis breve del primer párrafo, contrastada con el manual ONT. No reproduce la definición completa ni resuelve diferencias de redacción. Página observada como imagen local."
+    },
+    {
+      "id": "citation_def_taekwondo_ont_p2",
+      "content_id": "def_taekwondo",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 2,
+      "printed_page": null,
+      "section": "Definición de Taekwon-Do",
+      "review_status": "pending_human_review",
+      "notes": "El primer párrafo respalda la síntesis introductoria. Se conserva la atribución a esta copia sin declarar que los dos manuales sean fuentes independientes. Página observada como imagen local."
+    },
+    {
+      "id": "citation_fundador_taekwondo_web_p2",
+      "content_id": "fundador_taekwondo",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 2,
+      "printed_page": null,
+      "section": "CHOI HONG HI: Fundador del Taekwon-Do",
+      "review_status": "pending_human_review",
+      "notes": "Atribución de fundador observada en el encabezado y el texto de la sección. Esta ficha no incorpora fechas ni resume la biografía."
+    },
+    {
+      "id": "citation_fundador_taekwondo_ont_p2",
+      "content_id": "fundador_taekwondo",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 2,
+      "printed_page": null,
+      "section": "CHOI HONG HI: Fundador del Taekwon-Do",
+      "review_status": "pending_human_review",
+      "notes": "Atribución contrastada visualmente con el encabezado y el inicio de la sección. No se extrapola al contenido biográfico de páginas posteriores."
+    },
+    {
+      "id": "citation_principios_taekwondo_web_p6",
+      "content_id": "principios_taekwondo",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 6,
+      "printed_page": null,
+      "section": "Principios del Taekwon-do",
+      "review_status": "pending_human_review",
+      "notes": "Lista observada visualmente y conservada en su orden. No se añaden definiciones, romanización ni reglas de etiqueta."
+    },
+    {
+      "id": "citation_principios_taekwondo_ont_p6",
+      "content_id": "principios_taekwondo",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 6,
+      "printed_page": null,
+      "section": "Principios del Taekwon-do",
+      "review_status": "pending_human_review",
+      "notes": "Lista contrastada visualmente con el segundo manual. Coincide en los cinco nombres y su orden; no constituye aprobación por la escuela."
+    }
+  ]
+}

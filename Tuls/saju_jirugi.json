@@ -1,0 +1,30 @@
+{
+  "id": "saju_jirugi",
+  "nombre_coreano": "Saju Jirugi",
+  "traduccion": "Golpe a cuatro direcciones (Cruz de Ataque)",
+  "movimientos_totales": 15,
+  "significado": "Ejercicio fundamental diseñado para enseñar al principiante las técnicas básicas de ataque, defensa y los giros. No es considerado un Tul oficial.",
+  "posicion_inicial_id": "junbi_sogi",
+  "pasos": [
+    {
+      "nro_paso": 1,
+      "posicion_id": "gunnun_sogi",
+      "tipo": "ataque",
+      "tecnica_coreano": "Kaunde Ap Joomuk Jirugi",
+      "traduccion": "Golpe de puño frontal a la zona media",
+      "zona": "Media",
+      "movimiento_pierna": "Avanza pierna derecha",
+      "herramienta_ejecutora": "Puño derecho"
+    },
+    {
+      "nro_paso": 2,
+      "posicion_id": "gunnun_sogi",
+      "tipo": "defensa",
+      "tecnica_coreano": "Najunde Bakat Palmok Makgi",
+      "traduccion": "Bloqueo bajo con la parte externa del antebrazo",
+      "zona": "Baja",
+      "movimiento_pierna": "Retrocede pierna derecha (giro de 90° hacia la izquierda)",
+      "herramienta_ejecutora": "Antebrazo izquierdo"
+    }
+  ]
+}

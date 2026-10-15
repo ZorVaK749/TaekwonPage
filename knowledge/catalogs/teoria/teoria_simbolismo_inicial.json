@@ -1,0 +1,20 @@
+{
+  "format_version": 1,
+  "catalog_type": "theory",
+  "items": [
+    {
+      "id": "significado_dobok_blanco",
+      "name": "Simbolismo del Dobok blanco",
+      "description": "Los manuales vinculan el blanco del Dobok con la pureza del estudiante que comienza sin conocimientos previos del Taekwon-Do.",
+      "citation_ids": ["citation_dobok_blanco_web_p6", "citation_dobok_blanco_ont_p7"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "significado_cinturon_blanco",
+      "name": "Simbolismo del cinturón blanco",
+      "description": "En los manuales, el cinturón blanco simboliza la inocencia del alumno principiante que todavía no tiene conocimientos previos del Taekwon-Do.",
+      "citation_ids": ["citation_cinturon_blanco_web_p15", "citation_cinturon_blanco_ont_p20"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}
