@@ -79,7 +79,7 @@ No hay builds ni tests de aplicación aún. Fuentes y citas cuentan con [JSON Sc
 
 Consulta [pendientes de arquitectura](docs/architecture/README.md). No se eligieron proveedor de hosting ni estrategia JWT local/OIDC. El [plan de seguridad](docs/security/README.md) queda pendiente para su etapa, sin posponer los controles necesarios para exponer una beta.
 
-Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. `main` local sigue `origin/main` en `4908799` (commit inicial con licencia MIT, copyright 2026 ZorVaK). El trabajo se prepara en **`chore/project-baseline`**, basada en esa historia, y `LICENSE` se recuperó sin cambios. El baseline aún no tiene commit: no se hizo staging, push, PR ni release. La licencia del software no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
+Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. `main` local sigue `origin/main` en `4908799` (commit inicial con licencia MIT, copyright 2026 ZorVaK). El baseline está guardado localmente en **`83eb531`**, sobre **`chore/project-baseline`**, y `LICENSE` se conserva sin cambios. No se hizo push, PR, merge, tag ni release: el remoto todavía no contiene este avance. La licencia del software no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
 
 El informe incluye Docker Compose entre los entregables de Sprint 0; la instrucción de esta tarea limita el trabajo al esqueleto, sin aplicaciones ni base de datos. Por ello no se incluye un Compose vacío o no funcional: se preparará al habilitar el entorno ejecutable.
 

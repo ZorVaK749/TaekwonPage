@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.1  
+**Version del documento:** 1.2  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 15-10-2026  
 
@@ -1754,7 +1754,7 @@ La base de conocimiento es el nucleo del producto.
 
 | Paso | Entregable | Estado real |
 |---|---|---|
-| 1 | Repositorio y estructura | Esqueleto y documentacion listos; Git local conectado al remoto y rama de trabajo creada; baseline pendiente de commit/PR |
+| 1 | Repositorio y estructura | Esqueleto y documentacion guardados en baseline local `83eb531`, rama `chore/project-baseline`; publicacion/PR pendientes |
 | 2 | Knowledge base | Inventario inicial de cuatro PDFs; 12 fichas y 24 citas documentales en revision |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
@@ -1779,7 +1779,9 @@ La base de conocimiento es el nucleo del producto.
 - [x] Conectar Git local con `https://github.com/ZorVaK749/TaekwonPage.git`, preservando su historia inicial.
 - [x] Recuperar `LICENSE` MIT del remoto, sin modificarla ni aplicarla a PDFs de terceros.
 - [x] Crear `main` local siguiendo `origin/main` y rama `chore/project-baseline` basada en esa historia.
-- [ ] Crear commit(s) del baseline local, revisar cambios, publicar la rama y abrir su primer PR; no se han realizado estas operaciones.
+- [x] Revisar candidatos y guardar baseline en commit local `83eb531` (`chore(repo): establish knowledge foundation baseline`), preservando el commit inicial remoto.
+- [x] Definir normalizacion de texto con `.gitattributes`, consistente con `.editorconfig`, sin quitar los saltos Markdown intencionales.
+- [ ] Publicar la rama y abrir su primer PR; no se han realizado push, PR, merge o tags.
 - [ ] Crear Docker Compose funcional cuando se habilite el entorno ejecutable. Diferido expresamente por el alcance del bootstrap, no olvidado ni sustituido por un archivo vacio.
 
 La estructura del bootstrap esta lista. Sus excepciones pendientes se muestran arriba; no se marca todo Sprint 0 como cerrado bajo el listado original que incluia Compose.
@@ -1838,7 +1840,7 @@ node tools/validators/validate-knowledge.mjs --report-json --check-local-files
 4. Resolucion humana de divergencias entre manuales; no escoger uno por cantidad de paginas o fecha supuesta.
 5. Estrategia JWT local/OIDC y distincion entre estados del alumno y de su solicitud, antes de su implementacion.
 6. Derechos para el uso previsto y datos personales; un repo MIT no licencia fuentes de terceros.
-7. Guardar y publicar el baseline mediante commit/PR. Hasta entonces el trabajo existente es local sin commit, aunque la rama este creada.
+7. Publicar y revisar el baseline mediante PR cuando se autorice. Ya esta guardado en el historial local; `main` y el remoto siguen en su commit inicial, sin copia remota de este trabajo.
 
 El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprobadas ni permitir exponer una beta sin los controles aplicables.
 
@@ -1850,7 +1852,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.1` es la version de este informe; `0.1.0` en `tools/validators/package.json` identifica la herramienta, no una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.2` es la version de este informe; `0.1.0` en `tools/validators/package.json` identifica la herramienta, no una release de la plataforma.
 
 ---
 
@@ -1860,7 +1862,7 @@ Se conserva la secuencia aprobada; el estado de ejecucion se registra en la secc
 
 ## Sprint 0 - Bootstrap del repositorio
 
-Estructura implementada; Compose diferido hasta disponer de un entorno ejecutable. El baseline Git esta preparado en rama local, pendiente de commit/PR.
+Estructura implementada; Compose diferido hasta disponer de un entorno ejecutable. Baseline guardado localmente en `83eb531`, pendiente de publicacion/PR; no se considera cerrado el entregable Compose del listado original.
 
 Entregables:
 
@@ -1893,7 +1895,7 @@ No avanzar a 9º Gup hasta que la estructura de 10º Gup haya demostrado ser reu
 
 ### Proximo bloque de trabajo
 
-1. Revisar y guardar el baseline en commit(s) coherentes de la rama actual; antes de publicar, revisar archivos candidatos y exclusiones de copyright/secretos.
+1. Baseline local guardado y revisado. Mantener la rama `chore/project-baseline` como base mientras no se integre; publicar y abrir PR solo cuando se autorice, tras revisar nuevamente copyright/secretos y el diff completo.
 2. Completar la extraccion documental necesaria para 10º Gup, registrando lagunas sin inventar informacion. Puede continuar mientras se confirma la autoridad curricular.
 3. Resolver con la escuela los asuntos que impiden aprobar requisitos, posiciones o secuencias; registrar responsable, evidencia y fecha reales, sin aprobaciones ficticias.
 4. Construir curriculum enlazado y validarlo con contenido real antes de declarar completo el caso de 10º Gup.
@@ -1925,6 +1927,7 @@ Cuando OpenCode reciba una tarea:
 |---|---|---|
 | 1.0 | 14-10-2026 | Plan maestro inicial y decisiones de arquitectura aprobadas |
 | 1.1 | 15-10-2026 | Seguimiento real de Sprint 0/1, checklist por paso/TKD, evidencias de tests, decisiones abiertas y flujo Git local con baseline pendiente de commit/PR; sin modificar decisiones de arquitectura |
+| 1.2 | 15-10-2026 | Baseline guardado en commit local `83eb531`; 91 archivos nuevos versionados sin PDFs/capturas/dependencias; politica `.gitattributes`, revision de patrones comunes de credenciales y 138 + 22 tests correctos. Sin push, tags o avance de milestone |
 
 ---
 

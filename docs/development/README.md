@@ -8,7 +8,9 @@ Este flujo organiza el trabajo de ZVK Tech sin cambiar la arquitectura de [infor
 - `main` local sigue `origin/main`; ambas parten de `4908799` (`Initial commit`, solo `LICENSE` MIT).
 - Rama actual de preparacion: `chore/project-baseline`, creada desde la misma historia y sin upstream para evitar confundirla con `main`.
 - La licencia se recupero del remoto sin cambiar su contenido.
-- No se hizo commit del baseline, staging, push, merge, tag ni PR. Los archivos existentes siguen en el directorio de trabajo y no quedan protegidos por el historial hasta que se confirme un commit.
+- Baseline guardado en el commit local `83eb531` (`chore(repo): establish knowledge foundation baseline`): 91 archivos nuevos, sin PDFs, capturas o `node_modules`. Los JSON previos se conservaron sin modificar ni promover a contenido aprobado.
+- No se hizo push, merge, tag ni PR; el remoto sigue en el commit inicial. El commit local protege la historia en esta PC, pero no constituye una copia de seguridad remota.
+- `.gitattributes` normaliza texto en Git: LF para texto y CRLF al extraer scripts Windows, en concordancia con `.editorconfig`. Los espacios finales de Markdown se permiten por sus saltos de linea intencionales.
 
 Una rama no es una copia de seguridad de archivos sin commit. Antes de cambiar a otra rama, revisar `git status` y guardar los cambios de forma explicita; nunca usar reset/checkout forzado, clean o descartes para resolver conflictos sin autorizacion.
 
@@ -35,7 +37,7 @@ Usar nombres ASCII en minusculas, un bloque coherente por rama y un objetivo por
    git switch -c feat/tkd-009-gup-10-curriculum
    ```
 
-   Este ejemplo es para trabajo futuro: **no ejecutarlo sobre el baseline actual sin commit**. Si no es posible el avance rapido, detenerse y revisar la divergencia; no forzar.
+   Este ejemplo es para trabajo futuro, **despues de integrar el baseline en `main`**. Actualmente `main` no contiene el proyecto: no crear desde ahi una rama funcional vacia ni trasladar cambios sin revisar. Mantener el trabajo actual basado en `chore/project-baseline` mientras su integracion este pendiente. Si no es posible el avance rapido, detenerse y revisar la divergencia; no forzar.
 
 3. Implementar un bloque acotado, actualizar `informe_tecnico.md` y ejecutar las validaciones aplicables:
 
@@ -61,7 +63,7 @@ Las protecciones de `main` (requerir PR, checks y restringir push directo) se re
 - Usar tags anotados `vMAJOR.MINOR.PATCH` sobre un commit revisado e integrado, solo cuando se cumplan los criterios de su milestone.
 - Antes de 1.0 se esperan cambios de contratos; documentarlos y no alterar IDs canonicos publicados sin el procedimiento correspondiente.
 - Objetivos del informe: `v0.1.0` Content Foundation (10º Gup con persistencia y API), `v0.2.0` Identity & Grade Access y `v0.3.0` Web. Ninguno esta publicado.
-- No crear `v0.1.0` por terminar schemas, por tener `tools/validators` en version 0.1.0 ni por actualizar este informe a 1.1.
+- No crear `v0.1.0` por terminar schemas, por tener `tools/validators` en version 0.1.0 ni por actualizar la version del informe tecnico.
 - Para una beta futura, usar un identificador previo como `v0.3.0-beta.1` solo si ese es el milestone realmente evaluado y sus controles estan listos; es un ejemplo, no una fecha o release aprobada.
 
 ## Seguimiento vivo
