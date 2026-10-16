@@ -1,15 +1,15 @@
 # Ramas, revisiones y versionamiento
 
-Este flujo organiza el trabajo de ZVK Tech sin cambiar la arquitectura de [informe_tecnico.md](../../informe_tecnico.md). Se usa un flujo ligero: `main`, ramas cortas por bloque y Pull Requests. No se crea `develop` ni una rama permanente por version sin una necesidad concreta.
+Este flujo organiza el trabajo de ZVK Tech sin cambiar la arquitectura de [informe_tecnico.md](../../informe_tecnico.md). Por instruccion del responsable del proyecto del 16-10-2026 se usan **ramas por bloque, commits y push directo a esas ramas, sin Pull Requests ni merges**. No se crea `develop`, no se integra automaticamente en `main` y no se utiliza `git pull` como mecanismo de sincronizacion.
 
 ## Estado de la vinculacion
 
 - Remoto `origin`: `https://github.com/ZorVaK749/TaekwonPage.git`.
 - `main` local sigue `origin/main`; ambas parten de `4908799` (`Initial commit`, solo `LICENSE` MIT).
-- Rama del baseline: `chore/project-baseline`, creada desde la misma historia y sin upstream para evitar confundirla con `main`. Los nuevos bloques se separan en ramas derivadas mientras no se integre ese baseline; la rama activa y el estado del bloque se registran en la seccion 55 del informe.
+- Rama del baseline: `chore/project-baseline`. Los bloques siguientes conservan esa ascendencia en ramas derivadas; su upstream debe ser la rama remota homonima, nunca `origin/main` por accidente. La rama activa y el estado se registran en la seccion 55 del informe.
 - La licencia se recupero del remoto sin cambiar su contenido.
 - Baseline guardado en el commit local `83eb531` (`chore(repo): establish knowledge foundation baseline`): 91 archivos nuevos, sin PDFs, capturas o `node_modules`. Los JSON previos se conservaron sin modificar ni promover a contenido aprobado.
-- No se hizo push, merge, tag ni PR; el remoto sigue en el commit inicial. El commit local protege la historia en esta PC, pero no constituye una copia de seguridad remota.
+- Se autoriza publicar las ramas de trabajo para conservar el avance y su log en GitHub. La primera publicacion esta pendiente de verificacion remota en este corte; no se asume exito por crear un commit o ejecutar un dry-run. No se hacen PR, merges, tags o releases.
 - `.gitattributes` normaliza texto en Git: LF para texto y CRLF al extraer scripts Windows, en concordancia con `.editorconfig`. Los espacios finales de Markdown se permiten por sus saltos de linea intencionales.
 
 Una rama no es una copia de seguridad de archivos sin commit. Antes de cambiar a otra rama, revisar `git status` y guardar los cambios de forma explicita; nunca usar reset/checkout forzado, clean o descartes para resolver conflictos sin autorizacion.
@@ -23,21 +23,19 @@ Una rama no es una copia de seguridad de archivos sin commit. Antes de cambiar a
 | `fix/` | `fix/content-source-reference` | Correccion acotada |
 | `docs/` | `docs/sprint-1-progress` | Documentacion sin cambios funcionales |
 
-Usar nombres ASCII en minusculas, un bloque coherente por rama y un objetivo por PR. No hacer desarrollo habitual directamente en `main`.
+Usar nombres ASCII en minusculas y un bloque coherente por rama. No hacer desarrollo habitual ni push de avances directamente a `main`.
 
 ## Ciclo por bloque
 
 1. Revisar el informe completo, el checklist y el estado Git antes de editar.
-2. Con el directorio limpio, actualizar `main` sin reescribir historia y crear la rama de trabajo:
+2. Con el directorio limpio, consultar el remoto y crear la rama desde el ultimo bloque de trabajo que contenga el avance necesario:
 
    ```powershell
    git fetch origin
-   git switch main
-   git pull --ff-only
-   git switch -c feat/tkd-009-gup-10-curriculum
+   git switch --no-track -c feat/nuevo-bloque BASE_DE_TRABAJO
    ```
 
-   Este ejemplo es para trabajo futuro, **despues de integrar el baseline en `main`**. Actualmente `main` no contiene el proyecto: no crear desde ahi una rama funcional vacia ni trasladar cambios sin revisar. Mantener el trabajo actual basado en `chore/project-baseline` mientras su integracion este pendiente. Si no es posible el avance rapido, detenerse y revisar la divergencia; no forzar.
+   `BASE_DE_TRABAJO` es un marcador, no una rama existente: elegir una referencia verificada, por ejemplo el ultimo bloque documentado. Actualmente `main` no contiene el proyecto. No ejecutar pull, merge, rebase o force-push para resolver diferencias automaticamente. Si una rama remota avanzo de forma incompatible, detener la publicacion y revisar la divergencia sin descartar trabajo.
 
 3. Implementar un bloque acotado, actualizar `informe_tecnico.md` y ejecutar las validaciones aplicables:
 
@@ -52,15 +50,16 @@ Usar nombres ASCII en minusculas, un bloque coherente por rama y un objetivo por
 
 4. Revisar `git status`, diferencias y archivos a incluir. Agregar rutas explicitas, no `git add -f`. Antes del commit revisar `git diff --cached --stat`, `git diff --cached` y `git diff --cached --check`. Ningun PDF, captura, secreto o dato personal debe entrar al indice.
 5. Crear commits pequenos con la convencion de la seccion 52: `tipo(ambito): descripcion`. Ejemplos: `chore(repo): establish project baseline`, `feat(knowledge): add source-backed content drafts`, `docs(plan): update sprint checklist`. No fingir una historia pasada ni alterar autoria para dividir cambios ya mezclados.
-6. Cuando se autorice publicar: `git push -u origin NOMBRE_DE_RAMA` y abrir un PR hacia `main`, usando la plantilla. No enviar cambios sin revisar ni hacer force-push por defecto.
-7. Revisar y fusionar el PR con validaciones y evidencias. La revision tecnica no sustituye la aprobacion marcial de la escuela o la revision de derechos.
+6. Al cerrar un bloque revisado, ejecutar `git push -u origin NOMBRE_DE_RAMA`, sustituyendo el marcador por la rama real. Esta publicacion de ramas esta autorizada; no usar `--all`, `--mirror`, force-push ni incluir `main` o tags de forma implicita.
+7. Verificar con `git ls-remote --heads origin` que el SHA remoto de esa rama coincide con el local; registrar rama, commit y resultado del push en el informe. Si falla la autenticacion o la publicacion, informar el bloqueo y no declarar los cambios subidos.
+8. **No abrir Pull Requests ni ejecutar merges.** Mantener las ramas publicadas como historial de trabajo. Publicar borradores tecnicos en Git no equivale a aprobar conocimiento marcial o desplegar una pagina.
 
-Las protecciones de `main` (requerir PR, checks y restringir push directo) se recomiendan, pero **no estan configuradas** en GitHub por esta tarea. CI/CD tampoco esta implementado; los tests descritos se ejecutan localmente hasta incorporar GitHub Actions. No se promete una proteccion que aun no exista.
+No se configuraron protecciones de ramas en GitHub. La preservacion de `main` es una regla operativa de este flujo, no una proteccion remota ya instalada. CI/CD sigue pendiente; el pipeline futuro se disparara por push a ramas, sin requerir PR. No se despliega automaticamente ni se promete una proteccion inexistente. La plantilla de PR del bootstrap se retira del estado actual porque ya no forma parte del flujo solicitado.
 
 ## Versiones y releases
 
 - Los commits identifican cambios; las ramas agrupan trabajo; los tags identifican releases. No son equivalentes.
-- Usar tags anotados `vMAJOR.MINOR.PATCH` sobre un commit revisado e integrado, solo cuando se cumplan los criterios de su milestone.
+- Reservar tags anotados `vMAJOR.MINOR.PATCH` para releases expresamente autorizadas sobre un commit revisado que cumpla su milestone. La autorizacion actual cubre pushes a ramas, no tags, releases o integraciones.
 - Antes de 1.0 se esperan cambios de contratos; documentarlos y no alterar IDs canonicos publicados sin el procedimiento correspondiente.
 - Objetivos del informe: `v0.1.0` Content Foundation (10º Gup con persistencia y API), `v0.2.0` Identity & Grade Access y `v0.3.0` Web. Ninguno esta publicado.
 - No crear `v0.1.0` por terminar schemas, por tener `tools/validators` en version 0.1.0 ni por actualizar la version del informe tecnico.

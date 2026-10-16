@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.4  
+**Version del documento:** 1.5  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 16-10-2026  
 
@@ -1146,10 +1146,10 @@ Frontend:
 
 # 35. CI/CD
 
-Pipeline GitHub Actions:
+Pipeline GitHub Actions previsto (todavia no implementado), disparado por push a ramas de trabajo, sin Pull Requests o merges automaticos:
 
 ```text
-push / pull request
+push a rama de trabajo
         |
         +--> backend build
         |       |
@@ -1752,11 +1752,11 @@ La base de conocimiento es el nucleo del producto.
 
 **Estamos entre los pasos 3 y 4:** contratos tecnicos iniciales implementados y extraccion parcial; aun no existe un curriculum validado de 10º Gup. No se asigna un porcentaje global de avance porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
-Rama del bloque actual: `feat/tkd-012-exercise-source-evidence`, derivada del bloque anterior en `2da14a0`. Las ramas locales conservan la ascendencia del baseline; sin push ni integracion en `main`.
+Rama del bloque actual: `chore/push-only-workflow`, derivada de `ea1037f`. Se autoriza publicar las ramas de trabajo mediante push, sin Pull Requests, merges o cambios en `main`; primera publicacion pendiente de verificacion remota en este corte.
 
 | Paso | Entregable | Estado real |
 |---|---|---|
-| 1 | Repositorio y estructura | Esqueleto y documentacion guardados en baseline local `83eb531`, rama `chore/project-baseline`; publicacion/PR pendientes |
+| 1 | Repositorio y estructura | Baseline y bloques guardados en commits locales; pushes a ramas autorizados y en preparacion; sin PR o merge |
 | 2 | Knowledge base | Inventario inicial de cuatro PDFs; 19 fichas y 37 citas en revision, incluidos tramos de ejercicios con 15 acciones documentadas, no secuencias globales completas |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
@@ -1783,7 +1783,7 @@ Rama del bloque actual: `feat/tkd-012-exercise-source-evidence`, derivada del bl
 - [x] Crear `main` local siguiendo `origin/main` y rama `chore/project-baseline` basada en esa historia.
 - [x] Revisar candidatos y guardar baseline en commit local `83eb531` (`chore(repo): establish knowledge foundation baseline`), preservando el commit inicial remoto.
 - [x] Definir normalizacion de texto con `.gitattributes`, consistente con `.editorconfig`, sin quitar los saltos Markdown intencionales.
-- [ ] Publicar la rama y abrir su primer PR; no se han realizado push, PR, merge o tags.
+- [ ] Publicar y verificar las ramas de trabajo en GitHub; autorizado por el usuario, pendiente de comprobar el primer push. No crear PR ni ejecutar merge.
 - [ ] Crear Docker Compose funcional cuando se habilite el entorno ejecutable. Diferido expresamente por el alcance del bootstrap, no olvidado ni sustituido por un archivo vacio.
 
 La estructura del bootstrap esta lista. Sus excepciones pendientes se muestran arriba; no se marca todo Sprint 0 como cerrado bajo el listado original que incluia Compose.
@@ -1843,7 +1843,7 @@ node tools/validators/validate-knowledge.mjs --report-json --check-local-files
 4. Resolucion humana de divergencias entre manuales; no escoger uno por cantidad de paginas o fecha supuesta.
 5. Estrategia JWT local/OIDC y distincion entre estados del alumno y de su solicitud, antes de su implementacion.
 6. Derechos para el uso previsto y datos personales; un repo MIT no licencia fuentes de terceros.
-7. Publicar y revisar el baseline mediante PR cuando se autorice. Ya esta guardado en el historial local; `main` y el remoto siguen en su commit inicial, sin copia remota de este trabajo.
+7. Publicacion en GitHub: autorizados push directos a ramas de trabajo, sin PR ni merge. Hasta verificar el primer push, no declarar copia remota del avance. `main` se conserva sin cambios.
 8. Saju Jirugi/Saju Makgi: PDF 530, folio impreso 528, aporta listas numeradas y una nota de alternancia. Falta resolver la laguna del destino del golpe del punto 3 de Jirugi, enlazar una variante inicial y confirmar el alcance completo; no sumar, espejar o heredar conteos de los JSON antiguos. `sequence_complete` permanece en `false`.
 
 El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprobadas ni permitir exponer una beta sin los controles aplicables.
@@ -1856,7 +1856,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.4` es la version de este informe; `0.1.0` en `tools/validators/package.json` identifica la herramienta, no una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.5` es la version de este informe; `0.1.0` en `tools/validators/package.json` identifica la herramienta, no una release de la plataforma.
 
 ---
 
@@ -1866,7 +1866,7 @@ Se conserva la secuencia aprobada; el estado de ejecucion se registra en la secc
 
 ## Sprint 0 - Bootstrap del repositorio
 
-Estructura implementada; Compose diferido hasta disponer de un entorno ejecutable. Baseline guardado localmente en `83eb531`, pendiente de publicacion/PR; no se considera cerrado el entregable Compose del listado original.
+Estructura implementada; Compose diferido hasta disponer de un entorno ejecutable. Baseline guardado en `83eb531`; publicacion mediante push a ramas autorizada, sin PR o merge. No se considera cerrado el entregable Compose del listado original.
 
 Entregables:
 
@@ -1899,13 +1899,13 @@ No avanzar a 9º Gup hasta que la estructura de 10º Gup haya demostrado ser reu
 
 ### Proximo bloque de trabajo
 
-1. Baseline local guardado y revisado. Mantener la rama `chore/project-baseline` como base mientras no se integre; publicar y abrir PR solo cuando se autorice, tras revisar nuevamente copyright/secretos y el diff completo.
+1. Publicar y verificar las ramas de trabajo tras revisar historial, copyright, patrones comunes de secretos y diff. Conservar la ascendencia del baseline; no hacer PR, merges, push a `main` o tags. En bloques futuros, guardar commits y hacer push de la rama revisada para conservar el avance en el remoto.
 2. Contrastar y revisar los tramos encontrados en PDF 530 de la enciclopedia, resolver su legibilidad y alcance antes de completar secuencias; continuar consultas dirigidas para las lagunas de posiciones/herramientas. No convertir expresiones terminologicas en pasos ni generar el recorrido alterno por simetria.
 3. Resolver con la escuela los asuntos que impiden aprobar requisitos, posiciones o secuencias; registrar responsable, evidencia y fecha reales, sin aprobaciones ficticias.
 4. Construir curriculum enlazado y validarlo con contenido real antes de declarar completo el caso de 10º Gup.
 5. Acordar el siguiente bloque de persistencia/backend cuando corresponda al plan; no comenzar automaticamente otro sprint o milestone.
 
-La forma de trabajar con ramas, PR y versiones queda documentada en [flujo de desarrollo](docs/development/README.md). Esto no cambia el monolito modular ni introduce microservicios.
+La forma de trabajar con ramas, commits, push y versiones queda documentada en [flujo de desarrollo](docs/development/README.md). La instruccion del usuario sustituye el flujo previo basado en PR: no se crean PR ni se ejecutan merges. Esto no cambia el monolito modular ni introduce microservicios.
 
 ---
 
@@ -1922,6 +1922,7 @@ Cuando OpenCode reciba una tarea:
 7. indicar errores o decisiones pendientes;
 8. no continuar con el siguiente milestone sin instruccion.
 9. actualizar este informe al cerrar cada bloque con entregables verificables, checklist, validaciones y decisiones pendientes; cambiar la arquitectura requiere explicacion previa, no una edicion silenciosa del seguimiento.
+10. publicar los bloques revisados mediante push a su rama y verificar el SHA remoto; no crear Pull Requests, hacer merges, tocar `main`, forzar historia o publicar tags sin una instruccion posterior explicita.
 
 ---
 
@@ -1934,6 +1935,7 @@ Cuando OpenCode reciba una tarea:
 | 1.2 | 15-10-2026 | Baseline guardado en commit local `83eb531`; 91 archivos nuevos versionados sin PDFs/capturas/dependencias; politica `.gitattributes`, revision de patrones comunes de credenciales y 138 + 22 tests correctos. Sin push, tags o avance de milestone |
 | 1.3 | 15-10-2026 | Rama de bloque derivada del baseline; cinco herramientas y dos ejercicios terminologicos parciales, 11 citas nuevas. Total 19 fichas/35 citas; 145 + 22 tests correctos, sin declarar secuencias completas, aprobacion humana o curriculum. Sin nuevas dependencias ni cambios de arquitectura |
 | 1.4 | 16-10-2026 | Consulta dirigida de enciclopedia: PDF 530 / folio 528, 15 acciones resumidas y dos citas nuevas; alcance `sequence_scope`, control de tramos parciales y reporte de lagunas. Total 19 fichas/37 citas; 153 + 22 tests correctos. Secuencias incompletas y laguna de legibilidad explicitas, sin aprobacion, curriculum, nuevas dependencias o cambios de arquitectura |
+| 1.5 | 16-10-2026 | Por instruccion del usuario, flujo de commits y push a ramas sin PR ni merges; retirada de plantilla de PR y plan de CI por push. Primera publicacion pendiente de verificacion; `main`, contenido, tests y arquitectura de aplicacion sin cambios |
 
 ---
 
