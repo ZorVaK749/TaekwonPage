@@ -1752,11 +1752,11 @@ La base de conocimiento es el nucleo del producto.
 
 **Estamos entre los pasos 3 y 4:** contratos tecnicos iniciales implementados y extraccion parcial; aun no existe un curriculum validado de 10º Gup. No se asigna un porcentaje global de avance porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
-Bloque actual: cierre del checkpoint acumulado desde `chore/push-only-workflow`. Por nueva instruccion del usuario se permiten merges periodicos a `main` de bloques revisados, manteniendo pushes por rama y sin Pull Requests. Primera integracion en preparacion; no se declara completada hasta comprobar merge, tests y SHA remoto.
+Bloque actual: cierre documental en `main` del checkpoint acumulado desde `chore/push-only-workflow`. El merge `1ab81e7` se publico y verifico contra el remoto el 16-10-2026, tras 153 + 22 tests correctos sobre el resultado integrado. Sin PR, tags o deploy; las cuatro ramas anteriores estan contenidas en `main` y no se han eliminado.
 
 | Paso | Entregable | Estado real |
 |---|---|---|
-| 1 | Repositorio y estructura | Baseline y bloques publicados en cuatro ramas; primera integracion revisada a `main` en preparacion, sin PR |
+| 1 | Repositorio y estructura | Baseline y bloques integrados y publicados en `main` mediante `1ab81e7`; historial conservado, sin PR |
 | 2 | Knowledge base | Inventario inicial de cuatro PDFs; 19 fichas y 37 citas en revision, incluidos tramos de ejercicios con 15 acciones documentadas, no secuencias globales completas |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
@@ -1784,7 +1784,7 @@ Bloque actual: cierre del checkpoint acumulado desde `chore/push-only-workflow`.
 - [x] Revisar candidatos y guardar baseline en commit local `83eb531` (`chore(repo): establish knowledge foundation baseline`), preservando el commit inicial remoto.
 - [x] Definir normalizacion de texto con `.gitattributes`, consistente con `.editorconfig`, sin quitar los saltos Markdown intencionales.
 - [x] Publicar y verificar en GitHub `chore/project-baseline`, `feat/tkd-008-tools-and-exercise-drafts`, `feat/tkd-012-exercise-source-evidence` y `chore/push-only-workflow`, mediante refspecs explicitos y sin PR o merge.
-- [ ] Integrar y verificar el checkpoint acumulado en `main`, sin PR; operacion autorizada por el usuario. No implica cierre de Sprint 1 ni una release.
+- [x] Integrar y verificar el checkpoint acumulado en `main` mediante merge `1ab81e7`, sin PR; resultado integrado validado con 153 + 22 tests. No implica cierre de Sprint 1 ni una release.
 - [ ] Crear Docker Compose funcional cuando se habilite el entorno ejecutable. Diferido expresamente por el alcance del bootstrap, no olvidado ni sustituido por un archivo vacio.
 
 La estructura del bootstrap esta lista. Sus excepciones pendientes se muestran arriba; no se marca todo Sprint 0 como cerrado bajo el listado original que incluia Compose.
@@ -1828,7 +1828,7 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Tests PowerShell | 22 correctos |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Cuatro ramas publicadas y verificadas por SHA; `main` permanece en `4908799`, sin tags/releases o deploy |
+| GitHub | Checkpoint publicado en `main` por merge `1ab81e7`, SHA remoto verificado; cuatro ramas anteriores integradas, sin borrado de referencias, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1845,7 +1845,7 @@ node tools/validators/validate-knowledge.mjs --report-json --check-local-files
 4. Resolucion humana de divergencias entre manuales; no escoger uno por cantidad de paginas o fecha supuesta.
 5. Estrategia JWT local/OIDC y distincion entre estados del alumno y de su solicitud, antes de su implementacion.
 6. Derechos para el uso previsto y datos personales; un repo MIT no licencia fuentes de terceros.
-7. Flujo GitHub: pushes a ramas durante el trabajo y merges periodicos de checkpoints revisados a `main`, sin PR. Primera integracion en preparacion; no confundir integracion tecnica con aprobacion marcial, release o deploy. La limpieza de ramas integradas se autoriza por separado.
+7. Flujo GitHub: primera integracion completada. Trabajar desde el `main` actualizado, hacer push de la rama e integrar checkpoints periodicamente sin PR. Las cuatro ramas anteriores ya estan integradas; eliminarlas local/remotamente requiere autorizacion separada. No confundir integracion tecnica con aprobacion marcial, release o deploy.
 8. Saju Jirugi/Saju Makgi: PDF 530, folio impreso 528, aporta listas numeradas y una nota de alternancia. Falta resolver la laguna del destino del golpe del punto 3 de Jirugi, enlazar una variante inicial y confirmar el alcance completo; no sumar, espejar o heredar conteos de los JSON antiguos. `sequence_complete` permanece en `false`.
 
 El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprobadas ni permitir exponer una beta sin los controles aplicables.
@@ -1901,7 +1901,7 @@ No avanzar a 9º Gup hasta que la estructura de 10º Gup haya demostrado ser reu
 
 ### Proximo bloque de trabajo
 
-1. Cerrar ahora el checkpoint acumulado con merge revisado a `main`, pruebas sobre el resultado y push verificado. En bloques futuros, trabajar y hacer push en una rama, integrar checkpoints coherentes periodicamente y partir del `main` actualizado. Sin PR, force-push, tags o limpieza de ramas no autorizada.
+1. Checkpoint acumulado integrado y publicado en `main` con historial preservado. En bloques futuros, partir de `origin/main` actualizado, trabajar y hacer push en una rama e integrar checkpoints coherentes periodicamente. Sin PR, force-push, tags o limpieza de ramas no autorizada.
 2. Contrastar y revisar los tramos encontrados en PDF 530 de la enciclopedia, resolver su legibilidad y alcance antes de completar secuencias; continuar consultas dirigidas para las lagunas de posiciones/herramientas. No convertir expresiones terminologicas en pasos ni generar el recorrido alterno por simetria.
 3. Resolver con la escuela los asuntos que impiden aprobar requisitos, posiciones o secuencias; registrar responsable, evidencia y fecha reales, sin aprobaciones ficticias.
 4. Construir curriculum enlazado y validarlo con contenido real antes de declarar completo el caso de 10º Gup.
@@ -1938,7 +1938,7 @@ Cuando OpenCode reciba una tarea:
 | 1.3 | 15-10-2026 | Rama de bloque derivada del baseline; cinco herramientas y dos ejercicios terminologicos parciales, 11 citas nuevas. Total 19 fichas/35 citas; 145 + 22 tests correctos, sin declarar secuencias completas, aprobacion humana o curriculum. Sin nuevas dependencias ni cambios de arquitectura |
 | 1.4 | 16-10-2026 | Consulta dirigida de enciclopedia: PDF 530 / folio 528, 15 acciones resumidas y dos citas nuevas; alcance `sequence_scope`, control de tramos parciales y reporte de lagunas. Total 19 fichas/37 citas; 153 + 22 tests correctos. Secuencias incompletas y laguna de legibilidad explicitas, sin aprobacion, curriculum, nuevas dependencias o cambios de arquitectura |
 | 1.5 | 16-10-2026 | Por instruccion del usuario, flujo de commits y push a ramas sin PR ni merges; retirada de plantilla de PR y plan de CI por push. Cuatro ramas publicadas con SHA remotos verificados tras revisar cinco commits salientes y 110 versiones unicas de archivos; sin PDF/capturas o patrones comunes de credenciales detectados. 153 + 22 tests correctos; `main`, contenido y arquitectura de aplicacion sin cambios |
-| 1.6 | 16-10-2026 | Nueva instruccion: integrar periodicamente checkpoints revisados a `main`, manteniendo pushes por rama y sin PR. Primera integracion acumulada en preparacion; no se borran ramas ni se declara una release o curriculum aprobado |
+| 1.6 | 16-10-2026 | Nueva instruccion: push por rama y merges periodicos revisados a `main`, sin PR. Primera integracion publicada y verificada mediante `1ab81e7`; 153 + 22 tests correctos sobre el resultado, cuatro ramas contenidas en main sin eliminarlas. Sin release, deploy, aprobacion curricular, nuevas dependencias o cambios en datos/arquitectura de aplicacion |
 
 ---
 

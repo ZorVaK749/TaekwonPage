@@ -5,11 +5,11 @@ Este flujo organiza el trabajo de ZVK Tech sin cambiar la arquitectura de [infor
 ## Estado de la vinculacion
 
 - Remoto `origin`: `https://github.com/ZorVaK749/TaekwonPage.git`.
-- `main` local sigue `origin/main`; ambas partieron de `4908799` (`Initial commit`, solo `LICENSE` MIT). La primera integracion del checkpoint acumulado esta en preparacion; se registrara y verificara el SHA de merge al completarla.
+- `main` local sigue `origin/main`; ambas partieron de `4908799` (`Initial commit`, solo `LICENSE` MIT). El checkpoint acumulado se integro y publico el 16-10-2026 mediante el merge de dos padres `1ab81e7`, con SHA remoto verificado. La constancia documental posterior se guarda en `main` como cierre de la misma operacion.
 - Rama del baseline: `chore/project-baseline`. Los bloques siguientes conservan esa ascendencia en ramas derivadas; su upstream debe ser la rama remota homonima, nunca `origin/main` por accidente. La rama activa y el estado se registran en la seccion 55 del informe.
 - La licencia se recupero del remoto sin cambiar su contenido.
 - Baseline guardado en el commit local `83eb531` (`chore(repo): establish knowledge foundation baseline`): 91 archivos nuevos, sin PDFs, capturas o `node_modules`. Los JSON previos se conservaron sin modificar ni promover a contenido aprobado.
-- El 16-10-2026 se publicaron y verificaron cuatro ramas homonimas en GitHub: `chore/project-baseline`, `feat/tkd-008-tools-and-exercise-drafts`, `feat/tkd-012-exercise-source-evidence` y `chore/push-only-workflow`. Ese primer push no uso PR ni merges. Ahora se autoriza integrar sus avances acumulados en `main`, manteniendo visibles los commits y sin declarar una release.
+- El 16-10-2026 se publicaron cuatro ramas homonimas en GitHub: `chore/project-baseline`, `feat/tkd-008-tools-and-exercise-drafts`, `feat/tkd-012-exercise-source-evidence` y `chore/push-only-workflow`. Sus tips actuales ya estan contenidos en `main`, conservando los commits de avance. No se borraron referencias locales/remotas ni se creo una release.
 - `.gitattributes` normaliza texto en Git: LF para texto y CRLF al extraer scripts Windows, en concordancia con `.editorconfig`. Los espacios finales de Markdown se permiten por sus saltos de linea intencionales.
 
 Una rama no es una copia de seguridad de archivos sin commit. Antes de cambiar a otra rama, revisar `git status` y guardar los cambios de forma explicita; nunca usar reset/checkout forzado, clean o descartes para resolver conflictos sin autorizacion.
@@ -35,7 +35,7 @@ Usar nombres ASCII en minusculas y un bloque coherente por rama. Objetivo: `main
    git switch --no-track -c feat/nuevo-bloque origin/main
    ```
 
-   Hasta completar la primera integracion, no crear trabajo nuevo desde el `main` inicial vacio: usar el checkpoint existente y evitar mas ramas apiladas. Si una rama remota avanzo de forma incompatible, detenerse y revisar la divergencia sin descartar trabajo; no ejecutar pull, rebase o force-push automaticamente.
+   La primera integracion ya esta completada: los bloques nuevos deben partir del `main` actualizado y no seguir apilandose sobre ramas antiguas. Si una rama remota avanzo de forma incompatible, detenerse y revisar la divergencia sin descartar trabajo; no ejecutar pull, rebase o force-push automaticamente.
 
 3. Implementar un bloque acotado, actualizar `informe_tecnico.md` y ejecutar las validaciones aplicables:
 

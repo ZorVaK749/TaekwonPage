@@ -79,11 +79,11 @@ No hay builds ni tests de aplicación aún. Fuentes y citas cuentan con [JSON Sc
 
 Consulta [pendientes de arquitectura](docs/architecture/README.md). No se eligieron proveedor de hosting ni estrategia JWT local/OIDC. El [plan de seguridad](docs/security/README.md) queda pendiente para su etapa, sin posponer los controles necesarios para exponer una beta.
 
-Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. El baseline **`83eb531`** y sus bloques posteriores están publicados en ramas de trabajo. El flujo actual es **trabajo y push en ramas, con merges periódicos de checkpoints revisados a `main`, sin Pull Requests**. La primera integración acumulada está en preparación. La licencia MIT no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
+Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. El baseline **`83eb531`** y sus bloques posteriores ya están **integrados y publicados en `main`**, mediante el merge **`1ab81e7`**, conservando su historial. El flujo actual es **trabajo y push en ramas, con merges periódicos de checkpoints revisados a `main`, sin Pull Requests**. La licencia MIT no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
 
-Bloque actual: cierre e integración del checkpoint desde `chore/push-only-workflow`. El merge técnico no completa el currículo, no aprueba el contenido marcial y no crea una release o despliegue. Las ramas integradas no se borran sin autorización.
+Bloque actual: cierre documental en `main` de la integración desde `chore/push-only-workflow`. El resultado integrado pasó 153 tests Node y 22 PowerShell; no completa el currículo, no aprueba el contenido marcial y no crea una release o despliegue. Las cuatro ramas anteriores están integradas, pero no se borran sin autorización.
 
-Hasta verificar la primera integración, el [checkpoint publicado](https://github.com/ZorVaK749/TaekwonPage/tree/chore/push-only-workflow) está en la rama de trabajo; después, los bloques nuevos partirán del `main` actualizado.
+El [checkpoint publicado](https://github.com/ZorVaK749/TaekwonPage/tree/main) ya está disponible en la vista predeterminada de `main`. Los bloques nuevos partirán de ese estado, sin crear ramas acumulativas innecesarias.
 
 El informe incluye Docker Compose entre los entregables de Sprint 0; la instrucción de esta tarea limita el trabajo al esqueleto, sin aplicaciones ni base de datos. Por ello no se incluye un Compose vacío o no funcional: se preparará al habilitar el entorno ejecutable.
 
