@@ -79,9 +79,11 @@ No hay builds ni tests de aplicación aún. Fuentes y citas cuentan con [JSON Sc
 
 Consulta [pendientes de arquitectura](docs/architecture/README.md). No se eligieron proveedor de hosting ni estrategia JWT local/OIDC. El [plan de seguridad](docs/security/README.md) queda pendiente para su etapa, sin posponer los controles necesarios para exponer una beta.
 
-Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. `main` local sigue `origin/main` en `4908799` (commit inicial con licencia MIT, copyright 2026 ZorVaK). El baseline está guardado en **`83eb531`**, sobre **`chore/project-baseline`**, y `LICENSE` se conserva sin cambios. Por instrucción del usuario se publican los bloques revisados mediante **push a sus ramas, sin Pull Requests ni merges**, preservando `main`. La primera publicación está pendiente de verificación en este corte. La licencia del software no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
+Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. `main` local sigue `origin/main` en `4908799` (commit inicial con licencia MIT, copyright 2026 ZorVaK). El baseline **`83eb531`** y sus bloques posteriores ya están publicados en cuatro ramas de trabajo, con SHA remotos verificados el 16-10-2026. Por instrucción del usuario se hace **push a las ramas, sin Pull Requests ni merges**, preservando `main`. La licencia MIT no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
 
 Rama del bloque actual: `chore/push-only-workflow`, derivada de `ea1037f`. Las ramas son acumulativas sobre el baseline, no parten de un `main` que todavía carece del proyecto. No se crean PR, merges, tags ni releases con esta publicación de avances.
+
+El [estado publicado más reciente](https://github.com/ZorVaK749/TaekwonPage/tree/chore/push-only-workflow) está en esa rama, no en la vista predeterminada de `main`.
 
 El informe incluye Docker Compose entre los entregables de Sprint 0; la instrucción de esta tarea limita el trabajo al esqueleto, sin aplicaciones ni base de datos. Por ello no se incluye un Compose vacío o no funcional: se preparará al habilitar el entorno ejecutable.
 

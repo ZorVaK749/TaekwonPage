@@ -9,7 +9,7 @@ Este flujo organiza el trabajo de ZVK Tech sin cambiar la arquitectura de [infor
 - Rama del baseline: `chore/project-baseline`. Los bloques siguientes conservan esa ascendencia en ramas derivadas; su upstream debe ser la rama remota homonima, nunca `origin/main` por accidente. La rama activa y el estado se registran en la seccion 55 del informe.
 - La licencia se recupero del remoto sin cambiar su contenido.
 - Baseline guardado en el commit local `83eb531` (`chore(repo): establish knowledge foundation baseline`): 91 archivos nuevos, sin PDFs, capturas o `node_modules`. Los JSON previos se conservaron sin modificar ni promover a contenido aprobado.
-- Se autoriza publicar las ramas de trabajo para conservar el avance y su log en GitHub. La primera publicacion esta pendiente de verificacion remota en este corte; no se asume exito por crear un commit o ejecutar un dry-run. No se hacen PR, merges, tags o releases.
+- El 16-10-2026 se publicaron y verificaron cuatro ramas homonimas en GitHub: `chore/project-baseline`, `feat/tkd-008-tools-and-exercise-drafts`, `feat/tkd-012-exercise-source-evidence` y `chore/push-only-workflow`. Sus SHA remotos se contrastaron con los locales. No se hicieron PR, merges, tags o releases; `main` conserva el commit inicial.
 - `.gitattributes` normaliza texto en Git: LF para texto y CRLF al extraer scripts Windows, en concordancia con `.editorconfig`. Los espacios finales de Markdown se permiten por sus saltos de linea intencionales.
 
 Una rama no es una copia de seguridad de archivos sin commit. Antes de cambiar a otra rama, revisar `git status` y guardar los cambios de forma explicita; nunca usar reset/checkout forzado, clean o descartes para resolver conflictos sin autorizacion.
