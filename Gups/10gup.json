@@ -1,0 +1,28 @@
+{
+  "id": "gup_10",
+  "gup": 10,
+  "cinturon": "Blanco",
+  "significado": "Representa la inocencia, como la del principiante que no tiene conocimiento previo del Taekwon-Do.",
+  "teoria_requerida": [
+    "def_taekwondo",
+    "historia_choi_hong_hi_basica",
+    "reglas_dojang"
+  ],
+  "posiciones_requeridas": [
+    "junbi_sogi",
+    "gunnun_sogi",
+    "charyot_sogi"
+  ],
+  "tuls_requeridos": [
+    "saju_jirugi",
+    "saju_makgi"
+  ],
+  "vocabulario_requerido": [
+    "charyot",
+    "kyong_ye",
+    "boo_sabum_nim"
+  ],
+  "combate_requerido": [
+    "sambo_matsogi_sin_contacto"
+  ]
+}

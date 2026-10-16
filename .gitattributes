@@ -1,0 +1,8 @@
+# Store text normalized in Git; use LF unless a Windows script needs CRLF.
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Markdown hard breaks intentionally use trailing spaces (.editorconfig agrees).
+*.md text eol=lf whitespace=-blank-at-eol

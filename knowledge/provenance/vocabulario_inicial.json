@@ -1,0 +1,93 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_dobok_web_p11",
+      "content_id": "dobok",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Dobok",
+      "review_status": "pending_human_review",
+      "notes": "Equivalencia observada en la tabla y contrastada con la otra copia; se normaliza únicamente la tilde de práctica. No se extraen características del uniforme."
+    },
+    {
+      "id": "citation_dobok_ont_p13",
+      "content_id": "dobok",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 13,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Dobok",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada visualmente. La coincidencia entre manuales no se interpreta como revisión humana o independencia documental."
+    },
+    {
+      "id": "citation_ti_web_p11",
+      "content_id": "ti",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Ti",
+      "review_status": "pending_human_review",
+      "notes": "Equivalencia léxica observada: cinturón. No implica colores, grados ni requisitos de examen."
+    },
+    {
+      "id": "citation_ti_ont_p13",
+      "content_id": "ti",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 13,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Ti",
+      "review_status": "pending_human_review",
+      "notes": "Equivalencia contrastada visualmente con la fila homóloga del otro manual."
+    },
+    {
+      "id": "citation_dojang_web_p11",
+      "content_id": "dojang",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Dojang",
+      "review_status": "pending_human_review",
+      "notes": "La tabla presenta Dojang en una sola palabra y lo relaciona con el recinto de práctica; no se amplía con reglas de etiqueta."
+    },
+    {
+      "id": "citation_dojang_ont_p13",
+      "content_id": "dojang",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 13,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Do jang",
+      "review_status": "pending_human_review",
+      "notes": "La grafía Do jang se conserva como alias observado, sin afirmar que una romanización sea superior a la otra."
+    },
+    {
+      "id": "citation_boo_sabum_nim_web_p6",
+      "content_id": "boo_sabum_nim",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 6,
+      "printed_page": null,
+      "section": "Clasificación de instructores: I, II y III Dan",
+      "review_status": "pending_human_review",
+      "notes": "La fuente utiliza Busabonim y la clasificación instructor asistente o instructor nacional. Se conserva esa grafía como alias; no se deriva ningún permiso de aplicación."
+    },
+    {
+      "id": "citation_boo_sabum_nim_ont_p7",
+      "content_id": "boo_sabum_nim",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 7,
+      "printed_page": null,
+      "section": "Clasificación de instructores: I, II y III Dan",
+      "review_status": "pending_human_review",
+      "notes": "La fuente utiliza Boo Sabum Nim para la misma clasificación y grados enumerados. El campo translation es una glosa funcional de la fuente, no un análisis lingüístico ni una asignación de ROLE_ADMIN."
+    }
+  ]
+}

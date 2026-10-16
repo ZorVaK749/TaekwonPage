@@ -1,0 +1,27 @@
+{
+  "format_version": 1,
+  "catalog_type": "theory",
+  "items": [
+    {
+      "id": "def_taekwondo",
+      "name": "Definición introductoria del Taekwon-Do",
+      "description": "Arte marcial de combate sin armas, orientado a la autodefensa y al entrenamiento técnico y mental.",
+      "citation_ids": ["citation_def_taekwondo_web_p2", "citation_def_taekwondo_ont_p2"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "fundador_taekwondo",
+      "name": "Fundador del Taekwon-Do",
+      "description": "Los manuales consultados identifican al General Choi Hong Hi como fundador del Taekwon-Do.",
+      "citation_ids": ["citation_fundador_taekwondo_web_p2", "citation_fundador_taekwondo_ont_p2"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "principios_taekwondo",
+      "name": "Principios del Taekwon-Do",
+      "description": "Los cinco principios enumerados son cortesía, integridad, perseverancia, autocontrol y espíritu indomable.",
+      "citation_ids": ["citation_principios_taekwondo_web_p6", "citation_principios_taekwondo_ont_p6"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}

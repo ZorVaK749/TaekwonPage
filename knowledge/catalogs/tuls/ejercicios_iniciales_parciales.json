@@ -1,0 +1,122 @@
+{
+  "format_version": 1,
+  "catalog_type": "tul",
+  "items": [
+    {
+      "id": "saju_jirugi",
+      "name": "Saju Jirugi",
+      "description": "El documento de terminología agrupa bajo este nombre expresiones para un golpe frontal de puño a zona media y un bloqueo de antebrazo externo a zona baja, en posición de caminar.",
+      "movement_count": null,
+      "initial_position_id": null,
+      "sequence_complete": false,
+      "sequence_scope": "Lista impresa 1–7 de PDF 530, folio 528, con desplazamientos del pie derecho. No incluye retorno final como paso numerado ni desarrolla la ejecución alterna en sentido opuesto. El destino del golpe del punto 3 no es legible en la copia.",
+      "steps": [
+        {
+          "step_number": 1,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia D; posición para caminar derecha orientada a D y golpe medio con puño derecho hacia D.",
+          "citation_ids": ["citation_saju_jirugi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 2,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia A; posición para caminar izquierda orientada a B y bloqueo bajo hacia B con antebrazo izquierdo.",
+          "citation_ids": ["citation_saju_jirugi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 3,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia B; posición para caminar derecha orientada a B y golpe medio con puño derecho. El destino del golpe no es legible en esta copia y no se completa.",
+          "citation_ids": ["citation_saju_jirugi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 4,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia D; posición para caminar izquierda orientada a C y bloqueo bajo hacia C con antebrazo izquierdo.",
+          "citation_ids": ["citation_saju_jirugi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 5,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia C; posición para caminar derecha orientada a C y golpe medio con puño derecho hacia C.",
+          "citation_ids": ["citation_saju_jirugi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 6,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia B; posición para caminar izquierda orientada a A y bloqueo bajo hacia A con antebrazo izquierdo.",
+          "citation_ids": ["citation_saju_jirugi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 7,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia A; posición para caminar derecha orientada a A y golpe medio con puño derecho hacia A.",
+          "citation_ids": ["citation_saju_jirugi_enciclopedia_p530"]
+        }
+      ],
+      "citation_ids": ["citation_saju_jirugi_terminologia_p1", "citation_saju_jirugi_enciclopedia_p530"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "saju_makgi",
+      "name": "Saju Makgi",
+      "description": "El documento de terminología agrupa bajo este nombre expresiones de bloqueo bajo con canto de mano externo y bloqueo interno de antebrazo a zona media, en posición de caminar.",
+      "movement_count": null,
+      "initial_position_id": null,
+      "sequence_complete": false,
+      "sequence_scope": "Lista impresa 1–8 de PDF 530, folio 528, con desplazamientos del pie derecho. No incluye retorno final como paso numerado ni desarrolla la ejecución alterna en sentido opuesto. No determina el total del ejercicio adoptado por la escuela.",
+      "steps": [
+        {
+          "step_number": 1,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia C; posición para caminar izquierda orientada a D y bloqueo bajo hacia D con canto de mano izquierda.",
+          "citation_ids": ["citation_saju_makgi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 2,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia D; posición para caminar derecha orientada a D y defensa media lateral hacia D con antebrazo interno derecho.",
+          "citation_ids": ["citation_saju_makgi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 3,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia A; posición para caminar izquierda orientada a B y bloqueo bajo hacia B con canto de mano izquierda.",
+          "citation_ids": ["citation_saju_makgi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 4,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia B; posición para caminar derecha orientada a B y defensa media lateral hacia B con antebrazo interno derecho.",
+          "citation_ids": ["citation_saju_makgi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 5,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia D; posición para caminar izquierda orientada a C y bloqueo bajo hacia C con canto de mano izquierda.",
+          "citation_ids": ["citation_saju_makgi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 6,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia C; posición para caminar derecha orientada a C y defensa media lateral hacia C con antebrazo interno derecho.",
+          "citation_ids": ["citation_saju_makgi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 7,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia B; posición para caminar izquierda orientada a A y bloqueo bajo hacia A con canto de mano izquierda.",
+          "citation_ids": ["citation_saju_makgi_enciclopedia_p530"]
+        },
+        {
+          "step_number": 8,
+          "position_id": "gunnun_sogi",
+          "description": "Pie derecho hacia A; posición para caminar derecha orientada a A y defensa media lateral hacia A con antebrazo interno derecho.",
+          "citation_ids": ["citation_saju_makgi_enciclopedia_p530"]
+        }
+      ],
+      "citation_ids": ["citation_saju_makgi_terminologia_p1", "citation_saju_makgi_enciclopedia_p530"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}

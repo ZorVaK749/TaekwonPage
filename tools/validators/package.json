@@ -1,0 +1,19 @@
+{
+  "name": "@taekwonpage/knowledge-validators",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "validate": "node validate-knowledge.mjs",
+    "validate:local": "node validate-knowledge.mjs --check-local-files",
+    "validate:content": "node validate-knowledge.mjs --require-content",
+    "report": "node validate-knowledge.mjs --report-json"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0"
+  }
+}

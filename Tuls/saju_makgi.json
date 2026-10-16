@@ -1,0 +1,40 @@
+{
+  "id": "saju_makgi",
+  "nombre_coreano": "Saju Makgi",
+  "traduccion": "Bloqueo a cuatro direcciones (Cruz de Defensa)",
+  "movimientos_totales": 16,
+  "significado": "Ejercicio fundamental diseñado para enseñar al principiante las técnicas básicas de defensa y los giros en 90 grados.",
+  "posicion_inicial_id": "junbi_sogi",
+  "pasos": [
+    {
+      "nro_paso": 1,
+      "posicion_id": "gunnun_sogi",
+      "tipo": "defensa",
+      "tecnica_coreano": "Sonkal Najunde Makgi",
+      "traduccion": "Bloqueo bajo con el canto de la mano",
+      "zona": "Baja",
+      "movimiento_pierna": "Retrocede pierna izquierda",
+      "herramienta_ejecutora": "Sonkal (Canto de la mano)"
+    },
+    {
+      "nro_paso": 2,
+      "posicion_id": "gunnun_sogi",
+      "tipo": "defensa",
+      "tecnica_coreano": "Kaunde An Palmok Makgi",
+      "traduccion": "Bloqueo medio con la parte interna del antebrazo",
+      "zona": "Media",
+      "movimiento_pierna": "Avanza pierna derecha",
+      "herramienta_ejecutora": "An Palmok (Parte interna del antebrazo)"
+    },
+    {
+      "nro_paso": 3,
+      "posicion_id": "gunnun_sogi",
+      "tipo": "defensa",
+      "tecnica_coreano": "Sonkal Najunde Makgi",
+      "traduccion": "Bloqueo bajo con el canto de la mano",
+      "zona": "Baja",
+      "movimiento_pierna": "Retrocede pierna izquierda y gira 90° hacia la izquierda",
+      "herramienta_ejecutora": "Sonkal (Canto de la mano)"
+    }
+  ]
+}

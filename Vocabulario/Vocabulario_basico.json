@@ -1,0 +1,18 @@
+{
+  "charyot": {
+    "termino_coreano": "Charyot",
+    "significado": "Atención / Firmes",
+    "categoria": "voz_de_mando"
+  },
+  "kyong_ye": {
+    "termino_coreano": "Kyong Ye",
+    "significado": "Saludo / Reverencia",
+    "categoria": "etiqueta"
+  },
+  "boo_sabum_nim": {
+    "termino_coreano": "Boo Sabum Nim",
+    "significado": "Instructor Asistente (1° a 3° Dan)",
+    "categoria": "jerarquia",
+    "alias": ["busabonim", "boosabumnim"]
+  }
+}

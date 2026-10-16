@@ -1,0 +1,44 @@
+{
+  "charyot_sogi": {
+    "nombre_coreano": "Charyot Sogi",
+    "traduccion": "Posición de atención",
+    "largo_hombros": 0.0,
+    "ancho_hombros": 0.0,
+    "peso_delantero_pct": 50,
+    "peso_trasero_pct": 50,
+    "angulo_pie_delantero_grados": 22.5,
+    "angulo_pie_trasero_grados": 22.5,
+    "notas": "Los talones se tocan, las puntas de los pies apuntan hacia afuera formando un ángulo de 45 grados en total."
+  },
+  "junbi_sogi": {
+    "nombre_coreano": "Junbi Sogi",
+    "traduccion": "Posición de preparados",
+    "largo_hombros": 0.0,
+    "ancho_hombros": 1.0,
+    "peso_delantero_pct": 50,
+    "peso_trasero_pct": 50,
+    "angulo_pie_delantero_grados": 0,
+    "angulo_pie_trasero_grados": 0
+  },
+  "gunnun_sogi": {
+    "nombre_coreano": "Gunnun Sogi",
+    "traduccion": "Posición para caminar",
+    "largo_hombros": 1.5,
+    "ancho_hombros": 1.0,
+    "peso_delantero_pct": 50,
+    "peso_trasero_pct": 50,
+    "angulo_pie_delantero_grados": 0,
+    "angulo_pie_trasero_grados": 25
+  },
+  "niunja_sogi": {
+    "nombre_coreano": "Niunja Sogi",
+    "traduccion": "Posición en L",
+    "largo_hombros": 1.5,
+    "ancho_hombros": 0.0,
+    "peso_delantero_pct": 30,
+    "peso_trasero_pct": 70,
+    "angulo_pie_delantero_grados": 0,
+    "angulo_pie_trasero_grados": 15,
+    "notas": "El pie trasero apunta 15 grados hacia adentro. Los talones están alineados en el mismo eje $y$."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taekwonpage:schema:catalog:1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format_version", "catalog_type", "items"],
+  "properties": {
+    "format_version": { "const": 1 },
+    "catalog_type": { "enum": ["position", "theory", "tul", "vocabulary", "body_tool", "kick", "combat"] },
+    "items": { "type": "array", "minItems": 1 }
+  },
+  "allOf": [
+    { "if": { "properties": { "catalog_type": { "const": "position" } } }, "then": { "properties": { "items": { "type": "array", "items": { "$ref": "urn:taekwonpage:schema:position:1" } } } } },
+    { "if": { "properties": { "catalog_type": { "const": "theory" } } }, "then": { "properties": { "items": { "type": "array", "items": { "$ref": "urn:taekwonpage:schema:theory:1" } } } } },
+    { "if": { "properties": { "catalog_type": { "const": "tul" } } }, "then": { "properties": { "items": { "type": "array", "items": { "$ref": "urn:taekwonpage:schema:tul:1" } } } } },
+    { "if": { "properties": { "catalog_type": { "const": "vocabulary" } } }, "then": { "properties": { "items": { "type": "array", "items": { "$ref": "urn:taekwonpage:schema:vocabulary:1" } } } } },
+    { "if": { "properties": { "catalog_type": { "const": "body_tool" } } }, "then": { "properties": { "items": { "type": "array", "items": { "$ref": "urn:taekwonpage:schema:body_tool:1" } } } } },
+    { "if": { "properties": { "catalog_type": { "const": "kick" } } }, "then": { "properties": { "items": { "type": "array", "items": { "$ref": "urn:taekwonpage:schema:kick:1" } } } } },
+    { "if": { "properties": { "catalog_type": { "const": "combat" } } }, "then": { "properties": { "items": { "type": "array", "items": { "$ref": "urn:taekwonpage:schema:combat:1" } } } } }
+  ]
+}

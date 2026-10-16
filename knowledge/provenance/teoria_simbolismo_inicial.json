@@ -1,0 +1,49 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_dobok_blanco_web_p6",
+      "content_id": "significado_dobok_blanco",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 6,
+      "printed_page": null,
+      "section": "El porque del traje blanco (Dobok)",
+      "review_status": "pending_human_review",
+      "notes": "Síntesis breve del simbolismo observado; no se transcribe la analogía ni el párrafo completo. No determina requisitos de uniforme o examen."
+    },
+    {
+      "id": "citation_dobok_blanco_ont_p7",
+      "content_id": "significado_dobok_blanco",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 7,
+      "printed_page": null,
+      "section": "El porque del traje blanco (Dobok)",
+      "review_status": "pending_human_review",
+      "notes": "Contraste visual del significado con la otra copia. La coincidencia documental no equivale a aprobación humana."
+    },
+    {
+      "id": "citation_cinturon_blanco_web_p15",
+      "content_id": "significado_cinturon_blanco",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "Significado de los cinturones: BLANCO",
+      "review_status": "pending_human_review",
+      "notes": "Solo se extrae el significado del blanco. No se copia el resto de la tabla ni se asigna un Gup automáticamente."
+    },
+    {
+      "id": "citation_cinturon_blanco_ont_p20",
+      "content_id": "significado_cinturon_blanco",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 20,
+      "printed_page": null,
+      "section": "Significado de los cinturones: BLANCO",
+      "review_status": "pending_human_review",
+      "notes": "Significado contrastado visualmente con la fila BLANCO del otro manual, sin equiparar el simbolismo con permisos o estados de usuario."
+    }
+  ]
+}

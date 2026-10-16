@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taekwonpage:schema:content_source:1",
+  "title": "Cita documental de trabajo, no aprobación de contenido",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "content_id", "source_id", "source_sha256", "pdf_page",
+    "printed_page", "section", "review_status", "notes"
+  ],
+  "properties": {
+    "id": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/canonical_id" },
+    "content_id": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/canonical_id" },
+    "source_id": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/canonical_id" },
+    "source_sha256": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/sha256" },
+    "pdf_page": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/nullable_pdf_page" },
+    "printed_page": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/nullable_text" },
+    "section": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/nullable_text" },
+    "review_status": { "const": "pending_human_review" },
+    "notes": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/nullable_text" }
+  },
+  "anyOf": [
+    {
+      "properties": {
+        "pdf_page": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/pdf_page" }
+      }
+    },
+    {
+      "properties": {
+        "section": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/text" }
+      }
+    }
+  ]
+}

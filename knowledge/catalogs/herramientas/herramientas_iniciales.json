@@ -1,0 +1,41 @@
+{
+  "format_version": 1,
+  "catalog_type": "body_tool",
+  "items": [
+    {
+      "id": "ap_joomuk",
+      "name": "Ap Joomuk",
+      "description": "Los vocabularios consultados identifican este término con el puño frontal.",
+      "citation_ids": ["citation_ap_joomuk_web_p11", "citation_ap_joomuk_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "palmok",
+      "name": "Palmok",
+      "description": "Los vocabularios consultados relacionan este término con el antebrazo.",
+      "citation_ids": ["citation_palmok_web_p12", "citation_palmok_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "bakat_palmok",
+      "name": "Bakat palmok",
+      "description": "En los vocabularios consultados, este término designa el antebrazo externo.",
+      "citation_ids": ["citation_bakat_palmok_web_p12", "citation_bakat_palmok_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "an_palmok",
+      "name": "An palmok",
+      "description": "En los vocabularios consultados, este término designa el antebrazo interno.",
+      "citation_ids": ["citation_an_palmok_web_p12", "citation_an_palmok_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "sonkal",
+      "name": "Sonkal",
+      "description": "El vocabulario del manual ONT relaciona este término con el canto de la mano.",
+      "citation_ids": ["citation_sonkal_ont_p14"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}

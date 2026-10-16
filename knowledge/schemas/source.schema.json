@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taekwonpage:schema:source:1",
+  "title": "Fuente documental en revisión, formato 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "file_reference", "size_bytes", "sha256", "title", "organization",
+    "author", "edition", "language", "pdf_pages", "metadata_evidence",
+    "coverage", "review_status", "redistribution_status", "notes"
+  ],
+  "properties": {
+    "id": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/canonical_id" },
+    "file_reference": {
+      "type": "string",
+      "pattern": "^knowledge/sources/pdfs/[^/\\\\:\\u0000-\\u001f]+\\.[pP][dD][fF]$"
+    },
+    "size_bytes": { "type": "integer", "minimum": 5, "maximum": 9007199254740991 },
+    "sha256": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/sha256" },
+    "title": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/nullable_text" },
+    "organization": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/nullable_text" },
+    "author": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/nullable_text" },
+    "edition": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/nullable_text" },
+    "language": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/nullable_text" },
+    "pdf_pages": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/nullable_pdf_page" },
+    "metadata_evidence": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/nullable_text" },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["topic", "pdf_page_start", "pdf_page_end"],
+        "properties": {
+          "topic": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/text" },
+          "pdf_page_start": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/pdf_page" },
+          "pdf_page_end": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/pdf_page" }
+        }
+      }
+    },
+    "review_status": { "const": "pending_human_review" },
+    "redistribution_status": { "const": "unknown" },
+    "notes": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/text" }
+  }
+}

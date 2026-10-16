@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taekwonpage:schema:content_entry:1",
+  "type": "object",
+  "required": ["id", "name", "description", "citation_ids", "review_status"],
+  "properties": {
+    "id": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/canonical_id" },
+    "name": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/text" },
+    "description": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/text" },
+    "citation_ids": { "$ref": "#/$defs/citation_ids" },
+    "review_status": { "const": "pending_human_review" }
+  },
+  "$defs": {
+    "ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "urn:taekwonpage:schema:common:1#/$defs/canonical_id" }
+    },
+    "citation_ids": {
+      "allOf": [{ "$ref": "#/$defs/ids" }],
+      "type": "array",
+      "minItems": 1
+    }
+  }
+}
