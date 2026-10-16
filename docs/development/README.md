@@ -6,7 +6,7 @@ Este flujo organiza el trabajo de ZVK Tech sin cambiar la arquitectura de [infor
 
 - Remoto `origin`: `https://github.com/ZorVaK749/TaekwonPage.git`.
 - `main` local sigue `origin/main`; ambas parten de `4908799` (`Initial commit`, solo `LICENSE` MIT).
-- Rama actual de preparacion: `chore/project-baseline`, creada desde la misma historia y sin upstream para evitar confundirla con `main`.
+- Rama del baseline: `chore/project-baseline`, creada desde la misma historia y sin upstream para evitar confundirla con `main`. Los nuevos bloques se separan en ramas derivadas mientras no se integre ese baseline; la rama activa y el estado del bloque se registran en la seccion 55 del informe.
 - La licencia se recupero del remoto sin cambiar su contenido.
 - Baseline guardado en el commit local `83eb531` (`chore(repo): establish knowledge foundation baseline`): 91 archivos nuevos, sin PDFs, capturas o `node_modules`. Los JSON previos se conservaron sin modificar ni promover a contenido aprobado.
 - No se hizo push, merge, tag ni PR; el remoto sigue en el commit inicial. El commit local protege la historia en esta PC, pero no constituye una copia de seguridad remota.

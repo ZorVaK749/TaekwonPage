@@ -1,0 +1,28 @@
+{
+  "format_version": 1,
+  "catalog_type": "tul",
+  "items": [
+    {
+      "id": "saju_jirugi",
+      "name": "Saju Jirugi",
+      "description": "El documento de terminología agrupa bajo este nombre expresiones para un golpe frontal de puño a zona media y un bloqueo de antebrazo externo a zona baja, en posición de caminar.",
+      "movement_count": null,
+      "initial_position_id": null,
+      "sequence_complete": false,
+      "steps": [],
+      "citation_ids": ["citation_saju_jirugi_terminologia_p1"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "saju_makgi",
+      "name": "Saju Makgi",
+      "description": "El documento de terminología agrupa bajo este nombre expresiones de bloqueo bajo con canto de mano externo y bloqueo interno de antebrazo a zona media, en posición de caminar.",
+      "movement_count": null,
+      "initial_position_id": null,
+      "sequence_complete": false,
+      "steps": [],
+      "citation_ids": ["citation_saju_makgi_terminologia_p1"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}

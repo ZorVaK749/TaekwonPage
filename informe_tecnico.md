@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.2  
+**Version del documento:** 1.3  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 15-10-2026  
 
@@ -1752,10 +1752,12 @@ La base de conocimiento es el nucleo del producto.
 
 **Estamos entre los pasos 3 y 4:** contratos tecnicos iniciales implementados y extraccion parcial; aun no existe un curriculum validado de 10º Gup. No se asigna un porcentaje global de avance porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
+Rama del bloque actual: `feat/tkd-008-tools-and-exercise-drafts`, derivada de `chore/project-baseline` en `0a51672`. Sin push ni integracion en `main`.
+
 | Paso | Entregable | Estado real |
 |---|---|---|
 | 1 | Repositorio y estructura | Esqueleto y documentacion guardados en baseline local `83eb531`, rama `chore/project-baseline`; publicacion/PR pendientes |
-| 2 | Knowledge base | Inventario inicial de cuatro PDFs; 12 fichas y 24 citas documentales en revision |
+| 2 | Knowledge base | Inventario inicial de cuatro PDFs; 19 fichas y 35 citas documentales en revision, incluidas dos fichas de ejercicios sin secuencia |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
 | 5 | PostgreSQL | No iniciado |
@@ -1797,9 +1799,9 @@ La estructura del bootstrap esta lista. Sus excepciones pendientes se muestran a
 - [ ] Completar posiciones iniciales (TKD-005): hay tres fichas en revision; `junbi_sogi` y convenciones geometricas pendientes.
 - [ ] Completar teoria inicial (TKD-006): hay cinco fichas en revision, no todo el temario.
 - [ ] Completar vocabulario inicial (TKD-007): hay cuatro terminos en revision.
-- [ ] Extraer herramientas (TKD-008).
+- [ ] Completar herramientas (TKD-008): cinco fichas iniciales con nueve citas en revision; no incluyen formacion anatomica o mecanica de impacto inferidas.
 - [ ] Construir y revisar curriculum de 10º Gup (TKD-009); cero archivos curriculares en la ubicacion nueva.
-- [ ] Modelar Saju Jirugi y Saju Makgi completos con evidencia de secuencia (TKD-012/TKD-013); los JSON previos no se promovieron a canonicos.
+- [ ] Modelar Saju Jirugi y Saju Makgi completos con evidencia de secuencia (TKD-012/TKD-013): hay dos fichas terminologicas parciales, sin conteo, posicion inicial o pasos; los JSON previos no se promovieron a canonicos.
 - [ ] Modelar Chon-Ji con evidencia (TKD-014), cuando corresponda al alcance acordado.
 - [ ] Confirmar catalogo de grados, matriz funcional y ciclos de estados (TKD-015/TKD-016/TKD-017); reglas aprobadas documentadas, implementacion pendiente.
 - [x] Implementar controles tecnicos de IDs, duplicados, citas, hashes, paginas y referencias por tipo (base de TKD-018).
@@ -1815,12 +1817,12 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Area | Cantidad / resultado |
 |---|---|
 | PDFs locales inventariados | 4; nunca publicados por estas tareas |
-| Archivos de catalogo nuevos | 4, todos con contenido en revision |
-| Fichas | 12: 5 de teoria, 4 de vocabulario y 3 de posiciones |
-| Citas de procedencia | 24 en 4 archivos; vinculadas a copias exactas por SHA-256 |
+| Archivos de catalogo nuevos | 6, todos con contenido en revision |
+| Fichas | 19: 5 de teoria, 4 de vocabulario, 3 de posiciones, 5 herramientas y 2 ejercicios parciales |
+| Citas de procedencia | 35 en 6 archivos; vinculadas a copias exactas por SHA-256; tres copias documentales utilizadas, sin declarar independencia entre ellas |
 | Curriculos nuevos | 0 |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 138 correctos |
+| Tests Node | 145 correctos |
 | Tests PowerShell | 22 correctos |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
@@ -1841,6 +1843,7 @@ node tools/validators/validate-knowledge.mjs --report-json --check-local-files
 5. Estrategia JWT local/OIDC y distincion entre estados del alumno y de su solicitud, antes de su implementacion.
 6. Derechos para el uso previsto y datos personales; un repo MIT no licencia fuentes de terceros.
 7. Publicar y revisar el baseline mediante PR cuando se autorice. Ya esta guardado en el historial local; `main` y el remoto siguen en su commit inicial, sin copia remota de este trabajo.
+8. Evidencia de secuencia de Saju Jirugi/Saju Makgi: la lista de expresiones de Terminologia no prueba pasos completos, lateralidad, conteo total o posicion inicial. No llenar esas lagunas desde los JSON antiguos.
 
 El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprobadas ni permitir exponer una beta sin los controles aplicables.
 
@@ -1852,7 +1855,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.2` es la version de este informe; `0.1.0` en `tools/validators/package.json` identifica la herramienta, no una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.3` es la version de este informe; `0.1.0` en `tools/validators/package.json` identifica la herramienta, no una release de la plataforma.
 
 ---
 
@@ -1896,7 +1899,7 @@ No avanzar a 9º Gup hasta que la estructura de 10º Gup haya demostrado ser reu
 ### Proximo bloque de trabajo
 
 1. Baseline local guardado y revisado. Mantener la rama `chore/project-baseline` como base mientras no se integre; publicar y abrir PR solo cuando se autorice, tras revisar nuevamente copyright/secretos y el diff completo.
-2. Completar la extraccion documental necesaria para 10º Gup, registrando lagunas sin inventar informacion. Puede continuar mientras se confirma la autoridad curricular.
+2. Localizar y consultar evidencia documental suficiente para secuencias de los ejercicios y para las lagunas de posiciones/herramientas. Los primeros lotes ya estan extraidos; no convertir expresiones terminologicas en pasos. La extraccion puede continuar mientras se confirma la autoridad curricular.
 3. Resolver con la escuela los asuntos que impiden aprobar requisitos, posiciones o secuencias; registrar responsable, evidencia y fecha reales, sin aprobaciones ficticias.
 4. Construir curriculum enlazado y validarlo con contenido real antes de declarar completo el caso de 10º Gup.
 5. Acordar el siguiente bloque de persistencia/backend cuando corresponda al plan; no comenzar automaticamente otro sprint o milestone.
@@ -1928,6 +1931,7 @@ Cuando OpenCode reciba una tarea:
 | 1.0 | 14-10-2026 | Plan maestro inicial y decisiones de arquitectura aprobadas |
 | 1.1 | 15-10-2026 | Seguimiento real de Sprint 0/1, checklist por paso/TKD, evidencias de tests, decisiones abiertas y flujo Git local con baseline pendiente de commit/PR; sin modificar decisiones de arquitectura |
 | 1.2 | 15-10-2026 | Baseline guardado en commit local `83eb531`; 91 archivos nuevos versionados sin PDFs/capturas/dependencias; politica `.gitattributes`, revision de patrones comunes de credenciales y 138 + 22 tests correctos. Sin push, tags o avance de milestone |
+| 1.3 | 15-10-2026 | Rama de bloque derivada del baseline; cinco herramientas y dos ejercicios terminologicos parciales, 11 citas nuevas. Total 19 fichas/35 citas; 145 + 22 tests correctos, sin declarar secuencias completas, aprobacion humana o curriculum. Sin nuevas dependencias ni cambios de arquitectura |
 
 ---
 

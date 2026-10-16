@@ -1,0 +1,104 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_ap_joomuk_web_p11",
+      "content_id": "ap_joomuk",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Ap Joomuk",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada visualmente. Solo se extrae la equivalencia con puño frontal; no se infieren nudillos concretos, superficie, formación de la mano o modo de impacto."
+    },
+    {
+      "id": "citation_ap_joomuk_ont_p14",
+      "content_id": "ap_joomuk",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Ap Joomuk",
+      "review_status": "pending_human_review",
+      "notes": "Equivalencia contrastada visualmente con la otra copia, sin asumir independencia documental ni aprobación humana."
+    },
+    {
+      "id": "citation_palmok_web_p12",
+      "content_id": "palmok",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Palmok",
+      "review_status": "pending_human_review",
+      "notes": "Se registra antebrazo como equivalencia general; la ficha no sustituye las entradas específicas de antebrazo interno y externo."
+    },
+    {
+      "id": "citation_palmok_ont_p15",
+      "content_id": "palmok",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Palmok",
+      "review_status": "pending_human_review",
+      "notes": "Equivalencia observada en esta copia y contrastada con WEB 12; no se agregan requisitos técnicos."
+    },
+    {
+      "id": "citation_bakat_palmok_web_p12",
+      "content_id": "bakat_palmok",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Bakat palmok",
+      "review_status": "pending_human_review",
+      "notes": "Solo equivalencia con antebrazo externo, sin inferir orientación espacial de una técnica o una definición anatómica adicional."
+    },
+    {
+      "id": "citation_bakat_palmok_ont_p15",
+      "content_id": "bakat_palmok",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Bakat palmok",
+      "review_status": "pending_human_review",
+      "notes": "Fila contrastada visualmente con la equivalencia del otro manual."
+    },
+    {
+      "id": "citation_an_palmok_web_p12",
+      "content_id": "an_palmok",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila An palmok",
+      "review_status": "pending_human_review",
+      "notes": "Solo equivalencia con antebrazo interno. No se utiliza para completar direcciones, posiciones de manos o pasos de un ejercicio."
+    },
+    {
+      "id": "citation_an_palmok_ont_p15",
+      "content_id": "an_palmok",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila An palmok",
+      "review_status": "pending_human_review",
+      "notes": "Equivalencia contrastada con WEB 12, conservando la grafía de la tabla en el nombre de la ficha."
+    },
+    {
+      "id": "citation_sonkal_ont_p14",
+      "content_id": "sonkal",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Sonkal",
+      "review_status": "pending_human_review",
+      "notes": "Equivalencia con canto de mano respaldada por esta copia. No se inventa una fila homóloga en WEB 11/12 ni se infieren detalles anatómicos o de formación de la herramienta."
+    }
+  ]
+}

@@ -30,7 +30,7 @@ npm.cmd --prefix tools/validators run validate:content
 
 Las rutas explícitas se resuelven desde el directorio actual; rutas predeterminadas y esquemas, desde el script. `--inventory` cambia el documento validado, no la ubicación raíz de los PDFs del proyecto en modo local. Los documentos descubiertos se validan también cuando se pasan rutas adicionales. `--catalog`, `--curriculum` y `--provenance` son repetibles.
 
-`validate:content` activa `--require-content`: exige al menos un catálogo y un currículo no vacíos, además de sus referencias/citas válidas. **Actualmente debe fallar**: existen catálogos reales de teoría, vocabulario y posiciones en revisión, pero todavía no hay currículo. Es un control de presencia y consistencia de borradores, no de completitud curricular o aprobación. Un archivo de Tul con `sequence_complete: false` sigue siendo un borrador parcial aunque pase validación técnica.
+`validate:content` activa `--require-content`: exige al menos un catálogo y un currículo no vacíos, además de sus referencias/citas válidas. **Actualmente debe fallar**: existen catálogos reales de teoría, vocabulario, posiciones y herramientas, además de fichas parciales de ejercicios, pero todavía no hay currículo. Es un control de presencia y consistencia de borradores, no de completitud curricular o aprobación. Un archivo de Tul/ejercicio con `sequence_complete: false` sigue siendo un borrador parcial aunque pase validación técnica.
 
 `--knowledge-root RUTA` permite validar otra carpeta documental con subdirectorios `sources/`, `provenance/`, `catalogs/`, `curricula/gups/` (deben existir). Los esquemas siguen siendo los del proyecto. Esa opción no cambia los PDFs del modo `--check-local-files`, que siempre comprueba la carpeta local del proyecto; es útil para tests y borradores aislados sin copiar PDFs.
 
@@ -48,6 +48,8 @@ node tools/validators/validate-knowledge.mjs --report-json --check-local-files
 ```
 
 El modo sin PDFs informa `local_pdf_identities_checked: false`. Si se combina con `--require-content`, rechaza la ausencia de currículo y no emite un informe de éxito. Los registros de datos incompletos son indicadores para el revisor, no datos completados automáticamente. Este resumen no comprueba cobertura documental campo por campo ni convierte borradores en contenido canónico.
+
+Los tests del [lote de herramientas y ejercicios](../../knowledge/provenance/herramientas-y-ejercicios-review.md) comprueban citas concretas, composición con los lotes previos y que Saju Jirugi/Saju Makgi sigan figurando en `partial_sequences`. No se transforman listas terminológicas en pasos para lograr un test verde.
 
 ## Control PowerShell existente (sin dependencias)
 

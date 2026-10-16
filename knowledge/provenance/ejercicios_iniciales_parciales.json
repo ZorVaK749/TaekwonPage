@@ -1,0 +1,27 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_saju_jirugi_terminologia_p1",
+      "content_id": "saju_jirugi",
+      "source_id": "source_terminologia_formas",
+      "source_sha256": "e55bf3a70e2f77fbf227464dd0c861e8a35edc16d48c324bbfb7186a33481381",
+      "pdf_page": 1,
+      "printed_page": null,
+      "section": "SAJU-JIRUGI",
+      "review_status": "pending_human_review",
+      "notes": "Respalda nombre y síntesis de terminología, no una secuencia completa. Los números 1 y 2 enumeran expresiones; no se transforman en pasos ni en un conteo total. La posición descrita para las expresiones no demuestra la posición inicial del ejercicio."
+    },
+    {
+      "id": "citation_saju_makgi_terminologia_p1",
+      "content_id": "saju_makgi",
+      "source_id": "source_terminologia_formas",
+      "source_sha256": "e55bf3a70e2f77fbf227464dd0c861e8a35edc16d48c324bbfb7186a33481381",
+      "pdf_page": 1,
+      "printed_page": null,
+      "section": "SAJU-MAKGI",
+      "review_status": "pending_human_review",
+      "notes": "La sección permite registrar las expresiones técnicas resumidas, pero no orden de ejecución, lateralidad, giros, total de movimientos o posición inicial. No se completa desde el borrador antiguo ni conocimiento general."
+    }
+  ]
+}
