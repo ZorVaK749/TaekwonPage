@@ -1,6 +1,6 @@
 # Herramientas y ejercicios iniciales — revisión pendiente
 
-Bloque de Sprint 1, TKD-008/TKD-012/TKD-013: [cinco herramientas](../catalogs/herramientas/herramientas_iniciales.json) y [dos fichas parciales de ejercicios](../catalogs/tuls/ejercicios_iniciales_parciales.json), con [nueve citas de herramientas](herramientas_iniciales.json) y [dos citas de ejercicios](ejercicios_iniciales_parciales.json). Todo queda `pending_human_review`; no hay programa de examen ni contenido aprobado.
+Bloque inicial de Sprint 1, TKD-008/TKD-012/TKD-013: [cinco herramientas](../catalogs/herramientas/herramientas_iniciales.json) y [dos fichas parciales de ejercicios](../catalogs/tuls/ejercicios_iniciales_parciales.json), inicialmente con nueve citas de herramientas y dos citas terminológicas. Todo queda `pending_human_review`; no hay programa de examen ni contenido aprobado. La [consulta posterior de la enciclopedia](ejercicios-enciclopedia-review.md) añadió dos citas y quince acciones documentadas a esas mismas fichas, sin declararlas completas.
 
 ## Evidencia consultada
 
@@ -17,12 +17,14 @@ Las herramientas se registran en su catálogo conceptual, sin duplicarlas como v
 
 ## Distinción crítica: terminología no es secuencia
 
-El documento de terminología se presenta como nombres y traducciones de movimientos fundamentales. Sus apartados numerados bajo cada ejercicio no establecen un recorrido completo de ejecución. Por eso se conservan:
+El documento de terminología se presenta como nombres y traducciones de movimientos fundamentales. Sus apartados numerados bajo cada ejercicio no establecen un recorrido completo de ejecución. Por eso el lote inicial del 15-10-2026 guardó:
 
 - `movement_count: null`;
 - `initial_position_id: null`;
 - `sequence_complete: false`;
 - `steps: []`.
+
+Actualización del 16-10-2026: `steps` contiene ahora los tramos numerados observados en PDF 530 de la enciclopedia, con `sequence_scope` explícito. Los otros tres campos siguen desconocidos/parciales. No se obtuvieron los nuevos pasos del listado terminológico.
 
 No se copian los conteos 15/16, la posición inicial `junbi_sogi`, la lateralidad o los giros de los JSON antiguos. `Tuls/saju_jirugi.json` y `Tuls/saju_makgi.json` permanecen intactos, sin promoción a canónicos ni eliminación. Un campo desconocido es distinto de cero movimientos.
 
@@ -31,7 +33,7 @@ El contrato `tul` y la carpeta `tuls/` ya estaban previstos para Tuls **y ejerci
 ## Revisión necesaria
 
 1. Cotejar nombres y glosas de herramientas; ampliar únicamente con evidencia documental identificada.
-2. Localizar una fuente que permita verificar la secuencia completa de cada ejercicio antes de escribir pasos, conteos o posiciones iniciales.
+2. Revisar los tramos encontrados y resolver las lagunas antes de fijar conteos, posición inicial, ejecución alterna o declarar completa una secuencia.
 3. Confirmar la variante de Junbi y las convenciones geométricas pendientes; no deducirlas de las posiciones citadas en expresiones técnicas.
 4. Registrar revisión humana y autoridad curricular antes de asignar requisitos, publicar o producir seeds.
 5. Revisar derechos para el uso previsto; no presumir permiso de redistribución por haber creado estos JSON.

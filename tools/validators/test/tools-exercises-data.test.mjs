@@ -12,13 +12,15 @@ const tools = await load('catalogs/herramientas/herramientas_iniciales.json');
 const toolCitations = await load('provenance/herramientas_iniciales.json');
 const exercises = await load('catalogs/tuls/ejercicios_iniciales_parciales.json');
 const exerciseCitations = await load('provenance/ejercicios_iniciales_parciales.json');
-const dataset = { catalogs: [tools, exercises], curricula: [], provenance: [toolCitations, exerciseCitations] };
+const positions = await load('catalogs/posiciones/posiciones_iniciales.json');
+const positionCitations = await load('provenance/posiciones_iniciales.json');
+const dataset = { catalogs: [tools, exercises, positions], curricula: [], provenance: [toolCitations, exerciseCitations, positionCitations] };
 
 // Technical traceability tests; they do not verify martial truth or approval.
-test('real tools and exercise drafts validate as seven items with eleven citations', () => {
+test('tools and exercise drafts validate with their citations and required position catalog', () => {
   assert.equal(tools.items.length, 5);
   assert.equal(exercises.items.length, 2);
-  assert.equal(toolCitations.citations.length + exerciseCitations.citations.length, 11);
+  assert.equal(toolCitations.citations.length + exerciseCitations.citations.length, 13);
   assert.deepEqual(validator.validateDataset(dataset, inventory), []);
 });
 
@@ -42,19 +44,28 @@ test('body-tool citations retain exact observed copies and PDF pages', () => {
   }
 });
 
-test('terminology entries never become inferred exercise steps or legacy movement counts', () => {
+test('observed book lists do not turn terminology numbering into steps or legacy totals', () => {
   assert.deepEqual(exercises.items.map((item) => item.id), ['saju_jirugi', 'saju_makgi']);
   for (const item of exercises.items) {
     assert.equal(item.movement_count, null);
     assert.equal(item.initial_position_id, null);
     assert.equal(item.sequence_complete, false);
-    assert.deepEqual(item.steps, []);
+    assert.equal(item.steps.length, item.id === 'saju_jirugi' ? 7 : 8);
+    assert.ok(item.sequence_scope.includes('PDF 530'));
+    for (const step of item.steps) {
+      assert.deepEqual(step.citation_ids, [`citation_${item.id}_enciclopedia_p530`]);
+    }
     assert.equal(item.review_status, 'pending_human_review');
   }
   for (const citation of exerciseCitations.citations) {
-    assert.equal(citation.source_id, 'source_terminologia_formas');
-    assert.equal(citation.pdf_page, 1);
-    assert.equal(citation.printed_page, null);
+    if (citation.source_id === 'source_terminologia_formas') {
+      assert.equal(citation.pdf_page, 1);
+      assert.equal(citation.printed_page, null);
+    } else {
+      assert.equal(citation.source_id, 'source_enciclopedia_taekwondo');
+      assert.equal(citation.pdf_page, 530);
+      assert.equal(citation.printed_page, '528');
+    }
   }
 });
 

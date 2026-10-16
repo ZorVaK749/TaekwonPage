@@ -32,7 +32,7 @@ Antes de modelar el currículo de 10º Gup:
 1. Revisar el inventario inicial, completar los metadatos desconocidos cuando exista evidencia y confirmar los derechos aplicables al uso previsto.
 2. Resolver con la escuela la autoridad curricular (TKD-002), sin asumir que el manual con más páginas sea más reciente o prevalezca.
 3. Contrastar con la extracción real los [contratos técnicos de fuentes, citas, catálogos y currículo](../schemas/README.md) ya implementados (TKD-003/TKD-004). Los contratos no aprueban requisitos marciales.
-4. Registrar cada dato extraído con ID de fuente, página PDF o sección y revisión humana antes de considerarlo canónico. Los lotes de [teoría](teoria_inicial-review.md) (tres fichas, seis citas), [vocabulario](vocabulario_inicial-review.md) (cuatro términos, ocho citas), [posiciones y simbolismo](posiciones-y-simbolismo-review.md) (cinco fichas, diez citas) y [herramientas/ejercicios parciales](herramientas-y-ejercicios-review.md) (siete fichas, once citas) están pendientes de revisión humana. No hay contenido aprobado ni currículo asignado.
+4. Registrar cada dato extraído con ID de fuente, página PDF o sección y revisión humana antes de considerarlo canónico. Los lotes de [teoría](teoria_inicial-review.md) (tres fichas, seis citas), [vocabulario](vocabulario_inicial-review.md) (cuatro términos, ocho citas), [posiciones y simbolismo](posiciones-y-simbolismo-review.md) (cinco fichas, diez citas) y [herramientas/ejercicios parciales](herramientas-y-ejercicios-review.md) (siete fichas, trece citas tras la [consulta adicional](ejercicios-enciclopedia-review.md)) están pendientes de revisión humana. No hay contenido aprobado ni currículo asignado.
 
 ## Hallazgos que requieren revisión humana
 
@@ -42,6 +42,6 @@ Antes de modelar el currículo de 10º Gup:
 - El temario teórico para el examen 10º a 9º aparece en las páginas PDF 27 y 35 respectivamente. No basta para afirmar que el JSON previo `Gups/10gup.json` sea el programa oficial completo, ni para deducir requisitos técnicos ausentes.
 - Las variantes de romanización observadas no autorizan renombrar IDs existentes o publicados sin revisión.
 - `junbi_sogi` no se equipara automáticamente a Narani Sogui; las referencias geométricas deben fijarse antes de convertir ángulos textuales en rotaciones. Véase [revisión de posiciones](posiciones-y-simbolismo-review.md).
-- La fuente de terminología enumera expresiones de Saju Jirugi y Saju Makgi, no una secuencia completa. Las fichas parciales conservan pasos vacíos y conteos desconocidos; no se heredan los valores de los borradores previos.
+- La fuente de terminología enumera expresiones de Saju Jirugi y Saju Makgi, no una secuencia completa. La enciclopedia añade listas de 7/8 acciones con alcance explícito y una laguna de legibilidad; los conteos globales siguen desconocidos y no se heredan ni se reconstruyen por simetría.
 
 Estos hallazgos no se resuelven usando conocimiento general del modelo. Ningún JSON marcial previo fue corregido, migrado o aprobado en esta tarea.

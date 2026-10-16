@@ -49,7 +49,9 @@ node tools/validators/validate-knowledge.mjs --report-json --check-local-files
 
 El modo sin PDFs informa `local_pdf_identities_checked: false`. Si se combina con `--require-content`, rechaza la ausencia de currículo y no emite un informe de éxito. Los registros de datos incompletos son indicadores para el revisor, no datos completados automáticamente. Este resumen no comprueba cobertura documental campo por campo ni convierte borradores en contenido canónico.
 
-Los tests del [lote de herramientas y ejercicios](../../knowledge/provenance/herramientas-y-ejercicios-review.md) comprueban citas concretas, composición con los lotes previos y que Saju Jirugi/Saju Makgi sigan figurando en `partial_sequences`. No se transforman listas terminológicas en pasos para lograr un test verde.
+Los tests del [lote de herramientas y ejercicios](../../knowledge/provenance/herramientas-y-ejercicios-review.md) comprueban citas concretas, composición con los lotes previos y que Saju Jirugi/Saju Makgi sigan figurando en `partial_sequences`. La [evidencia adicional de la enciclopedia](../../knowledge/provenance/ejercicios-enciclopedia-review.md) permite registrar tramos de siete y ocho acciones; no se transforman listas terminológicas en pasos para lograr un test verde.
+
+`counts.documented_steps` cuenta los registros de acciones observados, no movimientos globales de un ejercicio o requisitos escolares. `sequences_with_unknown_movement_count` y `sequences_without_initial_position` mantienen visibles esas lagunas aunque existan pasos. Una ficha parcial con pasos y sin `sequence_scope` falla validación; declarar el alcance no equivale a aprobar su exactitud.
 
 ## Control PowerShell existente (sin dependencias)
 

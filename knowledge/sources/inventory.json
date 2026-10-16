@@ -83,11 +83,12 @@
       "pdf_pages": 764,
       "metadata_evidence": "Inspección visual local con Windows.Data.Pdf: título y atribución de autor en página PDF 3; autor, edición y entidad editora en página PDF 4; cobertura general según índice en página PDF 5. Total de 764 páginas informado por PdfDocument.PageCount. Se observaron páginas PDF 1 a 8, no una lectura completa.",
       "coverage": [
-        { "topic": "Índice general: teoría, historia, posiciones, herramientas, técnicas de mano y pie, ejercicios, formas, enfrentamiento, defensa personal, rango, examen y competencia; cobertura declarada por el índice, no capítulos leídos", "pdf_page_start": 5, "pdf_page_end": 5 }
+        { "topic": "Índice general: teoría, historia, posiciones, herramientas, técnicas de mano y pie, ejercicios, formas, enfrentamiento, defensa personal, rango, examen y competencia; cobertura declarada por el índice, no capítulos leídos", "pdf_page_start": 5, "pdf_page_end": 5 },
+        { "topic": "Listas numeradas de Saju Jirugui y Saju Makgui con nota de alternancia; consulta visual dirigida, no lectura completa del capítulo", "pdf_page_start": 530, "pdf_page_end": 530 }
       ],
       "review_status": "pending_human_review",
       "redistribution_status": "unknown",
-      "notes": "La página PDF 4 contiene aviso de derechos reservados y exige permiso escrito para reproducción. redistribution_status unknown significa que no hay permiso de redistribución registrado, no que falte aviso de copyright. PDF y vistas previas solo locales. La página PDF 3 muestra folio impreso 1 y la PDF 5, folio 3; no se asume ese desplazamiento para todo el libro. Los datos bibliográficos transcriben la copia observada, sin autenticarla ni establecer autoridad curricular. Inspección inicial completada, no revisión íntegra de las 764 páginas."
+      "notes": "La página PDF 4 contiene aviso de derechos reservados y exige permiso escrito para reproducción. redistribution_status unknown significa que no hay permiso de redistribución registrado, no que falte aviso de copyright. PDF y vistas previas solo locales. La página PDF 3 muestra folio impreso 1 y la PDF 5, folio 3; no se asume ese desplazamiento para todo el libro. Los datos bibliográficos transcriben la copia observada, sin autenticarla ni establecer autoridad curricular. Inspección inicial completada, no revisión íntegra de las 764 páginas. El 16-10-2026 se consultaron adicionalmente PDF 420, 430, 440 y 529–531; la evidencia de ejercicios registrada corresponde a PDF 530, folio 528, con listas parciales y una laguna de legibilidad."
     }
   ]
 }

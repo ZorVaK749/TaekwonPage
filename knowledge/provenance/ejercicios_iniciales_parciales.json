@@ -22,6 +22,28 @@
       "section": "SAJU-MAKGI",
       "review_status": "pending_human_review",
       "notes": "La sección permite registrar las expresiones técnicas resumidas, pero no orden de ejecución, lateralidad, giros, total de movimientos o posición inicial. No se completa desde el borrador antiguo ni conocimiento general."
+    },
+    {
+      "id": "citation_saju_jirugi_enciclopedia_p530",
+      "content_id": "saju_jirugi",
+      "source_id": "source_enciclopedia_taekwondo",
+      "source_sha256": "ec42024a885d2fb7dca86f02ecd8f885be83f31760a560152dbf94642fbeced3",
+      "pdf_page": 530,
+      "printed_page": "528",
+      "section": "Puño en 4 direcciones (Saju Jirugui): lista 1–7 y nota al pie compartida",
+      "review_status": "pending_human_review",
+      "notes": "Siete acciones numeradas resumidas, no un total global de movimientos. El punto 3 tiene el destino del golpe ilegible/omitido: no se rellena desde el contexto. La fuente menciona preparación de pies paralelos, retorno final no numerado y ejecución alterna en ambos sentidos; no se genera el sentido opuesto por simetría. A/B/C/D son etiquetas del esquema de esta página, no coordenadas globales."
+    },
+    {
+      "id": "citation_saju_makgi_enciclopedia_p530",
+      "content_id": "saju_makgi",
+      "source_id": "source_enciclopedia_taekwondo",
+      "source_sha256": "ec42024a885d2fb7dca86f02ecd8f885be83f31760a560152dbf94642fbeced3",
+      "pdf_page": 530,
+      "printed_page": "528",
+      "section": "Defensa en 4 direcciones (Saju Makgui): lista 1–8 y nota al pie compartida",
+      "review_status": "pending_human_review",
+      "notes": "Ocho acciones numeradas resumidas con alcance limitado a la lista impresa. No equivalen por sí solas al total del ejercicio de la escuela. La preparación de pies paralelos no se transforma en un ID de variante Junbi sin revisar; retorno final y alternancia se registran en la revisión, no como pasos inventados."
     }
   ]
 }

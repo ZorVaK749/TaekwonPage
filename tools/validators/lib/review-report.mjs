@@ -20,6 +20,8 @@ export function createReviewReport({ inventory, catalogs, curricula, provenance 
       sources: inventory.sources.length,
       catalog_files: catalogs.length,
       content_items: items.length,
+      documented_steps: items.filter((item) => item.catalog_type === 'tul')
+        .reduce((count, item) => count + item.steps.length, 0),
       citation_files: provenance.length,
       citations: citations.length,
       curricula: curricula.length,
@@ -43,6 +45,10 @@ export function createReviewReport({ inventory, catalogs, curricula, provenance 
         && (!item.biomechanics?.front_foot || !item.biomechanics?.rear_foot)).map((item) => item.id).sort(),
       partial_sequences: items.filter((item) => item.catalog_type === 'tul'
         && !item.sequence_complete).map((item) => item.id).sort(),
+      sequences_with_unknown_movement_count: items.filter((item) => item.catalog_type === 'tul'
+        && item.movement_count === null).map((item) => item.id).sort(),
+      sequences_without_initial_position: items.filter((item) => item.catalog_type === 'tul'
+        && item.initial_position_id === null).map((item) => item.id).sort(),
     },
     warnings: [
       ...(!curricula.length ? ['NO_CURRICULUM_REGISTERED'] : []),

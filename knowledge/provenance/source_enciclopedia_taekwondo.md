@@ -40,4 +40,10 @@ No sumar automáticamente 2 a esos números: los dos pares de folios observados 
 
 Hay un aviso expreso de derechos reservados en la página PDF 4. No se dispone de un permiso de redistribución registrado: se conserva `redistribution_status = unknown` en el formato actual, sin interpretarlo como permiso ni ausencia de copyright. No se publican el PDF, capturas o transcripciones extensas. La licencia MIT del repositorio no se aplica a este material de terceros.
 
-La inspección de inventario está completada; la revisión humana, los derechos para el uso concreto y cualquier aprobación de contenido siguen pendientes. Este registro no declara a la fuente superior a los manuales ONT ni le atribuye el currículo de la escuela.
+La inspección inicial de inventario está completada; la revisión humana, los derechos para el uso concreto y cualquier aprobación de contenido siguen pendientes. Este registro no declara a la fuente superior a los manuales ONT ni le atribuye el currículo de la escuela.
+
+## Consulta dirigida posterior — 16-10-2026
+
+Se consultaron adicionalmente PDF 420, 430, 440 y 529–531, sin leer íntegramente los capítulos. **PDF 530 / folio impreso 528** contiene las listas numeradas de Saju Jirugui y Saju Makgui y una nota de alternancia. Se registraron [alcance y lagunas](ejercicios-enciclopedia-review.md), con dos citas nuevas y quince acciones resumidas; las secuencias permanecen parciales.
+
+Las correspondencias PDF/folio se observaron en las páginas concretas, no se generalizan al resto del documento. El inventario añade solo el rango de cobertura realmente utilizado como evidencia de ejercicios; el hash y el archivo original no cambian.

@@ -65,6 +65,9 @@ export function createContentChecks({ schemaErrors, catalogSchema, gupSchema, va
         if (Math.abs(front + rear - 100) > 1e-9) errors.push(`${item.id}: weight percentages must sum to 100`);
       }
       if (type === 'tul') {
+        if (!item.sequence_complete && item.steps.length && !item.sequence_scope) {
+          errors.push(`${item.id}: partial steps require an explicit sequence_scope`);
+        }
         if (item.initial_position_id !== null) checkReference(item.initial_position_id, 'position', item.id);
         let previous = 0;
         for (const step of item.steps) {
