@@ -4,9 +4,9 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.7  
+**Version del documento:** 1.8  
 **Fecha de creacion:** 14-10-2026  
-**Ultima actualizacion:** 16-10-2026  
+**Ultima actualizacion:** 17-10-2026  
 
 Esta revision actualiza el seguimiento, no las decisiones de arquitectura aprobadas. Las fases, los sprints y las versiones del producto son conceptos distintos: completar el bootstrap no completa la Fase 0 ni publica v0.1.
 
@@ -1752,12 +1752,14 @@ La base de conocimiento es el nucleo del producto.
 
 **Estamos entre los pasos 3 y 4:** contratos tecnicos iniciales implementados y extraccion parcial; aun no existe un curriculum validado de 10º Gup. No se asigna un porcentaje global de avance porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
-Bloque cerrado: variante preparatoria implementada en `feat/tkd-005-preparatory-position` (`b6b5b99`), integrada y publicada en `main` mediante `6fc2ab1`, con SHA remotos verificados. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530. Cierre tecnico del dia, sin curriculum o conocimiento marcial aprobado; 159 + 22 tests correctos tambien sobre el resultado integrado.
+Bloque cerrado: variante preparatoria implementada en `feat/tkd-005-preparatory-position` (`b6b5b99`), integrada y publicada en `main` mediante `6fc2ab1`, con SHA remotos verificados. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530.
+
+Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban vacios en los catalogos canonicos, correspondientes a los archivos semilla escritos antes en la raiz. Se añadieron **combate pactado** (PDF 8-9 de un manual y 10-11 del otro), **patadas** (enciclopedia PDF 256-257) y **cinco herramientas del pie** (enciclopedia PDF 102-103), con citas y revisión pendiente. Tambien se confirmo que el «TEMARIO PARA CADA EXAMEN» de 10º a 9º solo enumera temas de teoria, por lo que no se construyo ningun curriculo. Sin contenido marcial aprobado.
 
 | Paso | Entregable | Estado real |
 |---|---|---|
 | 1 | Repositorio y estructura | Baseline y bloques integrados y publicados en `main` mediante `1ab81e7`; historial conservado, sin PR |
-| 2 | Knowledge base | Inventario inicial de cuatro PDFs; 20 fichas y 38 citas en revision, incluidos tramos de ejercicios y su preparacion especifica documentada; no secuencias globales completas |
+| 2 | Knowledge base | Inventario inicial de cuatro PDFs; 31 fichas y 51 citas en revision, con los siete tipos de contenido cubiertos: posiciones, teoria, tuls, vocabulario, herramientas, patadas y combate; no secuencias globales completas ni curriculo |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
 | 5 | PostgreSQL | No iniciado |
@@ -1800,7 +1802,9 @@ La estructura del bootstrap esta lista. Sus excepciones pendientes se muestran a
 - [ ] Completar posiciones iniciales (TKD-005): cuatro fichas en revision, incluida `narani_junbi_sogi` como variante documentada; la adopcion escolar del Junbi generico y las convenciones geometricas siguen pendientes.
 - [ ] Completar teoria inicial (TKD-006): hay cinco fichas en revision, no todo el temario.
 - [ ] Completar vocabulario inicial (TKD-007): hay cuatro terminos en revision.
-- [ ] Completar herramientas (TKD-008): cinco fichas iniciales con nueve citas en revision; no incluyen formacion anatomica o mecanica de impacto inferidas.
+- [ ] Completar herramientas (TKD-008): diez fichas iniciales con catorce citas en revisión, cinco de mano y cinco del pie; no incluyen formación anatómica o mecánica de impacto inferidas.
+- [ ] Completar patadas: tres fichas iniciales con tres citas en revisión, tomadas del capítulo de ataque de pie de la enciclopedia; el capítulo es en buena parte fotográfico y no se leyó íntegro.
+- [ ] Completar combate pactado: tres modalidades iniciales con cinco citas en revisión (`sambo_matsokgi`, `ibo_matsokgi`, `ilbo_matsokgi`); falta confirmar validez de la variante y resolver la divergencia entre copias.
 - [ ] Construir y revisar curriculum de 10º Gup (TKD-009); cero archivos curriculares en la ubicacion nueva.
 - [ ] Modelar Saju Jirugi y Saju Makgi completos con evidencia de secuencia (TKD-012/TKD-013): listas impresas de 7/8 acciones con alcance explicito y preparacion enlazada a `narani_junbi_sogi` de la misma copia; total global desconocido, ejecucion alterna no reconstruida y punto 3 de Jirugi con laguna de legibilidad. Los JSON previos no se promovieron a canonicos.
 - [ ] Modelar Chon-Ji con evidencia (TKD-014), cuando corresponda al alcance acordado.
@@ -1818,13 +1822,13 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Area | Cantidad / resultado |
 |---|---|
 | PDFs locales inventariados | 4; nunca publicados por estas tareas |
-| Archivos de catalogo nuevos | 7, todos con contenido en revision |
-| Fichas | 20: 5 de teoria, 4 de vocabulario, 4 de posiciones, 5 herramientas y 2 ejercicios parciales |
-| Citas de procedencia | 38 en 7 archivos; vinculadas a copias exactas por SHA-256; cuatro copias documentales utilizadas, sin declarar independencia entre ellas |
+| Archivos de catalogo nuevos | 9, todos con contenido en revision |
+| Fichas | 31: 5 de teoria, 4 de vocabulario, 4 de posiciones, 10 herramientas (5 de mano, 5 de pie), 2 ejercicios parciales, 3 patadas y 3 de combate |
+| Citas de procedencia | 51 en 9 archivos; vinculadas a copias exactas por SHA-256; cuatro copias documentales utilizadas, sin declarar independencia entre ellas |
 | Acciones documentadas | 15 registros, correspondientes a listas impresas 1–7 y 1–8; no representan totales globales ni ejercicios completos |
 | Curriculos nuevos | 0 |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 159 correctos |
+| Tests Node | 166 correctos |
 | Tests PowerShell | 22 correctos |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
@@ -1847,6 +1851,9 @@ node tools/validators/validate-knowledge.mjs --report-json --check-local-files
 6. Derechos para el uso previsto y datos personales; un repo MIT no licencia fuentes de terceros.
 7. Flujo GitHub: primera integracion completada. Trabajar desde el `main` actualizado, hacer push de la rama e integrar checkpoints periodicamente sin PR. Las cuatro ramas anteriores ya estan integradas; eliminarlas local/remotamente requiere autorizacion separada. No confundir integracion tecnica con aprobacion marcial, release o deploy.
 8. Saju Jirugi/Saju Makgi: falta resolver la laguna del destino del golpe del punto 3 de Jirugi y confirmar el alcance completo/alterno. La preparacion de PDF 530 se enlazo a la definicion especifica de PDF 81; no sumar, espejar o heredar conteos de los JSON antiguos. `sequence_complete` permanece en `false`.
+9. Combate pactado: confirmar la validez y la variante de `sambo_matsokgi`, `ibo_matsokgi` e `ilbo_matsokgi`. La copia ONT incluye un apartado «a dos pasos» ausente en la otra; no se elige autoridad por numero de paginas, y la forma «sin contacto» del archivo antiguo no aparece en las fuentes.
+10. Patadas y herramientas del pie: el capitulo de ataque de pie de la enciclopedia es en buena parte fotografico; `cha_jirugi` tiene una redaccion ambigua. Ampliar solo con evidencia documental legible.
+11. Curriculo de 10º Gup: el «TEMARIO PARA CADA EXAMEN» de 10º a 9º solo enumera temas de teoria; no aporta requisitos tecnicos. Se necesita el programa tecnico confirmado por la escuela antes de construir cualquier curriculo.
 
 El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprobadas ni permitir exponer una beta sin los controles aplicables.
 
@@ -1858,7 +1865,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.7` es la version de este informe; `0.1.0` en `tools/validators/package.json` identifica la herramienta, no una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.8` es la version de este informe; `0.1.0` en `tools/validators/package.json` identifica la herramienta, no una release de la plataforma.
 
 ---
 
@@ -1940,6 +1947,7 @@ Cuando OpenCode reciba una tarea:
 | 1.5 | 16-10-2026 | Por instruccion del usuario, flujo de commits y push a ramas sin PR ni merges; retirada de plantilla de PR y plan de CI por push. Cuatro ramas publicadas con SHA remotos verificados tras revisar cinco commits salientes y 110 versiones unicas de archivos; sin PDF/capturas o patrones comunes de credenciales detectados. 153 + 22 tests correctos; `main`, contenido y arquitectura de aplicacion sin cambios |
 | 1.6 | 16-10-2026 | Nueva instruccion: push por rama y merges periodicos revisados a `main`, sin PR. Primera integracion publicada y verificada mediante `1ab81e7`; 153 + 22 tests correctos sobre el resultado, cuatro ramas contenidas en main sin eliminarlas. Sin release, deploy, aprobacion curricular, nuevas dependencias o cambios en datos/arquitectura de aplicacion |
 | 1.7 | 16-10-2026 | Variante Narani Junbi Sogui extraida de PDF 81 / folio 79, una ficha/cita nueva y preparacion de los dos ejercicios enlazada con evidencia contextual de PDF 530. Total 20 fichas/38 citas; 159 + 22 tests correctos antes y despues del merge. Implementacion `b6b5b99`, integracion `6fc2ab1` publicadas y verificadas. Sin alias generico, geometria heredada, curriculum, nuevas dependencias o secuencias declaradas completas |
+| 1.8 | 17-10-2026 | Completados los tipos de contenido vacios: combate pactado (3 fichas/5 citas), patadas (3 fichas/3 citas) y cinco herramientas del pie (citas nuevas). Total 31 fichas/51 citas en 9 archivos de catalogo y 9 de procedencia; 166 + 22 tests correctos. Confirmado que el temario 10º-9º solo cubre teoria, por lo que no se creo curriculo. Sin aprobacion humana, nuevas dependencias, cambios de arquitectura ni promocion de los JSON antiguos |
 
 ---
 

@@ -21,7 +21,8 @@ No se interpreta una autorización genérica para continuar programando como apr
 | --- | --- | --- |
 | Variantes del saludo | `source_teoria_completa_web`, página PDF 7; `source_teoria_ont`, página PDF 8 | Redacción aplicable a la escuela; no se elige una por defecto |
 | Nota editorial incompleta | `source_teoria_ont`, página PDF 17 | Revisar la sección antes de normalizarla |
-| Cobertura de 10º Gup | Temario teórico 10º a 9º en páginas PDF 27 y 35 de los manuales respectivos | Alcance técnico completo, y correspondencia con el programa vigente |
+| Cobertura de 10º Gup | Temario de examen 10º a 9º en páginas PDF 27 (WEB) y 35 (ONT); enumera solo temas de teoría, sin posiciones, Tuls, patadas ni combate | Requisitos técnicos completos y correspondencia con el programa vigente |
+| Modalidades de combate pactado | `sambo_matsokgi` e `ilbo_matsokgi` en ambas copias; `ibo_matsokgi` solo en ONT 10 | Validez y variante aplicable; el archivo antiguo menciona una forma «sin contacto» ausente en las fuentes |
 | Borrador previo | `Gups/10gup.json` y sus catálogos en la raíz, sin citas explícitas | Revisar cada requisito; el archivo no demuestra aprobación curricular |
 | Romanización | Variantes documentales ya observadas | Convención de presentación y alias sin alterar IDs publicados |
 | Variante inicial Junbi/Jumbi | Vocabulario WEB 11 y ONT 13; definición específica de Narani Junbi Sogui en enciclopedia PDF 81 y preparación de los tramos en PDF 530 | El enlace documental de esa copia ya referencia `narani_junbi_sogi`; falta confirmar adopción escolar, sin convertir todo Junbi en sinónimo o heredar geometrías del borrador |

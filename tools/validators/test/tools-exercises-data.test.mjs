@@ -20,19 +20,24 @@ const dataset = { catalogs: [tools, exercises, positions, preparatory], curricul
 
 // Technical traceability tests; they do not verify martial truth or approval.
 test('tools and exercise drafts validate with their citations and required position catalog', () => {
-  assert.equal(tools.items.length, 5);
+  assert.equal(tools.items.length, 10);
   assert.equal(exercises.items.length, 2);
-  assert.equal(toolCitations.citations.length + exerciseCitations.citations.length, 13);
+  assert.equal(toolCitations.citations.length + exerciseCitations.citations.length, 18);
   assert.deepEqual(validator.validateDataset(dataset, inventory), []);
 });
 
 test('body-tool citations retain exact observed copies and PDF pages', () => {
   const expected = new Map([
-    ['ap_joomuk', [['source_teoria_completa_web', 11], ['source_teoria_ont', 14]]],
-    ['palmok', [['source_teoria_completa_web', 12], ['source_teoria_ont', 15]]],
-    ['bakat_palmok', [['source_teoria_completa_web', 12], ['source_teoria_ont', 15]]],
-    ['an_palmok', [['source_teoria_completa_web', 12], ['source_teoria_ont', 15]]],
-    ['sonkal', [['source_teoria_ont', 14]]],
+    ['ap_joomuk', [[['source_teoria_completa_web', 11], null], [['source_teoria_ont', 14], null]]],
+    ['palmok', [[['source_teoria_completa_web', 12], null], [['source_teoria_ont', 15], null]]],
+    ['bakat_palmok', [[['source_teoria_completa_web', 12], null], [['source_teoria_ont', 15], null]]],
+    ['an_palmok', [[['source_teoria_completa_web', 12], null], [['source_teoria_ont', 15], null]]],
+    ['sonkal', [[['source_teoria_ont', 14], null]]],
+    ['apkumchi', [[['source_enciclopedia_taekwondo', 102], '100']]],
+    ['balkal', [[['source_enciclopedia_taekwondo', 102], '100']]],
+    ['dwitkumchi', [[['source_enciclopedia_taekwondo', 103], '101']]],
+    ['moorup', [[['source_enciclopedia_taekwondo', 103], '101']]],
+    ['dwihook', [[['source_enciclopedia_taekwondo', 103], '101']]],
   ]);
   const byId = new Map(toolCitations.citations.map((citation) => [citation.id, citation]));
   for (const item of tools.items) {
@@ -40,8 +45,7 @@ test('body-tool citations retain exact observed copies and PDF pages', () => {
     assert.deepEqual(item.citation_ids.map((id) => {
       const citation = byId.get(id);
       assert.equal(citation.content_id, item.id);
-      assert.equal(citation.printed_page, null);
-      return [citation.source_id, citation.pdf_page];
+      return [[citation.source_id, citation.pdf_page], citation.printed_page];
     }), expected.get(item.id));
   }
 });

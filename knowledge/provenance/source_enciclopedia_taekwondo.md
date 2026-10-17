@@ -49,3 +49,9 @@ Se consultaron adicionalmente PDF 420, 430, 440 y 529–531, sin leer íntegrame
 Las correspondencias PDF/folio se observaron en las páginas concretas, no se generalizan al resto del documento. El inventario añade solo el rango de cobertura realmente utilizado como evidencia de ejercicios; el hash y el archivo original no cambian.
 
 La consulta posterior de PDF 67–70 y 80–85 localizó la definición de **Narani Junbi Sogui en PDF 81 / folio 79**. Se usa únicamente ese pasaje para la [ficha preparatoria y el enlace contextual con PDF 530](posicion_preparatoria_paralela-review.md), sin copiar otras variantes, fotografías o medidas.
+
+## Consulta dirigida posterior — 17-10-2026
+
+Se consultaron **PDF 102–103** (herramientas: partes del pie, folios impresos 100–101) y **PDF 256–257** (técnicas de pie: ataque, folios impresos 254–255). Se registraron [cinco herramientas del pie](herramientas-y-ejercicios-review.md) y [tres patadas](combate-y-patadas-review.md). El capítulo de patadas es en buena parte fotográfico y no se leyó íntegro; no se derivan conteos ni descripciones de ejecución de las imágenes.
+
+Con estas observaciones, los pares PDF/folio confirmados (PDF 5→3, PDF 81→79, PDF 102→100, PDF 103→101, PDF 256→254, PDF 257→255 y PDF 530→528) son todos compatibles con un desplazamiento de 2. Aun así **no se generaliza** ese desplazamiento a las 764 páginas: cada cita registra la página PDF observada y, cuando es legible, el folio por separado, y el índice de la página 5 sigue usándose solo para localizar candidatos.

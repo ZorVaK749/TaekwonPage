@@ -1,6 +1,6 @@
 # Herramientas y ejercicios iniciales — revisión pendiente
 
-Bloque inicial de Sprint 1, TKD-008/TKD-012/TKD-013: [cinco herramientas](../catalogs/herramientas/herramientas_iniciales.json) y [dos fichas parciales de ejercicios](../catalogs/tuls/ejercicios_iniciales_parciales.json), inicialmente con nueve citas de herramientas y dos citas terminológicas. Todo queda `pending_human_review`; no hay programa de examen ni contenido aprobado. La [consulta posterior de la enciclopedia](ejercicios-enciclopedia-review.md) añadió dos citas y quince acciones documentadas a esas mismas fichas, sin declararlas completas.
+Bloque inicial de Sprint 1, TKD-008/TKD-012/TKD-013: [diez herramientas](../../knowledge/catalogs/herramientas/herramientas_iniciales.json) y [dos fichas parciales de ejercicios](../catalogs/tuls/ejercicios_iniciales_parciales.json), con catorce citas de herramientas y cuatro citas de ejercicios. Todo queda `pending_human_review`; no hay programa de examen ni contenido aprobado. La [consulta posterior de la enciclopedia](ejercicios-enciclopedia-review.md) añadió dos citas y quince acciones documentadas a las fichas de ejercicios, sin declararlas completas; la [consulta de partes del pie](#evidencia-consultada) añadió cinco herramientas con folio impreso observado.
 
 ## Evidencia consultada
 
@@ -11,9 +11,11 @@ Se renderizaron y observaron localmente páginas PDF de las copias registradas, 
 | `ap_joomuk` | WEB 11 y ONT 14 | Equivalencia de vocabulario con puño frontal |
 | `palmok`, `bakat_palmok`, `an_palmok` | WEB 12 y ONT 15 | Antebrazo y sus entradas externa/interna |
 | `sonkal` | ONT 14 | Equivalencia con canto de mano; una sola copia citada |
+| `apkumchi`, `balkal` | Enciclopedia 102 (folio 100) | Partes del pie: metatarso y canto del pie |
+| `dwitkumchi`, `moorup`, `dwihook` | Enciclopedia 103 (folio 101) | Partes del pie: talón inferior, rodilla y talón trasero |
 | `saju_jirugi`, `saju_makgi` | Terminología de las formas, 1 | Encabezados y expresiones técnicas asociadas, no una secuencia |
 
-Las herramientas se registran en su catálogo conceptual, sin duplicarlas como vocabulario ni inferir superficies anatómicas, nudillos específicos, medidas, posicionamiento o mecánica de impacto. Las glosas están acotadas a las filas observadas. Una equivalencia léxica no prueba que la herramienta o el ejercicio sean requisitos de 10º Gup en la escuela.
+Las herramientas se registran en su catálogo conceptual, sin duplicarlas como vocabulario ni inferir superficies anatómicas, nudillos específicos, medidas, posicionamiento o mecánica de impacto. Las glosas están acotadas a las filas y párrafos observados. Una equivalencia léxica no prueba que la herramienta o el ejercicio sean requisitos de 10º Gup en la escuela.
 
 ## Distinción crítica: terminología no es secuencia
 

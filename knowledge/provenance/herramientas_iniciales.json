@@ -99,6 +99,61 @@
       "section": "VOCABULARIO: fila Sonkal",
       "review_status": "pending_human_review",
       "notes": "Equivalencia con canto de mano respaldada por esta copia. No se inventa una fila homóloga en WEB 11/12 ni se infieren detalles anatómicos o de formación de la herramienta."
+    },
+    {
+      "id": "citation_apkumchi_enciclopedia_p102",
+      "content_id": "apkumchi",
+      "source_id": "source_enciclopedia_taekwondo",
+      "source_sha256": "ec42024a885d2fb7dca86f02ecd8f885be83f31760a560152dbf94642fbeced3",
+      "pdf_page": 102,
+      "printed_page": "100",
+      "section": "HERRAMIENTAS: B. Partes del pie — El metatarso (Apkumchi)",
+      "review_status": "pending_human_review",
+      "notes": "Nombre y síntesis cualitativa observados visualmente, folio impreso 100. Solo se registra la equivalencia y los usos que enuncia el texto; no se derivan medidas, nudillos, superficies ni mecánica de las fotografías."
+    },
+    {
+      "id": "citation_balkal_enciclopedia_p102",
+      "content_id": "balkal",
+      "source_id": "source_enciclopedia_taekwondo",
+      "source_sha256": "ec42024a885d2fb7dca86f02ecd8f885be83f31760a560152dbf94642fbeced3",
+      "pdf_page": 102,
+      "printed_page": "100",
+      "section": "HERRAMIENTAS: B. Partes del pie — El canto del pie (Balkal)",
+      "review_status": "pending_human_review",
+      "notes": "Nombre y síntesis cualitativa observados, folio impreso 100. Se conserva la afirmación de la fuente sobre su importancia relativa sin convertirla en un requisito de grado."
+    },
+    {
+      "id": "citation_dwitkumchi_enciclopedia_p103",
+      "content_id": "dwitkumchi",
+      "source_id": "source_enciclopedia_taekwondo",
+      "source_sha256": "ec42024a885d2fb7dca86f02ecd8f885be83f31760a560152dbf94642fbeced3",
+      "pdf_page": 103,
+      "printed_page": "101",
+      "section": "HERRAMIENTAS: B. Partes del pie — Parte inferior del talón (Dwitkumchi)",
+      "review_status": "pending_human_review",
+      "notes": "Nombre y síntesis cualitativa observados, folio impreso 101. No se amplía la descripción con detalles anatómicos que la fuente no enuncia."
+    },
+    {
+      "id": "citation_moorup_enciclopedia_p103",
+      "content_id": "moorup",
+      "source_id": "source_enciclopedia_taekwondo",
+      "source_sha256": "ec42024a885d2fb7dca86f02ecd8f885be83f31760a560152dbf94642fbeced3",
+      "pdf_page": 103,
+      "printed_page": "101",
+      "section": "HERRAMIENTAS: B. Partes del pie — Rodilla (Moorup)",
+      "review_status": "pending_human_review",
+      "notes": "Nombre y síntesis cualitativa observados, folio impreso 101. La ficha describe la herramienta; no se modela aquí ninguna técnica que la emplee."
+    },
+    {
+      "id": "citation_dwihook_enciclopedia_p103",
+      "content_id": "dwihook",
+      "source_id": "source_enciclopedia_taekwondo",
+      "source_sha256": "ec42024a885d2fb7dca86f02ecd8f885be83f31760a560152dbf94642fbeced3",
+      "pdf_page": 103,
+      "printed_page": "101",
+      "section": "HERRAMIENTAS: B. Partes del pie — Parte de atrás del talón (Dwihook)",
+      "review_status": "pending_human_review",
+      "notes": "Nombre y síntesis cualitativa observados, folio impreso 101. Se limita al texto impreso; no se infiere orientación espacial ni ejecución a partir de las imágenes."
     }
   ]
 }

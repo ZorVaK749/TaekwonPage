@@ -85,11 +85,13 @@
       "coverage": [
         { "topic": "Índice general: teoría, historia, posiciones, herramientas, técnicas de mano y pie, ejercicios, formas, enfrentamiento, defensa personal, rango, examen y competencia; cobertura declarada por el índice, no capítulos leídos", "pdf_page_start": 5, "pdf_page_end": 5 },
         { "topic": "Listas numeradas de Saju Jirugui y Saju Makgui con nota de alternancia; consulta visual dirigida, no lectura completa del capítulo", "pdf_page_start": 530, "pdf_page_end": 530 },
-        { "topic": "Posición preparatoria con pies paralelos (Narani Junbi Sogui), folio impreso 79; consulta dirigida de una variante, no equivalencia automática de todo Junbi", "pdf_page_start": 81, "pdf_page_end": 81 }
+        { "topic": "Posición preparatoria con pies paralelos (Narani Junbi Sogui), folio impreso 79; consulta dirigida de una variante, no equivalencia automática de todo Junbi", "pdf_page_start": 81, "pdf_page_end": 81 },
+        { "topic": "Herramientas: Partes del pie (Ha Ba nsin), folios impresos 100–101; consulta dirigida a las herramientas del pie", "pdf_page_start": 102, "pdf_page_end": 103 },
+        { "topic": "Técnicas de pie, técnicas de ataque y patada doble de costado, folios impresos 254–255; el capítulo es en buena parte fotográfico y no se leyó íntegro", "pdf_page_start": 256, "pdf_page_end": 257 }
       ],
       "review_status": "pending_human_review",
       "redistribution_status": "unknown",
-      "notes": "La página PDF 4 contiene aviso de derechos reservados y exige permiso escrito para reproducción. redistribution_status unknown significa que no hay permiso de redistribución registrado, no que falte aviso de copyright. PDF y vistas previas solo locales. La página PDF 3 muestra folio impreso 1 y la PDF 5, folio 3; no se asume ese desplazamiento para todo el libro. Los datos bibliográficos transcriben la copia observada, sin autenticarla ni establecer autoridad curricular. Inspección inicial completada, no revisión íntegra de las 764 páginas. El 16-10-2026 se consultaron adicionalmente PDF 420, 430, 440 y 529–531; la evidencia de ejercicios registrada corresponde a PDF 530, folio 528, con listas parciales y una laguna de legibilidad."
+      "notes": "La página PDF 4 contiene aviso de derechos reservados y exige permiso escrito para reproducción. redistribution_status unknown significa que no hay permiso de redistribución registrado, no que falte aviso de copyright. PDF y vistas previas solo locales. La página PDF 3 muestra folio impreso 1 y la PDF 5, folio 3; no se asume ese desplazamiento para todo el libro. Los datos bibliográficos transcriben la copia observada, sin autenticarla ni establecer autoridad curricular. Inspección inicial completada, no revisión íntegra de las 764 páginas. El 16-10-2026 se consultaron adicionalmente PDF 420, 430, 440 y 529–531; la evidencia de ejercicios registrada corresponde a PDF 530, folio 528, con listas parciales y una laguna de legibilidad. El 17-10-2026 se añadieron consultas dirigidas de PDF 102–103 (partes del pie) y 256–257 (técnicas de pie), registradas con folios observados por separado."
     }
   ]
 }
