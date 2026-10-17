@@ -1752,7 +1752,7 @@ La base de conocimiento es el nucleo del producto.
 
 **Estamos entre los pasos 3 y 4:** contratos tecnicos iniciales implementados y extraccion parcial; aun no existe un curriculum validado de 10º Gup. No se asigna un porcentaje global de avance porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
-Bloque actual: variante preparatoria documentada en `feat/tkd-005-preparatory-position`, creada desde `origin/main` en `b3ac837`. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530. Cierre tecnico del dia, sin curriculum o conocimiento marcial aprobado; el historial de integracion previo se conserva.
+Bloque cerrado: variante preparatoria implementada en `feat/tkd-005-preparatory-position` (`b6b5b99`), integrada y publicada en `main` mediante `6fc2ab1`, con SHA remotos verificados. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530. Cierre tecnico del dia, sin curriculum o conocimiento marcial aprobado; 159 + 22 tests correctos tambien sobre el resultado integrado.
 
 | Paso | Entregable | Estado real |
 |---|---|---|
@@ -1828,7 +1828,7 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Tests PowerShell | 22 correctos |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Checkpoint publicado en `main` por merge `1ab81e7`, SHA remoto verificado; cuatro ramas anteriores integradas, sin borrado de referencias, tags/releases o deploy |
+| GitHub | Ultimo checkpoint publicado en `main` por merge `6fc2ab1`, rama `b6b5b99` y SHA remotos verificados; sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1939,7 +1939,7 @@ Cuando OpenCode reciba una tarea:
 | 1.4 | 16-10-2026 | Consulta dirigida de enciclopedia: PDF 530 / folio 528, 15 acciones resumidas y dos citas nuevas; alcance `sequence_scope`, control de tramos parciales y reporte de lagunas. Total 19 fichas/37 citas; 153 + 22 tests correctos. Secuencias incompletas y laguna de legibilidad explicitas, sin aprobacion, curriculum, nuevas dependencias o cambios de arquitectura |
 | 1.5 | 16-10-2026 | Por instruccion del usuario, flujo de commits y push a ramas sin PR ni merges; retirada de plantilla de PR y plan de CI por push. Cuatro ramas publicadas con SHA remotos verificados tras revisar cinco commits salientes y 110 versiones unicas de archivos; sin PDF/capturas o patrones comunes de credenciales detectados. 153 + 22 tests correctos; `main`, contenido y arquitectura de aplicacion sin cambios |
 | 1.6 | 16-10-2026 | Nueva instruccion: push por rama y merges periodicos revisados a `main`, sin PR. Primera integracion publicada y verificada mediante `1ab81e7`; 153 + 22 tests correctos sobre el resultado, cuatro ramas contenidas en main sin eliminarlas. Sin release, deploy, aprobacion curricular, nuevas dependencias o cambios en datos/arquitectura de aplicacion |
-| 1.7 | 16-10-2026 | Variante Narani Junbi Sogui extraida de PDF 81 / folio 79, una ficha/cita nueva y preparacion de los dos ejercicios enlazada con evidencia contextual de PDF 530. Total 20 fichas/38 citas; 159 + 22 tests correctos. Sin alias generico, geometria heredada, curriculum, nuevas dependencias o secuencias declaradas completas |
+| 1.7 | 16-10-2026 | Variante Narani Junbi Sogui extraida de PDF 81 / folio 79, una ficha/cita nueva y preparacion de los dos ejercicios enlazada con evidencia contextual de PDF 530. Total 20 fichas/38 citas; 159 + 22 tests correctos antes y despues del merge. Implementacion `b6b5b99`, integracion `6fc2ab1` publicadas y verificadas. Sin alias generico, geometria heredada, curriculum, nuevas dependencias o secuencias declaradas completas |
 
 ---
 
