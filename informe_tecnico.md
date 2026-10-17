@@ -1754,7 +1754,7 @@ La base de conocimiento es el nucleo del producto.
 
 Bloque cerrado: variante preparatoria implementada en `feat/tkd-005-preparatory-position` (`b6b5b99`), integrada y publicada en `main` mediante `6fc2ab1`, con SHA remotos verificados. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530.
 
-Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban vacios en los catalogos canonicos, correspondientes a los archivos semilla escritos antes en la raiz. Se añadieron **combate pactado** (PDF 8-9 de un manual y 10-11 del otro), **patadas** (enciclopedia PDF 256-257) y **cinco herramientas del pie** (enciclopedia PDF 102-103), con citas y revisión pendiente. Tambien se confirmo que el «TEMARIO PARA CADA EXAMEN» de 10º a 9º solo enumera temas de teoria, por lo que no se construyo ningun curriculo. Sin contenido marcial aprobado.
+Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban vacios en los catalogos canonicos, correspondientes a los archivos semilla escritos antes en la raiz. Se añadieron **combate pactado** (PDF 8-9 de un manual y 10-11 del otro), **patadas** (enciclopedia PDF 256-257) y **cinco herramientas del pie** (enciclopedia PDF 102-103), con citas y revisión pendiente. Tambien se confirmo que el «TEMARIO PARA CADA EXAMEN» de 10º a 9º solo enumera temas de teoria, por lo que no se construyo ningun curriculo. Implementacion `9716929` en `feat/tkd-008-combat-and-kicks`, integrada y publicada en `main` mediante `462ea13`, con SHA remotos verificados y 166 + 22 tests correctos antes y despues del merge. Sin contenido marcial aprobado.
 
 | Paso | Entregable | Estado real |
 |---|---|---|
@@ -1832,7 +1832,7 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Tests PowerShell | 22 correctos |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Ultimo checkpoint publicado en `main` por merge `6fc2ab1`, rama `b6b5b99` y SHA remotos verificados; sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Ultimo checkpoint publicado en `main` por merge `462ea13`, rama `9716929` y SHA remotos verificados; sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
