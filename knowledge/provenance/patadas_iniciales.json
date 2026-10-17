@@ -1,0 +1,38 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_yopcha_jirugi_enciclopedia_p256",
+      "content_id": "yopcha_jirugi",
+      "source_id": "source_enciclopedia_taekwondo",
+      "source_sha256": "ec42024a885d2fb7dca86f02ecd8f885be83f31760a560152dbf94642fbeced3",
+      "pdf_page": 256,
+      "printed_page": "254",
+      "section": "TÉCNICAS DE PIE: A. Técnicas de ataque — Patada de Costado (Yopcha Jirugui)",
+      "review_status": "pending_human_review",
+      "notes": "Nombre y síntesis cualitativa observados visualmente en el capítulo de técnicas de ataque de pie, folio impreso 254. El capítulo es en buena parte fotográfico y no se leyó íntegro; no se extraen conteos, clasificaciones completas ni valores geométricos."
+    },
+    {
+      "id": "citation_cha_jirugi_enciclopedia_p256",
+      "content_id": "cha_jirugi",
+      "source_id": "source_enciclopedia_taekwondo",
+      "source_sha256": "ec42024a885d2fb7dca86f02ecd8f885be83f31760a560152dbf94642fbeced3",
+      "pdf_page": 256,
+      "printed_page": "254",
+      "section": "TÉCNICAS DE PIE: A. Técnicas de ataque — Patada de Punta (Cha Jirugui)",
+      "review_status": "pending_human_review",
+      "notes": "El párrafo observado resulta ambiguo al subdividir la patada de punta en patada de costado y hacia atrás. Se transcribe esa formulación sin corregirla ni resolverla por conocimiento general; requiere revisión humana."
+    },
+    {
+      "id": "citation_i_jung_yopcha_jirugi_enciclopedia_p257",
+      "content_id": "i_jung_yopcha_jirugi",
+      "source_id": "source_enciclopedia_taekwondo",
+      "source_sha256": "ec42024a885d2fb7dca86f02ecd8f885be83f31760a560152dbf94642fbeced3",
+      "pdf_page": 257,
+      "printed_page": "255",
+      "section": "Doble Patada de Costado (I-jung Yopcha Jirugi)",
+      "review_status": "pending_human_review",
+      "notes": "Etiqueta observada junto a una serie fotográfica, folio impreso 255. No se derivan de las imágenes conteos, ángulos ni una descripción de ejecución."
+    }
+  ]
+}

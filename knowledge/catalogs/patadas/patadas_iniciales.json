@@ -1,0 +1,27 @@
+{
+  "format_version": 1,
+  "catalog_type": "kick",
+  "items": [
+    {
+      "id": "yopcha_jirugi",
+      "name": "Yopcha Jirugi",
+      "description": "La enciclopedia lo presenta como «patada de costado» dentro de las técnicas de ataque de pie. Señala blancos primarios en la sien, la axila, las costillas flotantes y la arteria del cuello, y blancos secundarios en la base de la nariz, la extremidad del mentón y el plexo solar.",
+      "citation_ids": ["citation_yopcha_jirugi_enciclopedia_p256"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "cha_jirugi",
+      "name": "Cha Jirugi",
+      "description": "La enciclopedia lo presenta como «patada de punta» y anota que su teoría y propósito son similares al ataque de puño, subdividiéndola en patada de costado y patada hacia atrás. La redacción observada es ambigua y queda marcada para revisión.",
+      "citation_ids": ["citation_cha_jirugi_enciclopedia_p256"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "i_jung_yopcha_jirugi",
+      "name": "I-jung Yopcha Jirugi",
+      "description": "La enciclopedia lo presenta como «doble patada de costado» y anota que solo es posible con patada vertical. Se registra el nombre y el alcance declarado, sin describir aquí los detalles fotográficos de la página.",
+      "citation_ids": ["citation_i_jung_yopcha_jirugi_enciclopedia_p257"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}

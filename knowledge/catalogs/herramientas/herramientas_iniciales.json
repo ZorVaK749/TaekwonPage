@@ -36,6 +36,41 @@
       "description": "El vocabulario del manual ONT relaciona este término con el canto de la mano.",
       "citation_ids": ["citation_sonkal_ont_p14"],
       "review_status": "pending_human_review"
+    },
+    {
+      "id": "apkumchi",
+      "name": "Apkumchi",
+      "description": "La enciclopedia identifica este término con el metatarso y describe levantar los dedos del pie en el momento del impacto; lo asocia a golpes a la cara, el mentón, el muslo, el tórax, el plexo solar, las costillas flotantes, el escroto, el coxis y el abdomen, y a veces al bloqueo.",
+      "citation_ids": ["citation_apkumchi_enciclopedia_p102"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "balkal",
+      "name": "Balkal",
+      "description": "La enciclopedia identifica este término con el canto del pie y lo describe como el instrumento considerado más importante del pie; lo asocia a golpes a la nariz, las articulaciones de la rodilla y el tobillo, el cuello, el plexo solar, el mentón, la sien, la axila, las costillas flotantes y el empeine, y lo señala como frecuente para bloquear.",
+      "citation_ids": ["citation_balkal_enciclopedia_p102"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "dwitkumchi",
+      "name": "Dwitkumchi",
+      "description": "La enciclopedia identifica este término con la parte inferior del talón y lo asocia en primer lugar al pisotón y, a veces, al bloqueo, sirviéndose también del metatarso.",
+      "citation_ids": ["citation_dwitkumchi_enciclopedia_p103"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "moorup",
+      "name": "Moorup",
+      "description": "La enciclopedia identifica este término con la rodilla y lo describe como eficaz para atacar el plexo solar, el abdomen, el bajo abdomen, la cara, el tórax, el coxis y el escroto a corta distancia.",
+      "citation_ids": ["citation_moorup_enciclopedia_p103"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "dwihook",
+      "name": "Dwihook",
+      "description": "La enciclopedia identifica este término con la parte de atrás del talón y lo asocia a golpes a la sien, las costillas, el plexo solar, el escroto, la mandíbula y la base de la nariz.",
+      "citation_ids": ["citation_dwihook_enciclopedia_p103"],
+      "review_status": "pending_human_review"
     }
   ]
 }

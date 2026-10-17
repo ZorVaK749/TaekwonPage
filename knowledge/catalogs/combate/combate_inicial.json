@@ -1,0 +1,27 @@
+{
+  "format_version": 1,
+  "catalog_type": "combat",
+  "items": [
+    {
+      "id": "sambo_matsokgi",
+      "name": "Sambo Matsokgi",
+      "description": "Las dos copias consultadas lo presentan como «combate a tres pasos», ejercicio básico de entrenamiento para principiantes que suele utilizarse entre 10° y 6° GUP. Describen un método de práctica en un sentido y otro en dos sentidos; no cuantifican aquí los pasos ni fijan requisitos de grado.",
+      "citation_ids": ["citation_sambo_matsokgi_web_p8", "citation_sambo_matsokgi_ont_p10"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "ibo_matsokgi",
+      "name": "Ibo Matsokgi",
+      "description": "El manual ONT lo presenta como «combate a dos pasos», cuyo objetivo declarado es asociar el uso alternativo de manos y pies, con los mismos dos métodos de práctica de tres pasos. La otra copia consultada no incluye este apartado; la divergencia queda registrada, no resuelta.",
+      "citation_ids": ["citation_ibo_matsokgi_ont_p10"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "ilbo_matsokgi",
+      "name": "Ilbo Matsokgi",
+      "description": "Ambas copias lo presentan como «combate a un paso», considerado el más importante y aplicable a todos los niveles, por buscar un golpe decisivo a un punto vital en el momento y con la herramienta correctos.",
+      "citation_ids": ["citation_ilbo_matsokgi_web_p9", "citation_ilbo_matsokgi_ont_p11"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}

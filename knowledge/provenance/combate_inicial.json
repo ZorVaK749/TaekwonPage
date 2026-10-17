@@ -1,0 +1,60 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_sambo_matsokgi_web_p8",
+      "content_id": "sambo_matsokgi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 8,
+      "printed_page": null,
+      "section": "COMBATE A TRES PASOS (sambo matsokgi)",
+      "review_status": "pending_human_review",
+      "notes": "Encabezado y párrafos observados visualmente. Solo se resume la modalidad descrita; no se transcriben secuencias ni se cuantifican los tres pasos. El texto previo de la misma página trata la relación instructor-alumno y no se agrega a esta ficha."
+    },
+    {
+      "id": "citation_sambo_matsokgi_ont_p10",
+      "content_id": "sambo_matsokgi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 10,
+      "printed_page": null,
+      "section": "COMBATE A TRES PASOS (sambo matsokgi)",
+      "review_status": "pending_human_review",
+      "notes": "Formulación contrastada visualmente con WEB 8; no se asume independencia documental ni aprobación humana. El apartado «a dos pasos» de la misma página se cita por separado."
+    },
+    {
+      "id": "citation_ibo_matsokgi_ont_p10",
+      "content_id": "ibo_matsokgi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 10,
+      "printed_page": null,
+      "section": "COMBATE A DOS PASOS (ibo matsokgi)",
+      "review_status": "pending_human_review",
+      "notes": "Apartado observado únicamente en esta copia. Se registra la ausencia de un apartado homólogo en WEB 8-9 como divergencia documental; no se decide cuál copia prevalece."
+    },
+    {
+      "id": "citation_ilbo_matsokgi_web_p9",
+      "content_id": "ilbo_matsokgi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 9,
+      "printed_page": null,
+      "section": "COMBATE A UN PASO (ilbo matsokgi)",
+      "review_status": "pending_human_review",
+      "notes": "Encabezado y párrafos observados visualmente. La misma página introduce los puntos vitales (kupso), registrados aparte como material de consulta, no como pasos de combate."
+    },
+    {
+      "id": "citation_ilbo_matsokgi_ont_p11",
+      "content_id": "ilbo_matsokgi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "COMBATE A UN PASO (ilbo matsokgi)",
+      "review_status": "pending_human_review",
+      "notes": "Equivalencia de modalidad contrastada con WEB 9; no se transcriben secuencias ni se fijan requisitos de grado."
+    }
+  ]
+}
