@@ -1,0 +1,16 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_narani_junbi_sogi_enciclopedia_p81",
+      "content_id": "narani_junbi_sogi",
+      "source_id": "source_enciclopedia_taekwondo",
+      "source_sha256": "ec42024a885d2fb7dca86f02ecd8f885be83f31760a560152dbf94642fbeced3",
+      "pdf_page": 81,
+      "printed_page": "79",
+      "section": "Posición preparatoria con pies paralelos (Narani Junbi Sogui)",
+      "review_status": "pending_human_review",
+      "notes": "Nombre y síntesis cualitativa observados visualmente. El párrafo general de la misma página distingue varias posiciones preparatorias. No se convierten medidas de brazos o manos a campos geométricos del contrato de pies/peso, ni se heredan los valores del antiguo junbi_sogi. El enlace desde Saju se apoya en la denominación de preparación de PDF 530, junto con esta definición de la misma copia."
+    }
+  ]
+}

@@ -11,7 +11,9 @@ const exercises = await load('catalogs/tuls/ejercicios_iniciales_parciales.json'
 const citations = await load('provenance/ejercicios_iniciales_parciales.json');
 const positions = await load('catalogs/posiciones/posiciones_iniciales.json');
 const positionCitations = await load('provenance/posiciones_iniciales.json');
-const dataset = { catalogs: [exercises, positions], curricula: [], provenance: [citations, positionCitations] };
+const preparatory = await load('catalogs/posiciones/posicion_preparatoria_paralela.json');
+const preparatoryCitations = await load('provenance/posicion_preparatoria_paralela.json');
+const dataset = { catalogs: [exercises, positions, preparatory], curricula: [], provenance: [citations, positionCitations, preparatoryCitations] };
 
 test('15 observed actions have ordered local numbering and step-specific source links', () => {
   assert.deepEqual(validator.validateDataset(dataset, inventory), []);
@@ -23,7 +25,7 @@ test('15 observed actions have ordered local numbering and step-specific source 
       assert.deepEqual(step.citation_ids, [`citation_${item.id}_enciclopedia_p530`]);
     }
     assert.equal(item.movement_count, null);
-    assert.equal(item.initial_position_id, null);
+    assert.equal(item.initial_position_id, 'narani_junbi_sogi');
     assert.equal(item.sequence_complete, false);
   }
 });
@@ -68,7 +70,7 @@ test('review report distinguishes documented actions, missing totals and partial
   for (const item of exercises.items) {
     assert.ok(report.incomplete_observations.partial_sequences.includes(item.id));
     assert.ok(report.incomplete_observations.sequences_with_unknown_movement_count.includes(item.id));
-    assert.ok(report.incomplete_observations.sequences_without_initial_position.includes(item.id));
+    assert.ok(!report.incomplete_observations.sequences_without_initial_position.includes(item.id));
   }
   assert.ok(report.validation.not_checked.includes('martial_accuracy'));
 });

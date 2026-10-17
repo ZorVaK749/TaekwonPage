@@ -24,7 +24,7 @@ No se interpreta una autorización genérica para continuar programando como apr
 | Cobertura de 10º Gup | Temario teórico 10º a 9º en páginas PDF 27 y 35 de los manuales respectivos | Alcance técnico completo, y correspondencia con el programa vigente |
 | Borrador previo | `Gups/10gup.json` y sus catálogos en la raíz, sin citas explícitas | Revisar cada requisito; el archivo no demuestra aprobación curricular |
 | Romanización | Variantes documentales ya observadas | Convención de presentación y alias sin alterar IDs publicados |
-| Variante inicial Junbi/Jumbi | Vocabulario WEB 11 y ONT 13; Narani Sogui descrita en WEB 24 y ONT 32 | Confirmar variante de posición inicial; no equiparar geometrías por similitud del borrador |
+| Variante inicial Junbi/Jumbi | Vocabulario WEB 11 y ONT 13; definición específica de Narani Junbi Sogui en enciclopedia PDF 81 y preparación de los tramos en PDF 530 | El enlace documental de esa copia ya referencia `narani_junbi_sogi`; falta confirmar adopción escolar, sin convertir todo Junbi en sinónimo o heredar geometrías del borrador |
 | Referencias geométricas | Posiciones en WEB 24 y ONT 31–32 | Definir unidades, puntos de referencia y convención angular antes de convertir a coordenadas/rotaciones |
 | Referencia bibliográfica | Enciclopedia, páginas PDF 3–5 | Su autoridad y aplicabilidad curricular, no suprimir discrepancias por autoría o fecha |
 

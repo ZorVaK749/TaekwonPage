@@ -22,7 +22,7 @@ Cada ficha añade `sequence_scope`, que especifica que sus pasos corresponden a 
 ## Lagunas y decisiones que no se asumen
 
 1. **Punto 3 de Saju Jirugi:** el destino del golpe aparece omitido/ilegible en la copia. Se preservan las partes legibles y se marca la laguna; no se deduce el destino por la orientación de la posición o por simetría.
-2. **Preparación:** la fuente menciona pies paralelos, pero no se asigna automáticamente `junbi_sogi` ni una variante de Narani. `initial_position_id` sigue en `null` hasta resolver el enlace con evidencia y revisión.
+2. **Preparación:** la consulta posterior de PDF 81, folio 79, define expresamente Narani Junbi Sogui con la misma denominación de preparación de pies paralelos usada en PDF 530. Se [documentó la variante específica](posicion_preparatoria_paralela-review.md) y `initial_position_id` apunta ahora a `narani_junbi_sogi` para estos tramos. No se equipara el `junbi_sogi` genérico ni se decide la variante escolar.
 3. **Conteo:** 7/8 son longitudes de las listas observadas, no un total global aprobado. `movement_count` sigue en `null`; no se sustituyen ni validan los 15/16 del borrador antiguo.
 4. **Retorno y alternancia:** se reconoce que la fuente los menciona, pero no se les inventan números de paso ni se genera el sentido contrario a partir de los mismos textos.
 5. **Alcance curricular:** no se determina qué variante, conteo o ejecución exigirá la escuela. `sequence_complete` sigue en `false` y ambas fichas mantienen `pending_human_review`.
@@ -33,4 +33,4 @@ No se da prioridad automática a esta edición sobre los manuales ONT. El hallaz
 
 Los tests comprueban los enlaces por paso, los localizadores, la necesidad de alcance explícito y que el reporte conserve los estados incompletos. No comprueban verdad marcial ni convierten una lista parcialmente legible en una guía lista para ejecutar.
 
-El reporte separa `documented_steps` de los totales desconocidos y de `partial_sequences`. La foundation sigue fallando en `validate:content` porque no hay currículo. Antes de cerrar TKD-012/TKD-013 faltan revisión humana del pasaje, resolución de la laguna del punto 3, definición de la variante inicial y confirmación del alcance completo exigido. La publicación requiere además revisar derechos; este trabajo no autoriza redistribuir el libro o sus imágenes.
+El reporte separa `documented_steps` de los totales desconocidos y de `partial_sequences`. La foundation sigue fallando en `validate:content` porque no hay currículo. Antes de cerrar TKD-012/TKD-013 faltan revisión humana del pasaje, resolución de la laguna del punto 3, confirmación escolar de la variante inicial enlazada y del alcance completo exigido. La publicación requiere además revisar derechos; este trabajo no autoriza redistribuir el libro o sus imágenes.

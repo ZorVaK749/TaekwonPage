@@ -1,0 +1,14 @@
+{
+  "format_version": 1,
+  "catalog_type": "position",
+  "items": [
+    {
+      "id": "narani_junbi_sogi",
+      "name": "Narani Junbi Sogui",
+      "description": "La enciclopedia describe una posición preparatoria con pies paralelos y los puños situados delante del abdomen. Es una variante específica, no un nombre genérico para todas las posiciones preparatorias.",
+      "biomechanics": null,
+      "citation_ids": ["citation_narani_junbi_sogi_enciclopedia_p81"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}

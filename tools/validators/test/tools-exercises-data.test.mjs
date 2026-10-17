@@ -14,7 +14,9 @@ const exercises = await load('catalogs/tuls/ejercicios_iniciales_parciales.json'
 const exerciseCitations = await load('provenance/ejercicios_iniciales_parciales.json');
 const positions = await load('catalogs/posiciones/posiciones_iniciales.json');
 const positionCitations = await load('provenance/posiciones_iniciales.json');
-const dataset = { catalogs: [tools, exercises, positions], curricula: [], provenance: [toolCitations, exerciseCitations, positionCitations] };
+const preparatory = await load('catalogs/posiciones/posicion_preparatoria_paralela.json');
+const preparatoryCitations = await load('provenance/posicion_preparatoria_paralela.json');
+const dataset = { catalogs: [tools, exercises, positions, preparatory], curricula: [], provenance: [toolCitations, exerciseCitations, positionCitations, preparatoryCitations] };
 
 // Technical traceability tests; they do not verify martial truth or approval.
 test('tools and exercise drafts validate with their citations and required position catalog', () => {
@@ -48,7 +50,7 @@ test('observed book lists do not turn terminology numbering into steps or legacy
   assert.deepEqual(exercises.items.map((item) => item.id), ['saju_jirugi', 'saju_makgi']);
   for (const item of exercises.items) {
     assert.equal(item.movement_count, null);
-    assert.equal(item.initial_position_id, null);
+    assert.equal(item.initial_position_id, 'narani_junbi_sogi');
     assert.equal(item.sequence_complete, false);
     assert.equal(item.steps.length, item.id === 'saju_jirugi' ? 7 : 8);
     assert.ok(item.sequence_scope.includes('PDF 530'));

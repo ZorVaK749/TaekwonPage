@@ -84,7 +84,8 @@
       "metadata_evidence": "Inspección visual local con Windows.Data.Pdf: título y atribución de autor en página PDF 3; autor, edición y entidad editora en página PDF 4; cobertura general según índice en página PDF 5. Total de 764 páginas informado por PdfDocument.PageCount. Se observaron páginas PDF 1 a 8, no una lectura completa.",
       "coverage": [
         { "topic": "Índice general: teoría, historia, posiciones, herramientas, técnicas de mano y pie, ejercicios, formas, enfrentamiento, defensa personal, rango, examen y competencia; cobertura declarada por el índice, no capítulos leídos", "pdf_page_start": 5, "pdf_page_end": 5 },
-        { "topic": "Listas numeradas de Saju Jirugui y Saju Makgui con nota de alternancia; consulta visual dirigida, no lectura completa del capítulo", "pdf_page_start": 530, "pdf_page_end": 530 }
+        { "topic": "Listas numeradas de Saju Jirugui y Saju Makgui con nota de alternancia; consulta visual dirigida, no lectura completa del capítulo", "pdf_page_start": 530, "pdf_page_end": 530 },
+        { "topic": "Posición preparatoria con pies paralelos (Narani Junbi Sogui), folio impreso 79; consulta dirigida de una variante, no equivalencia automática de todo Junbi", "pdf_page_start": 81, "pdf_page_end": 81 }
       ],
       "review_status": "pending_human_review",
       "redistribution_status": "unknown",

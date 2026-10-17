@@ -24,7 +24,7 @@ El documento de terminología se presenta como nombres y traducciones de movimie
 - `sequence_complete: false`;
 - `steps: []`.
 
-Actualización del 16-10-2026: `steps` contiene ahora los tramos numerados observados en PDF 530 de la enciclopedia, con `sequence_scope` explícito. Los otros tres campos siguen desconocidos/parciales. No se obtuvieron los nuevos pasos del listado terminológico.
+Actualización del 16-10-2026: `steps` contiene los tramos numerados de PDF 530, con `sequence_scope` explícito; no proceden del listado terminológico. La [consulta de preparación](posicion_preparatoria_paralela-review.md) permite ahora enlazar `initial_position_id` a la variante definida en PDF 81. El conteo global sigue desconocido y `sequence_complete` sigue en `false`.
 
 No se copian los conteos 15/16, la posición inicial `junbi_sogi`, la lateralidad o los giros de los JSON antiguos. `Tuls/saju_jirugi.json` y `Tuls/saju_makgi.json` permanecen intactos, sin promoción a canónicos ni eliminación. Un campo desconocido es distinto de cero movimientos.
 
