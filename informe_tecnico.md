@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.6  
+**Version del documento:** 1.7  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 16-10-2026  
 
@@ -1752,12 +1752,12 @@ La base de conocimiento es el nucleo del producto.
 
 **Estamos entre los pasos 3 y 4:** contratos tecnicos iniciales implementados y extraccion parcial; aun no existe un curriculum validado de 10º Gup. No se asigna un porcentaje global de avance porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
-Bloque actual: cierre documental en `main` del checkpoint acumulado desde `chore/push-only-workflow`. El merge `1ab81e7` se publico y verifico contra el remoto el 16-10-2026, tras 153 + 22 tests correctos sobre el resultado integrado. Sin PR, tags o deploy; las cuatro ramas anteriores estan contenidas en `main` y no se han eliminado.
+Bloque actual: variante preparatoria documentada en `feat/tkd-005-preparatory-position`, creada desde `origin/main` en `b3ac837`. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530. Cierre tecnico del dia, sin curriculum o conocimiento marcial aprobado; el historial de integracion previo se conserva.
 
 | Paso | Entregable | Estado real |
 |---|---|---|
 | 1 | Repositorio y estructura | Baseline y bloques integrados y publicados en `main` mediante `1ab81e7`; historial conservado, sin PR |
-| 2 | Knowledge base | Inventario inicial de cuatro PDFs; 19 fichas y 37 citas en revision, incluidos tramos de ejercicios con 15 acciones documentadas, no secuencias globales completas |
+| 2 | Knowledge base | Inventario inicial de cuatro PDFs; 20 fichas y 38 citas en revision, incluidos tramos de ejercicios y su preparacion especifica documentada; no secuencias globales completas |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
 | 5 | PostgreSQL | No iniciado |
@@ -1797,12 +1797,12 @@ La estructura del bootstrap esta lista. Sus excepciones pendientes se muestran a
 - [ ] Completar convenciones marciales de romanizacion, medidas, referencias y unidades (TKD-003); las convenciones tecnicas de IDs/citas ya estan implementadas.
 - [x] Implementar contratos JSON iniciales de `source`, `position`, `theory`, `tul`, `vocabulary`, `body_tool`, `kick`, `combat` y `gup`, con contratos comunes y contenedores (base tecnica de TKD-004).
 - [ ] Contrastar y ajustar esos contratos con la extraccion real completa; no equivalen a modelos marciales definitivos.
-- [ ] Completar posiciones iniciales (TKD-005): hay tres fichas en revision; `junbi_sogi` y convenciones geometricas pendientes.
+- [ ] Completar posiciones iniciales (TKD-005): cuatro fichas en revision, incluida `narani_junbi_sogi` como variante documentada; la adopcion escolar del Junbi generico y las convenciones geometricas siguen pendientes.
 - [ ] Completar teoria inicial (TKD-006): hay cinco fichas en revision, no todo el temario.
 - [ ] Completar vocabulario inicial (TKD-007): hay cuatro terminos en revision.
 - [ ] Completar herramientas (TKD-008): cinco fichas iniciales con nueve citas en revision; no incluyen formacion anatomica o mecanica de impacto inferidas.
 - [ ] Construir y revisar curriculum de 10º Gup (TKD-009); cero archivos curriculares en la ubicacion nueva.
-- [ ] Modelar Saju Jirugi y Saju Makgi completos con evidencia de secuencia (TKD-012/TKD-013): se registraron las listas impresas de 7/8 acciones con alcance explicito; total global y posicion inicial siguen desconocidos, ejecucion alterna no reconstruida y punto 3 de Jirugi con laguna de legibilidad. Los JSON previos no se promovieron a canonicos.
+- [ ] Modelar Saju Jirugi y Saju Makgi completos con evidencia de secuencia (TKD-012/TKD-013): listas impresas de 7/8 acciones con alcance explicito y preparacion enlazada a `narani_junbi_sogi` de la misma copia; total global desconocido, ejecucion alterna no reconstruida y punto 3 de Jirugi con laguna de legibilidad. Los JSON previos no se promovieron a canonicos.
 - [ ] Modelar Chon-Ji con evidencia (TKD-014), cuando corresponda al alcance acordado.
 - [ ] Confirmar catalogo de grados, matriz funcional y ciclos de estados (TKD-015/TKD-016/TKD-017); reglas aprobadas documentadas, implementacion pendiente.
 - [x] Implementar controles tecnicos de IDs, duplicados, citas, hashes, paginas y referencias por tipo (base de TKD-018).
@@ -1818,13 +1818,13 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Area | Cantidad / resultado |
 |---|---|
 | PDFs locales inventariados | 4; nunca publicados por estas tareas |
-| Archivos de catalogo nuevos | 6, todos con contenido en revision |
-| Fichas | 19: 5 de teoria, 4 de vocabulario, 3 de posiciones, 5 herramientas y 2 ejercicios parciales |
-| Citas de procedencia | 37 en 6 archivos; vinculadas a copias exactas por SHA-256; cuatro copias documentales utilizadas, sin declarar independencia entre ellas |
+| Archivos de catalogo nuevos | 7, todos con contenido en revision |
+| Fichas | 20: 5 de teoria, 4 de vocabulario, 4 de posiciones, 5 herramientas y 2 ejercicios parciales |
+| Citas de procedencia | 38 en 7 archivos; vinculadas a copias exactas por SHA-256; cuatro copias documentales utilizadas, sin declarar independencia entre ellas |
 | Acciones documentadas | 15 registros, correspondientes a listas impresas 1–7 y 1–8; no representan totales globales ni ejercicios completos |
 | Curriculos nuevos | 0 |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 153 correctos |
+| Tests Node | 159 correctos |
 | Tests PowerShell | 22 correctos |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
@@ -1840,13 +1840,13 @@ node tools/validators/validate-knowledge.mjs --report-json --check-local-files
 ## 55.6 Decisiones y bloqueos abiertos
 
 1. Programa vigente y autoridad curricular de la escuela; designacion de quien revisa/aprueba.
-2. Variante de `junbi_sogi` y su relacion con las posiciones descritas por las fuentes; no equipararla automaticamente con Narani.
+2. Adopcion escolar del `junbi_sogi` generico: la fuente ya permite registrar y enlazar `narani_junbi_sogi` para sus tramos, pero no convertir todas las preparaciones en esa variante ni heredar la geometria del borrador previo.
 3. Sistema de medidas y orientaciones; no convertir angulos textuales a rotaciones de renderer sin referencias verificadas.
 4. Resolucion humana de divergencias entre manuales; no escoger uno por cantidad de paginas o fecha supuesta.
 5. Estrategia JWT local/OIDC y distincion entre estados del alumno y de su solicitud, antes de su implementacion.
 6. Derechos para el uso previsto y datos personales; un repo MIT no licencia fuentes de terceros.
 7. Flujo GitHub: primera integracion completada. Trabajar desde el `main` actualizado, hacer push de la rama e integrar checkpoints periodicamente sin PR. Las cuatro ramas anteriores ya estan integradas; eliminarlas local/remotamente requiere autorizacion separada. No confundir integracion tecnica con aprobacion marcial, release o deploy.
-8. Saju Jirugi/Saju Makgi: PDF 530, folio impreso 528, aporta listas numeradas y una nota de alternancia. Falta resolver la laguna del destino del golpe del punto 3 de Jirugi, enlazar una variante inicial y confirmar el alcance completo; no sumar, espejar o heredar conteos de los JSON antiguos. `sequence_complete` permanece en `false`.
+8. Saju Jirugi/Saju Makgi: falta resolver la laguna del destino del golpe del punto 3 de Jirugi y confirmar el alcance completo/alterno. La preparacion de PDF 530 se enlazo a la definicion especifica de PDF 81; no sumar, espejar o heredar conteos de los JSON antiguos. `sequence_complete` permanece en `false`.
 
 El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprobadas ni permitir exponer una beta sin los controles aplicables.
 
@@ -1858,7 +1858,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.6` es la version de este informe; `0.1.0` en `tools/validators/package.json` identifica la herramienta, no una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.7` es la version de este informe; `0.1.0` en `tools/validators/package.json` identifica la herramienta, no una release de la plataforma.
 
 ---
 
@@ -1939,6 +1939,7 @@ Cuando OpenCode reciba una tarea:
 | 1.4 | 16-10-2026 | Consulta dirigida de enciclopedia: PDF 530 / folio 528, 15 acciones resumidas y dos citas nuevas; alcance `sequence_scope`, control de tramos parciales y reporte de lagunas. Total 19 fichas/37 citas; 153 + 22 tests correctos. Secuencias incompletas y laguna de legibilidad explicitas, sin aprobacion, curriculum, nuevas dependencias o cambios de arquitectura |
 | 1.5 | 16-10-2026 | Por instruccion del usuario, flujo de commits y push a ramas sin PR ni merges; retirada de plantilla de PR y plan de CI por push. Cuatro ramas publicadas con SHA remotos verificados tras revisar cinco commits salientes y 110 versiones unicas de archivos; sin PDF/capturas o patrones comunes de credenciales detectados. 153 + 22 tests correctos; `main`, contenido y arquitectura de aplicacion sin cambios |
 | 1.6 | 16-10-2026 | Nueva instruccion: push por rama y merges periodicos revisados a `main`, sin PR. Primera integracion publicada y verificada mediante `1ab81e7`; 153 + 22 tests correctos sobre el resultado, cuatro ramas contenidas en main sin eliminarlas. Sin release, deploy, aprobacion curricular, nuevas dependencias o cambios en datos/arquitectura de aplicacion |
+| 1.7 | 16-10-2026 | Variante Narani Junbi Sogui extraida de PDF 81 / folio 79, una ficha/cita nueva y preparacion de los dos ejercicios enlazada con evidencia contextual de PDF 530. Total 20 fichas/38 citas; 159 + 22 tests correctos. Sin alias generico, geometria heredada, curriculum, nuevas dependencias o secuencias declaradas completas |
 
 ---
 

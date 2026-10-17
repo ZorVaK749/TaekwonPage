@@ -47,3 +47,5 @@ La inspección inicial de inventario está completada; la revisión humana, los 
 Se consultaron adicionalmente PDF 420, 430, 440 y 529–531, sin leer íntegramente los capítulos. **PDF 530 / folio impreso 528** contiene las listas numeradas de Saju Jirugui y Saju Makgui y una nota de alternancia. Se registraron [alcance y lagunas](ejercicios-enciclopedia-review.md), con dos citas nuevas y quince acciones resumidas; las secuencias permanecen parciales.
 
 Las correspondencias PDF/folio se observaron en las páginas concretas, no se generalizan al resto del documento. El inventario añade solo el rango de cobertura realmente utilizado como evidencia de ejercicios; el hash y el archivo original no cambian.
+
+La consulta posterior de PDF 67–70 y 80–85 localizó la definición de **Narani Junbi Sogui en PDF 81 / folio 79**. Se usa únicamente ese pasaje para la [ficha preparatoria y el enlace contextual con PDF 530](posicion_preparatoria_paralela-review.md), sin copiar otras variantes, fotografías o medidas.
