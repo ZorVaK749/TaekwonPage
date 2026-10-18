@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.12  
+**Version del documento:** 1.13  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 18-10-2026  
 
@@ -1758,7 +1758,9 @@ Vista resumida para el responsable del proyecto: **[Plan de ataque con checks po
 
 **Bloque posterior — procedencia:** la lectura interna de posiciones incorpora citas de su ficha con metadatos de fuente, identidad ID/SHA-256, pagina PDF y folio independientes, estados de revision y derechos. Proyeccion de solo lectura ordenada, lista inmutable, sin rutas locales ni notas internas. 17 pruebas Java correctas contra PostgreSQL aislado; sin abrir rutas, cambiar migraciones, dependencias o contenido marcial.
 
-**Contenido: entre los pasos 3 y 4; infraestructura: pasos 5 y 6 iniciados y lectura parcial del 7.** Adelantamos partes de Fases 1 y 2 sin cerrar Fase 0, por autorizacion del usuario; no se eliminaron pendientes ni se declaro cumplida su Definition of Done. La Fase 0 sigue abierta por gobernanza/convenciones, catalogos y ejercicios incompletos, curriculos 10º/9º/8º y revision humana. Fase 1 tiene infraestructura/esquema inicial y carga de borradores probados; faltan importacion curricular, seed aprobado, revision/publicacion y actualizacion editorial segura. No se asigna un porcentaje global porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
+**Bloque activo — Fase 1:** por nueva instruccion, completar persistencia antes de retomar Fase 0 y luego Fase 2. Se implemento importacion de curriculos de trabajo (siete relaciones tipadas/citas) y recarga identica comprobada, sin sobreescrituras. Filas/relaciones diferentes provocan rollback; se verifica tambien la reversion de inserciones previas al conflicto. Pruebas con curriculum sintetico fuera de `knowledge/`, sin crear programa escolar. Permanecen pendientes curriculum real, seed aprobado, evidencia de revision/publicacion, edicion versionada y el modelo funcional de identidad. No se declara Fase 1 cerrada ni se amplia el backend en este bloque.
+
+**Contenido: entre los pasos 3 y 4; infraestructura: pasos 5 y 6 iniciados y lectura parcial del 7.** Adelantamos partes de Fases 1 y 2 sin cerrar Fase 0, por autorizacion del usuario; no se eliminaron pendientes ni se declaro cumplida su Definition of Done. La Fase 0 sigue abierta por gobernanza/convenciones, catalogos y ejercicios incompletos, curriculos 10º/9º/8º y revision humana. Fase 1 tiene esquema, mapeo curricular y recarga identica probados; faltan contraste curricular real, seed aprobado, revision/publicacion y edicion versionada. No se asigna un porcentaje global porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
 Bloque cerrado: variante preparatoria implementada en `feat/tkd-005-preparatory-position` (`b6b5b99`), integrada y publicada en `main` mediante `6fc2ab1`, con SHA remotos verificados. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530.
 
@@ -1770,7 +1772,7 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 | 2 | Knowledge base | Inventario inicial de cuatro PDFs; 31 fichas y 51 citas en revision, con los siete tipos de contenido cubiertos: posiciones, teoria, tuls, vocabulario, herramientas, patadas y combate; no secuencias globales completas ni curriculo |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
-| 5 | PostgreSQL | Primer bloque implementado y probado: Compose, ERD, V1 Flyway, tablas/constraints/indices y exportador transaccional local de borradores; curriculum/importacion aprobada pendientes |
+| 5 | PostgreSQL | Compose, ERD, V1 Flyway, tablas/constraints/indices, mapeo curricular y recarga exacta transaccional probados; curriculum real/importacion aprobada y edicion versionada pendientes |
 | 6 | Spring Boot modular | Base ejecutable Java 21 con Flyway, JPA, Security y Actuator; primer modulo de lectura de posiciones probado, ampliacion pendiente |
 | 7 | API de contenido | Posiciones con DTO y citas/metadatos de copia, bloqueadas por politica HTTP; sin API educativa accesible ni controlador `GET /api/v1/gups/10` |
 | 8 | Usuarios y roles | Reglas documentadas; implementacion no iniciada |
@@ -1836,14 +1838,14 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Acciones documentadas | 15 registros, correspondientes a listas impresas 1–7 y 1–8; no representan totales globales ni ejercicios completos |
 | Curriculos nuevos | 0 |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 169 correctos |
+| Tests Node | 172 correctos |
 | Tests PowerShell | 22 correctos |
 | Tests backend | 17 correctos, sin omitidos: unitarios y PostgreSQL Testcontainers; migracion, DTO con citas/identidad/localizadores, serializacion sin datos locales y casos negativos HTTP |
 | Arranque backend | JAR ejecutado contra Compose con importacion explicita de .env local; salud UP sin detalles, posiciones HTTP 403; proceso detenido al finalizar |
-| Persistencia | PostgreSQL 17.7 / Flyway 11.20.0: migracion inicial, segunda ejecucion sin cambios, checksums, importacion real de borradores y 16 rechazos SQL comprobados en BD desechable |
+| Persistencia | PostgreSQL/Flyway: migracion/repeticion/checksums, carga y recarga de borradores, 16 rechazos SQL; curriculum sintetico con siete categorias, cinco conflictos del importador y rollback comprobados en BD desechable |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Procedencia integrada en `7f5f9c1`; checklist por fases en `docs/attack-plan-checklist`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Checklist integrado en `b11c627`; importador en `feat/curriculum-draft-import`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1876,7 +1878,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.12` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.13` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
 
 ---
 
@@ -1918,6 +1920,8 @@ Primer objetivo funcional:
 No avanzar a 9º Gup hasta que la estructura de 10º Gup haya demostrado ser reusable.
 
 ### Proximo bloque de trabajo
+
+**Prioridad vigente por instruccion del usuario:** Fase 1 primero; al terminar sus entregables verificables, retomar una parte de Fase 0 y despues regresar a Fase 2. Los puntos de contenido siguientes siguen como dependencias, no como orden para ampliar backend inmediatamente. No cerrar Fase 1 por pruebas sinteticas si faltan evidencia real o decisiones humanas.
 
 1. Checkpoint acumulado integrado y publicado en `main` con historial preservado. En bloques futuros, partir de `origin/main` actualizado, trabajar y hacer push en una rama e integrar checkpoints coherentes periodicamente. Sin PR, force-push, tags o limpieza de ramas no autorizada.
 2. Contrastar y revisar los tramos encontrados en PDF 530 de la enciclopedia, resolver su legibilidad y alcance antes de completar secuencias; continuar consultas dirigidas para las lagunas de posiciones/herramientas. No convertir expresiones terminologicas en pasos ni generar el recorrido alterno por simetria.
@@ -1964,6 +1968,7 @@ Cuando OpenCode reciba una tarea:
 | 1.10 | 18-10-2026 | Arranque Spring Boot 3.5.16 Java 21/Maven con Flyway, JPA y primer servicio/DTO de posiciones. Spring Security deny-all salvo salud minima. 11 pruebas Java con PostgreSQL Testcontainers y prueba del JAR contra Compose correctas; migracion V1 intacta. Sin Angular, login, publicacion, temario ficticio o deploy |
 | 1.11 | 18-10-2026 | Citas y metadatos de fuentes en DTO interno de posiciones, vinculados por ID/hash, ordenados y sin rutas/notas internas; 17 pruebas Java correctas. Sin migraciones o dependencias nuevas, cambios marciales, apertura HTTP o implementacion de identidad |
 | 1.12 | 18-10-2026 | Plan_ataque.md con checklist por Fases 0–7 y milestones, pendientes TKD de Fase 0 y alcance real/parcial de Fase 1. Se explicita el adelanto autorizado de persistencia/backend sin cierre de conocimiento. Solo documentacion; enlaces y consistencia de conteos revisados, sin nuevos tests de aplicacion o cambios funcionales |
+| 1.13 | 18-10-2026 | Fase 1: importacion curricular tipada/citada y recarga identica sin duplicados; diferencias en filas/relaciones provocan rollback. 172 tests Node y prueba PostgreSQL con siete categorias sinteticas/cinco conflictos. Orden confirmado Fase 1 → retomar Fase 0 → Fase 2; sin cambios de migraciones/backend, curriculum real o aprobacion inventada |
 
 ---
 

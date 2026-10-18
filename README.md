@@ -83,7 +83,7 @@ Consulta [pendientes de arquitectura](docs/architecture/README.md). No se eligie
 
 Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. El primer checkpoint del baseline **`83eb531`** y sus bloques posteriores se publicó en `main` mediante **`1ab81e7`**, conservando su historial. El flujo actual es **trabajo y push en ramas, con merges periódicos de checkpoints revisados a `main`, sin Pull Requests**. La licencia MIT no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
 
-Bloque actual: [procedencia de posiciones](docs/api/position-draft.md), con 17 pruebas Java (incluido PostgreSQL aislado). Se conserva el bloqueo HTTP, las migraciones y los catálogos. No completa el currículo, no aprueba contenido ni crea release/despliegue. Las ramas integradas no se borran sin autorización.
+Bloque actual: Fase 1, [importación curricular y recarga segura](tools/seeders/README.md), con 172 tests Node y prueba PostgreSQL de siete categorías/cinco conflictos de importación. El backend conserva sus 17 pruebas y bloqueo HTTP, sin cambios. No hay currículo real aprobado, release o despliegue. Orden acordado: Fase 1, retomar Fase 0 y después volver a Fase 2.
 
 El [checkpoint publicado](https://github.com/ZorVaK749/TaekwonPage/tree/main) ya está disponible en la vista predeterminada de `main`. Los bloques nuevos partirán de ese estado, sin crear ramas acumulativas innecesarias.
 
