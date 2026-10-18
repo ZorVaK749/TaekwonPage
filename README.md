@@ -4,7 +4,7 @@ Plataforma educativa y de gestión interna para **Taekwon-Do Nahuel Aukan**, des
 
 ## Estado y alcance
 
-**Knowledge Foundation en curso; primer bloque de persistencia implementado.** Hay PostgreSQL local con Compose, migración Flyway y exportador de borradores probado. Todavía no hay aplicación Spring Boot, Angular, autenticación ni CI/CD. El currículo y la aprobación marcial siguen pendientes.
+**Knowledge Foundation en curso; base de persistencia y arranque Spring Boot implementados.** Hay PostgreSQL local, Flyway, exportador de borradores y primer repositorio/servicio/DTO de posiciones. El backend bloquea contenido por HTTP; solo expone salud sin detalles. Angular, autenticación funcional y CI/CD siguen pendientes, al igual que el currículo y la aprobación marcial.
 
 La fuente principal de decisiones es [informe_tecnico.md](informe_tecnico.md). Los [ADR](docs/adr/README.md) registran decisiones ya aprobadas, no implementaciones terminadas. Este avance no completa la Fase 0 de conocimiento ni el milestone Content Foundation v0.1.
 
@@ -38,7 +38,7 @@ Las versiones concretas de las herramientas y las dependencias se definirán al 
 | `knowledge/catalogs/` | Catálogos: posiciones, teoría, tuls, vocabulario, herramientas, patadas y combate |
 | `knowledge/curricula/gups/` | Currículos que referencian IDs de los catálogos |
 | `knowledge/provenance/` | Futuros registros de procedencia documental |
-| `backend/taekwonpage-api/` | Migración Flyway; aplicación Spring Boot modular pendiente |
+| `backend/taekwonpage-api/` | Spring Boot Java 21, Flyway y primera lectura interna de posiciones |
 | `frontend/taekwonpage-web/` | Futura aplicación Angular |
 | `tools/ingestion/` | Futuras herramientas de extracción y normalización |
 | `tools/validators/` | Validadores y tests de fuentes, procedencia, referencias y consistencia curricular |
@@ -73,7 +73,7 @@ Consulta la [política de fuentes locales](knowledge/sources/README.md). Los PDF
 
 Convención de commits según el informe: `tipo(ámbito): descripción`, por ejemplo `docs(architecture): document modular monolith`.
 
-No hay builds ni tests de aplicación aún. Fuentes y citas cuentan con [JSON Schemas, validadores y pruebas reproducibles](tools/validators/README.md): Node 24 y Ajv para los contratos portables, más el control PowerShell independiente sin dependencias. No validan conocimiento marcial ni equivalen a aprobación humana.
+El [backend](backend/taekwonpage-api/README.md) se construye y prueba con Maven y Testcontainers/PostgreSQL. Fuentes y citas cuentan con [JSON Schemas, validadores y pruebas reproducibles](tools/validators/README.md): Node 24 y Ajv para los contratos portables, más el control PowerShell independiente sin dependencias. No validan conocimiento marcial ni equivalen a aprobación humana.
 
 ## Pendientes y límites de este sprint
 
@@ -81,11 +81,11 @@ Consulta [pendientes de arquitectura](docs/architecture/README.md). No se eligie
 
 Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. El primer checkpoint del baseline **`83eb531`** y sus bloques posteriores se publicó en `main` mediante **`1ab81e7`**, conservando su historial. El flujo actual es **trabajo y push en ramas, con merges periódicos de checkpoints revisados a `main`, sin Pull Requests**. La licencia MIT no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
 
-Bloque actual: [persistencia de contenido](docs/database/README.md), con 169 tests Node, 22 PowerShell y prueba real PostgreSQL/Flyway (16 casos negativos SQL). No completa el currículo, no aprueba el contenido marcial y no crea una release o despliegue. Las ramas integradas no se borran sin autorización.
+Bloque actual: [arranque del backend](backend/taekwonpage-api/README.md), con 11 pruebas Java (incluido PostgreSQL aislado), 169 tests Node, 22 PowerShell y 16 casos negativos SQL. JAR ejecutado contra Compose: salud `UP`, contenido `403`. No completa el currículo, no aprueba contenido ni crea release/despliegue. Las ramas integradas no se borran sin autorización.
 
 El [checkpoint publicado](https://github.com/ZorVaK749/TaekwonPage/tree/main) ya está disponible en la vista predeterminada de `main`. Los bloques nuevos partirán de ese estado, sin crear ramas acumulativas innecesarias.
 
-Para la BD local: copiar `.env.example` a `.env`, completar contraseña y ejecutar `docker compose up -d --wait postgres` y `docker compose run --rm migrate`. El [manual de BD](docs/database/README.md) explica las pruebas y los límites. Compose incluye PostgreSQL/Flyway, todavía no backend/frontend.
+Para la BD local: copiar `.env.example` a `.env`, completar contraseña y ejecutar `docker compose up -d --wait postgres`. Flyway puede ejecutarse con `docker compose run --rm migrate` o al arrancar Spring Boot. El [manual del backend](backend/taekwonpage-api/README.md) incluye comandos de ejecución. Compose incluye PostgreSQL/Flyway; el backend corre con Maven/JAR y Angular aún no existe.
 
 **Avance de Sprint 1:** inventario técnico inicial de los cuatro PDFs completado, incluida la consulta bibliográfica e índice de la enciclopedia; no equivale a revisión íntegra ni aprobación humana. Hay una [herramienta local de vistas previas](tools/ingestion/README.md) sin dependencias adicionales.
 

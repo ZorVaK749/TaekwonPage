@@ -1,6 +1,6 @@
 # Persistencia de contenido — primer bloque
 
-Base técnica de la Fase 1 del [plan](../../informe_tecnico.md), no cierre de Sprint 1 ni autorización de publicación. Se implementan PostgreSQL, ubicación definitiva de migraciones Flyway y mapeo de borradores. No hay todavía aplicación Spring Boot.
+Base técnica de la Fase 1 del [plan](../../informe_tecnico.md), no cierre de Sprint 1 ni autorización de publicación. Se implementan PostgreSQL, ubicación definitiva de migraciones Flyway y mapeo de borradores. El [backend Spring Boot](../../backend/taekwonpage-api/README.md) reutiliza estas migraciones al arrancar y valida el mapeo JPA sin crear tablas por Hibernate.
 
 ## Modelo
 
@@ -62,5 +62,5 @@ No hay seed marcial de producción. Una segunda importación sobre la misma BD f
 1. Prueba PostgreSQL/Flyway ejecutada correctamente el 18-10-2026: migración desde cero, segunda ejecución sin cambios, checksums, importación de 31 fichas/51 citas y 16 rechazos SQL. La BD de desarrollo tiene V1 aplicada sin contenido cargado. Repetir el test al cambiar persistencia.
 2. Confirmar programa/revisor y resolver lagunas de contenido antes de declarar cerrado 10º Gup. Esto no impide construir infraestructura local con borradores, pero sí aprobar/publicar o simular un temario completo.
 3. Implementar importación curricular, actualización editorial segura y evidencia de revisión/publicación. Verificar integridad con un currículo real; no inventar sus requisitos.
-4. Inicializar Spring Boot Java 21, integrar Flyway y repositorios/DTOs, con pruebas de BD y política de acceso antes de exponer contenido. El modelo de identidad/verificación vendrá en su bloque; JWT/OIDC sigue por decidir.
+4. Arranque Spring Boot Java 21 implementado con Flyway, primer repositorio/servicio/DTO de posiciones y bloqueo HTTP preventivo. Falta ampliar otros catálogos, procedencia y currículo; identidad/verificación vendrá en su bloque y JWT/OIDC sigue por decidir.
 5. Angular consumirá los contratos de API después de ese bloque; no se declara listo un frontend ni una beta por tener tablas.

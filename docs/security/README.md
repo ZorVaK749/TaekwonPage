@@ -13,4 +13,6 @@ Asuntos para esa planificación:
 - Validación, CORS explícito, HTTPS, gestión de secretos y pruebas negativas de acceso.
 - Configuración de despliegue, registros, copias de seguridad y revisión de dependencias.
 
-Desde ahora: no versionar secretos ni PDFs sin autorización. No se añadieron proveedores de identidad, dependencias o mecanismos de autenticación en este bloque.
+Base técnica del backend: Spring Security bloquea todas las rutas salvo `GET /actuator/health`, que no muestra componentes ni detalles. Basic, formulario, logout y caché de peticiones están deshabilitados; no se crea un usuario ni contraseña por defecto. La API no habilita CORS permisivo y conserva CSRF. Esta política de arranque no implementa identidad ni autorización por grado, y no habilita una beta.
+
+Desde ahora: no versionar secretos ni PDFs sin autorización. JWT local/OIDC y el ciclo de sesiones siguen pendientes; no confundir el bloqueo preventivo con el módulo de seguridad funcional terminado. Véase [arranque y límites del backend](../../backend/taekwonpage-api/README.md).
