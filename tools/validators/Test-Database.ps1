@@ -20,7 +20,7 @@ function Invoke-Compose {
   if ($LASTEXITCODE -ne 0) { throw 'Database test command failed.' }
 }
 function Invoke-TestSql {
-  param([string[]]$Sql, [switch]$ExpectConflict)
+  param([string[]]$Sql, [switch]$ExpectConflict, [string]$ExpectedError = '')
   $previousPreference = $ErrorActionPreference
   try {
     # PowerShell 5 converts native stderr to error records. Expected SQL rejections
@@ -29,8 +29,9 @@ function Invoke-TestSql {
     $output = @($Sql | & docker compose --env-file $envFile -f $compose exec -T postgres sh -c ('psql -X -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d ' + $database) 2>&1)
     $code = $LASTEXITCODE
   } finally { $ErrorActionPreference = $previousPreference }
-  if ($ExpectConflict) {
-    if ($code -eq 0 -or ($output | Out-String) -notmatch 'draft import conflict:') {
+  if ($ExpectConflict -or $ExpectedError) {
+    $message = if ($ExpectConflict) { 'draft import conflict:' } else { $ExpectedError }
+    if ($code -eq 0 -or ($output | Out-String) -notmatch [regex]::Escape($message)) {
       throw 'Expected a deliberate importer conflict, not success or an unrelated SQL error.'
     }
   } elseif ($code -ne 0) {
@@ -63,7 +64,25 @@ try {
     Invoke-TestSql -Sql $changed -ExpectConflict
   }
   Invoke-TestSql -Sql (Get-Content -Raw -Encoding UTF8 (Join-Path $PSScriptRoot 'database-import-checks.sql'))
-  Write-Output 'PASS: migrations twice, Flyway validate, 16 SQL constraints; real/synthetic reloads; 7 typed curriculum groups; 5 importer conflicts and rollback.'
+  Invoke-TestSql -Sql (Get-Content -Raw -Encoding UTF8 (Join-Path $PSScriptRoot 'database-draft-revisions.sql'))
+  $edit = & node $fixtureScript apply-text-edit
+  if ($LASTEXITCODE -ne 0) { throw 'Text edit fixture export failed.' }
+  Invoke-TestSql -Sql $edit
+  Invoke-TestSql -Sql $edit -ExpectedError 'stale draft revision'
+  Invoke-TestSql -Sql $fixture -ExpectConflict
+  $updated = & node $fixtureScript after-text-edit
+  if ($LASTEXITCODE -ne 0) { throw 'Updated snapshot export failed.' }
+  Invoke-TestSql -Sql $updated
+  Invoke-TestSql -Sql @'
+DO $$ BEGIN
+  IF (SELECT draft_revision FROM content_entry WHERE id = 'fixture_position') <> 1
+    OR (SELECT name FROM content_entry WHERE id = 'fixture_position') <> 'Edited synthetic draft'
+    OR (SELECT count(*) FROM content_draft_revision) <> 1 THEN
+    RAISE EXCEPTION 'versioned edit/import pipeline did not preserve revision history';
+  END IF;
+END; $$;
+'@
+  Write-Output 'PASS: migrations twice, Flyway validate, 16 SQL constraints; real/synthetic reloads; 7 curriculum groups; 5 import conflicts; versioned draft edits with 18 rejections and rollback.'
 } finally {
   if ($created) {
     Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('dropdb -U "$POSTGRES_USER" ' + $database))

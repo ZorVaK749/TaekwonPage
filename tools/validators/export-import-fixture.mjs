@@ -1,6 +1,7 @@
 // Called only by database tests. Never adds files to knowledge/curricula.
 import { createImportFixture } from './fixtures/import-dataset.mjs';
 import { createDraftSql } from '../seeders/export-draft-sql.mjs';
+import { createDraftEditSql } from '../seeders/export-draft-edit-sql.mjs';
 
 const { dataset, inventory } = createImportFixture();
 const mode = process.argv[2];
@@ -24,7 +25,16 @@ if (mode === 'conflict-name') {
 } else if (mode === 'conflict-steps') {
   const item = dataset.catalogs.find((catalog) => catalog.catalog_type === 'tul').items[0];
   item.steps.push({ ...item.steps[0], step_number: 2 });
+} else if (mode === 'apply-text-edit' || mode === 'after-text-edit') {
+  dataset.catalogs[0].items[0].name = 'Edited synthetic draft';
+  dataset.catalogs[0].items[0].description = 'Explicit local revision; test only.';
 } else if (mode !== 'initial') {
   throw new Error('Unknown import test mode');
 }
-process.stdout.write(await createDraftSql(dataset, inventory));
+if (mode === 'apply-text-edit') {
+  const item = dataset.catalogs[0].items[0];
+  process.stdout.write(createDraftEditSql({ id: item.id, expected_revision: 0, name: item.name,
+    description: item.description, reason: 'Synthetic pipeline check.', operator_reference: 'Unverified fixture operator' }));
+} else {
+  process.stdout.write(await createDraftSql(dataset, inventory));
+}

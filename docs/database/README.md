@@ -33,6 +33,7 @@ Las otras seis relaciones curriculares son `gup_theory`, `gup_vocabulary`, `gup_
 - Los pasos referencian posiciones y citas del mismo ejercicio. Triggers diferibles comprueban alcance parcial, conteo y continuidad al confirmar una transacción; no prueban corrección marcial. Las identidades de ficha/fuente/paso no se renombran mediante `UPDATE`.
 - Todos los registros son **borradores**. El contrato SQL deliberadamente rechaza `approved`: publicación y evidencia de revisión necesitan una migración propia. No hay usuarios, roles, sesiones ni solicitudes implementados en este bloque.
 - El inventario JSON conserva cobertura y metadatos completos; su lista orientativa `coverage` no se importa como contenido educativo ni se sustituye por la BD.
+- V2 incorpora [revisiones textuales de borradores](draft-revisions.md): contador esperado, historial de texto/citas y operación explícita sin aprobación. No sustituye auditoría funcional de usuarios o grados.
 
 ## Ejecución local
 
@@ -47,7 +48,7 @@ docker compose run --rm migrate validate
 powershell -NoProfile -File tools/validators/Test-Database.ps1
 ```
 
-El test crea una BD aleatoria `tkd_test_<uuid>`, ejecuta las migraciones dos veces, valida checksums, importa/reimporta los borradores y comprueba 16 restricciones SQL y UTF-8. Añade un currículo **sintético** con las siete categorías, comprueba recarga idéntica y cinco conflictos deliberados (nombre, alias, baja/alta de requisito y alta de paso), incluida reversión de filas insertadas antes del conflicto. Ajusta/restaura la codificación de PowerShell. Elimina solo esa BD de prueba en `finally`; no borra volúmenes ni datos de aplicación. Requiere Docker Desktop iniciado.
+El test crea una BD aleatoria `tkd_test_<uuid>`, ejecuta V1/V2 dos veces y valida checksums, carga/recarga, 16 restricciones SQL y UTF-8. Añade currículo **sintético** con siete categorías y cinco conflictos de importación. Prueba revisiones textuales, 18 rechazos editoriales, rollback de texto/historial, conflicto de versión vieja y recarga del snapshot actualizado sin perder historial. Elimina solo esa BD de prueba en `finally`; no borra volúmenes ni datos de aplicación. Requiere Docker Desktop iniciado.
 
 Las migraciones viven en [resources/db/migration](../../backend/taekwonpage-api/src/main/resources/db/migration/). Flyway lleva su historial: no editar una migración ya aplicada, usar una nueva `V2__...sql`. Nunca usar `clean` ni `down -v` para resolver diferencias sin autorización y copia de seguridad.
 
@@ -57,12 +58,12 @@ Las migraciones viven en [resources/db/migration](../../backend/taekwonpage-api/
 
 No hay seed marcial de producción. La recarga idéntica no duplica ni cambia datos: `ON CONFLICT DO NOTHING` va acompañado de comprobación exacta de cada fila y de sus relaciones. Una diferencia provoca rollback, no una actualización silenciosa. Una transacción bloquea escrituras sobre las tablas involucradas durante la carga local. Se permite agregar fichas nuevas; omitir una ficha completa no la borra. No usar la salida como migración Flyway ni como importación en caliente de producción.
 
-El mapeo curricular implementa `gup` y las siete tablas `gup_*`, con IDs referenciados y citas del currículo. Como su contrato JSON no contiene título/descripción, la fila `content_entry` usa el ID y una etiqueta técnica fija. El soporte está probado con datos sintéticos; sigue habiendo **cero currículos reales** en `knowledge/`. No equivale a aprobar un programa escolar. Edición versionada y revisión/publicación siguen pendientes.
+El mapeo curricular implementa `gup` y las siete tablas `gup_*`, con IDs referenciados y citas del currículo. Como su contrato JSON no contiene título/descripción, la fila `content_entry` usa el ID y una etiqueta técnica fija. El soporte está probado con datos sintéticos; sigue habiendo **cero currículos reales** en `knowledge/`. No equivale a aprobar un programa escolar. La edición textual de catálogo tiene flujo versionado separado; otros cambios y revisión/publicación siguen pendientes.
 
 ## Falta para cerrar persistencia / comenzar API funcional
 
-1. Prueba PostgreSQL/Flyway ejecutada correctamente el 18-10-2026: migración desde cero, segunda ejecución sin cambios, checksums, importación de 31 fichas/51 citas y 16 rechazos SQL. La BD de desarrollo tiene V1 aplicada sin contenido cargado. Repetir el test al cambiar persistencia.
+1. Prueba PostgreSQL/Flyway ejecutada correctamente el 18-10-2026: migraciones desde cero, repetición, checksums e importación de borradores/revisiones. La BD de desarrollo tiene el esquema sin contenido cargado. Repetir el test al cambiar persistencia.
 2. Confirmar programa/revisor y resolver lagunas de contenido antes de declarar cerrado 10º Gup. Esto no impide construir infraestructura local con borradores, pero sí aprobar/publicar o simular un temario completo.
-3. Mapeo curricular y recarga exacta implementados/probados. Falta contrastar con un currículo real, edición versionada y evidencia de revisión/publicación; no inventar requisitos ni reemplazar conflictos por un `upsert` sin revisión.
+3. Mapeo curricular, recarga exacta y revisión textual implementados/probados. Falta contraste con currículo real, cambios versionados de subtipos/citas/requisitos y evidencia de revisión/publicación; no inventar requisitos ni reemplazar conflictos por un `upsert` sin revisión.
 4. Arranque Spring Boot Java 21 implementado con Flyway, primer repositorio/servicio/DTO de posiciones y bloqueo HTTP preventivo. Falta ampliar otros catálogos, procedencia y currículo; identidad/verificación vendrá en su bloque y JWT/OIDC sigue por decidir.
 5. Angular consumirá los contratos de API después de ese bloque; no se declara listo un frontend ni una beta por tener tablas.
