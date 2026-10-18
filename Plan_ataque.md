@@ -20,6 +20,8 @@
 | 6 — Aprendizaje | Futuro, no iniciada |
 | 7 — Producción | No iniciada; no hay web desplegada |
 
+**Orden de trabajo confirmado:** terminar primero los entregables de Fase 1 que se puedan verificar; luego retomar Fase 0 y después volver a ampliar Fase 2. Las decisiones humanas pendientes no se marcarán completas por avanzar en código.
+
 **Sí, adelantamos trabajo de Fases 1 y 2 sin terminar la Fase 0**, por la autorización de continuar con BD/backend. No se eliminaron sus pendientes ni se modificó la Definition of Done original. El avance técnico permite desarrollar con datos de prueba, pero no afirmar que el temario de la escuela está completo o aprobado.
 
 ## Fase 0 — Conocimiento: qué está y qué falta
@@ -72,14 +74,16 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 - [x] FKs tipadas, IDs, hashes, restricciones de peso/rotación y controles de secuencia/páginas; índices iniciales.
 - [x] Exportador JSON → SQL de **borradores locales**, validado, transaccional y con consentimiento explícito `--local-drafts`.
 - [x] Importación de las 31 fichas/51 citas actuales en una BD desechable de prueba.
+- [x] Mapeo de currículos de trabajo: siete categorías de requisitos y sus citas, probado con fixtures sintéticos (no programa escolar).
+- [x] Recarga idéntica segura, sin duplicados; diferencias en filas o relaciones causan rollback. Cinco conflictos de importación probados en PostgreSQL.
 - [x] Prueba real: migrar desde cero, repetir sin cambios, validar Flyway y ejecutar 16 casos negativos SQL; preservación de UTF-8 comprobada.
 
 ### Falta para cerrar persistencia
 
-- [ ] Importar un **currículo real** con sus requisitos tipados y citas. El exportador actual se detiene si aparece un currículo: todavía falta ese mapeo.
+- [ ] Importar un **currículo real** con sus requisitos tipados y citas. El mapeo existe; falta el documento confirmado/revisado y su contraste real.
 - [ ] Preparar seed de contenido aprobado cuando exista aprobación; hoy solo hay borradores de prueba, no un seed educativo de producción.
 - [ ] Definir/persistir evidencia de revisión y publicación; el esquema actual solo admite `pending_human_review`.
-- [ ] Implementar actualización editorial/importaciones posteriores seguras. Hoy repetir la carga falla por duplicados y revierte; no actualiza ni fusiona silenciosamente.
+- [ ] Implementar edición versionada con revisión explícita. La recarga idéntica ya funciona; los cambios editoriales se rechazan y revierten en vez de sobrescribir datos.
 - [ ] Validar el recorrido completo de 10º Gup aprobado → importación → consulta desde backend.
 - [ ] Completar el modelo relacional de usuarios, roles, grados del alumno, solicitudes, historial y auditoría cuando se cierre su diseño funcional. Esas tablas del modelo preliminar aún no existen; no son parte del primer bloque de contenido.
 
@@ -153,6 +157,8 @@ Un volumen persistente local y `/actuator/health` local no completan estos punto
 - [ ] **Web v0.3:** web pública, alumno y administración con branding e integración funcional.
 
 ## Orden para retomar sin arrastrar pendientes invisibles
+
+La instrucción más reciente prioriza **Fase 1 → trabajo de Fase 0 → regreso a Fase 2**. La lista siguiente expresa dependencias, no autorización para saltar directamente al backend.
 
 1. Confirmar con la escuela autoridad, revisor y programa técnico de 10º Gup; no puede resolverlo un test ni la IA.
 2. Continuar extracción/revisión de Fase 0 y sus lagunas, cerrar convenciones y construir el currículo de 10º Gup sin inventar requisitos.

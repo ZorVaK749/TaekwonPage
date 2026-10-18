@@ -47,7 +47,7 @@ docker compose run --rm migrate validate
 powershell -NoProfile -File tools/validators/Test-Database.ps1
 ```
 
-El test crea una BD aleatoria `tkd_test_<uuid>`, ejecuta las migraciones dos veces, valida checksums, importa los borradores y comprueba restricciones SQL positivas/negativas y preservacion de caracteres UTF-8. Ajusta/restaura la codificacion de PowerShell para no corromper acentos al enviar SQL a `psql`. Elimina solo esa BD de prueba en `finally`. No borra volúmenes ni datos de la BD de aplicación. Requiere Docker Desktop iniciado.
+El test crea una BD aleatoria `tkd_test_<uuid>`, ejecuta las migraciones dos veces, valida checksums, importa/reimporta los borradores y comprueba 16 restricciones SQL y UTF-8. Añade un currículo **sintético** con las siete categorías, comprueba recarga idéntica y cinco conflictos deliberados (nombre, alias, baja/alta de requisito y alta de paso), incluida reversión de filas insertadas antes del conflicto. Ajusta/restaura la codificación de PowerShell. Elimina solo esa BD de prueba en `finally`; no borra volúmenes ni datos de aplicación. Requiere Docker Desktop iniciado.
 
 Las migraciones viven en [resources/db/migration](../../backend/taekwonpage-api/src/main/resources/db/migration/). Flyway lleva su historial: no editar una migración ya aplicada, usar una nueva `V2__...sql`. Nunca usar `clean` ni `down -v` para resolver diferencias sin autorización y copia de seguridad.
 
@@ -55,12 +55,14 @@ Las migraciones viven en [resources/db/migration](../../backend/taekwonpage-api/
 
 [Exportador](../../tools/seeders/export-draft-sql.mjs): requiere `--local-drafts`; valida todo antes de producir SQL, genera una única transacción y escapa literales explícitamente. No conecta por sí mismo a una BD ni escribe archivos. La prueba integra las 31 fichas y 51 citas actuales en una BD desechable.
 
-No hay seed marcial de producción. Una segunda importación sobre la misma BD falla por duplicados y revierte la transacción: no hace `upsert`, no borra trabajo ni acepta diferencias silenciosas. Cuando exista currículo real, el exportador se detendrá hasta implementar y probar su mapeo. No usar su salida como migración Flyway.
+No hay seed marcial de producción. La recarga idéntica no duplica ni cambia datos: `ON CONFLICT DO NOTHING` va acompañado de comprobación exacta de cada fila y de sus relaciones. Una diferencia provoca rollback, no una actualización silenciosa. Una transacción bloquea escrituras sobre las tablas involucradas durante la carga local. Se permite agregar fichas nuevas; omitir una ficha completa no la borra. No usar la salida como migración Flyway ni como importación en caliente de producción.
+
+El mapeo curricular implementa `gup` y las siete tablas `gup_*`, con IDs referenciados y citas del currículo. Como su contrato JSON no contiene título/descripción, la fila `content_entry` usa el ID y una etiqueta técnica fija. El soporte está probado con datos sintéticos; sigue habiendo **cero currículos reales** en `knowledge/`. No equivale a aprobar un programa escolar. Edición versionada y revisión/publicación siguen pendientes.
 
 ## Falta para cerrar persistencia / comenzar API funcional
 
 1. Prueba PostgreSQL/Flyway ejecutada correctamente el 18-10-2026: migración desde cero, segunda ejecución sin cambios, checksums, importación de 31 fichas/51 citas y 16 rechazos SQL. La BD de desarrollo tiene V1 aplicada sin contenido cargado. Repetir el test al cambiar persistencia.
 2. Confirmar programa/revisor y resolver lagunas de contenido antes de declarar cerrado 10º Gup. Esto no impide construir infraestructura local con borradores, pero sí aprobar/publicar o simular un temario completo.
-3. Implementar importación curricular, actualización editorial segura y evidencia de revisión/publicación. Verificar integridad con un currículo real; no inventar sus requisitos.
+3. Mapeo curricular y recarga exacta implementados/probados. Falta contrastar con un currículo real, edición versionada y evidencia de revisión/publicación; no inventar requisitos ni reemplazar conflictos por un `upsert` sin revisión.
 4. Arranque Spring Boot Java 21 implementado con Flyway, primer repositorio/servicio/DTO de posiciones y bloqueo HTTP preventivo. Falta ampliar otros catálogos, procedencia y currículo; identidad/verificación vendrá en su bloque y JWT/OIDC sigue por decidir.
 5. Angular consumirá los contratos de API después de ese bloque; no se declara listo un frontend ni una beta por tener tablas.

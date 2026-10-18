@@ -19,6 +19,25 @@ function Invoke-Compose {
   & docker compose --env-file $envFile -f $compose @Arguments
   if ($LASTEXITCODE -ne 0) { throw 'Database test command failed.' }
 }
+function Invoke-TestSql {
+  param([string[]]$Sql, [switch]$ExpectConflict)
+  $previousPreference = $ErrorActionPreference
+  try {
+    # PowerShell 5 converts native stderr to error records. Expected SQL rejections
+    # must be checked by exit code AND message, not terminate the harness early.
+    $ErrorActionPreference = 'Continue'
+    $output = @($Sql | & docker compose --env-file $envFile -f $compose exec -T postgres sh -c ('psql -X -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d ' + $database) 2>&1)
+    $code = $LASTEXITCODE
+  } finally { $ErrorActionPreference = $previousPreference }
+  if ($ExpectConflict) {
+    if ($code -eq 0 -or ($output | Out-String) -notmatch 'draft import conflict:') {
+      throw 'Expected a deliberate importer conflict, not success or an unrelated SQL error.'
+    }
+  } elseif ($code -ne 0) {
+    Write-Output $output
+    throw 'SQL import/test failed.'
+  }
+}
 try {
   Invoke-Compose @('up', '-d', '--wait', 'postgres')
   Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('createdb -U "$POSTGRES_USER" ' + $database))
@@ -30,12 +49,21 @@ try {
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', 'validate')
   $sql = & node (Join-Path $root 'tools/seeders/export-draft-sql.mjs') --local-drafts
   if ($LASTEXITCODE -ne 0) { throw 'Draft SQL export failed.' }
-  $sql | & docker compose --env-file $envFile -f $compose exec -T postgres sh -c ('psql -X -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d ' + $database)
-  if ($LASTEXITCODE -ne 0) { throw 'Draft import failed.' }
-  Get-Content -Raw -Encoding UTF8 (Join-Path $PSScriptRoot 'database-constraints.sql') |
-    & docker compose --env-file $envFile -f $compose exec -T postgres sh -c ('psql -X -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d ' + $database)
-  if ($LASTEXITCODE -ne 0) { throw 'SQL constraints test failed.' }
-  Write-Output 'PASS: migrations twice, Flyway validate, actual draft import and 16 negative SQL checks.'
+  Invoke-TestSql -Sql $sql
+  Invoke-TestSql -Sql $sql
+  Invoke-TestSql -Sql (Get-Content -Raw -Encoding UTF8 (Join-Path $PSScriptRoot 'database-constraints.sql'))
+  $fixtureScript = Join-Path $PSScriptRoot 'export-import-fixture.mjs'
+  $fixture = & node $fixtureScript initial
+  if ($LASTEXITCODE -ne 0) { throw 'Synthetic fixture export failed.' }
+  Invoke-TestSql -Sql $fixture
+  Invoke-TestSql -Sql $fixture
+  foreach ($mode in @('conflict-name', 'conflict-requirements', 'conflict-aliases', 'conflict-requirement-add', 'conflict-steps')) {
+    $changed = & node $fixtureScript $mode
+    if ($LASTEXITCODE -ne 0) { throw 'Conflict fixture export failed.' }
+    Invoke-TestSql -Sql $changed -ExpectConflict
+  }
+  Invoke-TestSql -Sql (Get-Content -Raw -Encoding UTF8 (Join-Path $PSScriptRoot 'database-import-checks.sql'))
+  Write-Output 'PASS: migrations twice, Flyway validate, 16 SQL constraints; real/synthetic reloads; 7 typed curriculum groups; 5 importer conflicts and rollback.'
 } finally {
   if ($created) {
     Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('dropdb -U "$POSTGRES_USER" ' + $database))
