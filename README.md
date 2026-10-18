@@ -4,7 +4,7 @@ Plataforma educativa y de gestión interna para **Taekwon-Do Nahuel Aukan**, des
 
 ## Estado y alcance
 
-**Sprint 1 — Knowledge Foundation, en curso.** Bootstrap completado; primer bloque de inventario y procedencia incorporado. Todavía no hay aplicaciones ejecutables, autenticación, base de datos, contenedores ni CI/CD implementados.
+**Knowledge Foundation en curso; primer bloque de persistencia implementado.** Hay PostgreSQL local con Compose, migración Flyway y exportador de borradores probado. Todavía no hay aplicación Spring Boot, Angular, autenticación ni CI/CD. El currículo y la aprobación marcial siguen pendientes.
 
 La fuente principal de decisiones es [informe_tecnico.md](informe_tecnico.md). Los [ADR](docs/adr/README.md) registran decisiones ya aprobadas, no implementaciones terminadas. Este avance no completa la Fase 0 de conocimiento ni el milestone Content Foundation v0.1.
 
@@ -38,11 +38,11 @@ Las versiones concretas de las herramientas y las dependencias se definirán al 
 | `knowledge/catalogs/` | Catálogos: posiciones, teoría, tuls, vocabulario, herramientas, patadas y combate |
 | `knowledge/curricula/gups/` | Currículos que referencian IDs de los catálogos |
 | `knowledge/provenance/` | Futuros registros de procedencia documental |
-| `backend/taekwonpage-api/` | Futura aplicación Spring Boot modular |
+| `backend/taekwonpage-api/` | Migración Flyway; aplicación Spring Boot modular pendiente |
 | `frontend/taekwonpage-web/` | Futura aplicación Angular |
 | `tools/ingestion/` | Futuras herramientas de extracción y normalización |
 | `tools/validators/` | Validadores y tests de fuentes, procedencia, referencias y consistencia curricular |
-| `tools/seeders/` | Futuras herramientas de importación de datos aprobados |
+| `tools/seeders/` | Exportador transaccional de borradores locales, no seed aprobado |
 | `infrastructure/` | Directorios `docker/`, `local/`, `staging/` y `production/` |
 
 Las carpetas reservadas usan `.gitkeep` únicamente cuando no tienen contenido. Los JSON previos de `Combate/`, `Gups/`, `Herramientas/`, `Patadas/`, `Posiciones/`, `Teoria/`, `Tuls/` y `Vocabulario/` se conservan en su ubicación original: no son catálogos canónicos aprobados por este sprint. Su migración y revisión quedan pendientes.
@@ -81,11 +81,11 @@ Consulta [pendientes de arquitectura](docs/architecture/README.md). No se eligie
 
 Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. El primer checkpoint del baseline **`83eb531`** y sus bloques posteriores se publicó en `main` mediante **`1ab81e7`**, conservando su historial. El flujo actual es **trabajo y push en ramas, con merges periódicos de checkpoints revisados a `main`, sin Pull Requests**. La licencia MIT no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
 
-Bloque actual: combate pactado, patadas y herramientas del pie documentados con citas; 166 tests Node y 22 PowerShell correctos. No completa el currículo, no aprueba el contenido marcial y no crea una release o despliegue. Las ramas integradas no se borran sin autorización.
+Bloque actual: [persistencia de contenido](docs/database/README.md), con 169 tests Node, 22 PowerShell y prueba real PostgreSQL/Flyway (16 casos negativos SQL). No completa el currículo, no aprueba el contenido marcial y no crea una release o despliegue. Las ramas integradas no se borran sin autorización.
 
 El [checkpoint publicado](https://github.com/ZorVaK749/TaekwonPage/tree/main) ya está disponible en la vista predeterminada de `main`. Los bloques nuevos partirán de ese estado, sin crear ramas acumulativas innecesarias.
 
-El informe incluye Docker Compose entre los entregables de Sprint 0; la instrucción de esta tarea limita el trabajo al esqueleto, sin aplicaciones ni base de datos. Por ello no se incluye un Compose vacío o no funcional: se preparará al habilitar el entorno ejecutable.
+Para la BD local: copiar `.env.example` a `.env`, completar contraseña y ejecutar `docker compose up -d --wait postgres` y `docker compose run --rm migrate`. El [manual de BD](docs/database/README.md) explica las pruebas y los límites. Compose incluye PostgreSQL/Flyway, todavía no backend/frontend.
 
 **Avance de Sprint 1:** inventario técnico inicial de los cuatro PDFs completado, incluida la consulta bibliográfica e índice de la enciclopedia; no equivale a revisión íntegra ni aprobación humana. Hay una [herramienta local de vistas previas](tools/ingestion/README.md) sin dependencias adicionales.
 

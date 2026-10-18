@@ -4,9 +4,9 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.8  
+**Version del documento:** 1.9  
 **Fecha de creacion:** 14-10-2026  
-**Ultima actualizacion:** 17-10-2026  
+**Ultima actualizacion:** 18-10-2026  
 
 Esta revision actualiza el seguimiento, no las decisiones de arquitectura aprobadas. Las fases, los sprints y las versiones del producto son conceptos distintos: completar el bootstrap no completa la Fase 0 ni publica v0.1.
 
@@ -1727,7 +1727,7 @@ La base de conocimiento es el nucleo del producto.
 
 # 55. Estado actual y checklist de seguimiento
 
-**Corte verificado: 16-10-2026.** Un `[x]` indica exactamente el entregable descrito, no aprobacion humana del conocimiento ni una funcionalidad de la pagina disponible. Los estados parciales se mantienen abiertos.
+**Corte verificado: 18-10-2026.** Un `[x]` indica exactamente el entregable descrito, no aprobacion humana del conocimiento ni una funcionalidad de la pagina disponible. Los estados parciales se mantienen abiertos.
 
 ## 55.1 Decisiones confirmadas (no equivalen a implementacion)
 
@@ -1750,6 +1750,8 @@ La base de conocimiento es el nucleo del producto.
 
 ## 55.2 Paso a paso respecto de la seccion 50
 
+**Bloque del 18-10-2026:** el usuario solicita continuar hacia BD/backend/frontend. Se habilita infraestructura local y pruebas de borradores en paralelo a las decisiones humanas pendientes, sin cerrar Sprint 1 ni alterar sus requisitos. PostgreSQL queda activo solo en localhost; la BD de desarrollo tiene esquema V1 sin contenido. El test importa los borradores en una BD aleatoria y la elimina al terminar. No hay credenciales versionadas, nuevas dependencias npm ni seeds aprobados.
+
 **Estamos entre los pasos 3 y 4:** contratos tecnicos iniciales implementados y extraccion parcial; aun no existe un curriculum validado de 10º Gup. No se asigna un porcentaje global de avance porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
 Bloque cerrado: variante preparatoria implementada en `feat/tkd-005-preparatory-position` (`b6b5b99`), integrada y publicada en `main` mediante `6fc2ab1`, con SHA remotos verificados. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530.
@@ -1762,7 +1764,7 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 | 2 | Knowledge base | Inventario inicial de cuatro PDFs; 31 fichas y 51 citas en revision, con los siete tipos de contenido cubiertos: posiciones, teoria, tuls, vocabulario, herramientas, patadas y combate; no secuencias globales completas ni curriculo |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
-| 5 | PostgreSQL | No iniciado |
+| 5 | PostgreSQL | Primer bloque implementado y probado: Compose, ERD, V1 Flyway, tablas/constraints/indices y exportador transaccional local de borradores; curriculum/importacion aprobada pendientes |
 | 6 | Spring Boot modular | No iniciado |
 | 7 | API de contenido | No iniciada; `GET /api/v1/gups/10` no existe todavia |
 | 8 | Usuarios y roles | Reglas documentadas; implementacion no iniciada |
@@ -1787,9 +1789,9 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 - [x] Definir normalizacion de texto con `.gitattributes`, consistente con `.editorconfig`, sin quitar los saltos Markdown intencionales.
 - [x] Publicar y verificar en GitHub `chore/project-baseline`, `feat/tkd-008-tools-and-exercise-drafts`, `feat/tkd-012-exercise-source-evidence` y `chore/push-only-workflow`, mediante refspecs explicitos y sin PR o merge.
 - [x] Integrar y verificar el checkpoint acumulado en `main` mediante merge `1ab81e7`, sin PR; resultado integrado validado con 153 + 22 tests. No implica cierre de Sprint 1 ni una release.
-- [ ] Crear Docker Compose funcional cuando se habilite el entorno ejecutable. Diferido expresamente por el alcance del bootstrap, no olvidado ni sustituido por un archivo vacio.
+- [x] Crear Docker Compose funcional para PostgreSQL y Flyway; comprobado con motor Docker activo el 18-10-2026. Backend/frontend se incorporaran al existir aplicaciones ejecutables.
 
-La estructura del bootstrap esta lista. Sus excepciones pendientes se muestran arriba; no se marca todo Sprint 0 como cerrado bajo el listado original que incluia Compose.
+La estructura y el entregable Compose de Sprint 0 estan implementados. No equivale a completar Knowledge Foundation o disponer de aplicaciones.
 
 ## 55.4 Sprint 1 — Knowledge Foundation
 
@@ -1828,11 +1830,12 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Acciones documentadas | 15 registros, correspondientes a listas impresas 1–7 y 1–8; no representan totales globales ni ejercicios completos |
 | Curriculos nuevos | 0 |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 166 correctos |
+| Tests Node | 169 correctos |
 | Tests PowerShell | 22 correctos |
+| Persistencia | PostgreSQL 17.7 / Flyway 11.20.0: migracion inicial, segunda ejecucion sin cambios, checksums, importacion real de borradores y 16 rechazos SQL comprobados en BD desechable |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Ultimo checkpoint publicado en `main` por merge `462ea13`, rama `9716929` y SHA remotos verificados; sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Checkpoint anterior `462ea13`; bloque de persistencia en `feat/content-persistence`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1865,7 +1868,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.8` es la version de este informe; `0.1.0` en `tools/validators/package.json` identifica la herramienta, no una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.9` es la version de este informe; `0.1.0` en `tools/validators/package.json` identifica la herramienta, no una release de la plataforma.
 
 ---
 
@@ -1875,7 +1878,7 @@ Se conserva la secuencia aprobada; el estado de ejecucion se registra en la secc
 
 ## Sprint 0 - Bootstrap del repositorio
 
-Estructura implementada; Compose diferido hasta disponer de un entorno ejecutable. Baseline guardado en `83eb531` y publicado en rama; integracion revisada a `main` autorizada, sin PR. No se considera cerrado el entregable Compose del listado original.
+Estructura implementada; Compose PostgreSQL/Flyway implementado y probado el 18-10-2026. Baseline guardado en `83eb531` y publicado en rama; integraciones revisadas a `main` autorizadas, sin PR.
 
 Entregables:
 
@@ -1912,7 +1915,7 @@ No avanzar a 9º Gup hasta que la estructura de 10º Gup haya demostrado ser reu
 2. Contrastar y revisar los tramos encontrados en PDF 530 de la enciclopedia, resolver su legibilidad y alcance antes de completar secuencias; continuar consultas dirigidas para las lagunas de posiciones/herramientas. No convertir expresiones terminologicas en pasos ni generar el recorrido alterno por simetria.
 3. Resolver con la escuela los asuntos que impiden aprobar requisitos, posiciones o secuencias; registrar responsable, evidencia y fecha reales, sin aprobaciones ficticias.
 4. Construir curriculum enlazado y validarlo con contenido real antes de declarar completo el caso de 10º Gup.
-5. Acordar el siguiente bloque de persistencia/backend cuando corresponda al plan; no comenzar automaticamente otro sprint o milestone.
+5. Por instruccion del usuario del 18-10-2026 se habilito el primer bloque tecnico de persistencia local sin declarar completado el contenido: [ERD y limites](docs/database/README.md), V1 Flyway, Compose e importacion de borradores en BD desechable. Falta importacion curricular real y revision/publicacion; siguiente bloque tecnico: Spring Boot Java 21 con Flyway, repositorios/DTOs y tests, sin publicar contenido pendiente.
 
 La forma de trabajar con ramas, commits, push, integraciones y versiones queda documentada en [flujo de desarrollo](docs/development/README.md). La ultima instruccion permite merges periodicos revisados a `main`, sin crear PR, y sustituye la prohibicion anterior de merges. Esto no cambia el monolito modular ni introduce microservicios.
 
@@ -1948,6 +1951,7 @@ Cuando OpenCode reciba una tarea:
 | 1.6 | 16-10-2026 | Nueva instruccion: push por rama y merges periodicos revisados a `main`, sin PR. Primera integracion publicada y verificada mediante `1ab81e7`; 153 + 22 tests correctos sobre el resultado, cuatro ramas contenidas en main sin eliminarlas. Sin release, deploy, aprobacion curricular, nuevas dependencias o cambios en datos/arquitectura de aplicacion |
 | 1.7 | 16-10-2026 | Variante Narani Junbi Sogui extraida de PDF 81 / folio 79, una ficha/cita nueva y preparacion de los dos ejercicios enlazada con evidencia contextual de PDF 530. Total 20 fichas/38 citas; 159 + 22 tests correctos antes y despues del merge. Implementacion `b6b5b99`, integracion `6fc2ab1` publicadas y verificadas. Sin alias generico, geometria heredada, curriculum, nuevas dependencias o secuencias declaradas completas |
 | 1.8 | 17-10-2026 | Completados los tipos de contenido vacios: combate pactado (3 fichas/5 citas), patadas (3 fichas/3 citas) y cinco herramientas del pie (citas nuevas). Total 31 fichas/51 citas en 9 archivos de catalogo y 9 de procedencia; 166 + 22 tests correctos. Confirmado que el temario 10º-9º solo cubre teoria, por lo que no se creo curriculo. Sin aprobacion humana, nuevas dependencias, cambios de arquitectura ni promocion de los JSON antiguos |
+| 1.9 | 18-10-2026 | Primer bloque de persistencia autorizado: ERD, Compose PostgreSQL/Flyway, migracion V1 y exportador SQL transaccional de borradores. 169 tests Node, 22 PowerShell y prueba real de migracion/importacion/16 rechazos SQL. Esquema aplicado localmente, sin contenido aprobado o curriculum ficticio; Spring Boot/Angular pendientes |
 
 ---
 
