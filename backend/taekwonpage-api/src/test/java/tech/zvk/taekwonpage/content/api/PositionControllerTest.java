@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,7 +27,7 @@ class PositionControllerTest {
     @Test
     void returnsDtoNotJpaEntity() {
         var dto = new PositionResponse("test_position", "Synthetic", "Test", "pending_human_review",
-            null, null, null, null);
+            null, null, null, null, List.of());
         when(service.findById("test_position")).thenReturn(Optional.of(dto));
         assertThat(controller.findById("test_position").getBody()).isSameAs(dto);
     }
