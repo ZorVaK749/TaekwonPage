@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.11  
+**Version del documento:** 1.12  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 18-10-2026  
 
@@ -1729,6 +1729,8 @@ La base de conocimiento es el nucleo del producto.
 
 **Corte verificado: 18-10-2026.** Un `[x]` indica exactamente el entregable descrito, no aprobacion humana del conocimiento ni una funcionalidad de la pagina disponible. Los estados parciales se mantienen abiertos.
 
+Vista resumida para el responsable del proyecto: **[Plan de ataque con checks por fase](Plan_ataque.md)**. Se actualizara junto con este informe; no sustituye las decisiones originales ni sus criterios de cierre.
+
 ## 55.1 Decisiones confirmadas (no equivalen a implementacion)
 
 - [x] ZVK Tech
@@ -1756,7 +1758,7 @@ La base de conocimiento es el nucleo del producto.
 
 **Bloque posterior — procedencia:** la lectura interna de posiciones incorpora citas de su ficha con metadatos de fuente, identidad ID/SHA-256, pagina PDF y folio independientes, estados de revision y derechos. Proyeccion de solo lectura ordenada, lista inmutable, sin rutas locales ni notas internas. 17 pruebas Java correctas contra PostgreSQL aislado; sin abrir rutas, cambiar migraciones, dependencias o contenido marcial.
 
-**Estamos entre los pasos 3 y 4:** contratos tecnicos iniciales implementados y extraccion parcial; aun no existe un curriculum validado de 10º Gup. No se asigna un porcentaje global de avance porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
+**Contenido: entre los pasos 3 y 4; infraestructura: pasos 5 y 6 iniciados y lectura parcial del 7.** Adelantamos partes de Fases 1 y 2 sin cerrar Fase 0, por autorizacion del usuario; no se eliminaron pendientes ni se declaro cumplida su Definition of Done. La Fase 0 sigue abierta por gobernanza/convenciones, catalogos y ejercicios incompletos, curriculos 10º/9º/8º y revision humana. Fase 1 tiene infraestructura/esquema inicial y carga de borradores probados; faltan importacion curricular, seed aprobado, revision/publicacion y actualizacion editorial segura. No se asigna un porcentaje global porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
 Bloque cerrado: variante preparatoria implementada en `feat/tkd-005-preparatory-position` (`b6b5b99`), integrada y publicada en `main` mediante `6fc2ab1`, con SHA remotos verificados. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530.
 
@@ -1841,7 +1843,7 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Persistencia | PostgreSQL 17.7 / Flyway 11.20.0: migracion inicial, segunda ejecucion sin cambios, checksums, importacion real de borradores y 16 rechazos SQL comprobados en BD desechable |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Backend integrado en `9ded84e`; procedencia en `feat/position-provenance`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Procedencia integrada en `7f5f9c1`; checklist por fases en `docs/attack-plan-checklist`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1874,7 +1876,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.11` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.12` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
 
 ---
 
@@ -1940,6 +1942,7 @@ Cuando OpenCode reciba una tarea:
 7. indicar errores o decisiones pendientes;
 8. no continuar con el siguiente milestone sin instruccion.
 9. actualizar este informe al cerrar cada bloque con entregables verificables, checklist, validaciones y decisiones pendientes; cambiar la arquitectura requiere explicacion previa, no una edicion silenciosa del seguimiento.
+    Mantener tambien [Plan_ataque.md](Plan_ataque.md) sincronizado con el estado por fases y sus checks, sin confundir avance tecnico con aprobacion o cierre.
 10. publicar avances revisados mediante push a su rama e integrar checkpoints coherentes periodicamente en `main`, con tests, commit de merge y verificacion remota; no crear Pull Requests, forzar historia, publicar tags/despliegues o borrar ramas sin autorizacion.
 
 ---
@@ -1960,6 +1963,7 @@ Cuando OpenCode reciba una tarea:
 | 1.9 | 18-10-2026 | Primer bloque de persistencia autorizado: ERD, Compose PostgreSQL/Flyway, migracion V1 y exportador SQL transaccional de borradores. 169 tests Node, 22 PowerShell y prueba real de migracion/importacion/16 rechazos SQL. Esquema aplicado localmente, sin contenido aprobado o curriculum ficticio; Spring Boot/Angular pendientes |
 | 1.10 | 18-10-2026 | Arranque Spring Boot 3.5.16 Java 21/Maven con Flyway, JPA y primer servicio/DTO de posiciones. Spring Security deny-all salvo salud minima. 11 pruebas Java con PostgreSQL Testcontainers y prueba del JAR contra Compose correctas; migracion V1 intacta. Sin Angular, login, publicacion, temario ficticio o deploy |
 | 1.11 | 18-10-2026 | Citas y metadatos de fuentes en DTO interno de posiciones, vinculados por ID/hash, ordenados y sin rutas/notas internas; 17 pruebas Java correctas. Sin migraciones o dependencias nuevas, cambios marciales, apertura HTTP o implementacion de identidad |
+| 1.12 | 18-10-2026 | Plan_ataque.md con checklist por Fases 0–7 y milestones, pendientes TKD de Fase 0 y alcance real/parcial de Fase 1. Se explicita el adelanto autorizado de persistencia/backend sin cierre de conocimiento. Solo documentacion; enlaces y consistencia de conteos revisados, sin nuevos tests de aplicacion o cambios funcionales |
 
 ---
 
