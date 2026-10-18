@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.13  
+**Version del documento:** 1.14  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 18-10-2026  
 
@@ -1760,7 +1760,9 @@ Vista resumida para el responsable del proyecto: **[Plan de ataque con checks po
 
 **Bloque activo — Fase 1:** por nueva instruccion, completar persistencia antes de retomar Fase 0 y luego Fase 2. Se implemento importacion de curriculos de trabajo (siete relaciones tipadas/citas) y recarga identica comprobada, sin sobreescrituras. Filas/relaciones diferentes provocan rollback; se verifica tambien la reversion de inserciones previas al conflicto. Pruebas con curriculum sintetico fuera de `knowledge/`, sin crear programa escolar. Permanecen pendientes curriculum real, seed aprobado, evidencia de revision/publicacion, edicion versionada y el modelo funcional de identidad. No se declara Fase 1 cerrada ni se amplia el backend en este bloque.
 
-**Contenido: entre los pasos 3 y 4; infraestructura: pasos 5 y 6 iniciados y lectura parcial del 7.** Adelantamos partes de Fases 1 y 2 sin cerrar Fase 0, por autorizacion del usuario; no se eliminaron pendientes ni se declaro cumplida su Definition of Done. La Fase 0 sigue abierta por gobernanza/convenciones, catalogos y ejercicios incompletos, curriculos 10º/9º/8º y revision humana. Fase 1 tiene esquema, mapeo curricular y recarga identica probados; faltan contraste curricular real, seed aprobado, revision/publicacion y edicion versionada. No se asigna un porcentaje global porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
+**Continuacion de Fase 1 — revisiones:** V2 incorpora contador de revision, historial append-only de nombre/descripcion y snapshot de citas, con funcion SQL de version esperada y exportador local explicito. Referencia del operador marcada no verificada, no identidad o aprobacion humana. Pruebas sinteticas comprueban ediciones, rechazos de version vieja/cambios sin historial, rollback de texto/historial y recarga del snapshot actualizado. V2 aplicada en desarrollo, con cero fichas y cero revisiones cargadas; V1 intacta. No se editan fichas reales, citas, subtipos, curriculos o estados. Faltan esos flujos y la evidencia de revision/publicacion; no se declara Fase 1 completa.
+
+**Contenido: entre los pasos 3 y 4; infraestructura: pasos 5 y 6 iniciados y lectura parcial del 7.** Adelantamos partes de Fases 1 y 2 sin cerrar Fase 0, por autorizacion del usuario; no se eliminaron pendientes ni se declaro cumplida su Definition of Done. La Fase 0 sigue abierta por gobernanza/convenciones, catalogos y ejercicios incompletos, curriculos 10º/9º/8º y revision humana. Fase 1 tiene esquema, mapeo curricular, recarga identica y revision textual probados; faltan contraste curricular real, seed aprobado, revision/publicacion y edicion versionada de otros campos. No se asigna un porcentaje global porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
 Bloque cerrado: variante preparatoria implementada en `feat/tkd-005-preparatory-position` (`b6b5b99`), integrada y publicada en `main` mediante `6fc2ab1`, con SHA remotos verificados. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530.
 
@@ -1772,7 +1774,7 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 | 2 | Knowledge base | Inventario inicial de cuatro PDFs; 31 fichas y 51 citas en revision, con los siete tipos de contenido cubiertos: posiciones, teoria, tuls, vocabulario, herramientas, patadas y combate; no secuencias globales completas ni curriculo |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
-| 5 | PostgreSQL | Compose, ERD, V1 Flyway, tablas/constraints/indices, mapeo curricular y recarga exacta transaccional probados; curriculum real/importacion aprobada y edicion versionada pendientes |
+| 5 | PostgreSQL | Compose, ERD, V1/V2, mapeo curricular, recarga exacta y revisiones textuales probados; curriculum real/seed aprobado, revision/publicacion y edicion de subtipos/citas/requisitos pendientes |
 | 6 | Spring Boot modular | Base ejecutable Java 21 con Flyway, JPA, Security y Actuator; primer modulo de lectura de posiciones probado, ampliacion pendiente |
 | 7 | API de contenido | Posiciones con DTO y citas/metadatos de copia, bloqueadas por politica HTTP; sin API educativa accesible ni controlador `GET /api/v1/gups/10` |
 | 8 | Usuarios y roles | Reglas documentadas; implementacion no iniciada |
@@ -1838,14 +1840,14 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Acciones documentadas | 15 registros, correspondientes a listas impresas 1–7 y 1–8; no representan totales globales ni ejercicios completos |
 | Curriculos nuevos | 0 |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 172 correctos |
+| Tests Node | 177 correctos |
 | Tests PowerShell | 22 correctos |
 | Tests backend | 17 correctos, sin omitidos: unitarios y PostgreSQL Testcontainers; migracion, DTO con citas/identidad/localizadores, serializacion sin datos locales y casos negativos HTTP |
 | Arranque backend | JAR ejecutado contra Compose con importacion explicita de .env local; salud UP sin detalles, posiciones HTTP 403; proceso detenido al finalizar |
-| Persistencia | PostgreSQL/Flyway: migracion/repeticion/checksums, carga y recarga de borradores, 16 rechazos SQL; curriculum sintetico con siete categorias, cinco conflictos del importador y rollback comprobados en BD desechable |
+| Persistencia | PostgreSQL/Flyway V1/V2: migracion/repeticion/checksums; 16 rechazos de constraints, siete categorias curriculares/cinco conflictos de importacion; revisiones textuales con 18 rechazos, historial y rollback probados en BD desechable |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Checklist integrado en `b11c627`; importador en `feat/curriculum-draft-import`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Importador integrado en `a54084b`; revisiones en `feat/versioned-draft-edits`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1878,7 +1880,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.13` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.14` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
 
 ---
 
@@ -1969,6 +1971,7 @@ Cuando OpenCode reciba una tarea:
 | 1.11 | 18-10-2026 | Citas y metadatos de fuentes en DTO interno de posiciones, vinculados por ID/hash, ordenados y sin rutas/notas internas; 17 pruebas Java correctas. Sin migraciones o dependencias nuevas, cambios marciales, apertura HTTP o implementacion de identidad |
 | 1.12 | 18-10-2026 | Plan_ataque.md con checklist por Fases 0–7 y milestones, pendientes TKD de Fase 0 y alcance real/parcial de Fase 1. Se explicita el adelanto autorizado de persistencia/backend sin cierre de conocimiento. Solo documentacion; enlaces y consistencia de conteos revisados, sin nuevos tests de aplicacion o cambios funcionales |
 | 1.13 | 18-10-2026 | Fase 1: importacion curricular tipada/citada y recarga identica sin duplicados; diferencias en filas/relaciones provocan rollback. 172 tests Node y prueba PostgreSQL con siete categorias sinteticas/cinco conflictos. Orden confirmado Fase 1 → retomar Fase 0 → Fase 2; sin cambios de migraciones/backend, curriculum real o aprobacion inventada |
+| 1.14 | 18-10-2026 | Fase 1: V2 para revisiones textuales con control de version e historial/citas; exportador explicito, operador local no verificado. 177 tests Node, 17 Java y pruebas SQL de 18 rechazos editoriales/rollback. V1 intacta; sin correcciones marciales reales, apertura HTTP, aprobacion o cierre de fase |
 
 ---
 

@@ -4,7 +4,7 @@ CREATE FUNCTION pg_temp.expect_rejection(command text) RETURNS void LANGUAGE plp
 BEGIN
     BEGIN
         EXECUTE command;
-    EXCEPTION WHEN integrity_constraint_violation OR raise_exception THEN RETURN;
+    EXCEPTION WHEN integrity_constraint_violation OR raise_exception OR object_not_in_prerequisite_state THEN RETURN;
     END;
     RAISE EXCEPTION 'expected rejection: %', command;
 END;
