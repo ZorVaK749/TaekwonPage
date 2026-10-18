@@ -25,7 +25,7 @@ Flyway valida/aplica migraciones al arrancar. Hibernate usa `ddl-auto=validate`:
 
 - `content`: entidad base y posición, repositorio de solo lectura, servicio transaccional, DTO y controlador inicial.
 - `shared/security`: política temporal **deny-all**, salvo `GET /actuator/health`.
-- El DTO conserva `BigDecimal`, valores desconocidos `null` y estado de revisión; no expone entidades JPA. Citas y otros tipos aún no tienen DTO/API.
+- El DTO conserva `BigDecimal`, valores desconocidos `null` y estado de revisión; no expone entidades JPA. Incluye [citas con metadatos de la copia](../../docs/api/position-draft.md), página PDF, folio y estados, sin rutas de PDFs ni notas internas. Otros tipos aún no tienen DTO/API.
 - No hay usuarios, credenciales por defecto, login Basic/formulario, sesiones ni elección implícita JWT/OIDC. CSRF no se deshabilita para simular una API abierta. No se habilita CORS permisivo.
 
 ```text
@@ -40,7 +40,7 @@ Incluso un usuario autenticado o un rol técnico no puede saltar el bloqueo actu
 
 `mvn.cmd verify` exige Docker activo: Testcontainers levanta una BD aislada y aplica V1 con Flyway. Si Docker no está disponible, las pruebas de integración **fallan**, no se omiten. No usa la BD de desarrollo ni importa PDFs o contenido real; las filas de prueba son sintéticas y se revierten.
 
-Se prueban esquema/migración, JPA → DTO con acentos y nulos, IDs inválidos, ausencia de resultados, salud sin detalles, bloqueo anónimo/autenticado, escritura y preflight de origen no autorizado. El cliente Docker de prueba fija API 1.44 por compatibilidad con Engine 29.
+Hay 17 pruebas: esquema/migración, JPA → DTO con acentos y nulos, IDs inválidos, ausencia de resultados, citas aisladas por ficha y copia/hash, localizadores independientes, metadatos desconocidos, colección inmutable y serialización sin información local. También salud sin detalles, bloqueo anónimo/autenticado (incluido un borrador existente), escritura y preflight no autorizado. El cliente Docker de prueba fija API 1.44 por compatibilidad con Engine 29.
 
 ## Dependencias
 
@@ -51,4 +51,4 @@ Se prueban esquema/migración, JPA → DTO con acentos y nulos, IDs inválidos, 
 - Flyway Core + módulo PostgreSQL y driver JDBC: migraciones y conexión real.
 - Starter Test, Security Test y Testcontainers PostgreSQL/JUnit: pruebas unitarias, negativas y contra BD real; no se añade H2 ni Lombok.
 
-Siguiente bloque: ampliar lectura con procedencia y contenido/currículo, acordar identidad y publicación, y diseñar OpenAPI antes de conectar Angular. No se crea un temario ficticio para mostrar una pantalla.
+Siguiente bloque: ampliar otros contenidos/currículo, acordar identidad y publicación, y diseñar OpenAPI antes de conectar Angular. La lectura de posiciones ya tiene procedencia; no se crea un temario ficticio para mostrar una pantalla.

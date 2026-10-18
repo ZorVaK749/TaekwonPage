@@ -4,7 +4,7 @@ Plataforma educativa y de gestión interna para **Taekwon-Do Nahuel Aukan**, des
 
 ## Estado y alcance
 
-**Knowledge Foundation en curso; base de persistencia y arranque Spring Boot implementados.** Hay PostgreSQL local, Flyway, exportador de borradores y primer repositorio/servicio/DTO de posiciones. El backend bloquea contenido por HTTP; solo expone salud sin detalles. Angular, autenticación funcional y CI/CD siguen pendientes, al igual que el currículo y la aprobación marcial.
+**Knowledge Foundation en curso; base de persistencia y arranque Spring Boot implementados.** Hay PostgreSQL local, Flyway, exportador de borradores y lectura interna de posiciones con citas documentales. El backend bloquea contenido por HTTP; solo expone salud sin detalles. Angular, autenticación funcional y CI/CD siguen pendientes, al igual que el currículo y la aprobación marcial.
 
 La fuente principal de decisiones es [informe_tecnico.md](informe_tecnico.md). Los [ADR](docs/adr/README.md) registran decisiones ya aprobadas, no implementaciones terminadas. Este avance no completa la Fase 0 de conocimiento ni el milestone Content Foundation v0.1.
 
@@ -81,7 +81,7 @@ Consulta [pendientes de arquitectura](docs/architecture/README.md). No se eligie
 
 Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. El primer checkpoint del baseline **`83eb531`** y sus bloques posteriores se publicó en `main` mediante **`1ab81e7`**, conservando su historial. El flujo actual es **trabajo y push en ramas, con merges periódicos de checkpoints revisados a `main`, sin Pull Requests**. La licencia MIT no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
 
-Bloque actual: [arranque del backend](backend/taekwonpage-api/README.md), con 11 pruebas Java (incluido PostgreSQL aislado), 169 tests Node, 22 PowerShell y 16 casos negativos SQL. JAR ejecutado contra Compose: salud `UP`, contenido `403`. No completa el currículo, no aprueba contenido ni crea release/despliegue. Las ramas integradas no se borran sin autorización.
+Bloque actual: [procedencia de posiciones](docs/api/position-draft.md), con 17 pruebas Java (incluido PostgreSQL aislado). Se conserva el bloqueo HTTP, las migraciones y los catálogos. No completa el currículo, no aprueba contenido ni crea release/despliegue. Las ramas integradas no se borran sin autorización.
 
 El [checkpoint publicado](https://github.com/ZorVaK749/TaekwonPage/tree/main) ya está disponible en la vista predeterminada de `main`. Los bloques nuevos partirán de ese estado, sin crear ramas acumulativas innecesarias.
 

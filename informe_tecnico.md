@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.10  
+**Version del documento:** 1.11  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 18-10-2026  
 
@@ -1754,6 +1754,8 @@ La base de conocimiento es el nucleo del producto.
 
 **Cierre nocturno — backend:** Spring Boot 3.5.16 / Java 21 / Maven, Flyway 11.20.0 al arranque y validacion JPA del esquema existente. Primer modulo de contenido con entidad/repositorio de lectura de posiciones, servicio transaccional, DTO y controlador preventivamente bloqueado por Spring Security. Solo GET de salud accesible sin detalles, escucha local por defecto. 11 pruebas Java correctas con Testcontainers/PostgreSQL; JAR probado contra Compose, salud UP y contenido 403, proceso de prueba detenido. Angular, identidad, OpenAPI definitivo, curriculum y publicacion no implementados en este bloque.
 
+**Bloque posterior — procedencia:** la lectura interna de posiciones incorpora citas de su ficha con metadatos de fuente, identidad ID/SHA-256, pagina PDF y folio independientes, estados de revision y derechos. Proyeccion de solo lectura ordenada, lista inmutable, sin rutas locales ni notas internas. 17 pruebas Java correctas contra PostgreSQL aislado; sin abrir rutas, cambiar migraciones, dependencias o contenido marcial.
+
 **Estamos entre los pasos 3 y 4:** contratos tecnicos iniciales implementados y extraccion parcial; aun no existe un curriculum validado de 10º Gup. No se asigna un porcentaje global de avance porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
 Bloque cerrado: variante preparatoria implementada en `feat/tkd-005-preparatory-position` (`b6b5b99`), integrada y publicada en `main` mediante `6fc2ab1`, con SHA remotos verificados. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530.
@@ -1768,7 +1770,7 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
 | 5 | PostgreSQL | Primer bloque implementado y probado: Compose, ERD, V1 Flyway, tablas/constraints/indices y exportador transaccional local de borradores; curriculum/importacion aprobada pendientes |
 | 6 | Spring Boot modular | Base ejecutable Java 21 con Flyway, JPA, Security y Actuator; primer modulo de lectura de posiciones probado, ampliacion pendiente |
-| 7 | API de contenido | Controlador/DTO inicial de posiciones, bloqueado por politica HTTP; sin API educativa accesible ni controlador `GET /api/v1/gups/10` |
+| 7 | API de contenido | Posiciones con DTO y citas/metadatos de copia, bloqueadas por politica HTTP; sin API educativa accesible ni controlador `GET /api/v1/gups/10` |
 | 8 | Usuarios y roles | Reglas documentadas; implementacion no iniciada |
 | 9 | Verificacion de grado | Flujo documentado; implementacion no iniciada |
 | 10 | Angular shell | No iniciado |
@@ -1834,12 +1836,12 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Contenido con aprobacion humana registrada | 0 |
 | Tests Node | 169 correctos |
 | Tests PowerShell | 22 correctos |
-| Tests backend | 11 correctos, sin omitidos: unitarios y contexto completo contra PostgreSQL Testcontainers, migracion Flyway, DTO y casos negativos HTTP |
+| Tests backend | 17 correctos, sin omitidos: unitarios y PostgreSQL Testcontainers; migracion, DTO con citas/identidad/localizadores, serializacion sin datos locales y casos negativos HTTP |
 | Arranque backend | JAR ejecutado contra Compose con importacion explicita de .env local; salud UP sin detalles, posiciones HTTP 403; proceso detenido al finalizar |
 | Persistencia | PostgreSQL 17.7 / Flyway 11.20.0: migracion inicial, segunda ejecucion sin cambios, checksums, importacion real de borradores y 16 rechazos SQL comprobados en BD desechable |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Persistencia integrada en `dcc6237`; bloque backend en `feat/backend-foundation`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Backend integrado en `9ded84e`; procedencia en `feat/position-provenance`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1872,7 +1874,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.10` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.11` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
 
 ---
 
@@ -1957,6 +1959,7 @@ Cuando OpenCode reciba una tarea:
 | 1.8 | 17-10-2026 | Completados los tipos de contenido vacios: combate pactado (3 fichas/5 citas), patadas (3 fichas/3 citas) y cinco herramientas del pie (citas nuevas). Total 31 fichas/51 citas en 9 archivos de catalogo y 9 de procedencia; 166 + 22 tests correctos. Confirmado que el temario 10º-9º solo cubre teoria, por lo que no se creo curriculo. Sin aprobacion humana, nuevas dependencias, cambios de arquitectura ni promocion de los JSON antiguos |
 | 1.9 | 18-10-2026 | Primer bloque de persistencia autorizado: ERD, Compose PostgreSQL/Flyway, migracion V1 y exportador SQL transaccional de borradores. 169 tests Node, 22 PowerShell y prueba real de migracion/importacion/16 rechazos SQL. Esquema aplicado localmente, sin contenido aprobado o curriculum ficticio; Spring Boot/Angular pendientes |
 | 1.10 | 18-10-2026 | Arranque Spring Boot 3.5.16 Java 21/Maven con Flyway, JPA y primer servicio/DTO de posiciones. Spring Security deny-all salvo salud minima. 11 pruebas Java con PostgreSQL Testcontainers y prueba del JAR contra Compose correctas; migracion V1 intacta. Sin Angular, login, publicacion, temario ficticio o deploy |
+| 1.11 | 18-10-2026 | Citas y metadatos de fuentes en DTO interno de posiciones, vinculados por ID/hash, ordenados y sin rutas/notas internas; 17 pruebas Java correctas. Sin migraciones o dependencias nuevas, cambios marciales, apertura HTTP o implementacion de identidad |
 
 ---
 
