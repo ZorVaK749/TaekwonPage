@@ -8,6 +8,8 @@ Plataforma educativa y de gestión interna para **Taekwon-Do Nahuel Aukan**, des
 
 La fuente principal de decisiones es [informe_tecnico.md](informe_tecnico.md). Los [ADR](docs/adr/README.md) registran decisiones ya aprobadas, no implementaciones terminadas. Este avance no completa la Fase 0 de conocimiento ni el milestone Content Foundation v0.1.
 
+Para ver el avance con checks por fase y los pendientes de Fases 0/1: **[Plan de ataque](Plan_ataque.md)**.
+
 ## Arquitectura aprobada
 
 Monolito modular: un backend con límites internos de dominio, preparado para extraer servicios solo si existe una necesidad real. No se crearán microservicios en esta etapa.
