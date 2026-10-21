@@ -1,6 +1,6 @@
 # Plan de ataque — TaeKwonPage
 
-**Actualizado: 18-10-2026.** Vista de seguimiento del [informe técnico](informe_tecnico.md), no un plan nuevo que reemplace su arquitectura o alcance.
+**Actualizado: 21-10-2026.** Vista de seguimiento del [informe técnico](informe_tecnico.md), no un plan nuevo que reemplace su arquitectura o alcance.
 
 - `[x]` = el entregable descrito está implementado/verificado.
 - `[ ]` = pendiente o parcial; el texto indica cuál de los dos.
@@ -69,7 +69,7 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 
 - [x] ERD inicial del contenido, fuentes, citas, ejercicios y relaciones curriculares.
 - [x] PostgreSQL 17.7 local mediante Docker Compose, acceso solo por localhost y volumen persistente.
-- [x] Migraciones Flyway V1/V2 e historial/checksums: esquema de contenido y edición textual versionada, aplicadas en desarrollo sin cargar contenido.
+- [x] Migraciones Flyway V1/V2/V3 e historial/checksums: contenido, edición textual y requisitos curriculares versionados; aplicadas localmente sin cargar contenido.
 - [x] Tablas de contenido/procedencia, posiciones, teoría, vocabulario, herramientas, patadas, combate, ejercicios/pasos y relaciones por Gup.
 - [x] FKs tipadas, IDs, hashes, restricciones de peso/rotación y controles de secuencia/páginas; índices iniciales.
 - [x] Exportador JSON → SQL de **borradores locales**, validado, transaccional y con consentimiento explícito `--local-drafts`.
@@ -77,6 +77,7 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 - [x] Mapeo de currículos de trabajo: siete categorías de requisitos y sus citas, probado con fixtures sintéticos (no programa escolar).
 - [x] Recarga idéntica segura, sin duplicados; diferencias en filas o relaciones causan rollback. Cinco conflictos de importación probados en PostgreSQL.
 - [x] Edición explícita de nombre/descripción de catálogo con versión esperada, motivo, referencia local no verificada e historial con snapshot de citas; sin cambiar estado de aprobación.
+- [x] Edición explícita de las siete categorías curriculares con versión esperada, baseline observado, historial/citas y rollback. Probada solo con currículos sintéticos, incluidos 30 rechazos SQL y upgrade V2 → V3 con datos.
 - [x] Prueba real: migrar desde cero, repetir sin cambios, validar Flyway y ejecutar 16 casos negativos SQL; preservación de UTF-8 comprobada.
 
 ### Falta para cerrar persistencia
@@ -84,7 +85,7 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 - [ ] Importar un **currículo real** con sus requisitos tipados y citas. El mapeo existe; falta el documento confirmado/revisado y su contraste real.
 - [ ] Preparar seed de contenido aprobado cuando exista aprobación; hoy solo hay borradores de prueba, no un seed educativo de producción.
 - [ ] Definir/persistir evidencia de revisión y publicación; el esquema actual solo admite `pending_human_review`.
-- [ ] Extender la edición versionada a subtipos/citas/requisitos y su revisión humana explícita. El texto de catálogo ya tiene historial; la recarga no sustituye ese flujo ni autoriza cambios silenciosos.
+- [ ] Extender la edición versionada a subtipos/citas y su revisión humana explícita. El texto de catálogo y los requisitos ya tienen historial; la recarga no sustituye esos flujos ni autoriza cambios silenciosos.
 - [ ] Validar el recorrido completo de 10º Gup aprobado → importación → consulta desde backend.
 - [ ] Completar el modelo relacional de usuarios, roles, grados del alumno, solicitudes, historial y auditoría cuando se cierre su diseño funcional. Esas tablas del modelo preliminar aún no existen; no son parte del primer bloque de contenido.
 

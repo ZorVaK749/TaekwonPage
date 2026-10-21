@@ -49,4 +49,4 @@ Todo sigue `pending_human_review`, sin evidencia de aprobación/publicación imp
 - Un snapshot JSON actualizado que coincide se recarga sin borrar ni duplicar historial.
 - No hay rollback editorial destructivo: una corrección posterior debe ser otra revisión explícita; el rollback transaccional solo anula cambios aún no confirmados.
 
-**Pendiente:** edición versionada de subtipos/citas/requisitos, evidencia de revisión humana y derechos, publicación y permisos funcionales. Este bloque no cierra toda la Fase 1.
+Los requisitos curriculares tienen un [flujo V3 separado](curriculum-revisions.md). **Pendiente:** edición versionada de subtipos/citas, evidencia de revisión humana y derechos, publicación y permisos funcionales. Ninguno de estos mecanismos cierra por sí solo la Fase 1.
