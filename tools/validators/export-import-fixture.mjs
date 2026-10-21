@@ -2,6 +2,7 @@
 import { createImportFixture } from './fixtures/import-dataset.mjs';
 import { createDraftSql } from '../seeders/export-draft-sql.mjs';
 import { createDraftEditSql } from '../seeders/export-draft-edit-sql.mjs';
+import { createCurriculumEditSql } from '../seeders/export-curriculum-edit-sql.mjs';
 
 const { dataset, inventory } = createImportFixture();
 const mode = process.argv[2];
@@ -25,13 +26,17 @@ if (mode === 'conflict-name') {
 } else if (mode === 'conflict-steps') {
   const item = dataset.catalogs.find((catalog) => catalog.catalog_type === 'tul').items[0];
   item.steps.push({ ...item.steps[0], step_number: 2 });
-} else if (mode === 'apply-text-edit' || mode === 'after-text-edit') {
+} else if (['apply-text-edit', 'after-text-edit', 'apply-curriculum-edit', 'after-curriculum-edit'].includes(mode)) {
   dataset.catalogs[0].items[0].name = 'Edited synthetic draft';
   dataset.catalogs[0].items[0].description = 'Explicit local revision; test only.';
+  if (mode.includes('curriculum')) dataset.curricula[0].requirements.position_ids = [];
 } else if (mode !== 'initial') {
   throw new Error('Unknown import test mode');
 }
-if (mode === 'apply-text-edit') {
+if (mode === 'apply-curriculum-edit') {
+  process.stdout.write(await createCurriculumEditSql({ id: 'gup_10', expected_revision: 0,
+    requirements: dataset.curricula[0].requirements, reason: 'Synthetic requirements edit.', operator_reference: 'Unverified fixture operator' }));
+} else if (mode === 'apply-text-edit') {
   const item = dataset.catalogs[0].items[0];
   process.stdout.write(createDraftEditSql({ id: item.id, expected_revision: 0, name: item.name,
     description: item.description, reason: 'Synthetic pipeline check.', operator_reference: 'Unverified fixture operator' }));

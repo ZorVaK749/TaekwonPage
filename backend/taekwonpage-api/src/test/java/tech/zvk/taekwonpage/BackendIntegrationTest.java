@@ -44,7 +44,7 @@ class BackendIntegrationTest {
 
     @Test
     void migrationsRunAtStartup() {
-        assertThat(jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history WHERE success", Integer.class)).isEqualTo(2);
+        assertThat(jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history WHERE success", Integer.class)).isEqualTo(3);
         assertThat(jdbc.queryForObject("SELECT count(*) FROM content_entry", Integer.class)).isZero();
     }
 
