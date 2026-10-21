@@ -44,11 +44,11 @@ try {
   Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('createdb -U "$POSTGRES_USER" ' + $database))
   $created = $true
   $url = 'FLYWAY_URL=jdbc:postgresql://postgres:5432/' + $database
-  # Load drafts under V2 first, then verify V3 upgrades a populated database.
+  # Load drafts under V2 first, then verify populated upgrades through V3/V4.
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', '-target=2', 'migrate')
   # Second execution must be a no-op; validate checks migration checksums.
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', '-target=2', 'migrate')
-  # Strict validate runs after V3 below; at this point V3 is intentionally pending.
+  # Strict validate runs after all migrations below; later versions are intentionally pending here.
   $sql = & node (Join-Path $root 'tools/seeders/export-draft-sql.mjs') --local-drafts
   if ($LASTEXITCODE -ne 0) { throw 'Draft SQL export failed.' }
   Invoke-TestSql -Sql $sql
@@ -59,6 +59,7 @@ try {
   if ($LASTEXITCODE -ne 0) { throw 'Synthetic fixture export failed.' }
   Invoke-TestSql -Sql $fixture
   Invoke-TestSql -Sql $fixture
+  Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', '-target=3', 'migrate')
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', 'migrate')
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', 'migrate')
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', 'validate')
@@ -69,6 +70,9 @@ DO $$ BEGIN
     RAISE EXCEPTION 'V3 upgrade failed to capture existing curriculum baseline';
   END IF;
   PERFORM assert_curriculum_revision_applied('gup_10');
+  IF (SELECT count(*) FROM content_detail_revision WHERE is_baseline) < 2 THEN
+    RAISE EXCEPTION 'V4 upgrade failed to capture subtype baselines';
+  END IF;
 END; $$;
 '@
   foreach ($mode in @('conflict-name', 'conflict-requirements', 'conflict-aliases', 'conflict-requirement-add', 'conflict-steps')) {
@@ -113,7 +117,25 @@ DO $$ BEGIN
   END IF;
 END; $$;
 '@
-  Write-Output 'PASS: populated V2-to-V3 upgrade/baseline, reloads; 16 SQL constraints, 5 import conflicts, 18 text-edit and 30 curriculum-edit rejections; history, isolation and rollback.'
+  Invoke-TestSql -Sql (Get-Content -Raw -Encoding UTF8 (Join-Path $PSScriptRoot 'database-detail-revisions.sql'))
+  $detailEdit = & node $fixtureScript apply-detail-edit
+  if ($LASTEXITCODE -ne 0) { throw 'Detail edit fixture export failed.' }
+  Invoke-TestSql -Sql $detailEdit
+  Invoke-TestSql -Sql $detailEdit -ExpectedError 'stale catalog detail revision'
+  Invoke-TestSql -Sql $curriculumUpdated -ExpectConflict
+  $detailUpdated = & node $fixtureScript after-detail-edit
+  if ($LASTEXITCODE -ne 0) { throw 'Updated detail fixture export failed.' }
+  Invoke-TestSql -Sql $detailUpdated
+  Invoke-TestSql -Sql @'
+DO $$ BEGIN
+  IF (SELECT draft_revision FROM content_entry WHERE id = 'fixture_position') <> 2
+    OR (SELECT count(*) FROM content_detail_revision WHERE content_id = 'fixture_position' AND NOT is_baseline) <> 1
+    OR (SELECT rear_rotation_deg FROM position WHERE id = 'fixture_position') <> 25.5 THEN
+    RAISE EXCEPTION 'detail edit/import pipeline lost state or history';
+  END IF;
+END; $$;
+'@
+  Write-Output 'PASS: V2/V3/V4 populated upgrades, reloads; constraint/import/text/curriculum checks; 36 detail-edit rejections; mixed revision chains, history and rollback.'
 } finally {
   if ($created) {
     Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('dropdb -U "$POSTGRES_USER" ' + $database))

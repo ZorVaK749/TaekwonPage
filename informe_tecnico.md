@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.15  
+**Version del documento:** 1.16  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 21-10-2026  
 
@@ -1764,6 +1764,8 @@ Vista resumida para el responsable del proyecto: **[Plan de ataque con checks po
 
 **Bloque del 21-10-2026 — requisitos curriculares:** V3 incorpora baseline observado e historial de las siete categorias, con version esperada, referencias tipadas, snapshot de citas y operador local no verificado. Reemplazo atomico por Gup, rechazos de cambios sin historial, rollback de relaciones/historial y recarga del snapshot actualizado. Se prueban alta inicial y upgrade V2 → V3 con datos sinteticos, 30 rechazos SQL e aislamiento entre curriculos; no se crea un programa real. V3 aplicada localmente, con cero fichas e historial curricular cargados; V1/V2 intactas, sin nuevas dependencias o endpoints. Fase 1 sigue abierta por citas/subtipos, revision/publicacion y contraste/seed reales.
 
+**Continuacion — posiciones/vocabulario:** V4 incorpora historial de pesos/rotaciones y traduccion/alias, con baseline observado y cadena global compartida con texto/requisitos. Valores desconocidos siguen null, porcentajes usan NUMERIC y las reglas se contrastan en SQL. Exportador explicito sin aplicar cambios por si solo; 188 tests Node, 17 Java y 36 rechazos de detalles SQL, ademas de pruebas de nulos/decimales, cadenas mixtas, rollback y recarga actualizada. V4 aplicada localmente con cero fichas e historial de detalles; V1–V3 intactas. Solo fixtures aislados, sin endpoints/dependencias nuevos o cambios marciales reales. Citas y ejercicios/Tuls siguen pendientes, junto con revision/publicacion y contenido aprobado.
+
 **Contenido: entre los pasos 3 y 4; infraestructura: pasos 5 y 6 iniciados y lectura parcial del 7.** Adelantamos partes de Fases 1 y 2 sin cerrar Fase 0, por autorizacion del usuario; no se eliminaron pendientes ni se declaro cumplida su Definition of Done. La Fase 0 sigue abierta por gobernanza/convenciones, catalogos y ejercicios incompletos, curriculos 10º/9º/8º y revision humana. Fase 1 tiene esquema, mapeo curricular, recarga identica y revision textual probados; faltan contraste curricular real, seed aprobado, revision/publicacion y edicion versionada de otros campos. No se asigna un porcentaje global porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
 Bloque cerrado: variante preparatoria implementada en `feat/tkd-005-preparatory-position` (`b6b5b99`), integrada y publicada en `main` mediante `6fc2ab1`, con SHA remotos verificados. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530.
@@ -1776,7 +1778,7 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 | 2 | Knowledge base | Inventario inicial de cuatro PDFs; 31 fichas y 51 citas en revision, con los siete tipos de contenido cubiertos: posiciones, teoria, tuls, vocabulario, herramientas, patadas y combate; no secuencias globales completas ni curriculo |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
-| 5 | PostgreSQL | Compose, ERD, V1/V2/V3, mapeo/recarga y revisiones de texto/requisitos probados; curriculum real/seed aprobado, revision/publicacion y edicion de subtipos/citas pendientes |
+| 5 | PostgreSQL | Compose, ERD, V1–V4, mapeo/recarga y revisiones de texto/requisitos/posiciones/vocabulario probados; curriculum real/seed aprobado, revision/publicacion y citas/ejercicios pendientes |
 | 6 | Spring Boot modular | Base ejecutable Java 21 con Flyway, JPA, Security y Actuator; primer modulo de lectura de posiciones probado, ampliacion pendiente |
 | 7 | API de contenido | Posiciones con DTO y citas/metadatos de copia, bloqueadas por politica HTTP; sin API educativa accesible ni controlador `GET /api/v1/gups/10` |
 | 8 | Usuarios y roles | Reglas documentadas; implementacion no iniciada |
@@ -1842,14 +1844,14 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Acciones documentadas | 15 registros, correspondientes a listas impresas 1–7 y 1–8; no representan totales globales ni ejercicios completos |
 | Curriculos nuevos | 0 |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 182 correctos |
+| Tests Node | 188 correctos |
 | Tests PowerShell | 22 correctos |
 | Tests backend | 17 correctos, sin omitidos: unitarios y PostgreSQL Testcontainers; migracion, DTO con citas/identidad/localizadores, serializacion sin datos locales y casos negativos HTTP |
 | Arranque backend | JAR ejecutado contra Compose con importacion explicita de .env local; salud UP sin detalles, posiciones HTTP 403; proceso detenido al finalizar |
-| Persistencia | PostgreSQL/Flyway V1/V2/V3: creacion desde cero y upgrade con datos; 16 rechazos de constraints, cinco conflictos de importacion, 18 rechazos textuales y 30 curriculares; historial, aislamiento y rollback en BD desechable |
+| Persistencia | PostgreSQL/Flyway V1–V4: creacion desde cero y upgrades con datos; 16 rechazos de constraints, cinco conflictos de importacion, 18 textuales, 30 curriculares y 36 de detalles; cadenas mixtas, historial y rollback en BD desechable |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Revisiones textuales integradas en `6773202`; requisitos en `feat/versioned-curriculum-edits`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Requisitos integrados en `dc04682`; detalles en `feat/versioned-catalog-details`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1882,7 +1884,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.15` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.16` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
 
 ---
 
@@ -1975,6 +1977,7 @@ Cuando OpenCode reciba una tarea:
 | 1.13 | 18-10-2026 | Fase 1: importacion curricular tipada/citada y recarga identica sin duplicados; diferencias en filas/relaciones provocan rollback. 172 tests Node y prueba PostgreSQL con siete categorias sinteticas/cinco conflictos. Orden confirmado Fase 1 → retomar Fase 0 → Fase 2; sin cambios de migraciones/backend, curriculum real o aprobacion inventada |
 | 1.14 | 18-10-2026 | Fase 1: V2 para revisiones textuales con control de version e historial/citas; exportador explicito, operador local no verificado. 177 tests Node, 17 Java y pruebas SQL de 18 rechazos editoriales/rollback. V1 intacta; sin correcciones marciales reales, apertura HTTP, aprobacion o cierre de fase |
 | 1.15 | 21-10-2026 | Fase 1: V3 para requisitos curriculares versionados con baseline observado, siete grupos, historial/citas y guardas de integridad. 182 tests Node, 17 Java y 30 rechazos curriculares SQL; upgrade con datos, aislamiento, fallo tardio y rollback. Sin curriculum escolar inventado, cambios de citas/subtipos, aprobacion, dependencias nuevas o apertura HTTP |
+| 1.16 | 21-10-2026 | Fase 1: V4 para detalles de posiciones/vocabulario con historial/citas y cadena compartida de revisiones. 188 tests Node, 17 Java y 36 rechazos de detalles SQL; nulos/decimales/alias, cadenas mixtas y rollback probados. Sin modificar migraciones anteriores, contenido marcial real, dependencias o acceso HTTP |
 
 ---
 
