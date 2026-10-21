@@ -48,4 +48,4 @@ La operación debe mantener coherencia con el JSON editorial y con la evidencia 
 
 La referencia del operador sigue `unverified_local_reference`; no es autenticación ni aprobación de la escuela. No se otorgan permisos generales de edición a `PUBLIC`, no se añade endpoint y la API permanece bloqueada. En desarrollo **no se carga ni modifica ningún currículo real**.
 
-Pendientes de Fase 1: edición versionada de citas/subtipos, evidencia de revisión/publicación, contraste con un currículo real y seed aprobado. Se conserva el orden Fase 1 → retomar Fase 0 → Fase 2.
+Posiciones/vocabulario ya tienen un [flujo de detalles V4](catalog-detail-revisions.md). Pendientes de Fase 1: citas y datos de ejercicios/Tuls, revisión/publicación, contraste con currículo real y seed aprobado. Se conserva el orden Fase 1 → retomar Fase 0 → Fase 2.

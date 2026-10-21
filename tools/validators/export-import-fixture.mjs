@@ -3,6 +3,7 @@ import { createImportFixture } from './fixtures/import-dataset.mjs';
 import { createDraftSql } from '../seeders/export-draft-sql.mjs';
 import { createDraftEditSql } from '../seeders/export-draft-edit-sql.mjs';
 import { createCurriculumEditSql } from '../seeders/export-curriculum-edit-sql.mjs';
+import { createDetailEditSql } from '../seeders/export-detail-edit-sql.mjs';
 
 const { dataset, inventory } = createImportFixture();
 const mode = process.argv[2];
@@ -26,14 +27,21 @@ if (mode === 'conflict-name') {
 } else if (mode === 'conflict-steps') {
   const item = dataset.catalogs.find((catalog) => catalog.catalog_type === 'tul').items[0];
   item.steps.push({ ...item.steps[0], step_number: 2 });
-} else if (['apply-text-edit', 'after-text-edit', 'apply-curriculum-edit', 'after-curriculum-edit'].includes(mode)) {
+} else if (['apply-text-edit', 'after-text-edit', 'apply-curriculum-edit', 'after-curriculum-edit', 'apply-detail-edit', 'after-detail-edit'].includes(mode)) {
   dataset.catalogs[0].items[0].name = 'Edited synthetic draft';
   dataset.catalogs[0].items[0].description = 'Explicit local revision; test only.';
-  if (mode.includes('curriculum')) dataset.curricula[0].requirements.position_ids = [];
+  if (mode.includes('curriculum') || mode.includes('detail')) dataset.curricula[0].requirements.position_ids = [];
+  if (mode.includes('detail')) dataset.catalogs[0].items[0].biomechanics = {
+    weight: { front_percent: 47.25, rear_percent: 52.75 }, front_foot: null, rear_foot: { rotation_deg: 25.5 },
+  };
 } else if (mode !== 'initial') {
   throw new Error('Unknown import test mode');
 }
-if (mode === 'apply-curriculum-edit') {
+if (mode === 'apply-detail-edit') {
+  process.stdout.write(await createDetailEditSql({ id: 'fixture_position', expected_revision: 1, content_type: 'position',
+    details: { front_percent: 47.25, rear_percent: 52.75, front_rotation_deg: null, rear_rotation_deg: 25.5 },
+    reason: 'Synthetic detail pipeline test.', operator_reference: 'Unverified fixture operator' }));
+} else if (mode === 'apply-curriculum-edit') {
   process.stdout.write(await createCurriculumEditSql({ id: 'gup_10', expected_revision: 0,
     requirements: dataset.curricula[0].requirements, reason: 'Synthetic requirements edit.', operator_reference: 'Unverified fixture operator' }));
 } else if (mode === 'apply-text-edit') {
