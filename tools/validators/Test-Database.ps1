@@ -44,7 +44,7 @@ try {
   Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('createdb -U "$POSTGRES_USER" ' + $database))
   $created = $true
   $url = 'FLYWAY_URL=jdbc:postgresql://postgres:5432/' + $database
-  # Load drafts under V2 first, then verify populated upgrades through V3/V4.
+  # Load drafts under V2 first, then verify populated upgrades through V3/V4/V5.
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', '-target=2', 'migrate')
   # Second execution must be a no-op; validate checks migration checksums.
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', '-target=2', 'migrate')
@@ -60,6 +60,7 @@ try {
   Invoke-TestSql -Sql $fixture
   Invoke-TestSql -Sql $fixture
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', '-target=3', 'migrate')
+  Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', '-target=4', 'migrate')
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', 'migrate')
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', 'migrate')
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', 'validate')
@@ -135,7 +136,27 @@ DO $$ BEGIN
   END IF;
 END; $$;
 '@
-  Write-Output 'PASS: V2/V3/V4 populated upgrades, reloads; constraint/import/text/curriculum checks; 36 detail-edit rejections; mixed revision chains, history and rollback.'
+  Invoke-TestSql -Sql (Get-Content -Raw -Encoding UTF8 (Join-Path $PSScriptRoot 'database-tul-revisions.sql'))
+  $tulEdit = & node $fixtureScript apply-tul-edit
+  if ($LASTEXITCODE -ne 0) { throw 'Exercise edit fixture export failed.' }
+  Invoke-TestSql -Sql $tulEdit
+  Invoke-TestSql -Sql $tulEdit -ExpectedError 'stale exercise revision'
+  Invoke-TestSql -Sql $detailUpdated -ExpectConflict
+  $tulUpdated = & node $fixtureScript after-tul-edit
+  if ($LASTEXITCODE -ne 0) { throw 'Updated exercise fixture export failed.' }
+  Invoke-TestSql -Sql $tulUpdated
+  Invoke-TestSql -Sql @'
+DO $$ BEGIN
+  IF (SELECT draft_revision FROM content_entry WHERE id = 'fixture_tul') <> 1
+    OR (SELECT movement_count FROM tul WHERE id = 'fixture_tul') IS NOT NULL
+    OR (SELECT sequence_complete FROM tul WHERE id = 'fixture_tul')
+    OR (SELECT count(*) FROM tul_step WHERE tul_id = 'fixture_tul') <> 2
+    OR (SELECT count(*) FROM tul_step_source WHERE tul_id = 'fixture_tul') <> 2 THEN
+    RAISE EXCEPTION 'exercise edit/import pipeline lost unknown totals or history';
+  END IF;
+END; $$;
+'@
+  Write-Output 'PASS: populated upgrades V2-V5/reloads; previous checks plus 39 exercise rejections; partial/complete synthetic sequences, typed citations, mixed history and rollback.'
 } finally {
   if ($created) {
     Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('dropdb -U "$POSTGRES_USER" ' + $database))

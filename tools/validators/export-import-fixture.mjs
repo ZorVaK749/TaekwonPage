@@ -27,17 +27,28 @@ if (mode === 'conflict-name') {
 } else if (mode === 'conflict-steps') {
   const item = dataset.catalogs.find((catalog) => catalog.catalog_type === 'tul').items[0];
   item.steps.push({ ...item.steps[0], step_number: 2 });
-} else if (['apply-text-edit', 'after-text-edit', 'apply-curriculum-edit', 'after-curriculum-edit', 'apply-detail-edit', 'after-detail-edit'].includes(mode)) {
+} else if (['apply-text-edit', 'after-text-edit', 'apply-curriculum-edit', 'after-curriculum-edit', 'apply-detail-edit', 'after-detail-edit', 'apply-tul-edit', 'after-tul-edit'].includes(mode)) {
   dataset.catalogs[0].items[0].name = 'Edited synthetic draft';
   dataset.catalogs[0].items[0].description = 'Explicit local revision; test only.';
-  if (mode.includes('curriculum') || mode.includes('detail')) dataset.curricula[0].requirements.position_ids = [];
-  if (mode.includes('detail')) dataset.catalogs[0].items[0].biomechanics = {
+  if (mode.includes('curriculum') || mode.includes('detail') || mode.includes('tul')) dataset.curricula[0].requirements.position_ids = [];
+  if (mode.includes('detail') || mode.includes('tul')) dataset.catalogs[0].items[0].biomechanics = {
     weight: { front_percent: 47.25, rear_percent: 52.75 }, front_foot: null, rear_foot: { rotation_deg: 25.5 },
   };
+  if (mode.includes('tul')) {
+    const tul = dataset.catalogs.find((catalog) => catalog.catalog_type === 'tul').items[0];
+    tul.initial_position_id = null;
+    tul.sequence_scope = 'Synthetic updated partial list.';
+    tul.steps.push({ ...tul.steps[0], step_number: 3, description: 'Synthetic additional documented action.' });
+  }
 } else if (mode !== 'initial') {
   throw new Error('Unknown import test mode');
 }
-if (mode === 'apply-detail-edit') {
+if (mode === 'apply-tul-edit') {
+  const tul = dataset.catalogs.find((catalog) => catalog.catalog_type === 'tul').items[0];
+  const keys = ['movement_count', 'initial_position_id', 'sequence_complete', 'sequence_scope', 'steps'];
+  process.stdout.write(await createDetailEditSql({ id: tul.id, expected_revision: 0, content_type: 'tul',
+    details: Object.fromEntries(keys.map((key) => [key, tul[key]])), reason: 'Synthetic exercise pipeline.', operator_reference: 'Unverified fixture operator' }));
+} else if (mode === 'apply-detail-edit') {
   process.stdout.write(await createDetailEditSql({ id: 'fixture_position', expected_revision: 1, content_type: 'position',
     details: { front_percent: 47.25, rear_percent: 52.75, front_rotation_deg: null, rear_rotation_deg: 25.5 },
     reason: 'Synthetic detail pipeline test.', operator_reference: 'Unverified fixture operator' }));
