@@ -13,7 +13,8 @@ export async function createDetailEditSql(edit) {
   }
   const keys = edit.content_type === 'position'
     ? ['front_percent', 'rear_percent', 'front_rotation_deg', 'rear_rotation_deg']
-    : edit.content_type === 'vocabulary' ? ['translation', 'aliases'] : null;
+    : edit.content_type === 'vocabulary' ? ['translation', 'aliases']
+      : edit.content_type === 'tul' ? ['movement_count', 'initial_position_id', 'sequence_complete', 'sequence_scope', 'steps'] : null;
   const d = edit.details;
   if (!keys || !d || Array.isArray(d) || typeof d !== 'object' || Object.keys(d).length !== keys.length
       || !keys.every((key) => Object.hasOwn(d, key))) throw new Error('Unsupported type or incomplete detail fields');
@@ -29,15 +30,36 @@ export async function createDetailEditSql(edit) {
     if (d.front_percent !== null && d.rear_percent !== null && Math.abs(d.front_percent + d.rear_percent - 100) > 1e-9) {
       throw new Error('Weights must sum to 100');
     }
+  } else if (edit.content_type === 'tul') {
+    Object.assign(item, d);
+    if (d.sequence_scope === null) delete item.sequence_scope;
   } else {
     Object.assign(item, d);
   }
   const validator = await createKnowledgeValidator();
   const errors = validator.validateCatalog({ format_version: 1, catalog_type: edit.content_type, items: [item] });
   if (errors.length) throw new Error(errors.join('\n'));
-  const args = [sqlValue(edit.id), sqlValue(edit.expected_revision), sqlValue(edit.content_type),
-    `${sqlValue(JSON.stringify(d))}::jsonb`, sqlValue(edit.reason), sqlValue(edit.operator_reference)];
-  return `-- LOCAL CATALOG DETAIL EDIT ONLY. No martial approval.\nBEGIN;\nSELECT revise_catalog_details(${args.join(', ')});\nCOMMIT;\n`;
+  let details = d;
+  if (edit.content_type === 'tul') {
+    let previous = 0;
+    if (d.movement_count !== null && d.movement_count > 2147483647) throw new Error('Count exceeds database integer range');
+    for (const [index, step] of d.steps.entries()) {
+      if (step.step_number <= previous || step.step_number > 2147483647
+          || (d.movement_count !== null && step.step_number > d.movement_count)
+          || (d.sequence_complete && step.step_number !== index + 1)) throw new Error('Invalid exercise step numbering');
+      previous = step.step_number;
+    }
+    if (!d.sequence_complete && d.steps.length && d.sequence_scope === null) throw new Error('Partial steps require scope');
+    if (d.sequence_complete && (d.movement_count === null || d.initial_position_id === null || d.steps.length !== d.movement_count)) {
+      throw new Error('Complete sequence requires known count/preparation and all steps');
+    }
+    details = { ...d, steps: d.steps.map((step) => ({ ...step, citation_ids: [...step.citation_ids].sort() })) };
+  }
+  const args = [sqlValue(edit.id), sqlValue(edit.expected_revision)];
+  if (edit.content_type !== 'tul') args.push(sqlValue(edit.content_type));
+  args.push(`${sqlValue(JSON.stringify(details))}::jsonb`, sqlValue(edit.reason), sqlValue(edit.operator_reference));
+  const operation = edit.content_type === 'tul' ? 'revise_tul_draft' : 'revise_catalog_details';
+  return `-- LOCAL CATALOG DETAIL EDIT ONLY. No martial approval.\nBEGIN;\nSELECT ${operation}(${args.join(', ')});\nCOMMIT;\n`;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.join(repositoryRoot, 'tools/seeders/export-detail-edit-sql.mjs')) {

@@ -83,7 +83,7 @@ Consulta [pendientes de arquitectura](docs/architecture/README.md). No se eligie
 
 Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. El primer checkpoint del baseline **`83eb531`** y sus bloques posteriores se publicó en `main` mediante **`1ab81e7`**, conservando su historial. El flujo actual es **trabajo y push en ramas, con merges periódicos de checkpoints revisados a `main`, sin Pull Requests**. La licencia MIT no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
 
-Bloque actual: Fase 1, [detalles de posiciones/vocabulario versionados](docs/database/catalog-detail-revisions.md), con 188 tests Node, 17 Java y pruebas PostgreSQL de historial, nulos/decimales y cadenas de revisión mixtas. Sin cambios marciales reales o apertura HTTP. Pendientes: citas/ejercicios, currículo real y revisión/publicación. Orden acordado: Fase 1, retomar Fase 0 y después volver a Fase 2.
+Bloque actual: Fase 1, [ejercicios/Tuls versionados](docs/database/tul-revisions.md), con 192 tests Node, 17 Java y pruebas PostgreSQL de pasos/citas, secuencias parciales y rollback. Sin completar ejercicios reales ni abrir HTTP. Pendientes: edición de citas, currículo real y revisión/publicación. Orden acordado: Fase 1, retomar Fase 0 y después volver a Fase 2.
 
 El [checkpoint publicado](https://github.com/ZorVaK749/TaekwonPage/tree/main) ya está disponible en la vista predeterminada de `main`. Los bloques nuevos partirán de ese estado, sin crear ramas acumulativas innecesarias.
 
