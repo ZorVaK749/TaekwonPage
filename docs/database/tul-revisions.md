@@ -55,4 +55,4 @@ El exportador valida y devuelve una transacción que llama a `revise_tul_draft(.
 
 La referencia del operador continúa no verificada; no equivale a revisión de la escuela. No se añade endpoint ni permiso general a `PUBLIC`. Las protecciones operativas no son defensa contra un superusuario que altere el esquema.
 
-Falta edición de citas, evidencia de revisión/publicación, currículo real y seed aprobado. La herramienta no resuelve la laguna documental del punto 3 de Jirugi, los conteos o la ejecución alterna. Fase 0 y Fase 1 siguen abiertas.
+La edición de citas ya tiene un [flujo V6](citation-revisions.md), que no permite retirar IDs aún enlazados a pasos. Faltan revisión/publicación, currículo real y seed aprobado. La herramienta no resuelve la laguna del punto 3 de Jirugi, los conteos o la ejecución alterna. Fases 0 y 1 siguen abiertas.

@@ -49,4 +49,4 @@ Todo sigue `pending_human_review`, sin evidencia de aprobación/publicación imp
 - Un snapshot JSON actualizado que coincide se recarga sin borrar ni duplicar historial.
 - No hay rollback editorial destructivo: una corrección posterior debe ser otra revisión explícita; el rollback transaccional solo anula cambios aún no confirmados.
 
-Los requisitos curriculares tienen un [flujo V3 separado](curriculum-revisions.md), posiciones/vocabulario un [flujo V4](catalog-detail-revisions.md) y ejercicios/Tuls un [flujo V5](tul-revisions.md). **Pendiente:** citas, revisión humana/derechos, publicación y permisos funcionales. Ninguno cierra por sí solo la Fase 1.
+Los requisitos curriculares tienen un [flujo V3](curriculum-revisions.md), posiciones/vocabulario un [flujo V4](catalog-detail-revisions.md), ejercicios/Tuls un [flujo V5](tul-revisions.md) y citas un [flujo V6](citation-revisions.md). **Pendiente:** revisión humana/derechos, publicación y permisos funcionales. Ninguno cierra por sí solo la Fase 1.

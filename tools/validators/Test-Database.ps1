@@ -61,6 +61,7 @@ try {
   Invoke-TestSql -Sql $fixture
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', '-target=3', 'migrate')
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', '-target=4', 'migrate')
+  Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', '-target=5', 'migrate')
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', 'migrate')
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', 'migrate')
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', 'validate')
@@ -156,7 +157,26 @@ DO $$ BEGIN
   END IF;
 END; $$;
 '@
-  Write-Output 'PASS: populated upgrades V2-V5/reloads; previous checks plus 39 exercise rejections; partial/complete synthetic sequences, typed citations, mixed history and rollback.'
+  Invoke-TestSql -Sql (Get-Content -Raw -Encoding UTF8 (Join-Path $PSScriptRoot 'database-citation-revisions.sql'))
+  $citationEdit = & node $fixtureScript apply-citation-edit
+  if ($LASTEXITCODE -ne 0) { throw 'Citation edit fixture export failed.' }
+  Invoke-TestSql -Sql $citationEdit
+  Invoke-TestSql -Sql $citationEdit -ExpectedError 'stale citation revision'
+  Invoke-TestSql -Sql $tulUpdated -ExpectConflict
+  $citationUpdated = & node $fixtureScript after-citation-edit
+  if ($LASTEXITCODE -ne 0) { throw 'Updated citation fixture export failed.' }
+  Invoke-TestSql -Sql $citationUpdated
+  Invoke-TestSql -Sql @'
+DO $$ BEGIN
+  IF (SELECT draft_revision FROM content_entry WHERE id = 'fixture_tul') <> 2
+    OR (SELECT pdf_page FROM content_source WHERE id = 'citation_import_tul') <> 2
+    OR (SELECT count(*) FROM content_citation_revision WHERE content_id = 'fixture_tul' AND NOT is_baseline) <> 1
+    OR (SELECT count(*) FROM tul_step_source WHERE tul_id = 'fixture_tul') <> 2 THEN
+    RAISE EXCEPTION 'citation edit/import pipeline lost evidence, step ownership or history';
+  END IF;
+END; $$;
+'@
+  Write-Output 'PASS: populated upgrades V2-V6/reloads; previous checks plus 37 citation/ownership rejections; source/hash/page bounds, location swaps, reserved IDs and rollback.'
 } finally {
   if ($created) {
     Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('dropdb -U "$POSTGRES_USER" ' + $database))

@@ -4,9 +4,9 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.17  
+**Version del documento:** 1.18  
 **Fecha de creacion:** 14-10-2026  
-**Ultima actualizacion:** 23-10-2026  
+**Ultima actualizacion:** 24-10-2026  
 
 Esta revision actualiza el seguimiento, no las decisiones de arquitectura aprobadas. Las fases, los sprints y las versiones del producto son conceptos distintos: completar el bootstrap no completa la Fase 0 ni publica v0.1.
 
@@ -1727,7 +1727,7 @@ La base de conocimiento es el nucleo del producto.
 
 # 55. Estado actual y checklist de seguimiento
 
-**Corte verificado: 23-10-2026.** Un `[x]` indica exactamente el entregable descrito, no aprobacion humana del conocimiento ni una funcionalidad de la pagina disponible. Los estados parciales se mantienen abiertos.
+**Corte verificado: 24-10-2026.** Un `[x]` indica exactamente el entregable descrito, no aprobacion humana del conocimiento ni una funcionalidad de la pagina disponible. Los estados parciales se mantienen abiertos.
 
 Vista resumida para el responsable del proyecto: **[Plan de ataque con checks por fase](Plan_ataque.md)**. Se actualizara junto con este informe; no sustituye las decisiones originales ni sus criterios de cierre.
 
@@ -1768,7 +1768,9 @@ Vista resumida para el responsable del proyecto: **[Plan de ataque con checks po
 
 **Continuacion — ejercicios/Tuls:** V5 extiende el historial de detalles a conteo, preparacion, alcance y pasos con sus posiciones/citas propias. Mantiene totales desconocidos y secuencias parciales; una declaracion completa exige todos sus datos y pasos consecutivos. Se prueban upgrade con datos, secuencias sinteticas parciales/completas/vacias, cadenas mixtas, 39 rechazos SQL, errores tardios de FK y rollback de pasos/enlaces/historial. 192 tests Node y 17 Java correctos; V5 aplicada localmente con cero fichas e historial. Sin cambios marciales reales, citas documentales, dependencias o endpoints; V1–V4 intactas. Saju permanece parcial y no se infiere el punto 3 ilegible. Fase 1 sigue abierta por citas, revision/publicacion y contenido curricular aprobado.
 
-**Contenido: entre los pasos 3 y 4; infraestructura: pasos 5 y 6 iniciados y lectura parcial del 7.** Adelantamos partes de Fases 1 y 2 sin cerrar Fase 0, por autorizacion del usuario; no se eliminaron pendientes ni se declaro cumplida su Definition of Done. La Fase 0 sigue abierta por gobernanza/convenciones, catalogos y ejercicios incompletos, curriculos 10º/9º/8º y revision humana. Fase 1 tiene esquema, mapeo curricular, recarga identica y revision textual probados; faltan contraste curricular real, seed aprobado, revision/publicacion y edicion versionada de otros campos. No se asigna un porcentaje global porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
+**Continuacion — citas documentales:** V6 incorpora baseline e historial antes/despues de citas, con fuente/hash/localizadores/notas, revision global y reserva de IDs por propietario. Reemplazo atomico compatible con enlaces de pasos; una cita usada no se puede retirar y un ID retirado no pasa a otra ficha. Se prueban swap, seccion sin pagina, versiones mixtas con texto/requisitos, 37 rechazos SQL y rollback de citas/reservas/historial, incluida FK diferida en el editor de ejercicios. 198 tests Node y 17 Java correctos; V6 aplicada localmente con cero fichas, revisiones de citas y reservas de IDs cargadas. V1–V5 intactas, sin corregir las 51 citas reales ni cambiar fuentes/derechos/estados. Versionado tecnico implementado; revision/publicacion, curriculum real y seed aprobado siguen pendientes. No se declara Fase 1 cerrada.
+
+**Contenido: entre los pasos 3 y 4; infraestructura: pasos 5 y 6 iniciados y lectura parcial del 7.** Adelantamos partes de Fases 1 y 2 sin cerrar Fase 0, por autorizacion del usuario; no se eliminaron pendientes ni se declaro cumplida su Definition of Done. La Fase 0 sigue abierta por gobernanza/convenciones, catalogos y ejercicios incompletos, curriculos 10º/9º/8º y revision humana. Fase 1 tiene esquema, mapeo, recarga y versionado tecnico de datos/citas probados; faltan contraste curricular real, seed aprobado, evidencia de revision/publicacion y los modelos funcionales pendientes. No se asigna un porcentaje global porque los pasos no tienen el mismo esfuerzo y quedan decisiones humanas pendientes.
 
 Bloque cerrado: variante preparatoria implementada en `feat/tkd-005-preparatory-position` (`b6b5b99`), integrada y publicada en `main` mediante `6fc2ab1`, con SHA remotos verificados. Se localizo Narani Junbi Sogui en PDF 81 / folio 79 y se enlazo con la preparacion de los tramos de PDF 530.
 
@@ -1780,7 +1782,7 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 | 2 | Knowledge base | Inventario inicial de cuatro PDFs; 31 fichas y 51 citas en revision, con los siete tipos de contenido cubiertos: posiciones, teoria, tuls, vocabulario, herramientas, patadas y combate; no secuencias globales completas ni curriculo |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
-| 5 | PostgreSQL | Compose, ERD, V1–V5, mapeo/recarga y revisiones de texto/requisitos/subtipos actuales probados; curriculum real/seed aprobado, revision/publicacion y edicion de citas pendientes |
+| 5 | PostgreSQL | Compose, ERD, V1–V6, mapeo/recarga y versionado de texto/requisitos/subtipos/citas probados; curriculum real/seed aprobado y evidencia de revision/publicacion pendientes |
 | 6 | Spring Boot modular | Base ejecutable Java 21 con Flyway, JPA, Security y Actuator; primer modulo de lectura de posiciones probado, ampliacion pendiente |
 | 7 | API de contenido | Posiciones con DTO y citas/metadatos de copia, bloqueadas por politica HTTP; sin API educativa accesible ni controlador `GET /api/v1/gups/10` |
 | 8 | Usuarios y roles | Reglas documentadas; implementacion no iniciada |
@@ -1846,14 +1848,14 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Acciones documentadas | 15 registros, correspondientes a listas impresas 1–7 y 1–8; no representan totales globales ni ejercicios completos |
 | Curriculos nuevos | 0 |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 192 correctos |
+| Tests Node | 198 correctos |
 | Tests PowerShell | 22 correctos |
 | Tests backend | 17 correctos, sin omitidos: unitarios y PostgreSQL Testcontainers; migracion, DTO con citas/identidad/localizadores, serializacion sin datos locales y casos negativos HTTP |
 | Arranque backend | JAR ejecutado contra Compose con importacion explicita de .env local; salud UP sin detalles, posiciones HTTP 403; proceso detenido al finalizar |
-| Persistencia | PostgreSQL/Flyway V1–V5: creacion desde cero y upgrades con datos; 16 rechazos de constraints, cinco conflictos de importacion, 18 textuales, 30 curriculares, 36 escalares y 39 de ejercicios; historial y rollback en BD desechable |
+| Persistencia | PostgreSQL/Flyway V1–V6: creacion/upgrades con datos; 16 rechazos de constraints, cinco conflictos de importacion, 18 textuales, 30 curriculares, 36 escalares, 39 de ejercicios y 37 de citas/propiedad; historial y rollback |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Detalles integrados en `ad9773d`; ejercicios en `feat/versioned-tul-details`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Ejercicios integrados en `77a3fec`; citas en `feat/versioned-citation-edits`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1886,7 +1888,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.17` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.18` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
 
 ---
 
@@ -1981,6 +1983,7 @@ Cuando OpenCode reciba una tarea:
 | 1.15 | 21-10-2026 | Fase 1: V3 para requisitos curriculares versionados con baseline observado, siete grupos, historial/citas y guardas de integridad. 182 tests Node, 17 Java y 30 rechazos curriculares SQL; upgrade con datos, aislamiento, fallo tardio y rollback. Sin curriculum escolar inventado, cambios de citas/subtipos, aprobacion, dependencias nuevas o apertura HTTP |
 | 1.16 | 21-10-2026 | Fase 1: V4 para detalles de posiciones/vocabulario con historial/citas y cadena compartida de revisiones. 188 tests Node, 17 Java y 36 rechazos de detalles SQL; nulos/decimales/alias, cadenas mixtas y rollback probados. Sin modificar migraciones anteriores, contenido marcial real, dependencias o acceso HTTP |
 | 1.17 | 23-10-2026 | Fase 1: V5 para conteos/preparacion/alcance/pasos de ejercicios con citas propias e historial. 192 tests Node, 17 Java y 39 rechazos SQL de ejercicios; secuencias sinteticas, fallos tardios y rollback probados. Saju real sigue parcial; sin cambios de citas documentales, dependencias, publicacion o acceso HTTP |
+| 1.18 | 24-10-2026 | Fase 1: V6 para citas versionadas con copia/localizadores, reserva de IDs, propiedad de pasos y cadena global. 198 tests Node, 17 Java y 37 rechazos de citas/propiedad SQL; swap, FK diferida, coexistencia y rollback probados. Sin corregir evidencia real, cambiar derechos, aprobar contenido o abrir HTTP |
 
 ---
 
