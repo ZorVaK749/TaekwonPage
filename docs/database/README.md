@@ -37,6 +37,7 @@ Las otras seis relaciones curriculares son `gup_theory`, `gup_vocabulary`, `gup_
 - V3 incorpora [revisiones de requisitos curriculares](curriculum-revisions.md): baseline observado, historial de relaciones/citas y reemplazo atómico tipado por Gup, sin alterar estados ni aprobar contenido.
 - V4 añade [detalles de posiciones/vocabulario](catalog-detail-revisions.md), con baseline observado, cadena global de revisiones y comprobación de valores/nulos. No cambia la geometría o terminología de las fichas reales por sí sola.
 - V5 añade [datos y pasos de ejercicios/Tuls](tul-revisions.md), con sus posiciones/citas tipadas, alcance parcial y totales desconocidos preservados, sin inferir ejecución marcial.
+- V6 añade [citas documentales versionadas](citation-revisions.md), con reserva permanente de IDs por propietario, validación de copia/localizadores y protección de enlaces de pasos. Las fuentes registradas y sus derechos no cambian.
 
 ## Ejecución local
 
@@ -51,7 +52,7 @@ docker compose run --rm migrate validate
 powershell -NoProfile -File tools/validators/Test-Database.ps1
 ```
 
-El test crea una BD aleatoria `tkd_test_<uuid>`, carga borradores bajo V2 y actualiza con datos hasta V5. Comprueba checksums, recarga, 16 restricciones SQL y cinco conflictos de importación; revisiones textuales (18 rechazos), curriculares (30), escalares (36) y ejercicios (39), con cadenas mixtas, nulos y rollback. Las ediciones/currículos son **sintéticos**. Elimina solo esa BD en `finally`, sin borrar volúmenes ni datos de aplicación. Requiere Docker Desktop iniciado.
+El test crea una BD aleatoria `tkd_test_<uuid>`, carga borradores bajo V2 y actualiza con datos hasta V6. Comprueba checksums, recarga, 16 restricciones SQL y cinco conflictos de importación; revisiones textuales (18 rechazos), curriculares (30), escalares (36), ejercicios (39) y citas/propiedad (37), con cadenas mixtas y rollback. Las ediciones/currículos son **sintéticos**. Elimina solo esa BD en `finally`, sin borrar volúmenes ni datos de aplicación. Requiere Docker Desktop iniciado.
 
 Las migraciones viven en [resources/db/migration](../../backend/taekwonpage-api/src/main/resources/db/migration/). Flyway lleva su historial: no editar una migración ya aplicada, usar una nueva `V2__...sql`. Nunca usar `clean` ni `down -v` para resolver diferencias sin autorización y copia de seguridad.
 
@@ -67,6 +68,6 @@ El mapeo curricular implementa `gup` y las siete tablas `gup_*`, con IDs referen
 
 1. Prueba PostgreSQL/Flyway ejecutada correctamente el 18-10-2026: migraciones desde cero, repetición, checksums e importación de borradores/revisiones. La BD de desarrollo tiene el esquema sin contenido cargado. Repetir el test al cambiar persistencia.
 2. Confirmar programa/revisor y resolver lagunas de contenido antes de declarar cerrado 10º Gup. Esto no impide construir infraestructura local con borradores, pero sí aprobar/publicar o simular un temario completo.
-3. Mapeo, recarga y revisiones de texto/requisitos/subtipos actuales implementados/probados. Faltan currículo real, edición de citas y revisión/publicación; no inventar requisitos ni reemplazar conflictos por un `upsert` sin revisión.
+3. Mapeo, recarga y versionado de texto/requisitos/subtipos/citas implementados/probados. Faltan currículo real y revisión/publicación/seed aprobado; no inventar requisitos ni reemplazar conflictos por un `upsert` sin revisión.
 4. Arranque Spring Boot Java 21 implementado con Flyway, primer repositorio/servicio/DTO de posiciones y bloqueo HTTP preventivo. Falta ampliar otros catálogos, procedencia y currículo; identidad/verificación vendrá en su bloque y JWT/OIDC sigue por decidir.
 5. Angular consumirá los contratos de API después de ese bloque; no se declara listo un frontend ni una beta por tener tablas.

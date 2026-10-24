@@ -4,6 +4,7 @@ import { createDraftSql } from '../seeders/export-draft-sql.mjs';
 import { createDraftEditSql } from '../seeders/export-draft-edit-sql.mjs';
 import { createCurriculumEditSql } from '../seeders/export-curriculum-edit-sql.mjs';
 import { createDetailEditSql } from '../seeders/export-detail-edit-sql.mjs';
+import { createCitationEditSql } from '../seeders/export-citation-edit-sql.mjs';
 
 const { dataset, inventory } = createImportFixture();
 const mode = process.argv[2];
@@ -27,23 +28,28 @@ if (mode === 'conflict-name') {
 } else if (mode === 'conflict-steps') {
   const item = dataset.catalogs.find((catalog) => catalog.catalog_type === 'tul').items[0];
   item.steps.push({ ...item.steps[0], step_number: 2 });
-} else if (['apply-text-edit', 'after-text-edit', 'apply-curriculum-edit', 'after-curriculum-edit', 'apply-detail-edit', 'after-detail-edit', 'apply-tul-edit', 'after-tul-edit'].includes(mode)) {
+} else if (['apply-text-edit', 'after-text-edit', 'apply-curriculum-edit', 'after-curriculum-edit', 'apply-detail-edit', 'after-detail-edit', 'apply-tul-edit', 'after-tul-edit', 'apply-citation-edit', 'after-citation-edit'].includes(mode)) {
   dataset.catalogs[0].items[0].name = 'Edited synthetic draft';
   dataset.catalogs[0].items[0].description = 'Explicit local revision; test only.';
-  if (mode.includes('curriculum') || mode.includes('detail') || mode.includes('tul')) dataset.curricula[0].requirements.position_ids = [];
-  if (mode.includes('detail') || mode.includes('tul')) dataset.catalogs[0].items[0].biomechanics = {
+  if (mode.includes('curriculum') || mode.includes('detail') || mode.includes('tul') || mode.includes('citation')) dataset.curricula[0].requirements.position_ids = [];
+  if (mode.includes('detail') || mode.includes('tul') || mode.includes('citation')) dataset.catalogs[0].items[0].biomechanics = {
     weight: { front_percent: 47.25, rear_percent: 52.75 }, front_foot: null, rear_foot: { rotation_deg: 25.5 },
   };
-  if (mode.includes('tul')) {
+  if (mode.includes('tul') || mode.includes('citation')) {
     const tul = dataset.catalogs.find((catalog) => catalog.catalog_type === 'tul').items[0];
     tul.initial_position_id = null;
     tul.sequence_scope = 'Synthetic updated partial list.';
     tul.steps.push({ ...tul.steps[0], step_number: 3, description: 'Synthetic additional documented action.' });
   }
+  if (mode.includes('citation')) dataset.provenance[0].citations.find((citation) => citation.content_id === 'fixture_tul').pdf_page = 2;
 } else if (mode !== 'initial') {
   throw new Error('Unknown import test mode');
 }
-if (mode === 'apply-tul-edit') {
+if (mode === 'apply-citation-edit') {
+  process.stdout.write(await createCitationEditSql({ id: 'fixture_tul', expected_revision: 1,
+    citations: dataset.provenance[0].citations.filter((citation) => citation.content_id === 'fixture_tul'),
+    reason: 'Synthetic citation pipeline.', operator_reference: 'Unverified fixture operator' }, inventory));
+} else if (mode === 'apply-tul-edit') {
   const tul = dataset.catalogs.find((catalog) => catalog.catalog_type === 'tul').items[0];
   const keys = ['movement_count', 'initial_position_id', 'sequence_complete', 'sequence_scope', 'steps'];
   process.stdout.write(await createDetailEditSql({ id: tul.id, expected_revision: 0, content_type: 'tul',

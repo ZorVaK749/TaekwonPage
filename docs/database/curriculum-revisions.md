@@ -48,4 +48,4 @@ La operación debe mantener coherencia con el JSON editorial y con la evidencia 
 
 La referencia del operador sigue `unverified_local_reference`; no es autenticación ni aprobación de la escuela. No se otorgan permisos generales de edición a `PUBLIC`, no se añade endpoint y la API permanece bloqueada. En desarrollo **no se carga ni modifica ningún currículo real**.
 
-Posiciones/vocabulario tienen un [flujo V4](catalog-detail-revisions.md) y ejercicios/Tuls un [flujo V5](tul-revisions.md). Pendientes: citas, revisión/publicación, contraste con currículo real y seed aprobado. Se conserva el orden Fase 1 → retomar Fase 0 → Fase 2.
+Posiciones/vocabulario tienen un [flujo V4](catalog-detail-revisions.md), ejercicios/Tuls un [flujo V5](tul-revisions.md) y citas un [flujo V6](citation-revisions.md). Pendientes: revisión/publicación, contraste con currículo real y seed aprobado. Se conserva el orden Fase 1 → retomar Fase 0 → Fase 2.

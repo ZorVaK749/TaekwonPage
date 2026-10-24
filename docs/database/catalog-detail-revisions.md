@@ -54,4 +54,4 @@ Tras una edición explícita hay que mantener el JSON de trabajo coherente y res
 
 No se añade endpoint ni se abre la API. Los permisos generales de escritura siguen sin otorgarse a `PUBLIC`; este mecanismo local no reemplaza autenticación, permisos mínimos ni revisión de la escuela, ni protege contra un superusuario que altere triggers/esquema.
 
-Los ejercicios/Tuls tienen un [flujo V5](tul-revisions.md) usando el mismo exportador con `content_type: "tul"`. **Pendiente:** edición de citas, evidencia de revisión/publicación, currículo real y seed aprobado. Fase 1 sigue abierta.
+Los ejercicios/Tuls tienen un [flujo V5](tul-revisions.md) y las citas un [flujo V6](citation-revisions.md). **Pendiente:** evidencia de revisión/publicación, currículo real y seed aprobado. Fase 1 sigue abierta.
