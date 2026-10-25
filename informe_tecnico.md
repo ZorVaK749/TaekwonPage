@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.19  
+**Version del documento:** 1.20  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 25-10-2026  
 
@@ -1731,6 +1731,8 @@ La base de conocimiento es el nucleo del producto.
 
 Vista resumida para el responsable del proyecto: **[Plan de ataque con checks por fase](Plan_ataque.md)**. Se actualizara junto con este informe; no sustituye las decisiones originales ni sus criterios de cierre.
 
+Para retomar el proyecto desde otro chat sin arrastrar contexto incompleto existe un **[prompt de continuacion](docs/handoff/continuation-prompt.md)** con las decisiones confirmadas, el estado verificado, los proximos pasos y los limites. Es una vista de traspaso: ante discrepancia manda este informe.
+
 ## 55.1 Decisiones confirmadas (no equivalen a implementacion)
 
 - [x] ZVK Tech
@@ -1858,7 +1860,7 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Persistencia | PostgreSQL/Flyway V1–V6: creacion/upgrades con datos; 16 rechazos de constraints, cinco conflictos de importacion, 18 textuales, 30 curriculares, 36 escalares, 39 de ejercicios y 37 de citas/propiedad; historial y rollback |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Citas integradas en `76d90be`; teoria/matriz en `feat/theory-review-coverage`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Citas integradas en `76d90be`; teoria/matriz integrada en `04ead83`, ambos con push a `origin/main` e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1934,7 +1936,7 @@ No avanzar a 9º Gup hasta que la estructura de 10º Gup haya demostrado ser reu
 
 ### Proximo bloque de trabajo
 
-**Prioridad vigente por confirmacion posterior del usuario:** retomar Fase 0 ante la falta de programa/revisor confirmados y mantener Fase 1 abierta. Pausar ampliacion de Fase 2; los puntos de contenido siguientes son el bloque activo. No cerrar Fase 1 por pruebas sinteticas si faltan evidencia real o decisiones humanas.
+**Prioridad vigente por confirmacion posterior del usuario:** retomar Fase 0 ante la falta de programa/revisor confirmados y mantener Fase 1 abierta. Pausar ampliacion de Fase 2; los puntos de contenido siguientes son el bloque activo. No cerrar Fase 1 por pruebas sinteticas si faltan evidencia real o decisiones humanas. Para continuar desde otro chat, partir del [prompt de continuacion](docs/handoff/continuation-prompt.md) y validar su estado contra este informe.
 
 1. Checkpoint acumulado integrado y publicado en `main` con historial preservado. En bloques futuros, partir de `origin/main` actualizado, trabajar y hacer push en una rama e integrar checkpoints coherentes periodicamente. Sin PR, force-push, tags o limpieza de ramas no autorizada.
 2. Contrastar y revisar los tramos encontrados en PDF 530 de la enciclopedia, resolver su legibilidad y alcance antes de completar secuencias; continuar consultas dirigidas para las lagunas de posiciones/herramientas. No convertir expresiones terminologicas en pasos ni generar el recorrido alterno por simetria.
@@ -1988,6 +1990,7 @@ Cuando OpenCode reciba una tarea:
 | 1.17 | 23-10-2026 | Fase 1: V5 para conteos/preparacion/alcance/pasos de ejercicios con citas propias e historial. 192 tests Node, 17 Java y 39 rechazos SQL de ejercicios; secuencias sinteticas, fallos tardios y rollback probados. Saju real sigue parcial; sin cambios de citas documentales, dependencias, publicacion o acceso HTTP |
 | 1.18 | 24-10-2026 | Fase 1: V6 para citas versionadas con copia/localizadores, reserva de IDs, propiedad de pasos y cadena global. 198 tests Node, 17 Java y 37 rechazos de citas/propiedad SQL; swap, FK diferida, coexistencia y rollback probados. Sin corregir evidencia real, cambiar derechos, aprobar contenido o abrir HTTP |
 | 1.19 | 25-10-2026 | Por confirmacion del usuario, regreso a Fase 0 con Fase 1 abierta. Dos fichas teoricas/cuatro citas nuevas y matriz de seis temas 10º a 9º; romanizaciones divergentes explicitadas. Total 33 fichas/55 citas en 10 pares de archivos; 204 tests Node. Sin programa escolar/aprobacion inventados, migraciones nuevas o ampliacion de aplicaciones |
+| 1.20 | 25-10-2026 | Traspaso de sesion: [prompt de continuacion](docs/handoff/continuation-prompt.md) con decisiones confirmadas, estado verificado, proximos pasos y limites de Fase 0. Corregido un estado sin confirmar que revertia el bloque 1.19; `main` verificado y publicado en `04ead83`. Sin cambios de contenido, migraciones, dependencias ni acceso HTTP |
 
 ---
 

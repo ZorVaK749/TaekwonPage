@@ -1,6 +1,6 @@
 # Plan de ataque — TaeKwonPage
 
-**Actualizado: 25-10-2026.** Vista de seguimiento del [informe técnico](informe_tecnico.md), no un plan nuevo que reemplace su arquitectura o alcance.
+**Actualizado: 25-10-2026.** Vista de seguimiento del [informe técnico](informe_tecnico.md), no un plan nuevo que reemplace su arquitectura o alcance. Para continuar desde otro chat: **[prompt de continuación](docs/handoff/continuation-prompt.md)**, siempre contrastado contra el informe.
 
 - `[x]` = el entregable descrito está implementado/verificado.
 - `[ ]` = pendiente o parcial; el texto indica cuál de los dos.
