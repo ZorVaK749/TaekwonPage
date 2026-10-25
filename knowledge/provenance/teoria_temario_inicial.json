@@ -1,0 +1,49 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_etimologia_taekwondo_web_p2",
+      "content_id": "etimologia_taekwondo",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 2,
+      "printed_page": null,
+      "section": "Definición de Taekwon-Do: desglose TAE / KWON / DO",
+      "review_status": "pending_human_review",
+      "notes": "Observación visual local. Síntesis de las glosas del manual, no dictamen lingüístico universal. No se importan saltos, destrucción, otras traducciones o fechas del borrador antiguo. Se separa del concepto introductorio def_taekwondo sin renombrarlo."
+    },
+    {
+      "id": "citation_etimologia_taekwondo_ont_p2",
+      "content_id": "etimologia_taekwondo",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 2,
+      "printed_page": null,
+      "section": "Definición de Taekwon-Do: desglose TAE / KWON / DO",
+      "review_status": "pending_human_review",
+      "notes": "Glosas contrastadas visualmente con WEB 2. La coincidencia no establece independencia documental, autoridad de la escuela ni aprobación humana."
+    },
+    {
+      "id": "citation_clasificacion_instructores_web_p6",
+      "content_id": "clasificacion_instructores",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 6,
+      "printed_page": null,
+      "section": "Clasificación de instructores",
+      "review_status": "pending_human_review",
+      "notes": "Se observaron los cuatro grupos de Dan y sus denominaciones españolas. La copia muestra Busabonim, Sabonim, Sajionim y Sasonim; no se corrigen esas grafías desde memoria ni se convierten en IDs, aliases nuevos o roles de aplicación."
+    },
+    {
+      "id": "citation_clasificacion_instructores_ont_p7",
+      "content_id": "clasificacion_instructores",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 7,
+      "printed_page": null,
+      "section": "Clasificación de instructores",
+      "review_status": "pending_human_review",
+      "notes": "Mismos grupos/denominaciones españolas observados en esta copia, que muestra Boo Sabum Nim, Sabum Nim o Sabonim, Sajium Nim y Sason Nim. Las variantes se registran para revisión, sin elegir una romanización escolar. No se confirma un catálogo de grados reconocido por la escuela ni se asigna ROLE_ADMIN."
+    }
+  ]
+}

@@ -3,8 +3,8 @@ DO $$
 DECLARE
     linked bigint;
 BEGIN
-    IF (SELECT count(*) FROM content_entry) <> 39
-        OR (SELECT count(*) FROM content_source) <> 59
+    IF (SELECT count(*) FROM content_entry) <> 41
+        OR (SELECT count(*) FROM content_source) <> 63
         OR (SELECT count(*) FROM source_document) <> 5
         OR (SELECT count(*) FROM gup) <> 1 THEN
         RAISE EXCEPTION 'import/reload counts mismatch';

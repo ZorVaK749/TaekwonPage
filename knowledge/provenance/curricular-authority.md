@@ -22,6 +22,7 @@ No se interpreta una autorización genérica para continuar programando como apr
 | Variantes del saludo | `source_teoria_completa_web`, página PDF 7; `source_teoria_ont`, página PDF 8 | Redacción aplicable a la escuela; no se elige una por defecto |
 | Nota editorial incompleta | `source_teoria_ont`, página PDF 17 | Revisar la sección antes de normalizarla |
 | Cobertura de 10º Gup | Temario de examen 10º a 9º en páginas PDF 27 (WEB) y 35 (ONT); enumera solo temas de teoría, sin posiciones, Tuls, patadas ni combate | Requisitos técnicos completos y correspondencia con el programa vigente |
+| Profundidad teórica y clasificación | [Matriz de seis temas y siete fichas de trabajo](temario_teorico_10gup-review.md); clasificación en WEB 6 / ONT 7 con romanizaciones divergentes | Validar contenido/profundidad, resolver grafías y confirmar aplicabilidad escolar; no implica aprobación ni cierre de TKD-015 |
 | Modalidades de combate pactado | `sambo_matsokgi` e `ilbo_matsokgi` en ambas copias; `ibo_matsokgi` solo en ONT 10 | Validez y variante aplicable; el archivo antiguo menciona una forma «sin contacto» ausente en las fuentes |
 | Borrador previo | `Gups/10gup.json` y sus catálogos en la raíz, sin citas explícitas | Revisar cada requisito; el archivo no demuestra aprobación curricular |
 | Romanización | Variantes documentales ya observadas | Convención de presentación y alias sin alterar IDs publicados |

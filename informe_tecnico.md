@@ -4,9 +4,9 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.18  
+**Version del documento:** 1.19  
 **Fecha de creacion:** 14-10-2026  
-**Ultima actualizacion:** 24-10-2026  
+**Ultima actualizacion:** 25-10-2026  
 
 Esta revision actualiza el seguimiento, no las decisiones de arquitectura aprobadas. Las fases, los sprints y las versiones del producto son conceptos distintos: completar el bootstrap no completa la Fase 0 ni publica v0.1.
 
@@ -1727,7 +1727,7 @@ La base de conocimiento es el nucleo del producto.
 
 # 55. Estado actual y checklist de seguimiento
 
-**Corte verificado: 24-10-2026.** Un `[x]` indica exactamente el entregable descrito, no aprobacion humana del conocimiento ni una funcionalidad de la pagina disponible. Los estados parciales se mantienen abiertos.
+**Corte verificado: 25-10-2026.** Un `[x]` indica exactamente el entregable descrito, no aprobacion humana del conocimiento ni una funcionalidad de la pagina disponible. Los estados parciales se mantienen abiertos.
 
 Vista resumida para el responsable del proyecto: **[Plan de ataque con checks por fase](Plan_ataque.md)**. Se actualizara junto con este informe; no sustituye las decisiones originales ni sus criterios de cierre.
 
@@ -1751,6 +1751,8 @@ Vista resumida para el responsable del proyecto: **[Plan de ataque con checks po
 - [x] Arquitectura monolito modular inicialmente
 
 ## 55.2 Paso a paso respecto de la seccion 50
+
+**Bloque vigente — regreso a Fase 0:** ante los prerrequisitos humanos de revision/publicacion, el usuario confirmo retomar Fase 0 manteniendo Fase 1 abierta. Se cotejaron los seis temas teoricos del examen 10º a 9º en WEB 27 / ONT 35 y sus pasajes de contenido. Se añadieron dos fichas/cuatro citas (Tae/Kwon/Do y clasificacion de instructores) y una [matriz para revision humana](knowledge/provenance/temario_teorico_10gup-review.md), sin curriculum escolar. Se registran romanizaciones divergentes, no se escoge una oficial. No se desarrolla mas backend/frontend ni se cambia el esquema de BD en este bloque.
 
 **Bloque del 18-10-2026:** el usuario solicita continuar hacia BD/backend/frontend. Se habilita infraestructura local y pruebas de borradores en paralelo a las decisiones humanas pendientes, sin cerrar Sprint 1 ni alterar sus requisitos. PostgreSQL queda activo solo en localhost; la BD de desarrollo tiene esquema V1 sin contenido. El test importa los borradores en una BD aleatoria y la elimina al terminar. No hay credenciales versionadas, nuevas dependencias npm ni seeds aprobados.
 
@@ -1779,7 +1781,7 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 | Paso | Entregable | Estado real |
 |---|---|---|
 | 1 | Repositorio y estructura | Baseline y bloques integrados y publicados en `main` mediante `1ab81e7`; historial conservado, sin PR |
-| 2 | Knowledge base | Inventario inicial de cuatro PDFs; 31 fichas y 51 citas en revision, con los siete tipos de contenido cubiertos: posiciones, teoria, tuls, vocabulario, herramientas, patadas y combate; no secuencias globales completas ni curriculo |
+| 2 | Knowledge base | Cuatro PDFs; 33 fichas y 55 citas en revision, con siete tipos y matriz documental de seis temas teoricos. Sin secuencias globales completas o curriculo escolar |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
 | 5 | PostgreSQL | Compose, ERD, V1–V6, mapeo/recarga y versionado de texto/requisitos/subtipos/citas probados; curriculum real/seed aprobado y evidencia de revision/publicacion pendientes |
@@ -1820,7 +1822,8 @@ La estructura y el entregable Compose de Sprint 0 estan implementados. No equiva
 - [x] Implementar contratos JSON iniciales de `source`, `position`, `theory`, `tul`, `vocabulary`, `body_tool`, `kick`, `combat` y `gup`, con contratos comunes y contenedores (base tecnica de TKD-004).
 - [ ] Contrastar y ajustar esos contratos con la extraccion real completa; no equivalen a modelos marciales definitivos.
 - [ ] Completar posiciones iniciales (TKD-005): cuatro fichas en revision, incluida `narani_junbi_sogi` como variante documentada; la adopcion escolar del Junbi generico y las convenciones geometricas siguen pendientes.
-- [ ] Completar teoria inicial (TKD-006): hay cinco fichas en revision, no todo el temario.
+- [x] Preparar matriz documental de los seis temas teoricos 10º a 9º observados en WEB 27 / ONT 35, con siete fichas citadas y limites; no es programa aprobado.
+- [ ] Completar teoria inicial (TKD-006): siete fichas en revision, incluidos desglose Tae/Kwon/Do y clasificacion; faltan revision, profundidad y adopcion escolar, no todo el temario esta cerrado.
 - [ ] Completar vocabulario inicial (TKD-007): hay cuatro terminos en revision.
 - [ ] Completar herramientas (TKD-008): diez fichas iniciales con catorce citas en revisión, cinco de mano y cinco del pie; no incluyen formación anatómica o mecánica de impacto inferidas.
 - [ ] Completar patadas: tres fichas iniciales con tres citas en revisión, tomadas del capítulo de ataque de pie de la enciclopedia; el capítulo es en buena parte fotográfico y no se leyó íntegro.
@@ -1842,20 +1845,20 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Area | Cantidad / resultado |
 |---|---|
 | PDFs locales inventariados | 4; nunca publicados por estas tareas |
-| Archivos de catalogo nuevos | 9, todos con contenido en revision |
-| Fichas | 31: 5 de teoria, 4 de vocabulario, 4 de posiciones, 10 herramientas (5 de mano, 5 de pie), 2 ejercicios parciales, 3 patadas y 3 de combate |
-| Citas de procedencia | 51 en 9 archivos; vinculadas a copias exactas por SHA-256; cuatro copias documentales utilizadas, sin declarar independencia entre ellas |
+| Archivos de catalogo nuevos | 10, todos con contenido en revision |
+| Fichas | 33: 7 de teoria, 4 de vocabulario, 4 de posiciones, 10 herramientas (5 de mano, 5 de pie), 2 ejercicios parciales, 3 patadas y 3 de combate |
+| Citas de procedencia | 55 en 10 archivos; vinculadas por SHA-256 a cuatro copias, sin declarar independencia documental |
 | Acciones documentadas | 15 registros, correspondientes a listas impresas 1–7 y 1–8; no representan totales globales ni ejercicios completos |
 | Curriculos nuevos | 0 |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 198 correctos |
+| Tests Node | 204 correctos |
 | Tests PowerShell | 22 correctos |
 | Tests backend | 17 correctos, sin omitidos: unitarios y PostgreSQL Testcontainers; migracion, DTO con citas/identidad/localizadores, serializacion sin datos locales y casos negativos HTTP |
 | Arranque backend | JAR ejecutado contra Compose con importacion explicita de .env local; salud UP sin detalles, posiciones HTTP 403; proceso detenido al finalizar |
 | Persistencia | PostgreSQL/Flyway V1–V6: creacion/upgrades con datos; 16 rechazos de constraints, cinco conflictos de importacion, 18 textuales, 30 curriculares, 36 escalares, 39 de ejercicios y 37 de citas/propiedad; historial y rollback |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Ejercicios integrados en `77a3fec`; citas en `feat/versioned-citation-edits`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Citas integradas en `76d90be`; teoria/matriz en `feat/theory-review-coverage`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1888,7 +1891,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.18` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.19` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
 
 ---
 
@@ -1931,7 +1934,7 @@ No avanzar a 9º Gup hasta que la estructura de 10º Gup haya demostrado ser reu
 
 ### Proximo bloque de trabajo
 
-**Prioridad vigente por instruccion del usuario:** Fase 1 primero; al terminar sus entregables verificables, retomar una parte de Fase 0 y despues regresar a Fase 2. Los puntos de contenido siguientes siguen como dependencias, no como orden para ampliar backend inmediatamente. No cerrar Fase 1 por pruebas sinteticas si faltan evidencia real o decisiones humanas.
+**Prioridad vigente por confirmacion posterior del usuario:** retomar Fase 0 ante la falta de programa/revisor confirmados y mantener Fase 1 abierta. Pausar ampliacion de Fase 2; los puntos de contenido siguientes son el bloque activo. No cerrar Fase 1 por pruebas sinteticas si faltan evidencia real o decisiones humanas.
 
 1. Checkpoint acumulado integrado y publicado en `main` con historial preservado. En bloques futuros, partir de `origin/main` actualizado, trabajar y hacer push en una rama e integrar checkpoints coherentes periodicamente. Sin PR, force-push, tags o limpieza de ramas no autorizada.
 2. Contrastar y revisar los tramos encontrados en PDF 530 de la enciclopedia, resolver su legibilidad y alcance antes de completar secuencias; continuar consultas dirigidas para las lagunas de posiciones/herramientas. No convertir expresiones terminologicas en pasos ni generar el recorrido alterno por simetria.
@@ -1984,6 +1987,7 @@ Cuando OpenCode reciba una tarea:
 | 1.16 | 21-10-2026 | Fase 1: V4 para detalles de posiciones/vocabulario con historial/citas y cadena compartida de revisiones. 188 tests Node, 17 Java y 36 rechazos de detalles SQL; nulos/decimales/alias, cadenas mixtas y rollback probados. Sin modificar migraciones anteriores, contenido marcial real, dependencias o acceso HTTP |
 | 1.17 | 23-10-2026 | Fase 1: V5 para conteos/preparacion/alcance/pasos de ejercicios con citas propias e historial. 192 tests Node, 17 Java y 39 rechazos SQL de ejercicios; secuencias sinteticas, fallos tardios y rollback probados. Saju real sigue parcial; sin cambios de citas documentales, dependencias, publicacion o acceso HTTP |
 | 1.18 | 24-10-2026 | Fase 1: V6 para citas versionadas con copia/localizadores, reserva de IDs, propiedad de pasos y cadena global. 198 tests Node, 17 Java y 37 rechazos de citas/propiedad SQL; swap, FK diferida, coexistencia y rollback probados. Sin corregir evidencia real, cambiar derechos, aprobar contenido o abrir HTTP |
+| 1.19 | 25-10-2026 | Por confirmacion del usuario, regreso a Fase 0 con Fase 1 abierta. Dos fichas teoricas/cuatro citas nuevas y matriz de seis temas 10º a 9º; romanizaciones divergentes explicitadas. Total 33 fichas/55 citas en 10 pares de archivos; 204 tests Node. Sin programa escolar/aprobacion inventados, migraciones nuevas o ampliacion de aplicaciones |
 
 ---
 

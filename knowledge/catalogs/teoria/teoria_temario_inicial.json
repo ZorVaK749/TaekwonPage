@@ -1,0 +1,20 @@
+{
+  "format_version": 1,
+  "catalog_type": "theory",
+  "items": [
+    {
+      "id": "etimologia_taekwondo",
+      "name": "Significado de Tae, Kwon y Do en los manuales",
+      "description": "En las copias consultadas, Tae se vincula a la acción del pie; Kwon, a la del puño; y Do, al camino o arte, referido al desarrollo ético, moral y filosófico del estudiante.",
+      "citation_ids": ["citation_etimologia_taekwondo_web_p2", "citation_etimologia_taekwondo_ont_p2"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "clasificacion_instructores",
+      "name": "Clasificación de instructores en los manuales ONT",
+      "description": "Los manuales agrupan I, II y III Dan como instructor asistente o nacional; IV, V y VI Dan como instructor; VII y VIII Dan como maestro; e IX Dan como gran maestro. Presentan Nim como un sufijo de respeto. Las grafías coreanas difieren entre copias y requieren revisión.",
+      "citation_ids": ["citation_clasificacion_instructores_web_p6", "citation_clasificacion_instructores_ont_p7"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}
