@@ -1,6 +1,6 @@
 # Plan de ataque — TaeKwonPage
 
-**Actualizado: 24-10-2026.** Vista de seguimiento del [informe técnico](informe_tecnico.md), no un plan nuevo que reemplace su arquitectura o alcance.
+**Actualizado: 25-10-2026.** Vista de seguimiento del [informe técnico](informe_tecnico.md), no un plan nuevo que reemplace su arquitectura o alcance.
 
 - `[x]` = el entregable descrito está implementado/verificado.
 - `[ ]` = pendiente o parcial; el texto indica cuál de los dos.
@@ -11,7 +11,7 @@
 
 | Fase original | Estado real |
 | --- | --- |
-| 0 — Base de conocimiento | **Parcial, no cerrada:** 31 fichas y 51 citas, todas pendientes de revisión; cero currículos nuevos |
+| 0 — Base de conocimiento | **Retomada, no cerrada:** 33 fichas y 55 citas pendientes; matriz de seis temas teóricos, sin currículo escolar confirmado |
 | 1 — Persistencia | **Base técnica funcionando:** PostgreSQL, Flyway, tablas de contenido e importación de borradores probada; no persistencia educativa completa |
 | 2 — Backend | **Iniciada:** Spring Boot y lectura interna de posiciones con procedencia; contenido bloqueado por HTTP |
 | 3 — Seguridad funcional | No iniciada; existe solo el bloqueo preventivo de rutas y salud mínima |
@@ -20,7 +20,7 @@
 | 6 — Aprendizaje | Futuro, no iniciada |
 | 7 — Producción | No iniciada; no hay web desplegada |
 
-**Orden de trabajo confirmado:** terminar primero los entregables de Fase 1 que se puedan verificar; luego retomar Fase 0 y después volver a ampliar Fase 2. Las decisiones humanas pendientes no se marcarán completas por avanzar en código.
+**Instrucción más reciente:** el usuario confirmó retomar Fase 0 porque no hay programa/revisor confirmados, manteniendo Fase 1 explícitamente abierta. Se deja en pausa la ampliación de Fase 2. No se marcarán completas decisiones humanas por avanzar en código.
 
 **Sí, adelantamos trabajo de Fases 1 y 2 sin terminar la Fase 0**, por la autorización de continuar con BD/backend. No se eliminaron sus pendientes ni se modificó la Definition of Done original. El avance técnico permite desarrollar con datos de prueba, pero no afirmar que el temario de la escuela está completo o aprobado.
 
@@ -37,6 +37,7 @@ Fuente: secciones 38–39 y checklist 55.4 del informe.
 - [x] Controles de porcentajes, rotaciones y secuencias declaradas (base TKD-019).
 - [x] Validación de referencias curriculares probada con fixtures sintéticos (base TKD-020).
 - [x] Primeros borradores en los siete tipos de catálogo: posiciones, teoría, vocabulario, herramientas, ejercicios, patadas y combate.
+- [x] Matriz documental de los seis temas teóricos observados para 10º a 9º, con siete fichas citadas y límites explícitos; añadidos desglose Tae/Kwon/Do y clasificación de instructores. No es programa escolar aprobado.
 
 ### Pendientes que impiden cerrar la fase
 
@@ -44,7 +45,7 @@ Fuente: secciones 38–39 y checklist 55.4 del informe.
 - [ ] **TKD-003 — Convenciones marciales:** romanización/alias, medidas, referencias geométricas, unidades y orientación. Los IDs técnicos ya están definidos; los ángulos del renderer no se pueden inventar.
 - [ ] **TKD-004 — Contrastar contratos con el contenido completo:** los schemas actuales son iniciales, no modelos marciales definitivos.
 - [ ] **TKD-005 — Completar posiciones iniciales:** cuatro fichas en revisión. Resolver adopción escolar del Junbi y geometría pendiente; `narani_junbi_sogi` documentado no hace equivalentes todas las variantes.
-- [ ] **TKD-006 — Completar teoría inicial:** hay cinco fichas, no todo el temario revisado.
+- [ ] **TKD-006 — Completar teoría inicial:** hay siete fichas y una matriz de seis temas de los manuales; faltan revisión, profundidad requerida y adopción escolar. No se considera todo el temario completo.
 - [ ] **TKD-007 — Completar vocabulario inicial:** hay cuatro entradas, no el catálogo completo.
 - [ ] **TKD-008 — Completar herramientas:** diez fichas de trabajo, no un catálogo aprobado/completo.
 - [ ] **TKD-009 — Construir y revisar 10º Gup:** cero currículos en `knowledge/curricula/gups/`. El temario observado solo enumera teoría; faltan requisitos técnicos confirmados, no solo crear un JSON.
@@ -73,7 +74,7 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 - [x] Tablas de contenido/procedencia, posiciones, teoría, vocabulario, herramientas, patadas, combate, ejercicios/pasos y relaciones por Gup.
 - [x] FKs tipadas, IDs, hashes, restricciones de peso/rotación y controles de secuencia/páginas; índices iniciales.
 - [x] Exportador JSON → SQL de **borradores locales**, validado, transaccional y con consentimiento explícito `--local-drafts`.
-- [x] Importación de las 31 fichas/51 citas actuales en una BD desechable de prueba.
+- [x] Importación de las 33 fichas/55 citas actuales en una BD desechable de prueba; no carga educativa aprobada.
 - [x] Mapeo de currículos de trabajo: siete categorías de requisitos y sus citas, probado con fixtures sintéticos (no programa escolar).
 - [x] Recarga idéntica segura, sin duplicados; diferencias en filas o relaciones causan rollback. Cinco conflictos de importación probados en PostgreSQL.
 - [x] Edición explícita de nombre/descripción de catálogo con versión esperada, motivo, referencia local no verificada e historial con snapshot de citas; sin cambiar estado de aprobación.
@@ -163,7 +164,7 @@ Un volumen persistente local y `/actuator/health` local no completan estos punto
 
 ## Orden para retomar sin arrastrar pendientes invisibles
 
-La instrucción más reciente prioriza **Fase 1 → trabajo de Fase 0 → regreso a Fase 2**. La lista siguiente expresa dependencias, no autorización para saltar directamente al backend.
+El bloque activo es **Fase 0**, por confirmación posterior del usuario; Fase 1 queda abierta por sus dependencias humanas. La lista siguiente expresa dependencias, no autorización para saltar directamente al backend ni dar por terminada la persistencia funcional.
 
 1. Confirmar con la escuela autoridad, revisor y programa técnico de 10º Gup; no puede resolverlo un test ni la IA.
 2. Continuar extracción/revisión de Fase 0 y sus lagunas, cerrar convenciones y construir el currículo de 10º Gup sin inventar requisitos.

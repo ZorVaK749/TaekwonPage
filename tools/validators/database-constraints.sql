@@ -42,8 +42,8 @@ SELECT pg_temp.expect_rejection($q$INSERT INTO content_source (id, content_id, s
 SELECT pg_temp.expect_rejection($q$INSERT INTO tul_step_source VALUES ('test_tul', 1, 'citation_dobok_web_p11')$q$);
 DO $$
 BEGIN
-    IF (SELECT count(*) FROM content_entry WHERE id NOT IN ('test_position', 'test_tul', 'test_theory', 'gup_10')) <> 31
-        OR (SELECT count(*) FROM content_source) <> 51 THEN
+    IF (SELECT count(*) FROM content_entry WHERE id NOT IN ('test_position', 'test_tul', 'test_theory', 'gup_10')) <> 33
+        OR (SELECT count(*) FROM content_source) <> 55 THEN
         RAISE EXCEPTION 'draft import counts mismatch';
     END IF;
     IF (SELECT translation FROM vocabulary WHERE id = 'dobok') <> U&'Uniforme de pr\00E1ctica' THEN

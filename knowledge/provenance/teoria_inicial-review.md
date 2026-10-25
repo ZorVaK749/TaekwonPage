@@ -28,4 +28,4 @@ Los folios impresos permanecen `null`: se usan páginas PDF desde 1, sin inventa
 
 ## Punto de continuación
 
-El validador puede comprobar ahora un lote real con citas, sin necesidad de publicar los PDFs. `validate:content` debe seguir rechazando la foundation porque falta el currículo. El siguiente bloque, cuando se retome el trabajo, será revisión humana de este lote y continuación acotada de la extracción para 10º Gup; no pasar a 9º Gup ni iniciar persistencia/backend todavía.
+El validador comprueba este lote real sin publicar PDFs. `validate:content` sigue rechazando la ausencia de currículo. La [matriz teórica posterior](temario_teorico_10gup-review.md) añade etimología y clasificación en otro archivo, conservando estas tres fichas intactas. La infraestructura/backend avanzaron por autorización posterior, sin aprobar conocimiento; el bloque actual vuelve a Fase 0, no a 9º Gup.

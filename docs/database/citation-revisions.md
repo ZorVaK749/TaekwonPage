@@ -48,7 +48,7 @@ El conjunto nuevo no puede quedar vacío. Todas las citas deben pertenecer a la 
 
 ## Pruebas y pendientes
 
-`Test-Database.ps1` cubre upgrade V5 → V6 con borradores previos, baseline, swap de páginas, sección sin página, reserva de IDs retirados, enlaces de pasos, coexistencia con texto/requisitos y 37 rechazos SQL. Comprueba también la propiedad de citas en el editor de ejercicios aunque el llamador haya diferido la FK. Verifica recarga sin perder historial y rollback de evidencia/contador/reservas. Las demostraciones son sintéticas; no se corrigen las 51 citas reales.
+`Test-Database.ps1` cubre upgrade V5 → V6 con borradores previos, baseline, swap de páginas, sección sin página, reserva de IDs retirados, enlaces de pasos, coexistencia con texto/requisitos y 37 rechazos SQL. Comprueba también la propiedad de citas en el editor de ejercicios aunque el llamador haya diferido la FK. Verifica recarga sin perder historial y rollback de evidencia/contador/reservas. Las demostraciones son sintéticas; no corrigen citas reales.
 
 Los snapshots históricos de citas usados por revisiones anteriores se conservan, no se reescriben al corregir evidencia. Hay que mantener el JSON editorial coherente; no hay sincronización automática BD → JSON ni revisión por el hecho de ejecutar SQL.
 

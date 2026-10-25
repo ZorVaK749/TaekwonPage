@@ -58,7 +58,7 @@ Las migraciones viven en [resources/db/migration](../../backend/taekwonpage-api/
 
 ## Importación
 
-[Exportador](../../tools/seeders/export-draft-sql.mjs): requiere `--local-drafts`; valida todo antes de producir SQL, genera una única transacción y escapa literales explícitamente. No conecta por sí mismo a una BD ni escribe archivos. La prueba integra las 31 fichas y 51 citas actuales en una BD desechable.
+[Exportador](../../tools/seeders/export-draft-sql.mjs): requiere `--local-drafts`; valida todo antes de producir SQL, genera una única transacción y escapa literales explícitamente. No conecta por sí mismo a una BD ni escribe archivos. La prueba integra las 33 fichas y 55 citas actuales en una BD desechable; no carga esos borradores en desarrollo como contenido aprobado.
 
 No hay seed marcial de producción. La recarga idéntica no duplica ni cambia datos: `ON CONFLICT DO NOTHING` va acompañado de comprobación exacta de cada fila y de sus relaciones. Una diferencia provoca rollback, no una actualización silenciosa. Una transacción bloquea escrituras sobre las tablas involucradas durante la carga local. Se permite agregar fichas nuevas; omitir una ficha completa no la borra. No usar la salida como migración Flyway ni como importación en caliente de producción.
 
