@@ -83,7 +83,7 @@ Consulta [pendientes de arquitectura](docs/architecture/README.md). No se eligie
 
 Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. El primer checkpoint del baseline **`83eb531`** y sus bloques posteriores se publicó en `main` mediante **`1ab81e7`**, conservando su historial. El flujo actual es **trabajo y push en ramas, con merges periódicos de checkpoints revisados a `main`, sin Pull Requests**. La licencia MIT no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
 
-Bloque actual: **Fase 0 retomada**, con [matriz teórica 10º a 9º para revisión](knowledge/provenance/temario_teorico_10gup-review.md) y dos fichas nuevas respaldadas por los manuales. El usuario confirmó continuar la verificación documental sin programa/revisor designados. Fase 1 queda abierta; no se amplía backend/frontend ni se publica contenido.
+Bloque actual: **Fase 0 retomada**, con [matriz teórica 10º a 9º para revisión](knowledge/provenance/temario_teorico_10gup-review.md) y dos fichas nuevas respaldadas por los manuales. El usuario confirmó continuar la verificación documental sin programa/revisor designados. Fase 1 queda abierta; no se amplía backend/frontend ni se publica contenido. Para retomar el proyecto desde otro chat existe un [prompt de continuación](docs/handoff/continuation-prompt.md) con decisiones, estado y límites; el informe técnico prevalece ante discrepancias.
 
 El [checkpoint publicado](https://github.com/ZorVaK749/TaekwonPage/tree/main) ya está disponible en la vista predeterminada de `main`. Los bloques nuevos partirán de ese estado, sin crear ramas acumulativas innecesarias.
 
