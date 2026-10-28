@@ -1,0 +1,159 @@
+{
+  "format_version": 1,
+  "catalog_type": "vocabulary",
+  "items": [
+    {
+      "id": "nopunde",
+      "name": "Nopunde",
+      "description": "Término traducido como «Alto» en las tablas de vocabulario de ambos manuales, junto con Kaunde (Medio) y Najunde (Bajo).",
+      "translation": "Alto",
+      "aliases": [],
+      "citation_ids": ["citation_nopunde_web_p11", "citation_nopunde_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "kaunde",
+      "name": "Kaunde",
+      "description": "Término traducido como «Medio» en las tablas de vocabulario de ambos manuales, entre Nopunde (Alto) y Najunde (Bajo).",
+      "translation": "Medio",
+      "aliases": [],
+      "citation_ids": ["citation_kaunde_web_p11", "citation_kaunde_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "najunde",
+      "name": "Najunde",
+      "description": "Término traducido como «Bajo» en las tablas de vocabulario de ambos manuales, después de Nopunde (Alto) y Kaunde (Medio).",
+      "translation": "Bajo",
+      "aliases": [],
+      "citation_ids": ["citation_najunde_web_p11", "citation_najunde_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "ap",
+      "name": "Ap",
+      "description": "Término traducido como «Frontal» en las tablas de vocabulario, listado con Dollyo (Circular) y Yop (Lateral). La propia tabla lo usa en compuestos como Ap Joomuk y Ap Makgi.",
+      "translation": "Frontal",
+      "aliases": [],
+      "citation_ids": ["citation_ap_web_p11", "citation_ap_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "dollyo",
+      "name": "Dollyo",
+      "description": "Término traducido como «Circular» en las tablas de vocabulario de ambos manuales.",
+      "translation": "Circular",
+      "aliases": [],
+      "citation_ids": ["citation_dollyo_web_p11", "citation_dollyo_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "yop",
+      "name": "Yop",
+      "description": "Término traducido como «Lateral» en las tablas de vocabulario de ambos manuales. La propia tabla lo usa en compuestos como Yop Dwi, Yop Makgi y Yop Palkup Tulgi.",
+      "translation": "Lateral",
+      "aliases": [],
+      "citation_ids": ["citation_yop_web_p11", "citation_yop_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "naeryo",
+      "name": "Naeryo",
+      "description": "Término traducido como «Descendente» en las tablas de vocabulario de ambos manuales; no se confunde con Noollo, que la tabla traduce como «Descendente para bloqueos».",
+      "translation": "Descendente",
+      "aliases": [],
+      "citation_ids": ["citation_naeryo_web_p11", "citation_naeryo_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "ollyo",
+      "name": "Ollyo",
+      "description": "Término traducido como «Ascendente» en las tablas de vocabulario de ambos manuales.",
+      "translation": "Ascendente",
+      "aliases": [],
+      "citation_ids": ["citation_ollyo_web_p11", "citation_ollyo_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "bakuro",
+      "name": "Bakuro",
+      "description": "Término traducido como «Hacia fuera» en las tablas de vocabulario de ambos manuales; la tabla lo lista frente a Anuro («Hacia adentro»).",
+      "translation": "Hacia fuera",
+      "aliases": [],
+      "citation_ids": ["citation_bakuro_web_p11", "citation_bakuro_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "anuro",
+      "name": "Anuro",
+      "description": "Término traducido como «Hacia adentro» en las tablas de vocabulario de ambos manuales; la tabla lo lista frente a Bakuro («Hacia fuera»).",
+      "translation": "Hacia adentro",
+      "aliases": [],
+      "citation_ids": ["citation_anuro_web_p11", "citation_anuro_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "sang_san",
+      "name": "Sang San",
+      "description": "Término traducido como «Doble» en las tablas de vocabulario de ambos manuales. No se documenta aquí en qué compuestos lo aplican los manuales.",
+      "translation": "Doble",
+      "aliases": [],
+      "citation_ids": ["citation_sang_san_web_p11", "citation_sang_san_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "wi",
+      "name": "Wi",
+      "description": "Término traducido como «Hacia arriba» en las tablas de vocabulario de ambos manuales. Queda pendiente de revisión su coherencia con la fila Yop Dwi («Lateral hacia atrás»), que usa Dwi con otra connotación.",
+      "translation": "Hacia arriba",
+      "aliases": [],
+      "citation_ids": ["citation_wi_web_p11", "citation_wi_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "dwi",
+      "name": "Dwi",
+      "description": "Término traducido como «Hacia abajo» en las tablas de vocabulario de ambos manuales. Queda pendiente de revisión su coherencia con la fila Yop Dwi («Lateral hacia atrás») y con los términos de la tabla que empiezan por Dwi; no se corrige la traducción desde conocimiento general.",
+      "translation": "Hacia abajo",
+      "aliases": [],
+      "citation_ids": ["citation_dwi_web_p11", "citation_dwi_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "yop_dwi",
+      "name": "Yop Dwi",
+      "description": "Término traducido como «Lateral hacia atrás» en las tablas de vocabulario de ambos manuales. Se registra como aparece, sin resolver aquí la diferencia respecto de la fila Dwi («Hacia abajo»).",
+      "translation": "Lateral hacia atrás",
+      "aliases": [],
+      "citation_ids": ["citation_yop_dwi_web_p11", "citation_yop_dwi_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "yobap",
+      "name": "Yobap",
+      "description": "Término traducido como «Frontal lateral» en las tablas de vocabulario de ambos manuales; la tabla lo usa también en Yobap Makgi.",
+      "translation": "Frontal lateral",
+      "aliases": [],
+      "citation_ids": ["citation_yobap_web_p11", "citation_yobap_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "baro",
+      "name": "Baro",
+      "description": "Las tablas presentan dos filas de Baro con significados opuestos según la posición: «Con el mismo pie» al desplazarse en Gunnun Sogi (posición caminando) y «Con el pie invertido» en Niunja Sogi (posición en «L»). No se unifican ni se elige un significado; la convención dependiente de la posición queda para revisión.",
+      "translation": "Con el mismo pie en Gunnun Sogi y con el pie invertido en Niunja Sogi",
+      "aliases": [],
+      "citation_ids": ["citation_baro_web_p11", "citation_baro_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "bandae",
+      "name": "Bandae",
+      "description": "Las tablas presentan dos filas de Bandae con significados opuestos según la posición: «Con el pie invertido» al desplazarse en Gunnun Sogi (posición caminando) y «Con el mismo pie» en Niunja Sogi (posición en «L»). Invierte el par Baro/Bandae; no se unifican ni se elige un significado.",
+      "translation": "Con el pie invertido en Gunnun Sogi y con el mismo pie en Niunja Sogi",
+      "aliases": [],
+      "citation_ids": ["citation_bandae_web_p11", "citation_bandae_ont_p14"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}

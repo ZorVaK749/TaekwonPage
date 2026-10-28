@@ -17,8 +17,8 @@ test('actual drafts export atomically with typed rows and unknown counts preserv
   const sql = await exportDraftSql();
   const count = (table) => sql.split(`INSERT INTO ${table} (`).length - 1;
   assert.equal(count('source_document'), 4);
-  assert.equal(count('content_entry'), 33);
-  assert.equal(count('content_source'), 55);
+  assert.equal(count('content_entry'), 50);
+  assert.equal(count('content_source'), 89);
   assert.equal(count('tul_step'), 15);
   assert.equal(count('tul_step_source'), 15);
   assert.equal(count('gup'), 0);
