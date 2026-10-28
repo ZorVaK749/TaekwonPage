@@ -1,0 +1,114 @@
+{
+  "format_version": 1,
+  "catalog_type": "vocabulary",
+  "items": [
+    {
+      "id": "jumbi_sogi",
+      "name": "Jumbi Sogi",
+      "description": "Término traducido como «Posición inicial (A-B-C-D-etc)» en las tablas de vocabulario de ambos manuales. No se equipara a la ficha de posición narani_junbi_sogi: la adopción del Junbi genérico sigue pendiente de revisión escolar.",
+      "translation": "Posición inicial (A-B-C-D-etc)",
+      "aliases": [],
+      "citation_ids": ["citation_jumbi_sogi_web_p11", "citation_jumbi_sogi_ont_p13"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "chagi",
+      "name": "Chagi",
+      "description": "Término traducido como «Patada» en las tablas de vocabulario de ambos manuales. Es el término genérico; no se derivan de aquí las fichas de patadas concretas del catálogo de patadas, que proceden de la enciclopedia.",
+      "translation": "Patada",
+      "aliases": [],
+      "citation_ids": ["citation_chagi_web_p11", "citation_chagi_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "twigi",
+      "name": "Twigi",
+      "description": "Término traducido como «Salto en ejercicio fundamental» en las tablas de vocabulario de ambos manuales. No se confunde con Twimyo («Salto con patada»), que la tabla lista a continuación.",
+      "translation": "Salto en ejercicio fundamental",
+      "aliases": [],
+      "citation_ids": ["citation_twigi_web_p11", "citation_twigi_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "twimyo",
+      "name": "Twimyo",
+      "description": "Término traducido como «Salto con patada» en las tablas de vocabulario de ambos manuales; la tabla lo lista después de Twigi.",
+      "translation": "Salto con patada",
+      "aliases": [],
+      "citation_ids": ["citation_twimyo_web_p11", "citation_twimyo_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "bande",
+      "name": "Bande",
+      "description": "Término traducido como «Giro» en las tablas de vocabulario de ambos manuales. No se equipara a giros concretos de ejercicios o Tuls; la ficha documenta solo la fila del vocabulario.",
+      "translation": "Giro",
+      "aliases": [],
+      "citation_ids": ["citation_bande_web_p11", "citation_bande_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "sogi",
+      "name": "Sogi",
+      "description": "Término traducido como «Posición de piernas» en las tablas de vocabulario de ambos manuales. Es el término genérico; las posiciones concretas (Charyot Sogi, Gunnun Sogi, Niunja Sogi, Narani Junbi Sogi) tienen ficha propia en el catálogo de posiciones y no se derivan de esta fila.",
+      "translation": "Posición de piernas",
+      "aliases": [],
+      "citation_ids": ["citation_sogi_web_p11", "citation_sogi_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "so",
+      "name": "So",
+      "description": "La tabla traduce esta fila como «Abreviatura de sogi»; se registra como término lingüístico de la propia tabla, sin aplicarlo a nombres de posiciones existentes.",
+      "translation": "Abreviatura de sogi",
+      "aliases": [],
+      "citation_ids": ["citation_so_web_p11", "citation_so_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "makgi",
+      "name": "Makgi",
+      "description": "Término traducido como «Defensa» en las tablas de vocabulario de ambos manuales. Es el término genérico; no se convierten en fichas desde aquí los nombres de bloqueo de la tabla (Chukyo Makgi, Yop Makgi, Ap Makgi, Yobap Makgi) ni se equipara al ejercicio saju_makgi ya catalogado.",
+      "translation": "Defensa",
+      "aliases": [],
+      "citation_ids": ["citation_makgi_web_p11", "citation_makgi_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "opun",
+      "name": "Opun",
+      "description": "Término traducido como «Palma hacia abajo» en las tablas de vocabulario de ambos manuales. Aparece también en la compuesta Opun Sonkut, documentada aparte como parte del cuerpo.",
+      "translation": "Palma hacia abajo",
+      "aliases": [],
+      "citation_ids": ["citation_opun_web_p11", "citation_opun_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "dwijibun",
+      "name": "Dwijibun",
+      "description": "La tabla traduce esta fila como «Palma hacai arriba» en ambas copias; la grafía «hacai» se transcribe sin corregir (probable errata, TKD-003 pendiente). Coincide en orientación con la compuesta Dwijibun Sonkut, documentada aparte; no se fusionan.",
+      "translation": "Palma hacai arriba",
+      "aliases": [],
+      "citation_ids": ["citation_dwijibun_web_p11", "citation_dwijibun_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "kyocha",
+      "name": "Kyocha",
+      "description": "Término traducido como «En cruz (Ej: Sogi-Makgi)» en las tablas de vocabulario de ambos manuales; el ejemplo de la propia fila no se expande aquí.",
+      "translation": "En cruz (Ej: Sogi-Makgi)",
+      "aliases": [],
+      "citation_ids": ["citation_kyocha_web_p11", "citation_kyocha_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "jeja",
+      "name": "Jeja",
+      "description": "Término traducido como «Alumno» en las tablas de vocabulario de ambos manuales. Es vocabulario del manual, no un rol de la aplicación; los roles funcionales se definen en la sección de roles del informe, no desde esta fila.",
+      "translation": "Alumno",
+      "aliases": [],
+      "citation_ids": ["citation_jeja_web_p11", "citation_jeja_ont_p14"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}

@@ -21,7 +21,7 @@ Los IDs canónicos son globales, por lo que estas filas **no se duplican**; su a
 
 ## Filas no extraídas, pendientes de decisión
 
-- **Términos generales/acciones:** `Jumbi Sogi`, `Chagi`, `Twigi`, `Twimyo`, `Bande`, `Sogi`, `So`, `Makgi`, `Opun`, `Dwijibun`, `Kyocha`, `Jeja`. `Jumbi Sogi` («Posición inicial (A-B-C-D-etc)») se relaciona con la [adopción del Junbi](posicion_preparatoria_paralela-review.md), aún sin resolver.
+- **Términos generales/acciones:** `Jumbi Sogi`, `Chagi`, `Twigi`, `Twimyo`, `Bande`, `Sogi`, `So`, `Makgi`, `Opun`, `Dwijibun`, `Kyocha`, `Jeja`. [Extraídos en el bloque siguiente](vocabulario-terminos-generales-review.md) como vocabulario genérico; `Jumbi Sogi` no se equipara al Junbi existente.
 - **Partes del cuerpo sin ficha:** `Dung Joomuk`, `Sonbadak`, `Sonkal Dung`, `Sonkut`, `Opun Sonkut`, `Sun Sonkut`, `Dwijibun Sonkut`, `Bandal Son`, `Palkup`, `Dwichook`, `Baldung`, `Balkaldung`, `Balkut`, `Mori`, `Kyong Gol`. Pertenecen al catálogo de herramientas del cuerpo; [extraídas en el bloque siguiente](vocabulario-cuerpo-review.md) salvo `Dwichook`, excluido por la discrepancia de la sección siguiente.
 - **Nombres de técnica/bloqueo:** `Chukyo Makgi`, `Tulgi`, `Yop Makgi`, `Ap Makgi`, `Yobap Makgi`, `Jirugi` (dos filas), `Boosigi`, `Golcho`, `Miro`, `Noollo`, `Taerigi`, `Momchau`. No se convierten en fichas de catálogo desde una fila de vocabulario; su modelado depende de la revisión de técnicas y del currículo.
 
