@@ -11,7 +11,7 @@
 
 | Fase original | Estado real |
 | --- | --- |
-| 0 — Base de conocimiento | **Retomada, no cerrada:** 50 fichas y 89 citas pendientes; matrices de temas teóricos y de vocabulario (71 filas), sin currículo escolar confirmado |
+| 0 — Base de conocimiento | **Retomada, no cerrada:** 64 fichas y 112 citas pendientes; matrices de temas teóricos, de vocabulario (tablas WEB 65 / ONT 71 filas, no idénticas) y de partes del cuerpo, sin currículo escolar confirmado |
 | 1 — Persistencia | **Base técnica funcionando:** PostgreSQL, Flyway, tablas de contenido e importación de borradores probada; no persistencia educativa completa |
 | 2 — Backend | **Iniciada:** Spring Boot y lectura interna de posiciones con procedencia; contenido bloqueado por HTTP |
 | 3 — Seguridad funcional | No iniciada; existe solo el bloqueo preventivo de rutas y salud mínima |
@@ -47,7 +47,7 @@ Fuente: secciones 38–39 y checklist 55.4 del informe.
 - [ ] **TKD-005 — Completar posiciones iniciales:** cuatro fichas en revisión. Resolver adopción escolar del Junbi y geometría pendiente; `narani_junbi_sogi` documentado no hace equivalentes todas las variantes.
 - [ ] **TKD-006 — Completar teoría inicial:** hay siete fichas y una matriz de seis temas de los manuales; faltan revisión, profundidad requerida y adopción escolar. No se considera todo el temario completo.
 - [ ] **TKD-007 — Completar vocabulario inicial:** hay 21 entradas en revisión (cuatro iniciales y diecisiete de niveles/direcciones). La [matriz de cobertura](knowledge/provenance/vocabulario-tabla-completa-review.md) registra las 71 filas de las tablas de ambos manuales, con solapamientos y pendientes; no es el catálogo completo.
-- [ ] **TKD-008 — Completar herramientas:** diez fichas de trabajo, no un catálogo aprobado/completo.
+- [ ] **TKD-008 — Completar herramientas:** hay 24 entradas en revisión (las 10 iniciales y las [14 partes del cuerpo](knowledge/provenance/vocabulario-cuerpo-review.md) de las tablas de vocabulario). `Dwichook` queda excluido pendiente de TKD-003 y se documenta que la tabla WEB omite seis filas de mano presentes en ONT.
 - [ ] **TKD-009 — Construir y revisar 10º Gup:** cero currículos en `knowledge/curricula/gups/`. El temario observado solo enumera teoría; faltan requisitos técnicos confirmados, no solo crear un JSON.
 - [ ] **TKD-010 / TKD-011 — Estructurar 9º y 8º Gup:** siguen en el alcance de Fase 0, pero diferidos hasta demostrar una estructura reusable de 10º Gup. No se han cancelado.
 - [ ] **TKD-012 — Completar Saju Jirugi:** siete acciones documentadas, no total global. Resolver laguna del destino del golpe del punto 3, alcance alterno y conteo completo con evidencia.

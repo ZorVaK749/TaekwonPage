@@ -2,7 +2,7 @@
 
 **Estado: pendiente de revisión humana y confirmación escolar.** Es una matriz de evidencia documental, **no un currículo** ni un catálogo aprobado. Fases 0 y 1 siguen abiertas.
 
-Se observaron localmente las tablas «VOCABULARIO» completas de **WEB PDF 11–12** y **ONT PDF 13–16** (`source_teoria_completa_web` y `source_teoria_ont`, con sus SHA-256 en [inventory.json](../sources/inventory.json)). Ambas tablas terminan en «Momchau» antes de la sección «TEORÍA DEL PODER». Contienen **71 filas** con la misma lista de términos; no se presume que sean documentos independientes ni versiones ordenadas.
+Se observaron localmente las tablas «VOCABULARIO» completas de **WEB PDF 11–12** y **ONT PDF 13–16** (`source_teoria_completa_web` y `source_teoria_ont`, con sus SHA-256 en [inventory.json](../sources/inventory.json)). Ambas tablas terminan en «Momchau» antes de la sección «TEORÍA DEL PODER», pero **no son idénticas**: la tabla ONT contiene **71 filas** y la WEB **65**, porque faltan en WEB seis filas de mano (véase la tabla de discrepancias). No se presume que sean documentos independientes ni versiones ordenadas.
 
 ## Qué se extrajo en este bloque
 
@@ -22,7 +22,7 @@ Los IDs canónicos son globales, por lo que estas filas **no se duplican**; su a
 ## Filas no extraídas, pendientes de decisión
 
 - **Términos generales/acciones:** `Jumbi Sogi`, `Chagi`, `Twigi`, `Twimyo`, `Bande`, `Sogi`, `So`, `Makgi`, `Opun`, `Dwijibun`, `Kyocha`, `Jeja`. `Jumbi Sogi` («Posición inicial (A-B-C-D-etc)») se relaciona con la [adopción del Junbi](posicion_preparatoria_paralela-review.md), aún sin resolver.
-- **Partes del cuerpo sin ficha:** `Dung Joomuk`, `Sonbadak`, `Sonkal Dung`, `Sonkut`, `Opun Sonkut`, `Sun Sonkut`, `Dwijibun Sonkut`, `Bandal Son`, `Palkup`, `Dwichook`, `Baldung`, `Balkaldung`, `Balkut`, `Mori`, `Kyong Gol`. Pertenecen al catálogo de herramientas del cuerpo; extracción pendiente y sujeta a resolver las grafías de la sección siguiente.
+- **Partes del cuerpo sin ficha:** `Dung Joomuk`, `Sonbadak`, `Sonkal Dung`, `Sonkut`, `Opun Sonkut`, `Sun Sonkut`, `Dwijibun Sonkut`, `Bandal Son`, `Palkup`, `Dwichook`, `Baldung`, `Balkaldung`, `Balkut`, `Mori`, `Kyong Gol`. Pertenecen al catálogo de herramientas del cuerpo; [extraídas en el bloque siguiente](vocabulario-cuerpo-review.md) salvo `Dwichook`, excluido por la discrepancia de la sección siguiente.
 - **Nombres de técnica/bloqueo:** `Chukyo Makgi`, `Tulgi`, `Yop Makgi`, `Ap Makgi`, `Yobap Makgi`, `Jirugi` (dos filas), `Boosigi`, `Golcho`, `Miro`, `Noollo`, `Taerigi`, `Momchau`. No se convierten en fichas de catálogo desde una fila de vocabulario; su modelado depende de la revisión de técnicas y del currículo.
 
 ## Discrepancies y observaciones para el revisor
@@ -30,6 +30,7 @@ Los IDs canónicos son globales, por lo que estas filas **no se duplican**; su a
 | Asunto | Qué se observó | Límite |
 | --- | --- | --- |
 | `Baro`/`Bandae` según posición | Cuatro filas: en Gunnun Sogi, Baro = «con el mismo pie» y Bandae = «con el pie invertido»; en Niunja Sogi (posición en «L») el par **invierte** el significado. Aparece igual en ambas copias. | Registrado en las fichas `baro` y `bandae` con ambas glosas; no se elige una convención ni se declara cuál aplica en la escuela |
+| Tablas no idénticas | La tabla ONT tiene 71 filas y la WEB 65: faltan en WEB `Dung Joomuk`, `Sonbadak`, `Sonkal`, `Sonkal Dung`, `Sonkut` y `Opun Sonkut` (entre «Ap Joomuk» y «Sun Sonkut»). | Registrado en la [matriz de cuerpo](vocabulario-cuerpo-review.md); no se infiere la causa ni se rellena una copia desde la otra |
 | `Jirugi` duplicado | Una fila lo traduce «Patear reteniendo (Yopcha jirugi)» y otra «Todos los golpes con puño». Misma grafía, dos alcances. | No se fusionan ni se crea una ficha `jirugi` hasta resolver el doble uso |
 | `Dwichook` vs `dwihook`/`dwitkumchi` | La tabla dice «Dwichook — Parte posterior del talón»; la enciclopedia usa `dwihook` («parte de atrás del talón») y `dwitkumchi` («parte inferior del talón»). Variantes de romanización con solape semántico. | No se igualan grafías ni se crean aliases; TKD-003 pendiente |
 | Errata «hacai» | La fila `Dwijibun` muestra «Palma hacai arriba» en ambas copias. | Se transcribe sin corregir; probable errata tipográfica a confirmar |

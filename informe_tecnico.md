@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.21  
+**Version del documento:** 1.22  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 28-10-2026  
 
@@ -1754,7 +1754,9 @@ Para retomar el proyecto desde otro chat sin arrastrar contexto incompleto exist
 
 ## 55.2 Paso a paso respecto de la seccion 50
 
-**Bloque vigente — vocabulario (Fase 0):** se observaron las tablas VOCABULARIO completas de ambos manuales (WEB 11–12 y ONT 13–16, 71 filas) y se extrajeron 17 terminos de niveles/direcciones con 34 citas, mas una [matriz de cobertura](knowledge/provenance/vocabulario-tabla-completa-review.md) para el revisor. Se registran sin unificar el inversion de `Baro`/`Bandae` segun posicion y la duplicidad de `Jirugi` con dos alcances; no se crean fichas para partes del cuerpo o tecnicas desde una fila de vocabulario, ni se corrigen grafias. Sin curriculum, aprobacion, backend/frontend ni cambios de esquema.
+**Bloque vigente — partes del cuerpo (Fase 0):** se extrajeron 14 filas de partes del cuerpo de las tablas VOCABULARIO al catalogo `body_tool` con 23 citas, mas una [matriz de revision](knowledge/provenance/vocabulario-cuerpo-review.md). La observacion de paginas completas corrigio dos afirmaciones previas: las tablas **no son identicas** (ONT 71 filas, WEB 65; faltan en WEB seis filas de mano) y varias traducciones habian sido leidas mal en el bloque anterior y se transcriben ahora literalmente (`Kyong Gol` = «Tibia», `Baldung` = «Empeine», `Dung Joomuk` = «Revés de puño»). `Dwichook` sigue excluido por TKD-003. Sin curriculum, aprobacion, backend/frontend ni cambios de esquema.
+
+**Bloque del 28-10-2026 — vocabulario (Fase 0):** se observaron las tablas VOCABULARIO completas de ambos manuales (WEB 11–12 y ONT 13–16, 71 filas en ONT) y se extrajeron 17 terminos de niveles/direcciones con 34 citas, mas una [matriz de cobertura](knowledge/provenance/vocabulario-tabla-completa-review.md) para el revisor. Se registran sin unificar el inversion de `Baro`/`Bandae` segun posicion y la duplicidad de `Jirugi` con dos alcances; no se crean fichas para tecnicas desde una fila de vocabulario, ni se corrigen grafias.
 
 **Bloque del 25-10-2026 — regreso a Fase 0:** ante los prerrequisitos humanos de revision/publicacion, el usuario confirmo retomar Fase 0 manteniendo Fase 1 abierta. Se cotejaron los seis temas teoricos del examen 10º a 9º en WEB 27 / ONT 35 y sus pasajes de contenido. Se añadieron dos fichas/cuatro citas (Tae/Kwon/Do y clasificacion de instructores) y una [matriz para revision humana](knowledge/provenance/temario_teorico_10gup-review.md), sin curriculum escolar. Se registran romanizaciones divergentes, no se escoge una oficial. No se desarrolla mas backend/frontend ni se cambia el esquema de BD en este bloque.
 
@@ -1785,7 +1787,7 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 | Paso | Entregable | Estado real |
 |---|---|---|
 | 1 | Repositorio y estructura | Baseline y bloques integrados y publicados en `main` mediante `1ab81e7`; historial conservado, sin PR |
-| 2 | Knowledge base | Cuatro PDFs; 50 fichas y 89 citas en revision, con siete tipos, matriz documental de seis temas teoricos y matriz de cobertura del vocabulario (71 filas). Sin secuencias globales completas o curriculo escolar |
+| 2 | Knowledge base | Cuatro PDFs; 64 fichas y 112 citas en revision, con siete tipos, matriz documental de seis temas teoricos y matrices de cobertura del vocabulario (tablas WEB 65 filas / ONT 71 filas, no identicas). Sin secuencias globales completas o curriculo escolar |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
 | 5 | PostgreSQL | Compose, ERD, V1–V6, mapeo/recarga y versionado de texto/requisitos/subtipos/citas probados; curriculum real/seed aprobado y evidencia de revision/publicacion pendientes |
@@ -1829,7 +1831,7 @@ La estructura y el entregable Compose de Sprint 0 estan implementados. No equiva
 - [x] Preparar matriz documental de los seis temas teoricos 10º a 9º observados en WEB 27 / ONT 35, con siete fichas citadas y limites; no es programa aprobado.
 - [ ] Completar teoria inicial (TKD-006): siete fichas en revision, incluidos desglose Tae/Kwon/Do y clasificacion; faltan revision, profundidad y adopcion escolar, no todo el temario esta cerrado.
 - [ ] Completar vocabulario inicial (TKD-007): hay 21 terminos en revision (los cuatro iniciales y diecisiete de niveles/direcciones de la tabla de vocabulario); la matriz de cobertura documenta las 71 filas observadas, incluidas las que ya existen en otros catalogos y las pendientes de decision (partes del cuerpo, tecnicas y el doble uso de Jirugi).
-- [ ] Completar herramientas (TKD-008): diez fichas iniciales con catorce citas en revisión, cinco de mano y cinco del pie; no incluyen formación anatómica o mecánica de impacto inferidas.
+- [ ] Completar herramientas (TKD-008): 24 fichas en revision (las 10 iniciales y 14 partes del cuerpo de las tablas de vocabulario, con 23 citas); `Dwichook` queda excluido pendiente de TKD-003 y las seis filas de mano que faltan en WEB se documentan en la [matriz de cuerpo](knowledge/provenance/vocabulario-cuerpo-review.md). No incluyen formación anatómica o mecánica de impacto inferidas.
 - [ ] Completar patadas: tres fichas iniciales con tres citas en revisión, tomadas del capítulo de ataque de pie de la enciclopedia; el capítulo es en buena parte fotográfico y no se leyó íntegro.
 - [ ] Completar combate pactado: tres modalidades iniciales con cinco citas en revisión (`sambo_matsokgi`, `ibo_matsokgi`, `ilbo_matsokgi`); falta confirmar validez de la variante y resolver la divergencia entre copias.
 - [ ] Construir y revisar curriculum de 10º Gup (TKD-009); cero archivos curriculares en la ubicacion nueva.
@@ -1849,20 +1851,20 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Area | Cantidad / resultado |
 |---|---|
 | PDFs locales inventariados | 4; nunca publicados por estas tareas |
-| Archivos de catalogo nuevos | 11, todos con contenido en revision |
-| Fichas | 50: 7 de teoria, 21 de vocabulario, 4 de posiciones, 10 herramientas (5 de mano, 5 de pie), 2 ejercicios parciales, 3 patadas y 3 de combate |
-| Citas de procedencia | 89 en 11 archivos; vinculadas por SHA-256 a cuatro copias, sin declarar independencia documental |
+| Archivos de catalogo nuevos | 12, todos con contenido en revision |
+| Fichas | 64: 7 de teoria, 21 de vocabulario, 4 de posiciones, 24 herramientas (14 de cuerpo nuevas, 10 iniciales), 2 ejercicios parciales, 3 patadas y 3 de combate |
+| Citas de procedencia | 112 en 12 archivos; vinculadas por SHA-256 a cuatro copias, sin declarar independencia documental |
 | Acciones documentadas | 15 registros, correspondientes a listas impresas 1–7 y 1–8; no representan totales globales ni ejercicios completos |
 | Curriculos nuevos | 0 |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 210 correctos |
+| Tests Node | 216 correctos |
 | Tests PowerShell | 22 correctos |
 | Tests backend | 17 correctos, sin omitidos: unitarios y PostgreSQL Testcontainers; migracion, DTO con citas/identidad/localizadores, serializacion sin datos locales y casos negativos HTTP |
 | Arranque backend | JAR ejecutado contra Compose con importacion explicita de .env local; salud UP sin detalles, posiciones HTTP 403; proceso detenido al finalizar |
 | Persistencia | PostgreSQL/Flyway V1–V6: creacion/upgrades con datos; 16 rechazos de constraints, cinco conflictos de importacion, 18 textuales, 30 curriculares, 36 escalares, 39 de ejercicios y 37 de citas/propiedad; historial y rollback |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Citas integradas en `76d90be`; teoria/matriz en `04ead83`; vocabulario en la rama `feat/vocabulary-coverage`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Citas integradas en `76d90be`; teoria/matriz en `04ead83`; vocabulario integrado en `b570de6`; partes del cuerpo en la rama `feat/body-tool-vocabulary`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1994,6 +1996,7 @@ Cuando OpenCode reciba una tarea:
 | 1.19 | 25-10-2026 | Por confirmacion del usuario, regreso a Fase 0 con Fase 1 abierta. Dos fichas teoricas/cuatro citas nuevas y matriz de seis temas 10º a 9º; romanizaciones divergentes explicitadas. Total 33 fichas/55 citas en 10 pares de archivos; 204 tests Node. Sin programa escolar/aprobacion inventados, migraciones nuevas o ampliacion de aplicaciones |
 | 1.20 | 25-10-2026 | Traspaso de sesion: [prompt de continuacion](docs/handoff/continuation-prompt.md) con decisiones confirmadas, estado verificado, proximos pasos y limites de Fase 0. Corregido un estado sin confirmar que revertia el bloque 1.19; `main` verificado y publicado en `04ead83`. Sin cambios de contenido, migraciones, dependencias ni acceso HTTP |
 | 1.21 | 28-10-2026 | Fase 0: tablas de vocabulario observadas completas (WEB 11–12 / ONT 13–16, 71 filas). 17 terminos de niveles/direcciones con 34 citas y matriz de cobertura; inversion Baro/Bandae y doble Jirugi registrados sin unificar. Total 50 fichas/89 citas en 11 pares; 210 tests Node. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP |
+| 1.22 | 28-10-2026 | Fase 0: 14 partes del cuerpo al catalogo body_tool con 23 citas y matriz de revision. Corregidas dos afirmaciones del bloque 1.21: las tablas no son identicas (ONT 71 filas, WEB 65; seis filas de mano ausentes en WEB) y traducciones leidas mal se transcriben literalmente (Kyong Gol «Tibia», Baldung «Empeine»). Dwichook excluido por TKD-003. Total 64 fichas/112 citas en 12 pares; 216 tests Node. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP |
 
 ---
 

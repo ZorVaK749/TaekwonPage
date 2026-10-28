@@ -1,0 +1,258 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_sun_sonkut_web_p12",
+      "content_id": "sun_sonkut",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Sun Sonkut",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe la traducción con el matiz de palma hacia adentro sin derivar el golpe Sun Sonkut Tulgi que la propia tabla cita como ejemplo en otra fila."
+    },
+    {
+      "id": "citation_sun_sonkut_ont_p14",
+      "content_id": "sun_sonkut",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Sun Sonkut",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada en la continuación de la tabla; la fila se corta al final de la página y su traducción continúa en la 15, pero la entrada aparece aquí."
+    },
+    {
+      "id": "citation_dwijibun_sonkut_web_p12",
+      "content_id": "dwijibun_sonkut",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Dwijibun Sonkut",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe la traducción sin fusionarla con la fila suelta Dwijibun."
+    },
+    {
+      "id": "citation_dwijibun_sonkut_ont_p15",
+      "content_id": "dwijibun_sonkut",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Dwijibun Sonkut",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; la errata «hacai» de la fila suelta no aparece en esta compuesta."
+    },
+    {
+      "id": "citation_bandal_son_web_p12",
+      "content_id": "bandal_son",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Bandal Son",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Arca de la mano» sin corregir la grafía."
+    },
+    {
+      "id": "citation_bandal_son_ont_p15",
+      "content_id": "bandal_son",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Bandal Son",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; la coincidencia no implica aprobación de la grafía."
+    },
+    {
+      "id": "citation_palkup_web_p12",
+      "content_id": "palkup",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Palkup",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Codo» sin documentar aquí el ejemplo Yop Palkup Tulgi de otra fila."
+    },
+    {
+      "id": "citation_palkup_ont_p15",
+      "content_id": "palkup",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Palkup",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; se conserva la traducción literal."
+    },
+    {
+      "id": "citation_baldung_web_p12",
+      "content_id": "baldung",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Baldung",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Empeine» sin equipararla al balkal de la enciclopedia."
+    },
+    {
+      "id": "citation_baldung_ont_p15",
+      "content_id": "baldung",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Baldung",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; no se declara equivalencia con otros términos del pie."
+    },
+    {
+      "id": "citation_balkaldung_web_p12",
+      "content_id": "balkaldung",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Balkaldung",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Parte interna del pie»."
+    },
+    {
+      "id": "citation_balkaldung_ont_p15",
+      "content_id": "balkaldung",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Balkaldung",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; no se fusiona con balkal ni balkut."
+    },
+    {
+      "id": "citation_balkut_web_p12",
+      "content_id": "balkut",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Balkut",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Punta de los dedos del pie» sin equipararla a apkumchi."
+    },
+    {
+      "id": "citation_balkut_ont_p15",
+      "content_id": "balkut",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Balkut",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; se mantiene la distinción respecto de apkumchi."
+    },
+    {
+      "id": "citation_mori_web_p12",
+      "content_id": "mori",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Mori",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Cabeza»."
+    },
+    {
+      "id": "citation_mori_ont_p15",
+      "content_id": "mori",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Mori",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; se conserva la traducción literal."
+    },
+    {
+      "id": "citation_kyong_gol_web_p12",
+      "content_id": "kyong_gol",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Kyong Gol",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Tibia» sin derivar zonas objetivo adicionales."
+    },
+    {
+      "id": "citation_kyong_gol_ont_p15",
+      "content_id": "kyong_gol",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Kyong Gol",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; no se interpreta el alcance del término."
+    },
+    {
+      "id": "citation_dung_joomuk_ont_p14",
+      "content_id": "dung_joomuk",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Dung Joomuk",
+      "review_status": "pending_human_review",
+      "notes": "Fila presente solo en la tabla ONT entre Ap Joomuk y Sonbadak; la tabla WEB salta de Ap Joomuk (11) a Sun Sonkut (12). Se registra la ausencia sin inferir causa."
+    },
+    {
+      "id": "citation_sonbadak_ont_p14",
+      "content_id": "sonbadak",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Sonbadak",
+      "review_status": "pending_human_review",
+      "notes": "Fila presente solo en la tabla ONT; ausente de la tabla WEB. Se registra la ausencia sin inferir causa."
+    },
+    {
+      "id": "citation_sonkal_dung_ont_p14",
+      "content_id": "sonkal_dung",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Sonkal Dung",
+      "review_status": "pending_human_review",
+      "notes": "Fila presente solo en la tabla ONT, junto a Sonkal («Canto de mano»); no se fusionan. Ausente de la tabla WEB."
+    },
+    {
+      "id": "citation_sonkut_ont_p14",
+      "content_id": "sonkut",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Sonkut",
+      "review_status": "pending_human_review",
+      "notes": "Fila presente solo en la tabla ONT; ausente de la tabla WEB, que solo muestra las compuestas Opun/Sun/Dwijibun Sonkut."
+    },
+    {
+      "id": "citation_opun_sonkut_ont_p14",
+      "content_id": "opun_sonkut",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Opun Sonkut",
+      "review_status": "pending_human_review",
+      "notes": "Fila presente solo en la tabla ONT; ausente de la tabla WEB."
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "format_version": 1,
+  "catalog_type": "body_tool",
+  "items": [
+    {
+      "id": "dung_joomuk",
+      "name": "Dung Joomuk",
+      "description": "El vocabulario del manual ONT designa este término como «Revés de puño». La tabla de vocabulario de WEB no contiene esta fila, ausencia registrada en la matriz de revisión.",
+      "citation_ids": ["citation_dung_joomuk_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "sonbadak",
+      "name": "Sonbadak",
+      "description": "El vocabulario del manual ONT designa este término como «Palma de mano». La tabla de vocabulario de WEB no contiene esta fila, ausencia registrada en la matriz de revisión.",
+      "citation_ids": ["citation_sonbadak_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "sonkal_dung",
+      "name": "Sonkal Dung",
+      "description": "El vocabulario del manual ONT designa este término como «Revés del canto de la mano». No se fusiona con la ficha sonkal («Canto de mano»); la relación entre ambas filas queda para revisión.",
+      "citation_ids": ["citation_sonkal_dung_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "sonkut",
+      "name": "Sonkut",
+      "description": "El vocabulario del manual ONT designa este término como «Punta de dedos de la mano», sin el matiz de orientación de palma que las propias tablas añaden en Opun Sonkut, Sun Sonkut y Dwijibun Sonkut.",
+      "citation_ids": ["citation_sonkut_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "opun_sonkut",
+      "name": "Opun Sonkut",
+      "description": "El vocabulario del manual ONT designa este término como «Punta de dedos de la mano (palma hacia abajo)». La fila Opun suelta de la misma tabla se traduce «Palma hacia abajo».",
+      "citation_ids": ["citation_opun_sonkut_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "sun_sonkut",
+      "name": "Sun Sonkut",
+      "description": "Los vocabularios consultados designan este término como «Punta de dedos de la mano (con la palma hacia adentro)». No se deriva de aquí el golpe Sun Sonkut Tulgi, que aparece como ejemplo en otra fila de la misma tabla.",
+      "citation_ids": ["citation_sun_sonkut_web_p12", "citation_sun_sonkut_ont_p14"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "dwijibun_sonkut",
+      "name": "Dwijibun Sonkut",
+      "description": "Los vocabularios consultados designan este término como «Punta de los dedos de la mano (con la palma hacia arriba)». Coincide en orientación con la fila suelta Dwijibun («Palma hacai arriba», errata observada), que no se fusiona aquí.",
+      "citation_ids": ["citation_dwijibun_sonkut_web_p12", "citation_dwijibun_sonkut_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "bandal_son",
+      "name": "Bandal Son",
+      "description": "Los vocabularios consultados designan este término como «Arca de la mano». La grafía se transcribe tal como aparece en ambas copias, sin corregirla desde conocimiento general; TKD-003 pendiente.",
+      "citation_ids": ["citation_bandal_son_web_p12", "citation_bandal_son_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "palkup",
+      "name": "Palkup",
+      "description": "Los vocabularios consultados relacionan este término con el codo. Aparece también en la fila Tulgi como ejemplo «Yop Palkup Tulgi», que no se documenta aquí.",
+      "citation_ids": ["citation_palkup_web_p12", "citation_palkup_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "baldung",
+      "name": "Baldung",
+      "description": "Los vocabularios consultados designan este término como «Empeine». La ficha balkal de la enciclopedia describe el empeine como zona asociada, sin que se declare equivalencia entre ambos términos.",
+      "citation_ids": ["citation_baldung_web_p12", "citation_baldung_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "balkaldung",
+      "name": "Balkaldung",
+      "description": "Los vocabularios consultados designan este término como «Parte interna del pie». No se fusiona con balkal («Filo o canto del talón») ni con balkut.",
+      "citation_ids": ["citation_balkaldung_web_p12", "citation_balkaldung_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "balkut",
+      "name": "Balkut",
+      "description": "Los vocabularios consultados designan este término como «Punta de los dedos del pie». No se equipara a apkumchi («Metatarso») de la misma tabla.",
+      "citation_ids": ["citation_balkut_web_p12", "citation_balkut_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "mori",
+      "name": "Mori",
+      "description": "Los vocabularios consultados relacionan este término con la cabeza.",
+      "citation_ids": ["citation_mori_web_p12", "citation_mori_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "kyong_gol",
+      "name": "Kyong Gol",
+      "description": "Los vocabularios consultados designan este término como «Tibia». No se interpreta desde conocimiento general si designa la tibia sola o una zona golpeable del tren inferior.",
+      "citation_ids": ["citation_kyong_gol_web_p12", "citation_kyong_gol_ont_p15"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}
