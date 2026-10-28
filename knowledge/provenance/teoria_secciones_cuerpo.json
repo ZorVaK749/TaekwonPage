@@ -1,0 +1,49 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_secciones_cuerpo_altura_ont_p12",
+      "content_id": "secciones_cuerpo_altura",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "Secciones del cuerpo",
+      "review_status": "pending_human_review",
+      "notes": "Sección «SECCIONES DEL CUERPO»: tres partes con rangos explícitos (encima del cuello; entre los hombros y el ombligo; bajo el ombligo) y figura rotulada."
+    },
+    {
+      "id": "citation_secciones_cuerpo_altura_web_p10",
+      "content_id": "secciones_cuerpo_altura",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 10,
+      "printed_page": null,
+      "section": "Secciones del cuerpo",
+      "review_status": "pending_human_review",
+      "notes": "Sección «SECCIONES DEL CUERPO» de esta copia: se observó solo la figura rotulada Seccion alta (Nopunde) / media (Kaunde) / baja (Najunde), sin el enunciado de rangos que sí consta en la otra copia."
+    },
+    {
+      "id": "citation_division_lateral_cuerpo_web_p10",
+      "content_id": "division_lateral_cuerpo",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 10,
+      "printed_page": null,
+      "section": "División lateral del cuerpo",
+      "review_status": "pending_human_review",
+      "notes": "Apartado «Además de la sección alta, media y baja, el cuerpo se divide lateralmente en» con tres líneas (plexo solar, pecho, hombro) y figura rotulada A-B-C."
+    },
+    {
+      "id": "citation_division_lateral_cuerpo_ont_p13",
+      "content_id": "division_lateral_cuerpo",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 13,
+      "printed_page": null,
+      "section": "División lateral del cuerpo",
+      "review_status": "pending_human_review",
+      "notes": "Apartado homólogo inmediatamente posterior a la figura de secciones; se transcriben las tres líneas sin derivar puntos vitales ni zonas de ataque."
+    }
+  ]
+}

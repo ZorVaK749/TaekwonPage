@@ -1,0 +1,20 @@
+{
+  "format_version": 1,
+  "catalog_type": "theory",
+  "items": [
+    {
+      "id": "secciones_cuerpo_altura",
+      "name": "Secciones del cuerpo por altura en los manuales",
+      "description": "Los manuales dividen el cuerpo humano en tres partes: alta o Nopunde, media o Kaunde y baja o Najunde. La copia ONT añade rangos: encima del cuello, entre los hombros y el ombligo, y bajo el ombligo; la copia WEB solo los rotula en su figura («Seccion alta (Nopunde)», «Seccion media (Kaunde)», «Seccion baja (Najunde)») sin esos rangos. No se derivan zonas objetivo ni se declara equivalencia con las filas de vocabulario Nopunde, Kaunde y Najunde, traducidas como alturas.",
+      "citation_ids": ["citation_secciones_cuerpo_altura_ont_p12", "citation_secciones_cuerpo_altura_web_p10"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "division_lateral_cuerpo",
+      "name": "División lateral del cuerpo en los manuales",
+      "description": "Ambas copias indican que, además de la sección alta, media y baja, el cuerpo se divide lateralmente en tres líneas: A, línea del plexo solar; B, línea del pecho; C, línea del hombro. La figura rotula A, B y C de forma simétrica sobre el torso. No se derivan de aquí puntos vitales, zonas de ataque ni requisitos de examen.",
+      "citation_ids": ["citation_division_lateral_cuerpo_web_p10", "citation_division_lateral_cuerpo_ont_p13"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}
