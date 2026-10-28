@@ -1,0 +1,269 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_jumbi_sogi_web_p11",
+      "content_id": "jumbi_sogi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Jumbi Sogi",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada (resaltada en negrita en la tabla); se transcribe la traducción sin equipararla a narani_junbi_sogi ni resolver la adopción del Junbi genérico."
+    },
+    {
+      "id": "citation_jumbi_sogi_ont_p13",
+      "content_id": "jumbi_sogi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 13,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Jumbi Sogi",
+      "review_status": "pending_human_review",
+      "notes": "Primera fila de la tabla VOCABULARIO de esta copia; se conserva la traducción con la anotación de puntos A-B-C-D sin interpretarla."
+    },
+    {
+      "id": "citation_chagi_web_p11",
+      "content_id": "chagi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Chagi",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Patada» como término genérico, sin derivar patadas concretas."
+    },
+    {
+      "id": "citation_chagi_ont_p14",
+      "content_id": "chagi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Chagi",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; la coincidencia no implica aprobación curricular."
+    },
+    {
+      "id": "citation_twigi_web_p11",
+      "content_id": "twigi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Twigi",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe la traducción sin ejemplos de técnica."
+    },
+    {
+      "id": "citation_twigi_ont_p14",
+      "content_id": "twigi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Twigi",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; se mantiene la distinción respecto de Twimyo."
+    },
+    {
+      "id": "citation_twimyo_web_p11",
+      "content_id": "twimyo",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Twimyo",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe la traducción sin ejemplos de técnica."
+    },
+    {
+      "id": "citation_twimyo_ont_p14",
+      "content_id": "twimyo",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Twimyo",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; se conserva la traducción literal."
+    },
+    {
+      "id": "citation_bande_web_p11",
+      "content_id": "bande",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Bande",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Giro» sin equiparar a movimientos concretos de ejercicios o Tuls."
+    },
+    {
+      "id": "citation_bande_ont_p14",
+      "content_id": "bande",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Bande",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; no se añaden aplicaciones ausentes de la fila."
+    },
+    {
+      "id": "citation_sogi_web_p11",
+      "content_id": "sogi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Sogi",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe el término genérico «Posición de piernas»; las posiciones concretas tienen ficha propia y no se derivan de aquí."
+    },
+    {
+      "id": "citation_sogi_ont_p14",
+      "content_id": "sogi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Sogi",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; no se infiere relación con las fichas de posiciones existentes."
+    },
+    {
+      "id": "citation_so_web_p11",
+      "content_id": "so",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila So",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se registra la glosa de la propia tabla «Abreviatura de sogi» sin aplicarla a nombres existentes."
+    },
+    {
+      "id": "citation_so_ont_p14",
+      "content_id": "so",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila So",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; se transcribe como glosa lingüística."
+    },
+    {
+      "id": "citation_makgi_web_p11",
+      "content_id": "makgi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Makgi",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Defensa» como término genérico; los nombres de bloqueo de la tabla no se convierten en fichas y saju_makgi ya existe como ejercicio."
+    },
+    {
+      "id": "citation_makgi_ont_p14",
+      "content_id": "makgi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Makgi",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; no se fusiona con nombres compuestos de la misma tabla."
+    },
+    {
+      "id": "citation_opun_web_p11",
+      "content_id": "opun",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Opun",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Palma hacia abajo»; la compuesta Opun Sonkut se documenta en el bloque de partes del cuerpo."
+    },
+    {
+      "id": "citation_opun_ont_p14",
+      "content_id": "opun",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Opun",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; no se fusiona con la fila compuesta."
+    },
+    {
+      "id": "citation_dwijibun_web_p11",
+      "content_id": "dwijibun",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Dwijibun",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Palma hacai arriba» con la grafía «hacai» sin corregir (probable errata); la compuesta Dwijibun Sonkut se documenta aparte."
+    },
+    {
+      "id": "citation_dwijibun_ont_p14",
+      "content_id": "dwijibun",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Dwijibun",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; la errata aparece igual en ambas copias y no se corrige desde conocimiento general."
+    },
+    {
+      "id": "citation_kyocha_web_p11",
+      "content_id": "kyocha",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Kyocha",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe la traducción con el ejemplo de la propia fila (Sogi-Makgi) sin expandirlo."
+    },
+    {
+      "id": "citation_kyocha_ont_p14",
+      "content_id": "kyocha",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Kyocha",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; se conserva la traducción literal."
+    },
+    {
+      "id": "citation_jeja_web_p11",
+      "content_id": "jeja",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 11,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Jeja",
+      "review_status": "pending_human_review",
+      "notes": "Fila observada; se transcribe «Alumno» como vocabulario del manual, no como rol de la aplicación."
+    },
+    {
+      "id": "citation_jeja_ont_p14",
+      "content_id": "jeja",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 14,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Jeja",
+      "review_status": "pending_human_review",
+      "notes": "Fila homóloga observada; no se deriven permisos ni roles."
+    }
+  ]
+}
