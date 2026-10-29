@@ -50,7 +50,7 @@ Fuente: secciones 38–39 y checklist 55.4 del informe.
 - [ ] **TKD-008 — Completar herramientas:** hay 24 entradas en revisión (las 10 iniciales y las [14 partes del cuerpo](knowledge/provenance/vocabulario-cuerpo-review.md) de las tablas de vocabulario). `Dwichook` queda excluido pendiente de TKD-003 y se documenta que la tabla WEB omite seis filas de mano presentes en ONT.
 - [ ] **TKD-009 — Construir y revisar 10º Gup:** cero currículos en `knowledge/curricula/gups/`. El temario observado solo enumera teoría; faltan requisitos técnicos confirmados, no solo crear un JSON.
 - [ ] **TKD-010 / TKD-011 — Estructurar 9º y 8º Gup:** siguen en el alcance de Fase 0, pero diferidos hasta demostrar una estructura reusable de 10º Gup. No se han cancelado.
-- [ ] **TKD-012 — Completar Saju Jirugi:** siete acciones documentadas, no total global. Resolver laguna del destino del golpe del punto 3, alcance alterno y conteo completo con evidencia.
+- [ ] **TKD-012 — Completar Saju Jirugi:** siete acciones documentadas, no total global. La laguna del destino del golpe del punto 3 se intentó recuperar el 29-10-2026 con recortes ampliados (resultado negativo: tinta erosionada); requiere otra copia o revisor. Faltan alcance alterno y conteo completo con evidencia.
 - [ ] **TKD-013 — Completar Saju Makgi:** ocho acciones documentadas, sin total global/alcance alterno confirmado. La preparación ya tiene enlace documental.
 - [ ] **TKD-014 — Modelar Chon-Ji con evidencia:** no iniciado como ficha de catálogo; no deducir pasos de listas terminológicas.
 - [ ] **TKD-015 — Confirmar catálogo de grados reconocido por la escuela.**

@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.24  
+**Version del documento:** 1.25  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 28-10-2026  
 
@@ -1754,7 +1754,9 @@ Para retomar el proyecto desde otro chat sin arrastrar contexto incompleto exist
 
 ## 55.2 Paso a paso respecto de la seccion 50
 
-**Bloque vigente — secciones del cuerpo (Fase 0):** se documentaron dos fichas teoricas con cuatro citas a partir de WEB 9–10 / ONT 12–13: la division del cuerpo por altura (alta/media/baja, Nopunde/Kaunde/Najunde) y la [division lateral](knowledge/provenance/secciones-cuerpo-review.md) (lineas del plexo solar, pecho y hombro). Se registro la divergencia entre copias (ONT 12 anade rangos que WEB 10 no enuncia) sin completar una desde la otra. El bloque de puntos vitales (kupso) quedo observado y sin extraer, pendiente de decision del revisor. Sin curriculum, aprobacion, backend/frontend ni cambios de esquema.
+**Bloque vigente — legibilidad del punto 3 de Saju Jirugi (Fase 0):** se intento recuperar el destino ilegible del golpe del punto 3 de Saju Jirugi re-inspeccionando la PDF 530 de la enciclopedia con [recortes ampliados locales](knowledge/provenance/ejercicios-enciclopedia-review.md) (ancho de destino hasta 4000 px, sin OCR ni sustitucion de glifos). El resultado fue **negativo**: la tinta del destino esta erosionada hasta dejar blanco, sin trazas recuperables. La laguna se conserva documentada en la ficha, la cita y el inventario; no se completa el destino por simetría ni se declara resuelta. Sin curriculum, aprobacion, backend/frontend ni cambios de esquema; los conteos no cambian.
+
+**Bloque anterior — secciones del cuerpo (Fase 0):** se documentaron dos fichas teoricas con cuatro citas a partir de WEB 9–10 / ONT 12–13: la division del cuerpo por altura (alta/media/baja, Nopunde/Kaunde/Najunde) y la [division lateral](knowledge/provenance/secciones-cuerpo-review.md) (lineas del plexo solar, pecho y hombro). Se registro la divergencia entre copias (ONT 12 anade rangos que WEB 10 no enuncia) sin completar una desde la otra. El bloque de puntos vitales (kupso) quedo observado y sin extraer, pendiente de decision del revisor.
 
 **Bloque del 28-10-2026 — terminos generales (Fase 0):** se extrajeron los 12 terminos generales/accion de las tablas VOCABULARIO (WEB 11 / ONT 13–14) al catalogo de vocabulario con 24 citas, mas una [matriz de revision](knowledge/provenance/vocabulario-terminos-generales-review.md). `Jumbi Sogi` no se equipara al Junbi existente, `Makgi`/`Sogi`/`Chagi` genericos no absorben entradas concretas y `Jeja` no deriva roles. Con esto la matriz general del vocabulario queda agotada salvo los nombres de tecnica.
 
@@ -1791,7 +1793,7 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 | Paso | Entregable | Estado real |
 |---|---|---|
 | 1 | Repositorio y estructura | Baseline y bloques integrados y publicados en `main` mediante `1ab81e7`; historial conservado, sin PR |
-| 2 | Knowledge base | Cuatro PDFs; 78 fichas y 140 citas en revision, con siete tipos, matriz documental de seis temas teoricos, matrices de cobertura del vocabulario (tablas WEB 65 filas / ONT 71 filas, no identicas) y secciones/division lateral del cuerpo. Sin secuencias globales completas o curriculo escolar |
+| 2 | Knowledge base | Cuatro PDFs; 78 fichas y 140 citas en revision, con siete tipos, matriz documental de seis temas teoricos, matrices de cobertura del vocabulario (tablas WEB 65 filas / ONT 71 filas, no identicas), secciones/division lateral del cuerpo y laguna de legibilidad del punto 3 de Saju Jirugi verificada por recortes ampliados. Sin secuencias globales completas o curriculo escolar |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
 | 5 | PostgreSQL | Compose, ERD, V1–V6, mapeo/recarga y versionado de texto/requisitos/subtipos/citas probados; curriculum real/seed aprobado y evidencia de revision/publicacion pendientes |
@@ -2003,6 +2005,7 @@ Cuando OpenCode reciba una tarea:
 | 1.22 | 28-10-2026 | Fase 0: 14 partes del cuerpo al catalogo body_tool con 23 citas y matriz de revision. Corregidas dos afirmaciones del bloque 1.21: las tablas no son identicas (ONT 71 filas, WEB 65; seis filas de mano ausentes en WEB) y traducciones leidas mal se transcriben literalmente (Kyong Gol «Tibia», Baldung «Empeine»). Dwichook excluido por TKD-003. Total 64 fichas/112 citas en 12 pares; 216 tests Node. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP |
 | 1.23 | 28-10-2026 | Fase 0: 12 terminos generales/accion del vocabulario con 24 citas y matriz de revision; Jumbi Sogi no se equipara al Junbi existente y Jeja no deriva roles. Matriz general del vocabulario agotada salvo nombres de tecnica. Total 76 fichas/136 citas en 13 pares; 222 tests Node. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP |
 | 1.24 | 28-10-2026 | Fase 0: dos fichas teoricas de secciones/division lateral del cuerpo con cuatro citas (WEB 9–10 / ONT 12–13) y matriz de revision; divergencia de rangos ONT vs WEB registrada sin completar una copia desde la otra. Puntos vitales (kupso) observado sin extraer. Total 78 fichas/140 citas en 14 pares; 228 tests Node. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP |
+| 1.25 | 29-10-2026 | Fase 0: intento de recuperar la legibilidad del punto 3 de Saju Jirugi con recortes ampliados de la PDF 530 (hasta 4000 px, sin OCR); resultado negativo por erosion de tinta, laguna conservada sin completar por simetría y registrada en cita, matriz e inventario. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP; conteos sin cambios (78/140, 228 tests) |
 
 ---
 
