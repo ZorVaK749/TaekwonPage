@@ -23,7 +23,7 @@ Los IDs canónicos son globales, por lo que estas filas **no se duplican**; su a
 
 - **Términos generales/acciones:** `Jumbi Sogi`, `Chagi`, `Twigi`, `Twimyo`, `Bande`, `Sogi`, `So`, `Makgi`, `Opun`, `Dwijibun`, `Kyocha`, `Jeja`. [Extraídos en el bloque siguiente](vocabulario-terminos-generales-review.md) como vocabulario genérico; `Jumbi Sogi` no se equipara al Junbi existente.
 - **Partes del cuerpo sin ficha:** `Dung Joomuk`, `Sonbadak`, `Sonkal Dung`, `Sonkut`, `Opun Sonkut`, `Sun Sonkut`, `Dwijibun Sonkut`, `Bandal Son`, `Palkup`, `Dwichook`, `Baldung`, `Balkaldung`, `Balkut`, `Mori`, `Kyong Gol`. Pertenecen al catálogo de herramientas del cuerpo; [extraídas en el bloque siguiente](vocabulario-cuerpo-review.md) salvo `Dwichook`, excluido por la discrepancia de la sección siguiente.
-- **Nombres de técnica/bloqueo:** `Chukyo Makgi`, `Tulgi`, `Yop Makgi`, `Ap Makgi`, `Yobap Makgi`, `Jirugi` (dos filas), `Boosigi`, `Golcho`, `Miro`, `Noollo`, `Taerigi`, `Momchau`. No se convierten en fichas de catálogo desde una fila de vocabulario; su modelado depende de la revisión de técnicas y del currículo.
+- **Nombres de técnica/bloqueo:** `Chukyo Makgi`, `Tulgi`, `Yop Makgi`, `Ap Makgi`, `Yobap Makgi`, `Jirugi` (dos filas), `Boosigi`, `Golcho`, `Miro`, `Noollo`, `Taerigi`, `Momchau`. [Extraídos en el bloque siguiente](vocabulario-nombres-tecnica-review.md) como filas de vocabulario (once entradas), salvo `Jirugi`, excluido por el doble significado de la sección siguiente; no se convierten en fichas de técnica ni en requisitos de examen.
 
 ## Discrepancies y observaciones para el revisor
 
@@ -44,7 +44,7 @@ Los IDs canónicos son globales, por lo que estas filas **no se duplican**; su a
 - [ ] Decidir si `baro`/`bandae` conservan la distinción dependiente de la posición o se presentan de otra forma al alumno.
 - [ ] Resolver el doble significado de `Jirugi` y si debe existir como término único.
 - [ ] Aprobar o corregir las grafías romanizadas (`Dwichook`, `Bandal Son`, «hacai») conforme a TKD-003.
-- [ ] Decidir la extracción de las partes del cuerpo restantes y de los nombres de técnica, sin duplicar IDs existentes.
+- [ ] Decidir la extracción de las partes del cuerpo restantes, sin duplicar IDs existentes. (Los nombres de técnica se [extrajeron como vocabulario](vocabulario-nombres-tecnica-review.md), pendientes de revisión.)
 - [ ] Registrar quién revisa, con identidad y alcance reales.
 
 **No hay persona, fecha de aprobación o programa escolar confirmados en este documento.** La matriz no autoriza a sembrar datos como aprobados, a abrir endpoints educativos ni a avanzar de fase. `validate:content` debe seguir rechazando la ausencia de currículo.

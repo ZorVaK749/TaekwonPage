@@ -1,0 +1,247 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_chukyo_makgi_web_p12",
+      "content_id": "chukyo_makgi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Chukyo Makgi",
+      "review_status": "pending_human_review",
+      "notes": "Fila de nombre de bloqueo; se transcribe la traducción sin convertirla en ficha de técnica ni derivar zona objetivo."
+    },
+    {
+      "id": "citation_chukyo_makgi_ont_p15",
+      "content_id": "chukyo_makgi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Chukyo Makgi",
+      "review_status": "pending_human_review",
+      "notes": "Misma fila observada en la copia ONT con traducción idéntica. Fila de nombre de bloqueo; se transcribe la traducción sin convertirla en ficha de técnica ni derivar zona objetivo."
+    },
+    {
+      "id": "citation_tulgi_web_p12",
+      "content_id": "tulgi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Tulgi",
+      "review_status": "pending_human_review",
+      "notes": "Fila con ejemplo entre paréntesis (sun Sonkut Tulgi, Yop Palkup Tulgi); el ejemplo se transcribe, no se expande en fichas."
+    },
+    {
+      "id": "citation_tulgi_ont_p15",
+      "content_id": "tulgi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Tulgi",
+      "review_status": "pending_human_review",
+      "notes": "Misma fila observada en la copia ONT con traducción idéntica. Fila con ejemplo entre paréntesis (sun Sonkut Tulgi, Yop Palkup Tulgi); el ejemplo se transcribe, no se expande en fichas."
+    },
+    {
+      "id": "citation_yop_makgi_web_p12",
+      "content_id": "yop_makgi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Yop Makgi",
+      "review_status": "pending_human_review",
+      "notes": "Fila compuesta (Yop + Makgi); no se absorbe en el término genérico makgi ni en saju_makgi."
+    },
+    {
+      "id": "citation_yop_makgi_ont_p15",
+      "content_id": "yop_makgi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Yop Makgi",
+      "review_status": "pending_human_review",
+      "notes": "Misma fila observada en la copia ONT con traducción idéntica. Fila compuesta (Yop + Makgi); no se absorbe en el término genérico makgi ni en saju_makgi."
+    },
+    {
+      "id": "citation_ap_makgi_web_p12",
+      "content_id": "ap_makgi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Ap Makgi",
+      "review_status": "pending_human_review",
+      "notes": "Fila compuesta (Ap + Makgi); no se absorbe en el término genérico makgi."
+    },
+    {
+      "id": "citation_ap_makgi_ont_p15",
+      "content_id": "ap_makgi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Ap Makgi",
+      "review_status": "pending_human_review",
+      "notes": "Misma fila observada en la copia ONT con traducción idéntica. Fila compuesta (Ap + Makgi); no se absorbe en el término genérico makgi."
+    },
+    {
+      "id": "citation_yobap_makgi_web_p12",
+      "content_id": "yobap_makgi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Yobap Makgi",
+      "review_status": "pending_human_review",
+      "notes": "Fila compuesta (Yobap + Makgi); no se absorbe en el término genérico makgi."
+    },
+    {
+      "id": "citation_yobap_makgi_ont_p15",
+      "content_id": "yobap_makgi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Yobap Makgi",
+      "review_status": "pending_human_review",
+      "notes": "Misma fila observada en la copia ONT con traducción idéntica. Fila compuesta (Yobap + Makgi); no se absorbe en el término genérico makgi."
+    },
+    {
+      "id": "citation_boosigi_web_p12",
+      "content_id": "boosigi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Boosigi",
+      "review_status": "pending_human_review",
+      "notes": "Fila con ejemplo (Apcha Boosigi); usa «Patear» como la primera fila de Jirugi, sin armonizar terminología."
+    },
+    {
+      "id": "citation_boosigi_ont_p15",
+      "content_id": "boosigi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Boosigi",
+      "review_status": "pending_human_review",
+      "notes": "Misma fila observada en la copia ONT con traducción idéntica. Fila con ejemplo (Apcha Boosigi); usa «Patear» como la primera fila de Jirugi, sin armonizar terminología."
+    },
+    {
+      "id": "citation_golcho_web_p12",
+      "content_id": "golcho",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Golcho",
+      "review_status": "pending_human_review",
+      "notes": "Fila de nombre de bloqueo asociado al agarre; no se derivan técnicas de defensa contra agarre."
+    },
+    {
+      "id": "citation_golcho_ont_p15",
+      "content_id": "golcho",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Golcho",
+      "review_status": "pending_human_review",
+      "notes": "Misma fila observada en la copia ONT con traducción idéntica. Fila de nombre de bloqueo asociado al agarre; no se derivan técnicas de defensa contra agarre."
+    },
+    {
+      "id": "citation_miro_web_p12",
+      "content_id": "miro",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Miro",
+      "review_status": "pending_human_review",
+      "notes": "Palabra de acción genérica; no se convierte en técnica ni requisito de examen."
+    },
+    {
+      "id": "citation_miro_ont_p15",
+      "content_id": "miro",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Miro",
+      "review_status": "pending_human_review",
+      "notes": "Misma fila observada en la copia ONT con traducción idéntica. Palabra de acción genérica; no se convierte en técnica ni requisito de examen."
+    },
+    {
+      "id": "citation_noollo_web_p12",
+      "content_id": "noollo",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Noollo",
+      "review_status": "pending_human_review",
+      "notes": "Se conserva distinto de Naeryo («Descendente»); no se fusionan grafías ni significados."
+    },
+    {
+      "id": "citation_noollo_ont_p15",
+      "content_id": "noollo",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 15,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Noollo",
+      "review_status": "pending_human_review",
+      "notes": "Misma fila observada en la copia ONT con traducción idéntica. Se conserva distinto de Naeryo («Descendente»); no se fusionan grafías ni significados."
+    },
+    {
+      "id": "citation_taerigi_web_p12",
+      "content_id": "taerigi",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Taerigi",
+      "review_status": "pending_human_review",
+      "notes": "Fila paralela a la segunda de Jirugi («Todos los golpes con puño»); no se equipara a sonkal ni a fichas de herramientas."
+    },
+    {
+      "id": "citation_taerigi_ont_p16",
+      "content_id": "taerigi",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 16,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Taerigi",
+      "review_status": "pending_human_review",
+      "notes": "Misma fila observada en la copia ONT con traducción idéntica. Fila paralela a la segunda de Jirugi («Todos los golpes con puño»); no se equipara a sonkal ni a fichas de herramientas."
+    },
+    {
+      "id": "citation_momchau_web_p12",
+      "content_id": "momchau",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 12,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Momchau",
+      "review_status": "pending_human_review",
+      "notes": "Modalidad al bloquear con ambos brazos; no se equipara a Sang San («Doble») ni se crea ficha de bloqueo doble."
+    },
+    {
+      "id": "citation_momchau_ont_p16",
+      "content_id": "momchau",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 16,
+      "printed_page": null,
+      "section": "VOCABULARIO: fila Momchau",
+      "review_status": "pending_human_review",
+      "notes": "Misma fila observada en la copia ONT con traducción idéntica. Modalidad al bloquear con ambos brazos; no se equipara a Sang San («Doble») ni se crea ficha de bloqueo doble."
+    }
+  ]
+}
