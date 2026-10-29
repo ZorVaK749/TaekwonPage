@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.26  
+**Version del documento:** 1.27  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 28-10-2026  
 
@@ -1754,7 +1754,9 @@ Para retomar el proyecto desde otro chat sin arrastrar contexto incompleto exist
 
 ## 55.2 Paso a paso respecto de la seccion 50
 
-**Bloque vigente — nombres de tecnica del vocabulario (Fase 0):** se extrajeron las once filas restantes de nombres de tecnica de las tablas VOCABULARIO (WEB 12 / ONT 15–16) al catalogo de vocabulario con 22 citas y una [matriz de revision](knowledge/provenance/vocabulario-nombres-tecnica-review.md). Las traducciones coinciden en ambas copias. Los compuestos (`Yop Makgi`, `Ap Makgi`, `Yobap Makgi`) no absorben al generico `makgi` ni se equiparan a `saju_makgi`; los ejemplos entre parentesis se transcriben sin expandir en fichas. La fila doble de `Jirugi` quedo excluida y documentada, sin crear una ficha unica. Con esto la matriz del vocabulario queda agotada salvo resolver el doble `Jirugi`. Sin curriculum, aprobacion, backend/frontend ni cambios de esquema.
+**Bloque vigente — cierre tecnico de la Fase 0 (Fase 0):** se dio por **agotada la extracción** de la Fase 0: todo lo observable en los cuatro PDFs locales ya esta documentado con cita, y lo único pendiente depende de decisiones humanas. Se consolidaron esas decisiones en un unico [documento de decisiones pendientes](docs/phase0-decisiones-pendientes.md) (siete preguntas para la escuela, cinco para el revisor, dos tecnicas del proyecto) y se actualizo el [prompt de continuacion](docs/handoff/continuation-prompt.md) al estado real (informe 1.26, 89 fichas/162 citas, 235 tests). Sin nuevo contenido, sin curriculum, sin aprobacion y sin cambios de esquema; los conteos no cambian.
+
+**Bloque anterior — nombres de tecnica del vocabulario (Fase 0):** se extrajeron las once filas restantes de nombres de tecnica de las tablas VOCABULARIO (WEB 12 / ONT 15–16) al catalogo de vocabulario con 22 citas y una [matriz de revision](knowledge/provenance/vocabulario-nombres-tecnica-review.md). Las traducciones coinciden en ambas copias. Los compuestos (`Yop Makgi`, `Ap Makgi`, `Yobap Makgi`) no absorben al generico `makgi` ni se equiparan a `saju_makgi`; los ejemplos entre parentesis se transcriben sin expandir en fichas. La fila doble de `Jirugi` quedo excluida y documentada, sin crear una ficha unica. Con esto la matriz del vocabulario queda agotada salvo resolver el doble `Jirugi`. Sin curriculum, aprobacion, backend/frontend ni cambios de esquema.
 
 **Bloque anterior — legibilidad del punto 3 de Saju Jirugi (Fase 0):** se intento recuperar el destino ilegible del golpe del punto 3 de Saju Jirugi re-inspeccionando la PDF 530 de la enciclopedia con [recortes ampliados locales](knowledge/provenance/ejercicios-enciclopedia-review.md) (ancho de destino hasta 4000 px, sin OCR ni sustitucion de glifos). El resultado fue **negativo**: la tinta del destino esta erosionada hasta dejar blanco, sin trazas recuperables. La laguna se conserva documentada en la ficha, la cita y el inventario; no se completa el destino por simetría ni se declara resuelta.
 
@@ -1795,7 +1797,7 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 | Paso | Entregable | Estado real |
 |---|---|---|
 | 1 | Repositorio y estructura | Baseline y bloques integrados y publicados en `main` mediante `1ab81e7`; historial conservado, sin PR |
-| 2 | Knowledge base | Cuatro PDFs; 89 fichas y 162 citas en revision, con siete tipos, matriz documental de seis temas teoricos, matrices completas de cobertura del vocabulario (tablas WEB 65 filas / ONT 71 filas, no identicas; nombres de tecnica extraidos salvo el doble Jirugi), secciones/division lateral del cuerpo y laguna de legibilidad del punto 3 de Saju Jirugi verificada por recortes ampliados. Sin secuencias globales completas o curriculo escolar |
+| 2 | Knowledge base | Cuatro PDFs; 89 fichas y 162 citas en revision, con siete tipos, matriz documental de seis temas teoricos, matrices completas de cobertura del vocabulario (tablas WEB 65 filas / ONT 71 filas, no identicas; nombres de tecnica extraidos salvo el doble Jirugi), secciones/division lateral del cuerpo y laguna de legibilidad del punto 3 de Saju Jirugi verificada por recortes ampliados. Extraccion dada por agotada; decisiones humanas pendientes consolidadas en un documento unico. Sin secuencias globales completas o curriculo escolar |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
 | 5 | PostgreSQL | Compose, ERD, V1–V6, mapeo/recarga y versionado de texto/requisitos/subtipos/citas probados; curriculum real/seed aprobado y evidencia de revision/publicacion pendientes |
@@ -2009,6 +2011,7 @@ Cuando OpenCode reciba una tarea:
 | 1.24 | 28-10-2026 | Fase 0: dos fichas teoricas de secciones/division lateral del cuerpo con cuatro citas (WEB 9–10 / ONT 12–13) y matriz de revision; divergencia de rangos ONT vs WEB registrada sin completar una copia desde la otra. Puntos vitales (kupso) observado sin extraer. Total 78 fichas/140 citas en 14 pares; 228 tests Node. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP |
 | 1.25 | 29-10-2026 | Fase 0: intento de recuperar la legibilidad del punto 3 de Saju Jirugi con recortes ampliados de la PDF 530 (hasta 4000 px, sin OCR); resultado negativo por erosion de tinta, laguna conservada sin completar por simetría y registrada en cita, matriz e inventario. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP; conteos sin cambios (78/140, 228 tests) |
 | 1.26 | 29-10-2026 | Fase 0: once nombres de tecnica de las tablas VOCABULARIO (WEB 12 / ONT 15–16) extraidos como vocabulario con 22 citas y matriz de revision; traducciones identicas entre copias, compuestos sin absorber al makgi generico, ejemplos sin expandir. Fila doble de Jirugi excluida y documentada; matriz del vocabulario agotada salvo ese doble uso. Total 89 fichas/162 citas en 15 pares; 235 tests Node. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP |
+| 1.27 | 29-10-2026 | Fase 0: cierre tecnico — extraccion dada por agotada y decisiones pendientes consolidadas en docs/phase0-decisiones-pendientes.md (7 preguntas escuela, 5 revisor, 2 tecnicas); prompt de continuacion actualizado al estado real. Sin contenido nuevo, curriculum, aprobacion ni cambios de esquema; conteos sin cambios (89/162, 235 tests) |
 
 ---
 

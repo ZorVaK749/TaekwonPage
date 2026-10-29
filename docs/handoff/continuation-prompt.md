@@ -2,7 +2,7 @@
 
 **Uso:** copia el contenido de este archivo tal cual en un chat nuevo para retomar el proyecto sin perder contexto. Es una vista de traspaso, no una fuente de decisiones nueva: ante cualquier discrepancia, manda [informe_tecnico.md](../../informe_tecnico.md) y después [Plan_ataque.md](../../Plan_ataque.md).
 
-**Estado de este traspaso:** 25-10-2026, `main` en `04ead83`, árbol limpio y publicado en `origin`.
+**Estado de este traspaso:** 29-10-2026, `main` en `66dcfda`, árbol limpio y publicado en `origin` (informe v1.26).
 
 ---
 
@@ -16,23 +16,23 @@ Eres el asistente técnico de **TaeKwonPage**, proyecto de **ZVK Tech** para la 
 - **Flujo de conocimiento:** PDF → extracción → normalización → JSON de trabajo → validación → revisión humana → catálogo canónico → seed/migración → PostgreSQL. Los JSON antiguos de la raíz (`Combate/`, `Gups/`, etc.) no se promueven.
 - **Migraciones aplicadas (V1–V6) son inmutables** por checksums; el comportamiento se extiende con `CREATE OR REPLACE FUNCTION` en migraciones nuevas. La cadena de revisiones de borradores es global por `content_entry.draft_revision` y debe ser contigua.
 - **Git:** trabajo en ramas con push, **merges periódicos revisados a `main` sin Pull Requests**; no borrar ramas, tags ni force-push sin autorización explícita; sin secretos, PDFs ni payloads operativos en Git.
-- **Orden de trabajo acordado:** Fase 1 (persistencia) hasta donde es verificable → **retomar Fase 0 (conocimiento), que es el bloque activo** → volver a Fase 2 (backend). El usuario confirmó el 25-10-2026 retomar Fase 0 porque aún no hay programa vigente ni revisor designados; Fase 1 queda **abierta**, no cerrada.
+- **Orden de trabajo acordado:** Fase 1 (persistencia) hasta donde es verificable → **retomar Fase 0 (conocimiento), que es el bloque activo y está en cierre** → volver a Fase 2 (backend). El usuario confirmó el 25-10-2026 retomar Fase 0 porque aún no hay programa vigente ni revisor designados; Fase 1 queda **abierta**, no cerrada. El 29-10-2026 el usuario pidió **cerrar Fase 0 limpio y rápido**: la extracción se dio por agotada y las decisiones pendientes se consolidaron en `docs/phase0-decisiones-pendientes.md`; no seguir extrayendo hasta recibir respuestas reales.
 
 ## Estado verificado al cerrar este traspaso
 
-- **Conocimiento (Fase 0, activa):** 4 PDFs inventariados por hash; **33 fichas y 55 citas** en 10 pares catálogo/procedencia, todas `pending_human_review`; **cero currículos** en `knowledge/curricula/`. Hay matriz documental de los seis temas teóricos 10º→9º con desglose Tae/Kwon/Do y clasificación de instructores (romanizaciones divergentes registradas, sin escoger oficial). Cero aprobaciones humanas registradas.
+- **Conocimiento (Fase 0, en cierre):** 4 PDFs inventariados por hash; **89 fichas y 162 citas** en 15 pares catálogo/procedencia, todas `pending_human_review`; **cero currículos** en `knowledge/curricula/`. Cobertura completa de lo observable: teoría inicial y secciones del cuerpo, vocabulario íntegro de las tablas (niveles/direcciones, cuerpo, generales y nombres de técnica; solo queda el doble `Jirugi` por decisión del revisor), herramientas, posiciones, patadas, combate y listas parciales de Saju (con laguna de legibilidad verificada como no recuperable). Bloque de puntos vitales (kupso) observado sin extraer por sensibilidad marcial. **La extracción está agotada: todo lo pendiente depende de decisiones humanas, consolidadas en `docs/phase0-decisiones-pendientes.md`.** Cero aprobaciones humanas registradas.
 - **Persistencia (Fase 1):** PostgreSQL local por Compose, migraciones **V1–V6** (texto, requisitos, detalles de posiciones/vocabulario, ejercicios/Tuls y citas versionados, con historial, rollback y reserva de IDs). La BD de desarrollo tiene esquema y **cero contenido cargado**; las importaciones verificadas se hacen en BD aisladas desechables. **Sin currículo real importado, sin evidencia de revisión/publicación, sin seed aprobado.**
 - **Backend (Fase 2, pausado):** Spring Boot 3.5.16 / Java 21; lectura interna de posiciones con citas; HTTP bloqueado (`denyAll`), solo salud accesible; 17 pruebas Java con Testcontainers. Sin `GET /api/v1/gups/10`, sin OpenAPI completo.
-- **Tests:** 204 Node (validadores/exportadores), 22 PowerShell (inventario), 17 Java, más `Test-Database.ps1` (migraciones/recargas/rechazos SQL). **`validate:content` DEBE fallar** con «content foundation incomplete: at least one catalog and curriculum are required»: es el esperado mientras no haya currículo real.
+- **Tests:** 235 Node (validadores/exportadores), 22 PowerShell (inventario), 17 Java, más `Test-Database.ps1` (migraciones/recargas/rechazos SQL, conteos 97/170). **`validate:content` DEBE fallar** con «content foundation incomplete: at least one catalog and curriculum are required»: es el esperado mientras no haya currículo real.
 - **No existe:** identidad/JWT-OIDC (sin decidir), Angular, CI, deploy, beta, tags o releases.
 
-## Próximos pasos inmediatos (bloque activo: Fase 0)
+## Próximos pasos inmediatos (Fase 0 en cierre)
 
-1. Registrar las preguntas de autoridad curricular al Busabonim y **esperar respuesta real** (`knowledge/provenance/curricular-authority.md`): programa vigente de 10º Gup, manual aplicable, función de la enciclopedia, quién revisa/aprueba y cómo se registra.
-2. Continuar extracción/contraste solo donde los PDFs respalden el dato: profundidad del temario teórico, romanizaciones, lagunas de Saju Jirugi (punto 3 ilegible) y Saju Makgi, convenciones geométricas (TKD-003), posiciones iniciales, vocabulario, herramientas, patadas y combate.
+1. **Enviar `docs/phase0-decisiones-pendientes.md` al Busabonim/revisor** y esperar respuestas reales. La Fase 0 no avanza por más extracción: está agotada. Las preguntas A1–A3 (programa, manual, revisor) son la puerta de todo lo demás.
+2. Al recibir respuestas: registrarlas en los archivos enlados de cada fila (con responsable, fecha y alcance), extraer únicamente lo que desbloquen (p. ej. kupso si A4 lo aprueba; currículo de 10º Gup si A1+A2+A3) y solo entonces construir el JSON de 10º Gup enlazando IDs existentes.
 3. Concurrir con el revisor humano designado para que valide/corrija las fichas existentes; registrar identidad, alcance y fecha reales de cada revisión.
-4. Cuando exista currículo confirmado, construir el JSON de 10º Gup enlazando IDs existentes, validarlo y recién entonces importarlo; no inventar requisitos técnicos ausentes del temario observado.
-5. Solo después: retomar Fase 2 (resto de lecturas, `GET /api/v1/gups/10`, OpenAPI) y decidir identidad (Fase 3) antes de abrir rutas.
+4. Si el usuario decide pasar a Fase 2 sin currículo (opción C2), hacer solo lecturas de contenido existente; los endpoints educativos nuevos siguen esperando a A1–A3.
+5. Decidir identidad (JWT u OIDC, Fase 3) antes de abrir rutas autenticadas.
 
 ## Límites que no se cruzan
 

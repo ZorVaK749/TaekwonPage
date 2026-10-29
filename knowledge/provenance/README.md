@@ -36,6 +36,8 @@ Antes de modelar el currículo de 10º Gup:
 
 ## Hallazgos que requieren revisión humana
 
+Las decisiones pendientes de todo este inventario están **consolidadas** en [docs/phase0-decisiones-pendientes.md](../../docs/phase0-decisiones-pendientes.md) para su respuesta por la escuela y el revisor; los detalles de cada hallazgo siguen abajo.
+
 - Los dos manuales se titulan `MANUAL DE EXAMEN`, pero tienen 29 y 38 páginas y hashes diferentes. No deben fusionarse ni tratarse como duplicados exactos. No se infieren edición o cronología.
 - La sección «El saludo» difiere entre `source_teoria_completa_web`, página PDF 7, y `source_teoria_ont`, página PDF 8. Se registra la divergencia, sin seleccionar una formulación como válida para la escuela.
 - La página PDF 17 de `source_teoria_ont` contiene una nota editorial de contenido incompleto. Esa sección no debe pasar directamente a catálogo.

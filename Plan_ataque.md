@@ -11,7 +11,7 @@
 
 | Fase original | Estado real |
 | --- | --- |
-| 0 — Base de conocimiento | **Retomada, no cerrada:** 89 fichas y 162 citas pendientes; matrices de temas teóricos, de vocabulario (tablas WEB 65 / ONT 71 filas, no idénticas; nombres de técnica extraídos salvo el doble `Jirugi`), de partes del cuerpo y de secciones/división lateral del cuerpo, sin currículo escolar confirmado |
+| 0 — Base de conocimiento | **En cierre técnico:** 89 fichas y 162 citas pendientes; extracción agotada sobre los cuatro PDFs locales (matrices de teoría, vocabulario —WEB 65 / ONT 71 filas, no idénticas; nombres de técnica extraídos salvo el doble `Jirugi`—, cuerpo y secciones). Todo lo pendiente son decisiones humanas consolidadas en [docs/phase0-decisiones-pendientes.md](docs/phase0-decisiones-pendientes.md), sin currículo escolar confirmado |
 | 1 — Persistencia | **Base técnica funcionando:** PostgreSQL, Flyway, tablas de contenido e importación de borradores probada; no persistencia educativa completa |
 | 2 — Backend | **Iniciada:** Spring Boot y lectura interna de posiciones con procedencia; contenido bloqueado por HTTP |
 | 3 — Seguridad funcional | No iniciada; existe solo el bloqueo preventivo de rutas y salud mínima |
