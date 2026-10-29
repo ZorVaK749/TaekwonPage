@@ -21,7 +21,7 @@ Cada ficha añade `sequence_scope`, que especifica que sus pasos corresponden a 
 
 ## Lagunas y decisiones que no se asumen
 
-1. **Punto 3 de Saju Jirugi:** el destino del golpe aparece omitido/ilegible en la copia. Se preservan las partes legibles y se marca la laguna; no se deduce el destino por la orientación de la posición o por simetría.
+1. **Punto 3 de Saju Jirugi:** el destino del golpe aparece omitido/ilegible en la copia. Se preservan las partes legibles y se marca la laguna; no se deduce el destino por la orientación de la posición o por simetría. El **29-10-2026** se intentó recuperar la lectura renderizando recortes ampliados de la propia línea (ancho de destino hasta 4000 px, sin OCR ni sustitución de glifos): la tinta del destino está **erosionada hasta dejar blanco**, sin trazas recuperables. El resultado del intento es negativo; la laguna se mantiene documentada y el único modo de resolverla es evidencia externa (otra copia o el revisor).
 2. **Preparación:** la consulta posterior de PDF 81, folio 79, define expresamente Narani Junbi Sogui con la misma denominación de preparación de pies paralelos usada en PDF 530. Se [documentó la variante específica](posicion_preparatoria_paralela-review.md) y `initial_position_id` apunta ahora a `narani_junbi_sogi` para estos tramos. No se equipara el `junbi_sogi` genérico ni se decide la variante escolar.
 3. **Conteo:** 7/8 son longitudes de las listas observadas, no un total global aprobado. `movement_count` sigue en `null`; no se sustituyen ni validan los 15/16 del borrador antiguo.
 4. **Retorno y alternancia:** se reconoce que la fuente los menciona, pero no se les inventan números de paso ni se genera el sentido contrario a partir de los mismos textos.

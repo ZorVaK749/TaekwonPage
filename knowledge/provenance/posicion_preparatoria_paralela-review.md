@@ -8,4 +8,4 @@ Solo se extrajo una síntesis cualitativa. `biomechanics` permanece `null`: no s
 
 Se consultaron PDF 67–70 y 80–85 para localizar el pasaje; únicamente PDF 81 se utiliza como evidencia nueva en este lote. El folio 79 se observó, no se dedujo de una resta general para el libro.
 
-**Pendiente:** revisión humana, adopción curricular, medidas/referencias geométricas, alcance alterno y total de los ejercicios, y legibilidad del punto 3 de Jirugi. `sequence_complete` sigue en `false` y `movement_count` en `null`. Los archivos antiguos se conservan intactos.
+**Pendiente:** revisión humana, adopción curricular, medidas/referencias geométricas, alcance alterno y total de los ejercicios, y legibilidad del punto 3 de Jirugi (el intento de recuperación con recortes ampliados del 29-10-2026 fue negativo: la tinta está erosionada). `sequence_complete` sigue en `false` y `movement_count` en `null`. Los archivos antiguos se conservan intactos.

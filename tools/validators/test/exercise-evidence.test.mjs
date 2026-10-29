@@ -62,6 +62,9 @@ test('the illegible action target stays explicit instead of being silently infer
   const item = exercises.items.find((entry) => entry.id === 'saju_jirugi');
   assert.match(item.steps[2].description, /destino del golpe no es legible/);
   assert.match(item.sequence_scope, /punto 3 no es legible/);
+  const bookCitation = citations.citations.find((citation) => citation.id === 'citation_saju_jirugi_enciclopedia_p530');
+  assert.match(bookCitation.notes, /erosionada y no queda traza legible/);
+  assert.match(bookCitation.notes, /no se completa por simetría/);
 });
 
 test('review report distinguishes documented actions, missing totals and partial sequences', () => {
