@@ -1,0 +1,105 @@
+{
+  "format_version": 1,
+  "catalog_type": "vocabulary",
+  "items": [
+    {
+      "id": "chukyo_makgi",
+      "name": "Chukyo Makgi",
+      "description": "Término traducido como «Bloqueo alto» en las tablas de vocabulario de ambos manuales. Se documenta solo la fila: no se crea una ficha de técnica de bloqueo, no se deriva la zona objetivo del prefijo Chukyo ni se equipara a ningún bloqueo concreto de otras secciones.",
+      "translation": "Bloqueo alto",
+      "aliases": [],
+      "citation_ids": ["citation_chukyo_makgi_web_p12", "citation_chukyo_makgi_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "tulgi",
+      "name": "Tulgi",
+      "description": "Término traducido como «Golpe que termina en punta (Ej: sun Sonkut Tulgi, Yop Palkup Tulgi)» en ambas copias. Los ejemplos se transcriben como parte de la propia fila; no se expanden en fichas de técnica ni se enlazan tipados a sun_sonkut o palkup. No se equipara a los golpes con puño de la otra fila de Jirugi.",
+      "translation": "Golpe que termina en punta (Ej: sun Sonkut Tulgi, Yop Palkup Tulgi)",
+      "aliases": [],
+      "citation_ids": ["citation_tulgi_web_p12", "citation_tulgi_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "yop_makgi",
+      "name": "Yop Makgi",
+      "description": "Término traducido como «Bloqueo lateral» en las tablas de vocabulario de ambos manuales. Compuesto por Yop y Makgi, ya documentados como términos; no se crea un alias compuesto, no se absorbe en makgi ni se equipara a bloqueos laterales concretos de otras secciones o del ejercicio saju_makgi.",
+      "translation": "Bloqueo lateral",
+      "aliases": [],
+      "citation_ids": ["citation_yop_makgi_web_p12", "citation_yop_makgi_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "ap_makgi",
+      "name": "Ap Makgi",
+      "description": "Término traducido como «Bloqueo frontal» en las tablas de vocabulario de ambos manuales. Compuesto por Ap y Makgi, ya documentados como términos; no se crea un alias compuesto, no se absorbe en makgi ni se equipara a bloqueos frontales concretos de otras secciones.",
+      "translation": "Bloqueo frontal",
+      "aliases": [],
+      "citation_ids": ["citation_ap_makgi_web_p12", "citation_ap_makgi_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "yobap_makgi",
+      "name": "Yobap Makgi",
+      "description": "Término traducido como «Bloqueo frontal lateral» en las tablas de vocabulario de ambos manuales. Compuesto por Yobap y Makgi, ya documentados como términos; no se crea un alias compuesto, no se absorbe en makgi ni se equipara a bloqueos concretos de otras secciones.",
+      "translation": "Bloqueo frontal lateral",
+      "aliases": [],
+      "citation_ids": ["citation_yobap_makgi_web_p12", "citation_yobap_makgi_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "boosigi",
+      "name": "Boosigi",
+      "description": "Término traducido como «Patear recogiendo (Apcha Boosigi)» en ambas copias. La propia fila usa «Patear», igual que la primera fila de Jirugi; se transcribe sin armonizar con «golpe» o «patada» de otros apartados. No se crea ficha de patada ni se equipara al término genérico chagi.",
+      "translation": "Patear recogiendo (Apcha Boosigi)",
+      "aliases": [],
+      "citation_ids": ["citation_boosigi_web_p12", "citation_boosigi_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "golcho",
+      "name": "Golcho",
+      "description": "Término traducido como «Bloqueo preparado para el agarre» en las tablas de vocabulario de ambos manuales. Se documenta solo la fila; no se derivan técnicas de defensa contra agarre ni requisitos de examen.",
+      "translation": "Bloqueo preparado para el agarre",
+      "aliases": [],
+      "citation_ids": ["citation_golcho_web_p12", "citation_golcho_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "miro",
+      "name": "Miro",
+      "description": "Término traducido como «Empujando» en las tablas de vocabulario de ambos manuales. Palabra de acción genérica de la tabla; no se convierte en técnica ni en requisito de examen.",
+      "translation": "Empujando",
+      "aliases": [],
+      "citation_ids": ["citation_miro_web_p12", "citation_miro_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "noollo",
+      "name": "Noollo",
+      "description": "Término traducido como «Descendente para bloqueos» en las tablas de vocabulario de ambos manuales. Se conserva distinto de Naeryo («Descendente»), ya documentado como término; no se fusionan ni se crean aliases.",
+      "translation": "Descendente para bloqueos",
+      "aliases": [],
+      "citation_ids": ["citation_noollo_web_p12", "citation_noollo_ont_p15"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "taerigi",
+      "name": "Taerigi",
+      "description": "Término traducido como «Todos los golpes con canto de mano» en ambas copias. Es el paralelo de la segunda fila de Jirugi («Todos los golpes con puño»); el canto de mano se documenta también como herramienta sonkal, sin fusionar IDs ni crear aliases. No se equipara a las fichas de herramientas de la enciclopedia.",
+      "translation": "Todos los golpes con canto de mano",
+      "aliases": [],
+      "citation_ids": ["citation_taerigi_web_p12", "citation_taerigi_ont_p16"],
+      "review_status": "pending_human_review"
+    },
+    {
+      "id": "momchau",
+      "name": "Momchau",
+      "description": "Término traducido como «Al bloquear con ambos brazos» en ambas copias. La fila describe una modalidad al bloquear; no se crea una ficha de bloqueo doble, no se equipara al término Sang San («Doble») ni se deriva un requisito de examen.",
+      "translation": "Al bloquear con ambos brazos",
+      "aliases": [],
+      "citation_ids": ["citation_momchau_web_p12", "citation_momchau_ont_p16"],
+      "review_status": "pending_human_review"
+    }
+  ]
+}

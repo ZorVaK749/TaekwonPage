@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.25  
+**Version del documento:** 1.26  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 28-10-2026  
 
@@ -1754,7 +1754,9 @@ Para retomar el proyecto desde otro chat sin arrastrar contexto incompleto exist
 
 ## 55.2 Paso a paso respecto de la seccion 50
 
-**Bloque vigente — legibilidad del punto 3 de Saju Jirugi (Fase 0):** se intento recuperar el destino ilegible del golpe del punto 3 de Saju Jirugi re-inspeccionando la PDF 530 de la enciclopedia con [recortes ampliados locales](knowledge/provenance/ejercicios-enciclopedia-review.md) (ancho de destino hasta 4000 px, sin OCR ni sustitucion de glifos). El resultado fue **negativo**: la tinta del destino esta erosionada hasta dejar blanco, sin trazas recuperables. La laguna se conserva documentada en la ficha, la cita y el inventario; no se completa el destino por simetría ni se declara resuelta. Sin curriculum, aprobacion, backend/frontend ni cambios de esquema; los conteos no cambian.
+**Bloque vigente — nombres de tecnica del vocabulario (Fase 0):** se extrajeron las once filas restantes de nombres de tecnica de las tablas VOCABULARIO (WEB 12 / ONT 15–16) al catalogo de vocabulario con 22 citas y una [matriz de revision](knowledge/provenance/vocabulario-nombres-tecnica-review.md). Las traducciones coinciden en ambas copias. Los compuestos (`Yop Makgi`, `Ap Makgi`, `Yobap Makgi`) no absorben al generico `makgi` ni se equiparan a `saju_makgi`; los ejemplos entre parentesis se transcriben sin expandir en fichas. La fila doble de `Jirugi` quedo excluida y documentada, sin crear una ficha unica. Con esto la matriz del vocabulario queda agotada salvo resolver el doble `Jirugi`. Sin curriculum, aprobacion, backend/frontend ni cambios de esquema.
+
+**Bloque anterior — legibilidad del punto 3 de Saju Jirugi (Fase 0):** se intento recuperar el destino ilegible del golpe del punto 3 de Saju Jirugi re-inspeccionando la PDF 530 de la enciclopedia con [recortes ampliados locales](knowledge/provenance/ejercicios-enciclopedia-review.md) (ancho de destino hasta 4000 px, sin OCR ni sustitucion de glifos). El resultado fue **negativo**: la tinta del destino esta erosionada hasta dejar blanco, sin trazas recuperables. La laguna se conserva documentada en la ficha, la cita y el inventario; no se completa el destino por simetría ni se declara resuelta.
 
 **Bloque anterior — secciones del cuerpo (Fase 0):** se documentaron dos fichas teoricas con cuatro citas a partir de WEB 9–10 / ONT 12–13: la division del cuerpo por altura (alta/media/baja, Nopunde/Kaunde/Najunde) y la [division lateral](knowledge/provenance/secciones-cuerpo-review.md) (lineas del plexo solar, pecho y hombro). Se registro la divergencia entre copias (ONT 12 anade rangos que WEB 10 no enuncia) sin completar una desde la otra. El bloque de puntos vitales (kupso) quedo observado y sin extraer, pendiente de decision del revisor.
 
@@ -1793,7 +1795,7 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 | Paso | Entregable | Estado real |
 |---|---|---|
 | 1 | Repositorio y estructura | Baseline y bloques integrados y publicados en `main` mediante `1ab81e7`; historial conservado, sin PR |
-| 2 | Knowledge base | Cuatro PDFs; 78 fichas y 140 citas en revision, con siete tipos, matriz documental de seis temas teoricos, matrices de cobertura del vocabulario (tablas WEB 65 filas / ONT 71 filas, no identicas), secciones/division lateral del cuerpo y laguna de legibilidad del punto 3 de Saju Jirugi verificada por recortes ampliados. Sin secuencias globales completas o curriculo escolar |
+| 2 | Knowledge base | Cuatro PDFs; 89 fichas y 162 citas en revision, con siete tipos, matriz documental de seis temas teoricos, matrices completas de cobertura del vocabulario (tablas WEB 65 filas / ONT 71 filas, no identicas; nombres de tecnica extraidos salvo el doble Jirugi), secciones/division lateral del cuerpo y laguna de legibilidad del punto 3 de Saju Jirugi verificada por recortes ampliados. Sin secuencias globales completas o curriculo escolar |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | En curso; falta programa confirmado, curriculum enlazado y contenido completo/revisado |
 | 5 | PostgreSQL | Compose, ERD, V1–V6, mapeo/recarga y versionado de texto/requisitos/subtipos/citas probados; curriculum real/seed aprobado y evidencia de revision/publicacion pendientes |
@@ -1857,20 +1859,20 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Area | Cantidad / resultado |
 |---|---|
 | PDFs locales inventariados | 4; nunca publicados por estas tareas |
-| Archivos de catalogo nuevos | 14, todos con contenido en revision |
-| Fichas | 78: 9 de teoria, 33 de vocabulario, 4 de posiciones, 24 herramientas (14 de cuerpo nuevas, 10 iniciales), 2 ejercicios parciales, 3 patadas y 3 de combate |
-| Citas de procedencia | 140 en 14 archivos; vinculadas por SHA-256 a cuatro copias, sin declarar independencia documental |
+| Archivos de catalogo nuevos | 15, todos con contenido en revision |
+| Fichas | 89: 9 de teoria, 44 de vocabulario (11 de nombres de tecnica nuevas), 4 de posiciones, 24 herramientas (14 de cuerpo nuevas, 10 iniciales), 2 ejercicios parciales, 3 patadas y 3 de combate |
+| Citas de procedencia | 162 en 15 archivos; vinculadas por SHA-256 a cuatro copias, sin declarar independencia documental |
 | Acciones documentadas | 15 registros, correspondientes a listas impresas 1–7 y 1–8; no representan totales globales ni ejercicios completos |
 | Curriculos nuevos | 0 |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 228 correctos |
+| Tests Node | 235 correctos |
 | Tests PowerShell | 22 correctos |
 | Tests backend | 17 correctos, sin omitidos: unitarios y PostgreSQL Testcontainers; migracion, DTO con citas/identidad/localizadores, serializacion sin datos locales y casos negativos HTTP |
 | Arranque backend | JAR ejecutado contra Compose con importacion explicita de .env local; salud UP sin detalles, posiciones HTTP 403; proceso detenido al finalizar |
 | Persistencia | PostgreSQL/Flyway V1–V6: creacion/upgrades con datos; 16 rechazos de constraints, cinco conflictos de importacion, 18 textuales, 30 curriculares, 36 escalares, 39 de ejercicios y 37 de citas/propiedad; historial y rollback |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Citas integradas en `76d90be`; teoria/matriz en `04ead83`; vocabulario integrado en `b570de6`; partes del cuerpo integradas en `3fcf524`; terminos generales integrados en `fa831ac`; secciones del cuerpo en la rama `feat/theory-body-division`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Citas integradas en `76d90be`; teoria/matriz en `04ead83`; vocabulario integrado en `b570de6`; partes del cuerpo integradas en `3fcf524`; terminos generales integrados en `fa831ac`; secciones del cuerpo integradas en `5b8a640`; intento de legibilidad de Saju en la rama `feat/saju-legibility`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -2006,6 +2008,7 @@ Cuando OpenCode reciba una tarea:
 | 1.23 | 28-10-2026 | Fase 0: 12 terminos generales/accion del vocabulario con 24 citas y matriz de revision; Jumbi Sogi no se equipara al Junbi existente y Jeja no deriva roles. Matriz general del vocabulario agotada salvo nombres de tecnica. Total 76 fichas/136 citas en 13 pares; 222 tests Node. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP |
 | 1.24 | 28-10-2026 | Fase 0: dos fichas teoricas de secciones/division lateral del cuerpo con cuatro citas (WEB 9–10 / ONT 12–13) y matriz de revision; divergencia de rangos ONT vs WEB registrada sin completar una copia desde la otra. Puntos vitales (kupso) observado sin extraer. Total 78 fichas/140 citas en 14 pares; 228 tests Node. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP |
 | 1.25 | 29-10-2026 | Fase 0: intento de recuperar la legibilidad del punto 3 de Saju Jirugi con recortes ampliados de la PDF 530 (hasta 4000 px, sin OCR); resultado negativo por erosion de tinta, laguna conservada sin completar por simetría y registrada en cita, matriz e inventario. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP; conteos sin cambios (78/140, 228 tests) |
+| 1.26 | 29-10-2026 | Fase 0: once nombres de tecnica de las tablas VOCABULARIO (WEB 12 / ONT 15–16) extraidos como vocabulario con 22 citas y matriz de revision; traducciones identicas entre copias, compuestos sin absorber al makgi generico, ejemplos sin expandir. Fila doble de Jirugi excluida y documentada; matriz del vocabulario agotada salvo ese doble uso. Total 89 fichas/162 citas en 15 pares; 235 tests Node. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP |
 
 ---
 
