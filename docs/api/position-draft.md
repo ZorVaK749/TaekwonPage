@@ -15,7 +15,7 @@ Los campos anteriores de posición se conservan: ID, nombre, descripción, estad
 | `reviewStatus`, `sourceReviewStatus` | Estados de cita y fuente; actualmente `pending_human_review` |
 | `redistributionStatus` | Estado de derechos registrado para la copia; actualmente `unknown`, nunca permiso implícito |
 
-La consulta enlaza `content_source` con `source_document` por **ID y hash**, filtra por la ficha solicitada y ordena por ID de cita. No carga relaciones JPA en el JSON ni incluye rutas locales, PDFs, `file_reference` o notas internas. Usa los índices existentes, sin nueva migración o dependencia.
+La consulta enlaza `content_source` con `source_document` por **ID y hash**, filtra por la ficha solicitada y ordena por ID de cita. No carga relaciones JPA en el JSON ni incluye rutas locales, PDFs, `file_reference` o notas internas. Usa los índices existentes, sin nueva migración o dependencia. El patrón se replicó a teoría, vocabulario, herramientas corporales y tuls/ejercicios; el contrato OpenAPI de todas las rutas de lectura vive en [docs/openapi/taekwonpage-v1.json](../openapi/taekwonpage-v1.json).
 
 La lista es una copia inmutable. Una ficha sin citas devuelve `[]`: muestra la carencia, no inventa evidencia ni habilita su publicación. Si la ficha no existe, el servicio devuelve ausencia sin consultar citas; no toma datos de otra ficha como respaldo.
 
@@ -23,4 +23,4 @@ La lista es una copia inmutable. Una ficha sin citas devuelve `[]`: muestra la c
 
 `mvn.cmd -f backend/taekwonpage-api/pom.xml verify` incluye PostgreSQL real aislado con fixtures sintéticos: dos fuentes con igual título y hashes distintos, cita solo por sección, folio independiente, metadatos desconocidos, aislamiento entre fichas, orden estable, serialización sin información local y bloqueo HTTP de un borrador que sí existe y tiene citas.
 
-No se importan ni aprueban datos reales en la BD de desarrollo. Antes de abrir la ruta: decidir identidad, autorización por grado y revisión/publicación, y especificar el contrato OpenAPI correspondiente.
+No se importan ni aprueban datos reales en la BD de desarrollo. Antes de abrir la ruta: decidir identidad, autorización por grado y revisión/publicación; el contrato OpenAPI de lectura ya está especificado y verificado contra los controladores.

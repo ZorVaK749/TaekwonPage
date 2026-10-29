@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import tech.zvk.taekwonpage.content.PositionService;
+import tech.zvk.taekwonpage.shared.ids.CanonicalIds;
 
 // Intentionally unreachable over HTTP until authentication/grade access is implemented.
 @RestController
@@ -21,7 +22,7 @@ public class PositionController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PositionResponse> findById(@PathVariable String id) {
-        if (!id.matches("[a-z][a-z0-9]*(_[a-z0-9]+)*")) {
+        if (!CanonicalIds.isValid(id)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.of(positions.findById(id));

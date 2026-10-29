@@ -1,0 +1,198 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TaeKwonPage API",
+    "version": "0.1.0",
+    "description": "Contrato de las rutas de lectura de borradores internos. No es una API educativa publicada: hasta que Fase 3 implemente identidad y autorización por grado, toda ruta /api/v1 devuelve 403 por la política deny-all vigente, incluso con roles autenticados. Los datos responden a revision pending_human_review sobre PDFs locales citados; ningún campo implica aprobación marcial ni currículo escolar.",
+    "contact": { "name": "ZVK Tech", "url": "https://github.com/ZorVaK749/TaekwonPage" }
+  },
+  "servers": [
+    { "url": "http://localhost:8080", "description": "Escucha local por defecto (127.0.0.1). Sin hosting declarado." }
+  ],
+  "paths": {
+    "/api/v1/positions/{id}": {
+      "get": {
+        "operationId": "getPositionDraft",
+        "summary": "Borrador de posición con procedencia",
+        "parameters": [{ "$ref": "#/components/parameters/CanonicalId" }],
+        "responses": {
+          "200": { "description": "Posición en revisión con sus citas; geometría desconocida = null.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Position" } } } },
+          "400": { "description": "ID que viola la forma canónica." },
+          "403": { "description": "Política deny-all vigente; bloqueo preventivo, no autorización resuelta." },
+          "404": { "description": "Borrador inexistente; la ausencia no se rellena con datos de otra ficha." }
+        }
+      }
+    },
+    "/api/v1/theory/{id}": {
+      "get": {
+        "operationId": "getTheoryDraft",
+        "summary": "Borrador teórico con procedencia",
+        "parameters": [{ "$ref": "#/components/parameters/CanonicalId" }],
+        "responses": {
+          "200": { "description": "Ficha teórica en revisión con sus citas.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Theory" } } } },
+          "400": { "description": "ID que viola la forma canónica." },
+          "403": { "description": "Política deny-all vigente; bloqueo preventivo, no autorización resuelta." },
+          "404": { "description": "Borrador inexistente; la ausencia no se rellena con datos de otra ficha." }
+        }
+      }
+    },
+    "/api/v1/vocabulary/{id}": {
+      "get": {
+        "operationId": "getVocabularyDraft",
+        "summary": "Término de vocabulario con procedencia",
+        "parameters": [{ "$ref": "#/components/parameters/CanonicalId" }],
+        "responses": {
+          "200": { "description": "Término en revisión con traducción observada, aliases y citas.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Vocabulary" } } } },
+          "400": { "description": "ID que viola la forma canónica." },
+          "403": { "description": "Política deny-all vigente; bloqueo preventivo, no autorización resuelta." },
+          "404": { "description": "Borrador inexistente; la ausencia no se rellena con datos de otra ficha." }
+        }
+      }
+    },
+    "/api/v1/body-tools/{id}": {
+      "get": {
+        "operationId": "getBodyToolDraft",
+        "summary": "Herramienta corporal con procedencia",
+        "parameters": [{ "$ref": "#/components/parameters/CanonicalId" }],
+        "responses": {
+          "200": { "description": "Herramienta corporal en revisión con sus citas.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/BodyTool" } } } },
+          "400": { "description": "ID que viola la forma canónica." },
+          "403": { "description": "Política deny-all vigente; bloqueo preventivo, no autorización resuelta." },
+          "404": { "description": "Borrador inexistente; la ausencia no se rellena con datos de otra ficha." }
+        }
+      }
+    },
+    "/api/v1/tuls/{id}": {
+      "get": {
+        "operationId": "getTulDraft",
+        "summary": "Tul o ejercicio parcial con procedencia por paso",
+        "parameters": [{ "$ref": "#/components/parameters/CanonicalId" }],
+        "responses": {
+          "200": { "description": "Secuencia en revisión tal como se observó: movementCount y sequenceScope pueden ser null, sequenceComplete puede ser false.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Tul" } } } },
+          "400": { "description": "ID que viola la forma canónica." },
+          "403": { "description": "Política deny-all vigente; bloqueo preventivo, no autorización resuelta." },
+          "404": { "description": "Borrador inexistente; la ausencia no se rellena con datos de otra ficha." }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "CanonicalId": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "ID canónico global; la misma forma del dominio SQL canonical_id.",
+        "schema": { "type": "string", "pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)*$" }
+      }
+    },
+    "schemas": {
+      "CanonicalId": { "type": "string", "pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)*$" },
+      "ReviewStatus": { "type": "string", "enum": ["pending_human_review"] },
+      "Citation": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Metadatos de la copia observada, nunca una ruta a su PDF local.",
+        "required": ["id", "sourceId", "sourceSha256", "sourceTitle", "sourceOrganization", "sourceAuthor", "sourceEdition", "sourceLanguage", "pdfPage", "printedPage", "section", "reviewStatus", "sourceReviewStatus", "redistributionStatus"],
+        "properties": {
+          "id": { "$ref": "#/components/schemas/CanonicalId" },
+          "sourceId": { "$ref": "#/components/schemas/CanonicalId" },
+          "sourceSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "sourceTitle": { "type": ["string", "null"] },
+          "sourceOrganization": { "type": ["string", "null"] },
+          "sourceAuthor": { "type": ["string", "null"] },
+          "sourceEdition": { "type": ["string", "null"] },
+          "sourceLanguage": { "type": ["string", "null"] },
+          "pdfPage": { "type": ["integer", "null"], "minimum": 1 },
+          "printedPage": { "type": ["string", "null"] },
+          "section": { "type": ["string", "null"] },
+          "reviewStatus": { "$ref": "#/components/schemas/ReviewStatus" },
+          "sourceReviewStatus": { "$ref": "#/components/schemas/ReviewStatus" },
+          "redistributionStatus": { "type": "string", "enum": ["unknown"] }
+        }
+      },
+      "Position": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "description", "reviewStatus", "frontPercent", "rearPercent", "frontRotationDeg", "rearRotationDeg", "citations"],
+        "properties": {
+          "id": { "$ref": "#/components/schemas/CanonicalId" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "reviewStatus": { "$ref": "#/components/schemas/ReviewStatus" },
+          "frontPercent": { "type": ["number", "null"] },
+          "rearPercent": { "type": ["number", "null"] },
+          "frontRotationDeg": { "type": ["number", "null"] },
+          "rearRotationDeg": { "type": ["number", "null"] },
+          "citations": { "type": "array", "items": { "$ref": "#/components/schemas/Citation" } }
+        }
+      },
+      "Theory": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "description", "reviewStatus", "citations"],
+        "properties": {
+          "id": { "$ref": "#/components/schemas/CanonicalId" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "reviewStatus": { "$ref": "#/components/schemas/ReviewStatus" },
+          "citations": { "type": "array", "items": { "$ref": "#/components/schemas/Citation" } }
+        }
+      },
+      "BodyTool": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "description", "reviewStatus", "citations"],
+        "properties": {
+          "id": { "$ref": "#/components/schemas/CanonicalId" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "reviewStatus": { "$ref": "#/components/schemas/ReviewStatus" },
+          "citations": { "type": "array", "items": { "$ref": "#/components/schemas/Citation" } }
+        }
+      },
+      "Vocabulary": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "description", "reviewStatus", "translation", "aliases", "citations"],
+        "properties": {
+          "id": { "$ref": "#/components/schemas/CanonicalId" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "reviewStatus": { "$ref": "#/components/schemas/ReviewStatus" },
+          "translation": { "type": "string", "description": "Traducción observada en el manual, sin armonizar." },
+          "aliases": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+          "citations": { "type": "array", "items": { "$ref": "#/components/schemas/Citation" } }
+        }
+      },
+      "TulStep": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["stepNumber", "positionId", "description", "citationIds"],
+        "properties": {
+          "stepNumber": { "type": "integer", "minimum": 1 },
+          "positionId": { "$ref": "#/components/schemas/CanonicalId" },
+          "description": { "type": "string" },
+          "citationIds": { "type": "array", "items": { "$ref": "#/components/schemas/CanonicalId" }, "description": "Citas que respaldan el paso; vacío significa evidencia no vinculada, no evidencia inferida." }
+        }
+      },
+      "Tul": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "description", "reviewStatus", "movementCount", "initialPositionId", "sequenceComplete", "sequenceScope", "steps", "citations"],
+        "properties": {
+          "id": { "$ref": "#/components/schemas/CanonicalId" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "reviewStatus": { "$ref": "#/components/schemas/ReviewStatus" },
+          "movementCount": { "type": ["integer", "null"], "minimum": 1, "description": "null = conteo global aún desconocido; no se deduce de los pasos documentados." },
+          "initialPositionId": { "anyOf": [{ "$ref": "#/components/schemas/CanonicalId" }, { "type": "null" }] },
+          "sequenceComplete": { "type": "boolean", "description": "false en secuencias parciales observadas." },
+          "sequenceScope": { "type": ["string", "null"] },
+          "steps": { "type": "array", "items": { "$ref": "#/components/schemas/TulStep" } },
+          "citations": { "type": "array", "items": { "$ref": "#/components/schemas/Citation" } }
+        }
+      }
+    }
+  }
+}

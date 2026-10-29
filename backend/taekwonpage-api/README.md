@@ -23,24 +23,29 @@ Flyway valida/aplica migraciones al arrancar. Hibernate usa `ddl-auto=validate`:
 
 ## Alcance actual
 
-- `content`: entidad base y posición, repositorio de solo lectura, servicio transaccional, DTO y controlador inicial.
+- `content`: entidad base y **cinco tipos con lectura interna**: posición, teoría, vocabulario (`translation` + `aliases`), herramienta corporal y tul/ejercicio parcial (con pasos y citas por paso), cada uno con repositorio de solo lectura, servicio transaccional, DTO y controlador.
+- `shared/ids`: validación única de IDs canónicos (`CanonicalIds`), con la misma forma que el dominio SQL `canonical_id`, reutilizada por servicios y controladores.
 - `shared/security`: política temporal **deny-all**, salvo `GET /actuator/health`.
-- El DTO conserva `BigDecimal`, valores desconocidos `null` y estado de revisión; no expone entidades JPA. Incluye [citas con metadatos de la copia](../../docs/api/position-draft.md), página PDF, folio y estados, sin rutas de PDFs ni notas internas. Otros tipos aún no tienen DTO/API.
+- El DTO conserva `BigDecimal`, valores desconocidos `null` y estado de revisión; no expone entidades JPA. Incluye [citas con metadatos de la copia](../../docs/api/position-draft.md), página PDF, folio y estados, sin rutas de PDFs ni notas internas. El contrato de lectura está en [docs/openapi/taekwonpage-v1.json](../../docs/openapi/taekwonpage-v1.json), verificado contra los controladores por tests Node. Kick, combate y currículo (gups) aún no tienen DTO/API.
 - No hay usuarios, credenciales por defecto, login Basic/formulario, sesiones ni elección implícita JWT/OIDC. CSRF no se deshabilita para simular una API abierta. No se habilita CORS permisivo.
 
 ```text
 GET /actuator/health                 -> 200 {"status":"UP"} con BD saludable
-GET /api/v1/positions/{canonicalId} -> 403 (bloqueado deliberadamente)
-GET /api/v1/gups/10                 -> 403 por política global; controlador no implementado
+GET /api/v1/positions/{canonicalId}  -> 403 (bloqueado deliberadamente)
+GET /api/v1/theory/{canonicalId}     -> 403 (bloqueado deliberadamente)
+GET /api/v1/vocabulary/{canonicalId} -> 403 (bloqueado deliberadamente)
+GET /api/v1/body-tools/{canonicalId} -> 403 (bloqueado deliberadamente)
+GET /api/v1/tuls/{canonicalId}       -> 403 (bloqueado deliberadamente)
+GET /api/v1/gups/10                  -> 403 por política global; controlador no implementado
 ```
 
-Incluso un usuario autenticado o un rol técnico no puede saltar el bloqueo actual. No quitar `denyAll()` para probar contenido: las pruebas leen desde el servicio interno. Antes de abrir endpoints hacen falta identidad, autorización por grado y revisión/publicación. El contrato educativo/OpenAPI definitivo queda pendiente; no se expone Swagger ni diagnósticos internos.
+Incluso un usuario autenticado o un rol técnico no puede saltar el bloqueo actual. No quitar `denyAll()` para probar contenido: las pruebas leen desde el servicio interno. Antes de abrir endpoints hacen falta identidad, autorización por grado y revisión/publicación. El contrato OpenAPI de lectura existe como documento versionado; no se expone Swagger ni diagnósticos internos y ninguna ruta `/v3/api-docs` es accesible.
 
 ## Pruebas
 
 `mvn.cmd verify` exige Docker activo: Testcontainers levanta una BD aislada y aplica V1 con Flyway. Si Docker no está disponible, las pruebas de integración **fallan**, no se omiten. No usa la BD de desarrollo ni importa PDFs o contenido real; las filas de prueba son sintéticas y se revierten.
 
-Hay 17 pruebas: esquema/migración, JPA → DTO con acentos y nulos, IDs inválidos, ausencia de resultados, citas aisladas por ficha y copia/hash, localizadores independientes, metadatos desconocidos, colección inmutable y serialización sin información local. También salud sin detalles, bloqueo anónimo/autenticado (incluido un borrador existente), escritura y preflight no autorizado. El cliente Docker de prueba fija API 1.44 por compatibilidad con Engine 29.
+Hay 30 pruebas: esquema/migración, JPA → DTO con acentos y nulos, IDs inválidos (regla única `CanonicalIds`), ausencia de resultados en los cinco tipos, citas aisladas por ficha y copia/hash, localizadores independientes, metadatos desconocidos, colecciones inmutables (incluidos pasos y citas de tul), lectura de teoría/vocabulario/herramientas/ejercicios parciales con lagunas observadas y serialización sin información local. También salud sin detalles, bloqueo anónimo/autenticado de las cinco rutas (incluido un borrador existente), escritura y preflight no autorizado. El cliente Docker de prueba fija API 1.44 por compatibilidad con Engine 29.
 
 ## Dependencias
 
@@ -51,4 +56,4 @@ Hay 17 pruebas: esquema/migración, JPA → DTO con acentos y nulos, IDs inváli
 - Flyway Core + módulo PostgreSQL y driver JDBC: migraciones y conexión real.
 - Starter Test, Security Test y Testcontainers PostgreSQL/JUnit: pruebas unitarias, negativas y contra BD real; no se añade H2 ni Lombok.
 
-Siguiente bloque: ampliar otros contenidos/currículo, acordar identidad y publicación, y diseñar OpenAPI antes de conectar Angular. La lectura de posiciones ya tiene procedencia; no se crea un temario ficticio para mostrar una pantalla.
+Siguiente bloque: completar kick/combate y `GET /api/v1/gups/10`, acordar identidad y publicación antes de cualquier apertura de rutas, y ampliar el contrato OpenAPI a esos puntos. La lectura interna de los cinco tipos ya tiene procedencia; no se crea un temario ficticio para mostrar una pantalla.

@@ -21,7 +21,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import tech.zvk.taekwonpage.content.BodyToolService;
 import tech.zvk.taekwonpage.content.PositionService;
+import tech.zvk.taekwonpage.content.TheoryService;
+import tech.zvk.taekwonpage.content.TulService;
+import tech.zvk.taekwonpage.content.VocabularyService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -40,6 +44,10 @@ class BackendIntegrationTest {
     @Autowired MockMvc mvc;
     @Autowired JdbcTemplate jdbc;
     @Autowired PositionService positions;
+    @Autowired TheoryService theory;
+    @Autowired VocabularyService vocabulary;
+    @Autowired BodyToolService tools;
+    @Autowired TulService tuls;
     @Autowired ObjectMapper json;
 
     @Test
@@ -57,7 +65,9 @@ class BackendIntegrationTest {
 
     @Test
     void anonymousRequestsCannotReadContentOrDiagnostics() throws Exception {
-        for (String route : new String[] {"/api/v1/positions/test_position", "/api/v1/gups/10",
+        for (String route : new String[] {"/api/v1/positions/test_position", "/api/v1/theory/test_theory",
+                "/api/v1/vocabulary/test_vocabulary", "/api/v1/body-tools/test_tool",
+                "/api/v1/tuls/test_tul", "/api/v1/gups/10",
                 "/actuator/env", "/actuator", "/v3/api-docs", "/login"}) {
             mvc.perform(get(route)).andExpect(status().isForbidden());
         }
@@ -66,7 +76,9 @@ class BackendIntegrationTest {
     @Test
     @WithMockUser(roles = {"ADMIN", "DEVELOPER", "STUDENT"})
     void evenAuthenticatedRolesDoNotBypassPendingAccessPolicy() throws Exception {
-        mvc.perform(get("/api/v1/positions/test_position")).andExpect(status().isForbidden());
+        for (String route : new String[] {"/api/v1/positions/test_position", "/api/v1/tuls/test_tul"}) {
+            mvc.perform(get(route)).andExpect(status().isForbidden());
+        }
     }
 
     @Test
@@ -173,6 +185,62 @@ class BackendIntegrationTest {
         insertCitation("test_citation_a", "test_position", "test_source_a", "a".repeat(64), 1, null, null);
         var response = mvc.perform(get("/api/v1/positions/test_position")).andExpect(status().isForbidden()).andReturn();
         assertThat(response.getResponse().getContentAsString()).doesNotContain("test_citation_a", "Documento sintético");
+    }
+
+    @Test
+    @Transactional
+    void readsTheoryVocabularyBodyToolAndTulDraftsInternallyWithObservedGaps() {
+        jdbc.update("INSERT INTO content_entry(id, content_type, name, description) "
+            + "VALUES ('test_theory', 'theory', 'Teoría sintética', 'Solo prueba técnica')");
+        jdbc.update("INSERT INTO theory_content(id) VALUES ('test_theory')");
+        jdbc.update("INSERT INTO content_entry(id, content_type, name, description) "
+            + "VALUES ('test_vocabulary', 'vocabulary', 'Dobok sintético', 'Solo prueba técnica')");
+        jdbc.update("INSERT INTO vocabulary(id, translation, aliases) "
+            + "VALUES ('test_vocabulary', 'Uniforme', ARRAY['dobok_alias']::text[])");
+        jdbc.update("INSERT INTO content_entry(id, content_type, name, description) "
+            + "VALUES ('test_tool', 'body_tool', 'Sonkal sintético', 'Solo prueba técnica')");
+        jdbc.update("INSERT INTO body_tool(id) VALUES ('test_tool')");
+        // Partial exercise: unknown preparation, two documented steps, one cited step.
+        jdbc.update("INSERT INTO content_entry(id, content_type, name, description) "
+            + "VALUES ('test_stance', 'position', 'Posición sintética', 'Solo prueba técnica')");
+        jdbc.update("INSERT INTO position(id) VALUES ('test_stance')");
+        jdbc.update("INSERT INTO content_entry(id, content_type, name, description) "
+            + "VALUES ('test_tul', 'tul', 'Saju sintético', 'Solo prueba técnica')");
+        jdbc.update("INSERT INTO tul(id, movement_count, sequence_complete, sequence_scope) "
+            + "VALUES ('test_tul', 2, FALSE, 'alcance parcial de prueba')");
+        jdbc.update("INSERT INTO tul_step(tul_id, step_number, position_id, description) "
+            + "VALUES ('test_tul', 1, 'test_stance', 'Primer paso sintético')");
+        jdbc.update("INSERT INTO tul_step(tul_id, step_number, position_id, description) "
+            + "VALUES ('test_tul', 2, 'test_stance', 'Segundo paso sintético')");
+        insertSource("test_source_a", "a".repeat(64));
+        insertCitation("citation_step_one", "test_tul", "test_source_a", "a".repeat(64), 5, null, null);
+        jdbc.update("INSERT INTO tul_step_source(tul_id, step_number, citation_id) "
+            + "VALUES ('test_tul', 1, 'citation_step_one')");
+
+        var theoryDraft = theory.findById("test_theory").orElseThrow();
+        assertThat(theoryDraft.name()).isEqualTo("Teoría sintética");
+        assertThat(theoryDraft.reviewStatus()).isEqualTo("pending_human_review");
+        assertThat(theoryDraft.citations()).isEmpty();
+
+        var vocabularyDraft = vocabulary.findById("test_vocabulary").orElseThrow();
+        assertThat(vocabularyDraft.translation()).isEqualTo("Uniforme");
+        assertThat(vocabularyDraft.aliases()).containsExactly("dobok_alias");
+        assertThat(vocabularyDraft.citations()).isEmpty();
+
+        assertThat(tools.findById("test_tool").orElseThrow().name()).isEqualTo("Sonkal sintético");
+
+        var tulDraft = tuls.findById("test_tul").orElseThrow();
+        assertThat(tulDraft.movementCount()).isEqualTo(2);
+        assertThat(tulDraft.sequenceComplete()).isFalse();
+        assertThat(tulDraft.sequenceScope()).isEqualTo("alcance parcial de prueba");
+        assertThat(tulDraft.initialPositionId()).isNull();
+        assertThat(tulDraft.steps()).hasSize(2);
+        assertThat(tulDraft.steps().getFirst().positionId()).isEqualTo("test_stance");
+        assertThat(tulDraft.steps().getFirst().citationIds()).containsExactly("citation_step_one");
+        assertThat(tulDraft.steps().getLast().citationIds()).isEmpty();
+        assertThat(tulDraft.citations()).extracting(citation -> citation.id())
+            .containsExactly("citation_step_one");
+        assertThat(tuls.findById("missing_tul")).isEmpty();
     }
 
     private void insertPosition() {
