@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tech.zvk.taekwonpage.content.api.PositionResponse;
 import tech.zvk.taekwonpage.content.persistence.PositionRepository;
 import tech.zvk.taekwonpage.content.persistence.ContentSourceRepository;
+import tech.zvk.taekwonpage.shared.ids.CanonicalIds;
 
 @Service
 public class PositionService {
@@ -20,9 +21,7 @@ public class PositionService {
     // Internal draft read. This is NOT an educational publication/access policy.
     @Transactional(readOnly = true)
     public Optional<PositionResponse> findById(String id) {
-        if (id == null || !id.matches("[a-z][a-z0-9]*(_[a-z0-9]+)*")) {
-            throw new IllegalArgumentException("Invalid canonical ID");
-        }
+        CanonicalIds.requireValid(id);
         return positions.findById(id).map(position -> new PositionResponse(
             position.getId(), position.getContent().getName(), position.getContent().getDescription(),
             position.getContent().getReviewStatus(), position.getFrontPercent(), position.getRearPercent(),

@@ -1,6 +1,6 @@
 # Plan de ataque — TaeKwonPage
 
-**Actualizado: 28-10-2026.** Vista de seguimiento del [informe técnico](informe_tecnico.md), no un plan nuevo que reemplace su arquitectura o alcance. Para continuar desde otro chat: **[prompt de continuación](docs/handoff/continuation-prompt.md)**, siempre contrastado contra el informe.
+**Actualizado: 29-10-2026.** Vista de seguimiento del [informe técnico](informe_tecnico.md), no un plan nuevo que reemplace su arquitectura o alcance. Para continuar desde otro chat: **[prompt de continuación](docs/handoff/continuation-prompt.md)**, siempre contrastado contra el informe.
 
 - `[x]` = el entregable descrito está implementado/verificado.
 - `[ ]` = pendiente o parcial; el texto indica cuál de los dos.
@@ -13,14 +13,14 @@
 | --- | --- |
 | 0 — Base de conocimiento | **En cierre técnico:** 89 fichas y 162 citas pendientes; extracción agotada sobre los cuatro PDFs locales (matrices de teoría, vocabulario —WEB 65 / ONT 71 filas, no idénticas; nombres de técnica extraídos salvo el doble `Jirugi`—, cuerpo y secciones). Todo lo pendiente son decisiones humanas consolidadas en [docs/phase0-decisiones-pendientes.md](docs/phase0-decisiones-pendientes.md), sin currículo escolar confirmado |
 | 1 — Persistencia | **Base técnica funcionando:** PostgreSQL, Flyway, tablas de contenido e importación de borradores probada; no persistencia educativa completa |
-| 2 — Backend | **Iniciada:** Spring Boot y lectura interna de posiciones con procedencia; contenido bloqueado por HTTP |
+| 2 — Backend | **En curso sin endpoints educativos:** cinco tipos con lectura interna (posición, teoría, vocabulario, herramientas, tuls con pasos) y [contrato OpenAPI](docs/openapi/taekwonpage-v1.json) verificado; contenido bloqueado por HTTP con `denyAll` intacto |
 | 3 — Seguridad funcional | No iniciada; existe solo el bloqueo preventivo de rutas y salud mínima |
 | 4 — Angular | No iniciada |
 | 5 — Visualización biomecánica | No iniciada |
 | 6 — Aprendizaje | Futuro, no iniciada |
 | 7 — Producción | No iniciada; no hay web desplegada |
 
-**Instrucción más reciente:** el usuario confirmó retomar Fase 0 porque no hay programa/revisor confirmados, manteniendo Fase 1 explícitamente abierta. Se deja en pausa la ampliación de Fase 2. No se marcarán completas decisiones humanas por avanzar en código.
+**Instrucción más reciente (29-10-2026):** el usuario declaró **cerrada la Fase 0** (extracción agotada; decisiones en [docs/phase0-decisiones-pendientes.md](docs/phase0-decisiones-pendientes.md)) y eligió avanzar con **Fase 2 sin endpoints educativos**: ampliar lecturas internas, refactorizar y documentar OpenAPI con rutas protegidas, sin tocar `denyAll`. No se marcarán completas decisiones humanas por avanzar en código; Fase 1 sigue abierta.
 
 **Sí, adelantamos trabajo de Fases 1 y 2 sin terminar la Fase 0**, por la autorización de continuar con BD/backend. No se eliminaron sus pendientes ni se modificó la Definition of Done original. El avance técnico permite desarrollar con datos de prueba, pero no afirmar que el temario de la escuela está completo o aprobado.
 
@@ -101,11 +101,11 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 - [x] Flyway al arranque y Hibernate en modo validación, sin recrear tablas.
 - [x] Primer módulo de contenido: entidades, repositorios de lectura, servicio, mapeo a DTO y controlador de posiciones.
 - [x] Procedencia de posiciones con fuente/hash, metadatos, página PDF/folio y estados; sin rutas locales/PDFs en el DTO.
-- [x] Pruebas unitarias y con PostgreSQL aislado: **17 pruebas Java correctas** en el último bloque técnico.
+- [x] Pruebas unitarias y con PostgreSQL aislado: **30 pruebas Java correctas** en el último bloque técnico.
 - [x] Salud mínima y bloqueo HTTP preventivo de contenido; JAR probado contra Compose.
-- [ ] Ampliar entidades/repositorios/servicios/DTOs/controladores al resto de contenido y currículo.
-- [ ] Implementar `GET /api/v1/gups/10` con un temario real completo; hoy no existe ese controlador.
-- [ ] Definir y validar contrato OpenAPI/Swagger, errores y pruebas del resto de la API.
+- [x] Lectura interna (entidad, repositorio, servicio, DTO, controlador) de **cinco tipos**: posiciones, teoría, vocabulario, herramientas corporales y tuls/ejercicios (pasos con sus citas); regla única de IDs canónicos (`CanonicalIds`).
+- [x] Contrato [OpenAPI 3.1 de las rutas de lectura](docs/openapi/taekwonpage-v1.json) con 200/400/403/404, sin esquemas de identidad ni hosts públicos, verificado por tests Node contra los controladores Java y contra `denyAll`.
+- [ ] Ampliar lectura a kick, combate y currículo; `GET /api/v1/gups/10` con un temario real completo sigue sin controlador (depende de la escuela).
 - [ ] Completar el flujo funcional sin exponer borradores ni saltarse la autorización de Fase 3.
 
 ## Fase 3 — Seguridad, identidad y acceso
@@ -164,12 +164,12 @@ Un volumen persistente local y `/actuator/health` local no completan estos punto
 
 ## Orden para retomar sin arrastrar pendientes invisibles
 
-El bloque activo es **Fase 0**, por confirmación posterior del usuario; Fase 1 queda abierta por sus dependencias humanas. La lista siguiente expresa dependencias, no autorización para saltar directamente al backend ni dar por terminada la persistencia funcional.
+El bloque activo es **Fase 2 sin endpoints educativos**, por decisión del usuario del 29-10-2026 tras cerrar técnicamente la Fase 0; Fase 1 queda abierta por sus dependencias humanas. La lista siguiente expresa dependencias, no autorización para saltar directamente a la apertura de rutas ni dar por terminada la persistencia funcional.
 
-1. Confirmar con la escuela autoridad, revisor y programa técnico de 10º Gup; no puede resolverlo un test ni la IA.
-2. Continuar extracción/revisión de Fase 0 y sus lagunas, cerrar convenciones y construir el currículo de 10º Gup sin inventar requisitos.
+1. Confirmar con la escuela autoridad, revisor y programa técnico de 10º Gup; no puede resolverlo un test ni la IA. Las preguntas están consolidadas en [docs/phase0-decisiones-pendientes.md](docs/phase0-decisiones-pendientes.md).
+2. Al llegar respuestas: registrarlas con responsable y fecha, extraer solo lo desbloqueado y construir el currículo de 10º Gup sin inventar requisitos (la Fase 0 ya no avanza por más extracción).
 3. Completar importación curricular/revisión/publicación y su consulta en backend; 9º/8º siguen después de demostrar 10º, como dispone el plan.
-4. Desarrollar infraestructura/lecturas con fixtures en paralelo si se autoriza, sin marcar Fases 0/1 completas. Elegir identidad antes de implementarla o abrir rutas.
+4. Seguir en backend con lecturas y contratos (kick/combate, luego gups cuando exista currículo), sin tocar `denyAll`; elegir identidad (JWT u OIDC) antes de implementarla o abrir rutas.
 5. Integrar Angular cuando existan los contratos y acceso necesarios; preparar hosting al llegar a producción, no convertir el PC en servidor público.
 
 ### Mantenimiento de este checklist

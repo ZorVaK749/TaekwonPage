@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.27  
+**Version del documento:** 1.28  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 28-10-2026  
 
@@ -1754,7 +1754,9 @@ Para retomar el proyecto desde otro chat sin arrastrar contexto incompleto exist
 
 ## 55.2 Paso a paso respecto de la seccion 50
 
-**Bloque vigente — cierre tecnico de la Fase 0 (Fase 0):** se dio por **agotada la extracción** de la Fase 0: todo lo observable en los cuatro PDFs locales ya esta documentado con cita, y lo único pendiente depende de decisiones humanas. Se consolidaron esas decisiones en un unico [documento de decisiones pendientes](docs/phase0-decisiones-pendientes.md) (siete preguntas para la escuela, cinco para el revisor, dos tecnicas del proyecto) y se actualizo el [prompt de continuacion](docs/handoff/continuation-prompt.md) al estado real (informe 1.26, 89 fichas/162 citas, 235 tests). Sin nuevo contenido, sin curriculum, sin aprobacion y sin cambios de esquema; los conteos no cambian.
+**Bloque vigente — Fase 2: servicios de lectura interna y contrato OpenAPI:** por decision del usuario del 29-10-2026, se reanuda la Fase 2 **sin endpoints educativos ni cambios de `denyAll`**. Se replico el patron de posiciones a teoria, vocabulario, herramienta corporal y tul/ejercicio parcial: entidades `@Immutable`, repositorios de solo lectura, servicios transaccionales, DTOs inmutables y controladores `GET` bloqueados por la politica global. Los tuls exponen pasos con sus propias citas por paso (`tul_step_source`) y conservan lagunas observadas (`movementCount`/`initialPositionId` pueden ser `null`, `sequenceComplete` puede ser `false`). La validacion de IDs canonicos se unifico en `shared/ids/CanonicalIds`, reutilizada por servicios y controladores. Se publico el contrato [docs/openapi/taekwonpage-v1.json](docs/openapi/taekwonpage-v1.json) (OpenAPI 3.1) documentando las cinco rutas de lectura con 200/400/403/404, sin esquemas de autenticacion ni hosts publicos; un test Node lo cruza contra los controladores Java y contra la posture `denyAll` del codigo. 30 pruebas Java (antes 17) y 240 tests Node (antes 235). Sin migraciones, dependencias, contenido marcial ni apertura HTTP.
+
+**Bloque anterior — cierre tecnico de la Fase 0 (Fase 0):** se dio por **agotada la extracción** de la Fase 0: todo lo observable en los cuatro PDFs locales ya esta documentado con cita, y lo único pendiente depende de decisiones humanas. Se consolidaron esas decisiones en un unico [documento de decisiones pendientes](docs/phase0-decisiones-pendientes.md) (siete preguntas para la escuela, cinco para el revisor, dos tecnicas del proyecto) y se actualizo el [prompt de continuacion](docs/handoff/continuation-prompt.md) al estado real (informe 1.26, 89 fichas/162 citas, 235 tests). Sin nuevo contenido, sin curriculum, sin aprobacion y sin cambios de esquema; los conteos no cambian.
 
 **Bloque anterior — nombres de tecnica del vocabulario (Fase 0):** se extrajeron las once filas restantes de nombres de tecnica de las tablas VOCABULARIO (WEB 12 / ONT 15–16) al catalogo de vocabulario con 22 citas y una [matriz de revision](knowledge/provenance/vocabulario-nombres-tecnica-review.md). Las traducciones coinciden en ambas copias. Los compuestos (`Yop Makgi`, `Ap Makgi`, `Yobap Makgi`) no absorben al generico `makgi` ni se equiparan a `saju_makgi`; los ejemplos entre parentesis se transcriben sin expandir en fichas. La fila doble de `Jirugi` quedo excluida y documentada, sin crear una ficha unica. Con esto la matriz del vocabulario queda agotada salvo resolver el doble `Jirugi`. Sin curriculum, aprobacion, backend/frontend ni cambios de esquema.
 
@@ -1867,14 +1869,15 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Acciones documentadas | 15 registros, correspondientes a listas impresas 1–7 y 1–8; no representan totales globales ni ejercicios completos |
 | Curriculos nuevos | 0 |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 235 correctos |
+| Tests Node | 240 correctos |
 | Tests PowerShell | 22 correctos |
-| Tests backend | 17 correctos, sin omitidos: unitarios y PostgreSQL Testcontainers; migracion, DTO con citas/identidad/localizadores, serializacion sin datos locales y casos negativos HTTP |
+| Tests backend | 30 correctos, sin omitidos: unitarios y PostgreSQL Testcontainers; migracion, DTO con citas/identidad/localizadores, cinco tipos de lectura (posicion, teoria, vocabulario, herramienta, tul con pasos y citas por paso), regla unica de IDs `CanonicalIds`, serializacion sin datos locales y casos negativos HTTP |
+| Contrato OpenAPI | `docs/openapi/taekwonpage-v1.json` (3.1): cinco rutas de lectura con 200/400/403/404, sin securitySchemes ni hosts publicos; testeado contra controladores Java y contra `denyAll` en `SecurityConfiguration` |
 | Arranque backend | JAR ejecutado contra Compose con importacion explicita de .env local; salud UP sin detalles, posiciones HTTP 403; proceso detenido al finalizar |
 | Persistencia | PostgreSQL/Flyway V1–V6: creacion/upgrades con datos; 16 rechazos de constraints, cinco conflictos de importacion, 18 textuales, 30 curriculares, 36 escalares, 39 de ejercicios y 37 de citas/propiedad; historial y rollback |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | Debe fallar por falta de curriculum; fallo esperado, no milestone completado |
-| GitHub | Citas integradas en `76d90be`; teoria/matriz en `04ead83`; vocabulario integrado en `b570de6`; partes del cuerpo integradas en `3fcf524`; terminos generales integrados en `fa831ac`; secciones del cuerpo integradas en `5b8a640`; intento de legibilidad de Saju en la rama `feat/saju-legibility`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
+| GitHub | Citas integradas en `76d90be`; teoria/matriz en `04ead83`; vocabulario integrado en `b570de6`; partes del cuerpo integradas en `3fcf524`; terminos generales integrados en `fa831ac`; secciones del cuerpo integradas en `5b8a640`; nombres de tecnica integrados en `66dcfda`; cierre de Fase 0 en `f0251aa`; servicios de lectura de backend en la rama `feat/backend-content-read-services`, con push e integracion revisada segun el flujo habitual. Sin borrado de referencias, PR, tags/releases o deploy |
 
 Fuentes del seguimiento: [politica de fuentes](knowledge/sources/README.md), [procedencia](knowledge/provenance/README.md), [contratos](knowledge/schemas/README.md) y [validadores](tools/validators/README.md). El reporte reproducible se obtiene con:
 
@@ -1950,13 +1953,13 @@ No avanzar a 9º Gup hasta que la estructura de 10º Gup haya demostrado ser reu
 
 ### Proximo bloque de trabajo
 
-**Prioridad vigente por confirmacion posterior del usuario:** retomar Fase 0 ante la falta de programa/revisor confirmados y mantener Fase 1 abierta. Pausar ampliacion de Fase 2; los puntos de contenido siguientes son el bloque activo. No cerrar Fase 1 por pruebas sinteticas si faltan evidencia real o decisiones humanas. Para continuar desde otro chat, partir del [prompt de continuacion](docs/handoff/continuation-prompt.md) y validar su estado contra este informe.
+**Prioridad vigente por confirmacion del usuario del 29-10-2026:** la Fase 0 quedo **cerrada tecnicamente** (extraccion agotada; decisiones humanas consolidadas en `docs/phase0-decisiones-pendientes.md`) y el bloque activo es **Fase 2 sin endpoints educativos**: ampliar lecturas internas, refactorizar y documentar OpenAPI con rutas protegidas, sin tocar `denyAll` ni abrir contenido. Fase 1 sigue abierta por sus dependencias humanas. No cerrar Fase 1 por pruebas sinteticas si faltan evidencia real o decisiones humanas. Para continuar desde otro chat, partir del [prompt de continuacion](docs/handoff/continuation-prompt.md) y validar su estado contra este informe.
 
 1. Checkpoint acumulado integrado y publicado en `main` con historial preservado. En bloques futuros, partir de `origin/main` actualizado, trabajar y hacer push en una rama e integrar checkpoints coherentes periodicamente. Sin PR, force-push, tags o limpieza de ramas no autorizada.
 2. Contrastar y revisar los tramos encontrados en PDF 530 de la enciclopedia, resolver su legibilidad y alcance antes de completar secuencias; continuar consultas dirigidas para las lagunas de posiciones/herramientas. No convertir expresiones terminologicas en pasos ni generar el recorrido alterno por simetria.
 3. Resolver con la escuela los asuntos que impiden aprobar requisitos, posiciones o secuencias; registrar responsable, evidencia y fecha reales, sin aprobaciones ficticias.
 4. Construir curriculum enlazado y validarlo con contenido real antes de declarar completo el caso de 10º Gup.
-5. Por instruccion del usuario del 18-10-2026 se habilitaron persistencia local y arranque Spring Boot sin declarar completado el contenido: [ERD y limites](docs/database/README.md) y [backend ejecutable](backend/taekwonpage-api/README.md). Siguiente bloque: ampliar lectura/procedencia, acordar identidad y publicacion antes de abrir rutas, definir OpenAPI y completar importacion curricular real. Angular y despliegue no se inician en este cierre nocturno.
+5. Por instruccion del usuario del 18-10-2026 se habilitaron persistencia local y arranque Spring Boot sin declarar completado el contenido: [ERD y limites](docs/database/README.md) y [backend ejecutable](backend/taekwonpage-api/README.md). El 29-10-2026 el usuario reanudo la Fase 2 sin endpoints educativos: cinco tipos ya tienen lectura interna y contrato OpenAPI. Siguiente bloque de backend: kick/combate y `GET /api/v1/gups/10` (requiere curriculum real), acordar identidad y publicacion antes de abrir rutas. Angular y despliegue no se inician en este bloque.
 
 La forma de trabajar con ramas, commits, push, integraciones y versiones queda documentada en [flujo de desarrollo](docs/development/README.md). La ultima instruccion permite merges periodicos revisados a `main`, sin crear PR, y sustituye la prohibicion anterior de merges. Esto no cambia el monolito modular ni introduce microservicios.
 
@@ -2012,6 +2015,7 @@ Cuando OpenCode reciba una tarea:
 | 1.25 | 29-10-2026 | Fase 0: intento de recuperar la legibilidad del punto 3 de Saju Jirugi con recortes ampliados de la PDF 530 (hasta 4000 px, sin OCR); resultado negativo por erosion de tinta, laguna conservada sin completar por simetría y registrada en cita, matriz e inventario. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP; conteos sin cambios (78/140, 228 tests) |
 | 1.26 | 29-10-2026 | Fase 0: once nombres de tecnica de las tablas VOCABULARIO (WEB 12 / ONT 15–16) extraidos como vocabulario con 22 citas y matriz de revision; traducciones identicas entre copias, compuestos sin absorber al makgi generico, ejemplos sin expandir. Fila doble de Jirugi excluida y documentada; matriz del vocabulario agotada salvo ese doble uso. Total 89 fichas/162 citas en 15 pares; 235 tests Node. Sin curriculum, aprobacion, migraciones, dependencias ni HTTP |
 | 1.27 | 29-10-2026 | Fase 0: cierre tecnico — extraccion dada por agotada y decisiones pendientes consolidadas en docs/phase0-decisiones-pendientes.md (7 preguntas escuela, 5 revisor, 2 tecnicas); prompt de continuacion actualizado al estado real. Sin contenido nuevo, curriculum, aprobacion ni cambios de esquema; conteos sin cambios (89/162, 235 tests) |
+| 1.28 | 29-10-2026 | Fase 2 reanudada sin endpoints educativos: servicios/DTOs/controladores de lectura para teoria, vocabulario, herramientas y tuls (pasos con citas por paso), validacion de IDs unificada en CanonicalIds y contrato OpenAPI 3.1 en docs/openapi/taekwonpage-v1.json testeado contra controladores y denyAll. 30 pruebas Java y 240 tests Node. Sin migraciones, dependencias, contenido marcial, aprobacion ni apertura HTTP |
 
 ---
 
