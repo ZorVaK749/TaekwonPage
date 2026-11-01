@@ -22,6 +22,8 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import tech.zvk.taekwonpage.content.BodyToolService;
+import tech.zvk.taekwonpage.content.CombatService;
+import tech.zvk.taekwonpage.content.KickService;
 import tech.zvk.taekwonpage.content.PositionService;
 import tech.zvk.taekwonpage.content.TheoryService;
 import tech.zvk.taekwonpage.content.TulService;
@@ -47,6 +49,8 @@ class BackendIntegrationTest {
     @Autowired TheoryService theory;
     @Autowired VocabularyService vocabulary;
     @Autowired BodyToolService tools;
+    @Autowired KickService kicks;
+    @Autowired CombatService combatTypes;
     @Autowired TulService tuls;
     @Autowired ObjectMapper json;
 
@@ -67,6 +71,7 @@ class BackendIntegrationTest {
     void anonymousRequestsCannotReadContentOrDiagnostics() throws Exception {
         for (String route : new String[] {"/api/v1/positions/test_position", "/api/v1/theory/test_theory",
                 "/api/v1/vocabulary/test_vocabulary", "/api/v1/body-tools/test_tool",
+                "/api/v1/kicks/test_kick", "/api/v1/combat-types/test_combat",
                 "/api/v1/tuls/test_tul", "/api/v1/gups/10",
                 "/actuator/env", "/actuator", "/v3/api-docs", "/login"}) {
             mvc.perform(get(route)).andExpect(status().isForbidden());
@@ -76,7 +81,8 @@ class BackendIntegrationTest {
     @Test
     @WithMockUser(roles = {"ADMIN", "DEVELOPER", "STUDENT"})
     void evenAuthenticatedRolesDoNotBypassPendingAccessPolicy() throws Exception {
-        for (String route : new String[] {"/api/v1/positions/test_position", "/api/v1/tuls/test_tul"}) {
+        for (String route : new String[] {"/api/v1/positions/test_position", "/api/v1/tuls/test_tul",
+                "/api/v1/combat-types/test_combat"}) {
             mvc.perform(get(route)).andExpect(status().isForbidden());
         }
     }
@@ -241,6 +247,36 @@ class BackendIntegrationTest {
         assertThat(tulDraft.citations()).extracting(citation -> citation.id())
             .containsExactly("citation_step_one");
         assertThat(tuls.findById("missing_tul")).isEmpty();
+    }
+
+    @Test
+    @Transactional
+    void readsKickAndCombatDraftsInternallyWithOnlyTheirOwnedCitations() {
+        jdbc.update("INSERT INTO content_entry(id, content_type, name, description) "
+            + "VALUES ('test_kick', 'kick', 'Patada sintética', 'Solo prueba técnica')");
+        jdbc.update("INSERT INTO kick(id) VALUES ('test_kick')");
+        jdbc.update("INSERT INTO content_entry(id, content_type, name, description) "
+            + "VALUES ('test_combat', 'combat', 'Combate sintético', 'Solo prueba técnica')");
+        jdbc.update("INSERT INTO combat_type(id) VALUES ('test_combat')");
+        jdbc.update("INSERT INTO content_entry(id, content_type, name, description) "
+            + "VALUES ('test_other_kick', 'kick', 'Otra patada', 'Solo prueba técnica')");
+        jdbc.update("INSERT INTO kick(id) VALUES ('test_other_kick')");
+        insertSource("test_source_a", "a".repeat(64));
+        insertCitation("citation_kick", "test_kick", "test_source_a", "a".repeat(64), 12, null, null);
+
+        var kickDraft = kicks.findById("test_kick").orElseThrow();
+        assertThat(kickDraft.name()).isEqualTo("Patada sintética");
+        assertThat(kickDraft.reviewStatus()).isEqualTo("pending_human_review");
+        assertThat(kickDraft.citations()).extracting(citation -> citation.id()).containsExactly("citation_kick");
+
+        var combatDraft = combatTypes.findById("test_combat").orElseThrow();
+        assertThat(combatDraft.name()).isEqualTo("Combate sintético");
+        assertThat(combatDraft.citations()).isEmpty();
+
+        // Another kick's evidence never leaks into this draft.
+        assertThat(kicks.findById("test_other_kick").orElseThrow().citations()).isEmpty();
+        assertThat(kicks.findById("missing_kick")).isEmpty();
+        assertThat(combatTypes.findById("missing_combat")).isEmpty();
     }
 
     private void insertPosition() {

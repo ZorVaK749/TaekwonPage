@@ -11,8 +11,10 @@ import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import tech.zvk.taekwonpage.content.persistence.BodyToolRepository;
+import tech.zvk.taekwonpage.content.persistence.CombatTypeRepository;
 import tech.zvk.taekwonpage.content.persistence.ContentEntry;
 import tech.zvk.taekwonpage.content.persistence.ContentSourceRepository;
+import tech.zvk.taekwonpage.content.persistence.KickRepository;
 import tech.zvk.taekwonpage.content.persistence.TheoryContentRepository;
 import tech.zvk.taekwonpage.content.persistence.Tul;
 import tech.zvk.taekwonpage.content.persistence.TulRepository;
@@ -31,6 +33,8 @@ class ContentReadServicesTest {
     private final TheoryContentRepository theory = mock(TheoryContentRepository.class);
     private final VocabularyRepository vocabulary = mock(VocabularyRepository.class);
     private final BodyToolRepository tools = mock(BodyToolRepository.class);
+    private final KickRepository kicks = mock(KickRepository.class);
+    private final CombatTypeRepository combatTypes = mock(CombatTypeRepository.class);
     private final TulRepository tuls = mock(TulRepository.class);
     private final TulStepRepository steps = mock(TulStepRepository.class);
     private final TulStepSourceRepository stepSources = mock(TulStepSourceRepository.class);
@@ -45,10 +49,14 @@ class ContentReadServicesTest {
                 .isInstanceOf(IllegalArgumentException.class);
             assertThatThrownBy(() -> new BodyToolService(tools, sources).findById(id))
                 .isInstanceOf(IllegalArgumentException.class);
+            assertThatThrownBy(() -> new KickService(kicks, sources).findById(id))
+                .isInstanceOf(IllegalArgumentException.class);
+            assertThatThrownBy(() -> new CombatService(combatTypes, sources).findById(id))
+                .isInstanceOf(IllegalArgumentException.class);
             assertThatThrownBy(() -> new TulService(tuls, steps, stepSources, sources).findById(id))
                 .isInstanceOf(IllegalArgumentException.class);
         }
-        verifyNoInteractions(theory, vocabulary, tools, tuls, steps, stepSources, sources);
+        verifyNoInteractions(theory, vocabulary, tools, kicks, combatTypes, tuls, steps, stepSources, sources);
     }
 
     @Test
@@ -56,14 +64,20 @@ class ContentReadServicesTest {
         when(theory.findById("missing_theory")).thenReturn(Optional.empty());
         when(vocabulary.findById("missing_vocabulary")).thenReturn(Optional.empty());
         when(tools.findById("missing_tool")).thenReturn(Optional.empty());
+        when(kicks.findById("missing_kick")).thenReturn(Optional.empty());
+        when(combatTypes.findById("missing_combat")).thenReturn(Optional.empty());
         when(tuls.findById("missing_tul")).thenReturn(Optional.empty());
         assertThat(new TheoryService(theory, sources).findById("missing_theory")).isEmpty();
         assertThat(new VocabularyService(vocabulary, sources).findById("missing_vocabulary")).isEmpty();
         assertThat(new BodyToolService(tools, sources).findById("missing_tool")).isEmpty();
+        assertThat(new KickService(kicks, sources).findById("missing_kick")).isEmpty();
+        assertThat(new CombatService(combatTypes, sources).findById("missing_combat")).isEmpty();
         assertThat(new TulService(tuls, steps, stepSources, sources).findById("missing_tul")).isEmpty();
         verify(theory).findById("missing_theory");
         verify(vocabulary).findById("missing_vocabulary");
         verify(tools).findById("missing_tool");
+        verify(kicks).findById("missing_kick");
+        verify(combatTypes).findById("missing_combat");
         verify(tuls).findById("missing_tul");
         verifyNoInteractions(sources);
     }

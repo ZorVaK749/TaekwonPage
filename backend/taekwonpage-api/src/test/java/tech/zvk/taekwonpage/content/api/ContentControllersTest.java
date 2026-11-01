@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 import tech.zvk.taekwonpage.content.BodyToolService;
+import tech.zvk.taekwonpage.content.CombatService;
+import tech.zvk.taekwonpage.content.KickService;
 import tech.zvk.taekwonpage.content.TheoryService;
 import tech.zvk.taekwonpage.content.TulService;
 import tech.zvk.taekwonpage.content.VocabularyService;
@@ -21,6 +23,8 @@ class ContentControllersTest {
     private final TheoryService theory = mock(TheoryService.class);
     private final VocabularyService vocabulary = mock(VocabularyService.class);
     private final BodyToolService tools = mock(BodyToolService.class);
+    private final KickService kicks = mock(KickService.class);
+    private final CombatService combatTypes = mock(CombatService.class);
     private final TulService tuls = mock(TulService.class);
 
     @Test
@@ -28,12 +32,18 @@ class ContentControllersTest {
         when(theory.findById("missing_theory")).thenReturn(Optional.empty());
         when(vocabulary.findById("missing_vocabulary")).thenReturn(Optional.empty());
         when(tools.findById("missing_tool")).thenReturn(Optional.empty());
+        when(kicks.findById("missing_kick")).thenReturn(Optional.empty());
+        when(combatTypes.findById("missing_combat")).thenReturn(Optional.empty());
         when(tuls.findById("missing_tul")).thenReturn(Optional.empty());
         assertThat(new TheoryController(theory).findById("missing_theory").getStatusCode())
             .isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(new VocabularyController(vocabulary).findById("missing_vocabulary").getStatusCode())
             .isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(new BodyToolController(tools).findById("missing_tool").getStatusCode())
+            .isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(new KickController(kicks).findById("missing_kick").getStatusCode())
+            .isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(new CombatController(combatTypes).findById("missing_combat").getStatusCode())
             .isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(new TulController(tuls).findById("missing_tul").getStatusCode())
             .isEqualTo(HttpStatus.NOT_FOUND);
@@ -50,10 +60,16 @@ class ContentControllersTest {
         assertThatThrownBy(() -> new BodyToolController(tools).findById("x' OR '1'='1"))
             .isInstanceOfSatisfying(ResponseStatusException.class,
                 error -> assertThat(error.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST));
+        assertThatThrownBy(() -> new KickController(kicks).findById("missing_kick "))
+            .isInstanceOfSatisfying(ResponseStatusException.class,
+                error -> assertThat(error.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST));
+        assertThatThrownBy(() -> new CombatController(combatTypes).findById("_leading"))
+            .isInstanceOfSatisfying(ResponseStatusException.class,
+                error -> assertThat(error.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST));
         assertThatThrownBy(() -> new TulController(tuls).findById(null))
             .isInstanceOfSatisfying(ResponseStatusException.class,
                 error -> assertThat(error.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST));
-        verifyNoInteractions(theory, vocabulary, tools, tuls);
+        verifyNoInteractions(theory, vocabulary, tools, kicks, combatTypes, tuls);
     }
 
     @Test
@@ -61,6 +77,10 @@ class ContentControllersTest {
         var theoryDto = new TheoryResponse("test_theory", "Synthetic", "Test", "pending_human_review", List.of());
         when(theory.findById("test_theory")).thenReturn(Optional.of(theoryDto));
         assertThat(new TheoryController(theory).findById("test_theory").getBody()).isSameAs(theoryDto);
+
+        var kickDto = new KickResponse("test_kick", "Synthetic", "Test", "pending_human_review", List.of());
+        when(kicks.findById("test_kick")).thenReturn(Optional.of(kickDto));
+        assertThat(new KickController(kicks).findById("test_kick").getBody()).isSameAs(kickDto);
 
         var tulDto = new TulResponse("test_tul", "Synthetic", "Test", "pending_human_review",
             2, null, false, "partial scope", List.of(), List.of());
