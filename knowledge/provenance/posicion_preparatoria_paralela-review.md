@@ -8,4 +8,6 @@ Solo se extrajo una síntesis cualitativa. `biomechanics` permanece `null`: no s
 
 Se consultaron PDF 67–70 y 80–85 para localizar el pasaje; únicamente PDF 81 se utiliza como evidencia nueva en este lote. El folio 79 se observó, no se dedujo de una resta general para el libro.
 
-**Pendiente:** revisión humana, adopción curricular, medidas/referencias geométricas, alcance alterno y total de los ejercicios, y legibilidad del punto 3 de Jirugi (el intento de recuperación con recortes ampliados del 29-10-2026 fue negativo: la tinta está erosionada). `sequence_complete` sigue en `false` y `movement_count` en `null`. Los archivos antiguos se conservan intactos.
+**Decisión escolar registrada el 01-11-2026 (A5, TKD-005):** la escuela **adopta `narani_junbi_sogi` (Narani Junbi Sogi) como su variante de Junbi**. La geometría válida es la definida en PDF 81 (la de la fuente ya enlazada); no se hereda ninguna del borrador antiguo y no se convierte todo Junbi en sinónimo de esa posición. Registrado por el usuario de ZVK Tech como representante de la escuela.
+
+**Pendiente:** revisión humana, medidas/referencias geométricas, alcance alterno y total de los ejercicios, y legibilidad del punto 3 de Jirugi (el intento de recuperación con recortes ampliados del 29-10-2026 fue negativo: la tinta está erosionada). `sequence_complete` sigue en `false` y `movement_count` en `null`. Los archivos antiguos se conservan intactos.
