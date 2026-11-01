@@ -23,6 +23,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import tech.zvk.taekwonpage.content.BodyToolService;
 import tech.zvk.taekwonpage.content.CombatService;
+import tech.zvk.taekwonpage.content.GupService;
 import tech.zvk.taekwonpage.content.KickService;
 import tech.zvk.taekwonpage.content.PositionService;
 import tech.zvk.taekwonpage.content.TheoryService;
@@ -51,6 +52,7 @@ class BackendIntegrationTest {
     @Autowired BodyToolService tools;
     @Autowired KickService kicks;
     @Autowired CombatService combatTypes;
+    @Autowired GupService gups;
     @Autowired TulService tuls;
     @Autowired ObjectMapper json;
 
@@ -82,7 +84,7 @@ class BackendIntegrationTest {
     @WithMockUser(roles = {"ADMIN", "DEVELOPER", "STUDENT"})
     void evenAuthenticatedRolesDoNotBypassPendingAccessPolicy() throws Exception {
         for (String route : new String[] {"/api/v1/positions/test_position", "/api/v1/tuls/test_tul",
-                "/api/v1/combat-types/test_combat"}) {
+                "/api/v1/combat-types/test_combat", "/api/v1/gups/10"}) {
             mvc.perform(get(route)).andExpect(status().isForbidden());
         }
     }
@@ -277,6 +279,41 @@ class BackendIntegrationTest {
         assertThat(kicks.findById("test_other_kick").orElseThrow().citations()).isEmpty();
         assertThat(kicks.findById("missing_kick")).isEmpty();
         assertThat(combatTypes.findById("missing_combat")).isEmpty();
+    }
+
+    @Test
+    @Transactional
+    void readsGupCurriculumShapeInternallyWithZeroInventedRequirements() {
+        jdbc.update("INSERT INTO content_entry(id, content_type, name, description) "
+            + "VALUES ('gup_10', 'gup', 'Décimo gup sintético', 'Solo prueba técnica')");
+        jdbc.update("INSERT INTO gup(id, gup) VALUES ('gup_10', 10)");
+        jdbc.update("INSERT INTO content_entry(id, content_type, name, description) "
+            + "VALUES ('gup_position_ref', 'position', 'Posición sintética', 'Solo prueba técnica')");
+        jdbc.update("INSERT INTO position(id) VALUES ('gup_position_ref')");
+        jdbc.update("INSERT INTO content_entry(id, content_type, name, description) "
+            + "VALUES ('gup_theory_ref', 'theory', 'Teoría sintética', 'Solo prueba técnica')");
+        jdbc.update("INSERT INTO theory_content(id) VALUES ('gup_theory_ref')");
+        jdbc.update("INSERT INTO gup_position(gup_id, position_id) VALUES ('gup_10', 'gup_position_ref')");
+        jdbc.update("INSERT INTO gup_theory(gup_id, theory_id) VALUES ('gup_10', 'gup_theory_ref')");
+        insertSource("test_source_gup", "a".repeat(64));
+        insertCitation("citation_gup", "gup_10", "test_source_gup", "a".repeat(64), 7, null, null);
+
+        var gupDraft = gups.findByNumber(10).orElseThrow();
+        assertThat(gupDraft.id()).isEqualTo("gup_10");
+        assertThat(gupDraft.gup()).isEqualTo(10);
+        assertThat(gupDraft.name()).isEqualTo("Décimo gup sintético");
+        assertThat(gupDraft.reviewStatus()).isEqualTo("pending_human_review");
+        assertThat(gupDraft.requirements().positionIds()).containsExactly("gup_position_ref");
+        assertThat(gupDraft.requirements().theoryIds()).containsExactly("gup_theory_ref");
+        // Untouched groups stay empty: they are never completed from other drafts.
+        assertThat(gupDraft.requirements().vocabularyIds()).isEmpty();
+        assertThat(gupDraft.requirements().kickIds()).isEmpty();
+        assertThat(gupDraft.requirements().tulIds()).isEmpty();
+        assertThat(gupDraft.citations()).extracting(citation -> citation.id()).containsExactly("citation_gup");
+
+        // An unobserved curriculum is absent, not fabricated on demand.
+        assertThat(gups.findByNumber(9)).isEmpty();
+        assertThat(gups.findByNumber(10).orElseThrow().requirements().combatIds()).isEmpty();
     }
 
     private void insertPosition() {

@@ -61,7 +61,11 @@ test('no server, schema or operation advertises an identity or a public host', (
     assert.match(operation.responses['403'].description, /deny-all/);
     assert.match(operation.responses['404'].description, /no se rellena/);
     assert.equal(operation.parameters.length, 1);
-    assert.equal(operation.parameters[0].$ref, '#/components/parameters/CanonicalId');
+    // Path parameters are restricted to these two: the canonical id or the raw gup number.
+    assert.ok([
+      '#/components/parameters/CanonicalId',
+      '#/components/parameters/GupNumber',
+    ].includes(operation.parameters[0].$ref), `${route} declares an unexpected path parameter`);
   }
   assert.equal(new Set(Object.values(contract.paths).map((route) => route.get.operationId)).size,
     Object.keys(contract.paths).length, 'operationIds must be unique');
@@ -72,6 +76,12 @@ test('canonical id and provenance limits are part of the published contract', ()
   assert.equal(parameter.in, 'path');
   assert.equal(parameter.required, true);
   assert.equal(parameter.schema.pattern, '^[a-z][a-z0-9]*(_[a-z0-9]+)*$');
+  const gupNumber = contract.components.parameters.GupNumber;
+  assert.equal(gupNumber.in, 'path');
+  assert.equal(gupNumber.required, true);
+  assert.equal(gupNumber.schema.type, 'integer');
+  assert.equal(gupNumber.schema.minimum, 1);
+  assert.equal(gupNumber.schema.maximum, 10);
   const citation = contract.components.schemas.Citation;
   assert.equal(citation.properties.sourceSha256.pattern, '^[a-f0-9]{64}$');
   assert.equal(citation.properties.reviewStatus.$ref, '#/components/schemas/ReviewStatus');
@@ -81,6 +91,16 @@ test('canonical id and provenance limits are part of the published contract', ()
   assert.ok('sequenceComplete' in contract.components.schemas.Tul.properties);
   assert.ok('movementCount' in contract.components.schemas.Tul.properties);
   assert.ok('translation' in contract.components.schemas.Vocabulary.properties);
+  // The curriculum read exposes exactly the seven observed groups and nothing else.
+  const gup = contract.components.schemas.Gup;
+  assert.ok('requirements' in gup.properties);
+  assert.equal(gup.properties.gup.minimum, 1);
+  assert.equal(gup.properties.gup.maximum, 10);
+  const groups = contract.components.schemas.GupRequirements;
+  assert.deepEqual(Object.keys(groups.properties).sort(), [
+    'bodyToolIds', 'combatIds', 'kickIds', 'positionIds', 'theoryIds', 'tulIds', 'vocabularyIds',
+  ]);
+  assert.equal(Object.keys(groups.properties).length, 7);
 });
 
 test('schemas expose no local file paths, internal notes or unreviewed states', () => {

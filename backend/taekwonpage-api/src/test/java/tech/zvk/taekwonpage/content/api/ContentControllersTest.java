@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 import tech.zvk.taekwonpage.content.BodyToolService;
 import tech.zvk.taekwonpage.content.CombatService;
+import tech.zvk.taekwonpage.content.GupService;
 import tech.zvk.taekwonpage.content.KickService;
 import tech.zvk.taekwonpage.content.TheoryService;
 import tech.zvk.taekwonpage.content.TulService;
@@ -25,6 +26,7 @@ class ContentControllersTest {
     private final BodyToolService tools = mock(BodyToolService.class);
     private final KickService kicks = mock(KickService.class);
     private final CombatService combatTypes = mock(CombatService.class);
+    private final GupService gups = mock(GupService.class);
     private final TulService tuls = mock(TulService.class);
 
     @Test
@@ -34,6 +36,7 @@ class ContentControllersTest {
         when(tools.findById("missing_tool")).thenReturn(Optional.empty());
         when(kicks.findById("missing_kick")).thenReturn(Optional.empty());
         when(combatTypes.findById("missing_combat")).thenReturn(Optional.empty());
+        when(gups.findByNumber(9)).thenReturn(Optional.empty());
         when(tuls.findById("missing_tul")).thenReturn(Optional.empty());
         assertThat(new TheoryController(theory).findById("missing_theory").getStatusCode())
             .isEqualTo(HttpStatus.NOT_FOUND);
@@ -44,6 +47,8 @@ class ContentControllersTest {
         assertThat(new KickController(kicks).findById("missing_kick").getStatusCode())
             .isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(new CombatController(combatTypes).findById("missing_combat").getStatusCode())
+            .isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(new GupController(gups).findByNumber(9).getStatusCode())
             .isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(new TulController(tuls).findById("missing_tul").getStatusCode())
             .isEqualTo(HttpStatus.NOT_FOUND);
@@ -69,7 +74,16 @@ class ContentControllersTest {
         assertThatThrownBy(() -> new TulController(tuls).findById(null))
             .isInstanceOfSatisfying(ResponseStatusException.class,
                 error -> assertThat(error.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST));
-        verifyNoInteractions(theory, vocabulary, tools, kicks, combatTypes, tuls);
+        assertThatThrownBy(() -> new GupController(gups).findByNumber(0))
+            .isInstanceOfSatisfying(ResponseStatusException.class,
+                error -> assertThat(error.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST));
+        assertThatThrownBy(() -> new GupController(gups).findByNumber(11))
+            .isInstanceOfSatisfying(ResponseStatusException.class,
+                error -> assertThat(error.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST));
+        assertThatThrownBy(() -> new GupController(gups).findByNumber(null))
+            .isInstanceOfSatisfying(ResponseStatusException.class,
+                error -> assertThat(error.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST));
+        verifyNoInteractions(theory, vocabulary, tools, kicks, combatTypes, gups, tuls);
     }
 
     @Test
@@ -81,6 +95,13 @@ class ContentControllersTest {
         var kickDto = new KickResponse("test_kick", "Synthetic", "Test", "pending_human_review", List.of());
         when(kicks.findById("test_kick")).thenReturn(Optional.of(kickDto));
         assertThat(new KickController(kicks).findById("test_kick").getBody()).isSameAs(kickDto);
+
+        var gupDto = new GupResponse("gup_10", 10, "Synthetic", "Test", "pending_human_review",
+            new GupResponse.Requirements(List.of("test_position"), List.of(), List.of(),
+                List.of(), List.of(), List.of(), List.of()),
+            List.of());
+        when(gups.findByNumber(10)).thenReturn(Optional.of(gupDto));
+        assertThat(new GupController(gups).findByNumber(10).getBody()).isSameAs(gupDto);
 
         var tulDto = new TulResponse("test_tul", "Synthetic", "Test", "pending_human_review",
             2, null, false, "partial scope", List.of(), List.of());
