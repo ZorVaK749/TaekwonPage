@@ -29,4 +29,8 @@ Se renderizaron y observaron localmente páginas PDF de las copias registradas, 
 4. Obtener un programa técnico de 10º Gup confirmado por la escuela antes de crear cualquier currículo; el temario observado solo cubre teoría.
 5. Registrar revisión humana y derechos aplicables antes de publicar.
 
+## Decisión de modalidad — 01-11-2026 (A7)
+
+La escuela confirma que aplica su propia modalidad de **contacto pactado**; la forma «sin contacto» del archivo antiguo **no se adopta**. Falta la descripción textual de la modalidad (incluida la distinción «un paso» frente a «dos pasos»), que sigue en manos del revisor. Registrado por el usuario de ZVK Tech como representante de la escuela; el catálogo conserva lo observado mientras tanto.
+
 La falta de currículo sigue siendo un fallo esperado de `validate:content`. No se modifica ningún JSON antiguo de la raíz y no se inicia otro sprint con este bloque.

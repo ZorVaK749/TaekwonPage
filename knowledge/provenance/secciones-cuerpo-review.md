@@ -33,8 +33,8 @@ Ambas conservan `pending_human_review`.
 
 - [ ] Confirmar si las secciones del cuerpo (alta/media/baja y las tres líneas laterales) se exigen en el examen de 10º Gup de Nahuel Aukan y con qué profundidad.
 - [ ] Decidir si WEB 10 debe considerarse incompleta respecto de ONT 12 en los rangos, o si son formulaciones distintas legítimas.
-- [ ] Decidir si el bloque de **puntos vitales (kupso)** se extrae, con qué alcance y bajo qué criterio de seguridad marcial.
+- [x] **Resuelto 01-11-2026 (A4):** la escuela confirma que el bloque de **puntos vitales (kupso) no forma parte de 10º Gup**; queda fuera de alcance de esta fase y sin extraer.
 - [ ] Resolver la relación terminológica entre las secciones por altura y los términos `Nopunde`/`Kaunde`/`Najunde` del vocabulario.
-- [ ] Registrar quién revisa, con identidad y alcance reales.
+- [ ] Registrar quién revisa, con identidad y alcance reales. **Parcial (A3, 01-11-2026):** designado el usuario como mano derecha de la escuela; falta su nombre real en el registro.
 
-**No hay persona, fecha de aprobación o programa escolar confirmados en este documento.** La matriz no autoriza a sembrar datos como aprobados, a abrir endpoints educativos ni a avanzar de fase. `validate:content` debe seguir rechazando la ausencia de currículo.
+**Decisión escolar registrada el 01-11-2026 (kupso fuera de 10º Gup).** La matriz no autoriza a sembrar datos como aprobados, a abrir endpoints educativos ni a avanzar de fase por sí sola. `validate:content` debe seguir rechazando la ausencia de currículo hasta que exista uno real.

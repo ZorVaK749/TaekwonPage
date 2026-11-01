@@ -8,13 +8,13 @@
 
 | # | Pregunta | Qué desbloquea | Dónde registrar la respuesta |
 | --- | --- | --- | --- |
-| A1 | ¿Cuál es el **programa vigente de 10º Gup** y su examen? (documento/versión o confirmación explícita) | TKD-009: primer currículo real; cierre de la fundación de `validate:content` | [curricular-authority.md](../knowledge/provenance/curricular-authority.md) |
-| A2 | ¿Qué **manual(es)** aplican (WEB, ONT, enciclopedia) y cómo resolver sus diferencias? | TKD-002: autoridad curricular; prioridad entre copias divergentes | [curricular-authority.md](../knowledge/provenance/curricular-authority.md) |
-| A3 | ¿**Quién revisa y aprueba** el contenido marcial, y cómo se registra esa aprobación? | Todas las fichas: pasar de `pending_human_review` a aprobadas con evidencia | [curricular-authority.md](../knowledge/provenance/curricular-authority.md) |
-| A4 | ¿Se exige el bloque de **puntos vitales (kupso)** en 10º Gup, y con qué alcance? | Extracción del único bloque observable aún sin extraer (alto sensibilidad marcial) | [secciones-cuerpo-review.md](../knowledge/provenance/secciones-cuerpo-review.md) |
-| A5 | ¿Qué **variante de Junbi** usa la escuela (Narani Junbi Sogi u otra) y con qué geometría? | TKD-005: adopción de la posición inicial de los ejercicios | [posicion_preparatoria_paralela-review.md](../knowledge/provenance/posicion_preparatoria_paralela-review.md) |
-| A6 | ¿Cuál es el **conteo total y la ejecución alterna** de Saju Jirugi / Saju Makgi en su programa? | TKD-012/TKD-013: `movement_count`, `sequence_complete` | [ejercicios-enciclopedia-review.md](../knowledge/provenance/ejercicios-enciclopedia-review.md) |
-| A7 | ¿Qué **modalidad de combate pactado** aplica (y si existe la forma «sin contacto» del archivo antiguo)? | Catálogo de combate; resolución de `ibo_matsokgi` vs variantes | [combate-y-patadas-review.md](../knowledge/provenance/combate-y-patadas-review.md) |
+| A1 | ~~¿Cuál es el **programa vigente de 10º Gup** y su examen?~~ **Resuelta 01-11-2026:** el programa vigente es el de las copias ya citadas (WEB/ONT/enciclopedia), confirmado por el representante de la escuela. | TKD-009: primer currículo real (solo con lo que las copias enuncian); cierre de la fundación de `validate:content` | [curricular-authority.md](../knowledge/provenance/curricular-authority.md) |
+| A2 | ~~¿Qué **manual(es)** aplican (WEB, ONT, enciclopedia) y cómo resolver sus diferencias?~~ **Parcial 01-11-2026:** aplican las tres copias; **criterio de desempate aún sin especificar** (las divergencias siguen documentadas sin resolver). | TKD-002: autoridad curricular; prioridad entre copias divergentes | [curricular-authority.md](../knowledge/provenance/curricular-authority.md) |
+| A3 | ~~¿**Quién revisa y aprueba** el contenido marcial, y cómo se registra esa aprobación?~~ **Parcial 01-11-2026:** designado el usuario (mano derecha de la escuela); **falta nombre real** y mecanismo de aprobación (el esquema aún solo admite `pending_human_review`). | Todas las fichas: pasar de `pending_human_review` a aprobadas con evidencia | [curricular-authority.md](../knowledge/provenance/curricular-authority.md) |
+| A4 | ~~¿Se exige el bloque de **puntos vitales (kupso)** en 10º Gup, y con qué alcance?~~ **Resuelta 01-11-2026:** **no** forma parte de 10º Gup; fuera de alcance y sin extraer. | Cierre de la única pregunta que mantenía observado el bloque kupso | [secciones-cuerpo-review.md](../knowledge/provenance/secciones-cuerpo-review.md) |
+| A5 | ~~¿Qué **variante de Junbi** usa la escuela (Narani Junbi Sogi u otra) y con qué geometría?~~ **Resuelta 01-11-2026:** la escuela adopta `narani_junbi_sogi` con la geometría de PDF 81 (la de la fuente); sin heredar nada del borrador antiguo. | TKD-005: adopción de la posición inicial de los ejercicios | [posicion_preparatoria_paralela-review.md](../knowledge/provenance/posicion_preparatoria_paralela-review.md) |
+| A6 | ~~¿Cuál es el **conteo total y la ejecución alterna** de Saju Jirugi / Saju Makgi en su programa?~~ **Parcial 01-11-2026:** la escuela confirmó que lo aportará; **los números aún no se entregaron** (`movement_count` sigue `null`). | TKD-012/TKD-013: `movement_count`, `sequence_complete` | [ejercicios-enciclopedia-review.md](../knowledge/provenance/ejercicios-enciclopedia-review.md) |
+| A7 | ~~¿Qué **modalidad de combate pactado** aplica (y si existe la forma «sin contacto» del archivo antiguo)?~~ **Parcial 01-11-2026:** aplica su propia modalidad de **contacto pactado**; «sin contacto» **no** se adopta; falta la descripción textual («un paso»/«dos pasos»). | Catálogo de combate; resolución de `ibo_matsokgi` vs variantes | [combate-y-patadas-review.md](../knowledge/provenance/combate-y-patadas-review.md) |
 
 ## B. Para el revisor marcial designado
 
@@ -30,7 +30,7 @@
 
 | # | Pregunta | Qué desbloquea |
 | --- | --- | --- |
-| C1 | Identidad: **JWT u OIDC** (y proveedor) | Fase 3; hoy todo va con `denyAll` y roles en memoria |
+| C1 | ~~Identidad~~ **Resuelta 01-11-2026:** **JWT local autoemitido** (clave de firma en `.env` local, usuarios y roles en PostgreSQL, sin proveedor externo, US$0). Decide: usuario de ZVK Tech (developer y creador del proyecto). Alcance: autoriza la implementación de Fase 3; **no abre ninguna ruta de contenido** | Fase 3: migración V7 de usuarios, login JWT y roles persistidos; `denyAll` sobre contenido intacto hasta C2 |
 | C2 | Momento de abrir el primer endpoint de lectura de contenido (tras A1–A3) | Fase 2 educativa |
 
 ## Reglas que no cambian al responder
@@ -40,4 +40,4 @@
 - El contenido sigue local: los PDFs de terceros no se redistribuyen.
 - Sin currículo real (A1), `validate:content` debe seguir fallando.
 
-**Estado de este documento:** creado el 29-10-2026 sin respuestas registradas. Actualizar cada fila al recibir respuesta real, con responsable y fecha.
+**Estado de este documento:** creado el 29-10-2026; **C1 resuelta el 01-11-2026** (JWT local, decidida por el usuario de ZVK Tech) y **bloque A respondido el 01-11-2026** por el representante de la escuela (mismo usuario): A1, A4 y A5 **resueltas**; A2, A3, A6 y A7 **parciales** (detalle pendiente: criterio de desempate, nombre real, números de Saju y descripción de combate). Bloque B sin respuestas; C2 pendiente. Actualizar cada fila al recibir el detalle, con responsable y fecha.
