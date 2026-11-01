@@ -41,7 +41,7 @@ Las versiones concretas de las herramientas y las dependencias se definirán al 
 | `knowledge/catalogs/` | Catálogos: posiciones, teoría, tuls, vocabulario, herramientas, patadas y combate |
 | `knowledge/curricula/gups/` | Currículos que referencian IDs de los catálogos |
 | `knowledge/provenance/` | Futuros registros de procedencia documental |
-| `backend/taekwonpage-api/` | Spring Boot Java 21, Flyway y lectura interna de cinco tipos de contenido |
+| `backend/taekwonpage-api/` | Spring Boot Java 21, Flyway y lectura interna de siete tipos de contenido |
 | `frontend/taekwonpage-web/` | Futura aplicación Angular |
 | `tools/ingestion/` | Futuras herramientas de extracción y normalización |
 | `tools/validators/` | Validadores y tests de fuentes, procedencia, referencias y consistencia curricular |
@@ -84,7 +84,7 @@ Consulta [pendientes de arquitectura](docs/architecture/README.md). No se eligie
 
 Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. El primer checkpoint del baseline **`83eb531`** y sus bloques posteriores se publicó en `main` mediante **`1ab81e7`**, conservando su historial. El flujo actual es **trabajo y push en ramas, con merges periódicos de checkpoints revisados a `main`, sin Pull Requests**. La licencia MIT no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
 
-Bloque actual: **Fase 2 sin endpoints educativos** (decisión del usuario del 29-10-2026), con [cinco tipos de lectura interna](backend/taekwonpage-api/README.md) —posición, teoría, vocabulario, herramientas y tuls con pasos/citas— y contrato [OpenAPI 3.1](docs/openapi/taekwonpage-v1.json) verificado contra los controladores, todo bajo `denyAll` intacto. La Fase 0 quedó **cerrada técnicamente**: la extracción sobre los cuatro PDFs locales está agotada y lo pendiente son [decisiones humanas](docs/phase0-decisiones-pendientes.md) (89 fichas y 162 citas en revisión, cero aprobaciones). Fase 1 queda abierta; no se publica contenido ni se abre ninguna ruta. Para retomar el proyecto desde otro chat existe un [prompt de continuación](docs/handoff/continuation-prompt.md) actualizado con decisiones, estado y límites; el informe técnico prevalece ante discrepancias.
+Bloque actual: **Fase 2 sin endpoints educativos** (decisión del usuario del 29-10-2026), con [siete tipos de lectura interna](backend/taekwonpage-api/README.md) —posición, teoría, vocabulario, herramientas, tuls con pasos/citas, kick y combate— y contrato [OpenAPI 3.1](docs/openapi/taekwonpage-v1.json) verificado contra los controladores, todo bajo `denyAll` intacto. La Fase 0 quedó **cerrada técnicamente**: la extracción sobre los cuatro PDFs locales está agotada y lo pendiente son [decisiones humanas](docs/phase0-decisiones-pendientes.md) (89 fichas y 162 citas en revisión, cero aprobaciones). Fase 1 queda abierta; no se publica contenido ni se abre ninguna ruta. Para retomar el proyecto desde otro chat existe un [prompt de continuación](docs/handoff/continuation-prompt.md) actualizado con decisiones, estado y límites; el informe técnico prevalece ante discrepancias.
 
 El [checkpoint publicado](https://github.com/ZorVaK749/TaekwonPage/tree/main) ya está disponible en la vista predeterminada de `main`. Los bloques nuevos partirán de ese estado, sin crear ramas acumulativas innecesarias.
 

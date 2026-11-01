@@ -13,7 +13,7 @@
 | --- | --- |
 | 0 — Base de conocimiento | **En cierre técnico:** 89 fichas y 162 citas pendientes; extracción agotada sobre los cuatro PDFs locales (matrices de teoría, vocabulario —WEB 65 / ONT 71 filas, no idénticas; nombres de técnica extraídos salvo el doble `Jirugi`—, cuerpo y secciones). Todo lo pendiente son decisiones humanas consolidadas en [docs/phase0-decisiones-pendientes.md](docs/phase0-decisiones-pendientes.md), sin currículo escolar confirmado |
 | 1 — Persistencia | **Base técnica funcionando:** PostgreSQL, Flyway, tablas de contenido e importación de borradores probada; no persistencia educativa completa |
-| 2 — Backend | **En curso sin endpoints educativos:** cinco tipos con lectura interna (posición, teoría, vocabulario, herramientas, tuls con pasos) y [contrato OpenAPI](docs/openapi/taekwonpage-v1.json) verificado; contenido bloqueado por HTTP con `denyAll` intacto |
+| 2 — Backend | **En curso sin endpoints educativos:** siete tipos con lectura interna (posición, teoría, vocabulario, herramientas, tuls con pasos, kick y combate) y [contrato OpenAPI](docs/openapi/taekwonpage-v1.json) verificado; contenido bloqueado por HTTP con `denyAll` intacto |
 | 3 — Seguridad funcional | No iniciada; existe solo el bloqueo preventivo de rutas y salud mínima |
 | 4 — Angular | No iniciada |
 | 5 — Visualización biomecánica | No iniciada |
@@ -105,7 +105,8 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 - [x] Salud mínima y bloqueo HTTP preventivo de contenido; JAR probado contra Compose.
 - [x] Lectura interna (entidad, repositorio, servicio, DTO, controlador) de **cinco tipos**: posiciones, teoría, vocabulario, herramientas corporales y tuls/ejercicios (pasos con sus citas); regla única de IDs canónicos (`CanonicalIds`).
 - [x] Contrato [OpenAPI 3.1 de las rutas de lectura](docs/openapi/taekwonpage-v1.json) con 200/400/403/404, sin esquemas de identidad ni hosts públicos, verificado por tests Node contra los controladores Java y contra `denyAll`.
-- [ ] Ampliar lectura a kick, combate y currículo; `GET /api/v1/gups/10` con un temario real completo sigue sin controlador (depende de la escuela).
+- [x] Ampliar lectura a kick y combate (`/api/v1/kicks/{id}`, `/api/v1/combat-types/{id}`), sin seleccionar ni aprobar modalidad alguna; contrato OpenAPI ampliado a siete rutas.
+- [ ] `GET /api/v1/gups/10` con un temario real completo sigue sin controlador (depende de la escuela); currículo pendiente de confirmación.
 - [ ] Completar el flujo funcional sin exponer borradores ni saltarse la autorización de Fase 3.
 
 ## Fase 3 — Seguridad, identidad y acceso
@@ -169,7 +170,7 @@ El bloque activo es **Fase 2 sin endpoints educativos**, por decisión del usuar
 1. Confirmar con la escuela autoridad, revisor y programa técnico de 10º Gup; no puede resolverlo un test ni la IA. Las preguntas están consolidadas en [docs/phase0-decisiones-pendientes.md](docs/phase0-decisiones-pendientes.md).
 2. Al llegar respuestas: registrarlas con responsable y fecha, extraer solo lo desbloqueado y construir el currículo de 10º Gup sin inventar requisitos (la Fase 0 ya no avanza por más extracción).
 3. Completar importación curricular/revisión/publicación y su consulta en backend; 9º/8º siguen después de demostrar 10º, como dispone el plan.
-4. Seguir en backend con lecturas y contratos (kick/combate, luego gups cuando exista currículo), sin tocar `denyAll`; elegir identidad (JWT u OIDC) antes de implementarla o abrir rutas.
+4. Seguir en backend con lecturas y contratos (ya incluidos kick/combate; quedan gups cuando exista currículo), sin tocar `denyAll`; elegir identidad (JWT u OIDC) antes de implementarla o abrir rutas.
 5. Integrar Angular cuando existan los contratos y acceso necesarios; preparar hosting al llegar a producción, no convertir el PC en servidor público.
 
 ### Mantenimiento de este checklist

@@ -62,6 +62,32 @@
         }
       }
     },
+    "/api/v1/kicks/{id}": {
+      "get": {
+        "operationId": "getKickDraft",
+        "summary": "Patada con procedencia",
+        "parameters": [{ "$ref": "#/components/parameters/CanonicalId" }],
+        "responses": {
+          "200": { "description": "Patada en revisión con sus citas; sin biomecánica derivada.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Kick" } } } },
+          "400": { "description": "ID que viola la forma canónica." },
+          "403": { "description": "Política deny-all vigente; bloqueo preventivo, no autorización resuelta." },
+          "404": { "description": "Borrador inexistente; la ausencia no se rellena con datos de otra ficha." }
+        }
+      }
+    },
+    "/api/v1/combat-types/{id}": {
+      "get": {
+        "operationId": "getCombatTypeDraft",
+        "summary": "Modalidad de combate con procedencia",
+        "parameters": [{ "$ref": "#/components/parameters/CanonicalId" }],
+        "responses": {
+          "200": { "description": "Modalidad de combate observada en revisión con sus citas; ninguna modalidad se selecciona ni aprueba aquí.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CombatType" } } } },
+          "400": { "description": "ID que viola la forma canónica." },
+          "403": { "description": "Política deny-all vigente; bloqueo preventivo, no autorización resuelta." },
+          "404": { "description": "Borrador inexistente; la ausencia no se rellena con datos de otra ficha." }
+        }
+      }
+    },
     "/api/v1/tuls/{id}": {
       "get": {
         "operationId": "getTulDraft",
@@ -140,6 +166,30 @@
         }
       },
       "BodyTool": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "description", "reviewStatus", "citations"],
+        "properties": {
+          "id": { "$ref": "#/components/schemas/CanonicalId" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "reviewStatus": { "$ref": "#/components/schemas/ReviewStatus" },
+          "citations": { "type": "array", "items": { "$ref": "#/components/schemas/Citation" } }
+        }
+      },
+      "Kick": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "description", "reviewStatus", "citations"],
+        "properties": {
+          "id": { "$ref": "#/components/schemas/CanonicalId" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "reviewStatus": { "$ref": "#/components/schemas/ReviewStatus" },
+          "citations": { "type": "array", "items": { "$ref": "#/components/schemas/Citation" } }
+        }
+      },
+      "CombatType": {
         "type": "object",
         "additionalProperties": false,
         "required": ["id", "name", "description", "reviewStatus", "citations"],
