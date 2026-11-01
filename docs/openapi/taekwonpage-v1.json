@@ -100,6 +100,19 @@
           "404": { "description": "Borrador inexistente; la ausencia no se rellena con datos de otra ficha." }
         }
       }
+    },
+    "/api/v1/gups/{gup}": {
+      "get": {
+        "operationId": "getGupCurriculumDraft",
+        "summary": "Esquema curricular de un Gup con procedencia",
+        "parameters": [{ "$ref": "#/components/parameters/GupNumber" }],
+        "responses": {
+          "200": { "description": "Gup en revisión con sus siete grupos de requisitos observados y sus citas; un grupo vacío significa «sin vínculos», no requisitos rellenados y no aprobación escolar. La base real sin currículo devuelve 404.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Gup" } } } },
+          "400": { "description": "Número de Gup fuera del rango 1–10." },
+          "403": { "description": "Política deny-all vigente; bloqueo preventivo, no autorización resuelta." },
+          "404": { "description": "Borrador inexistente; la ausencia no se rellena con datos de otra ficha." }
+        }
+      }
     }
   },
   "components": {
@@ -110,6 +123,13 @@
         "required": true,
         "description": "ID canónico global; la misma forma del dominio SQL canonical_id.",
         "schema": { "type": "string", "pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)*$" }
+      },
+      "GupNumber": {
+        "name": "gup",
+        "in": "path",
+        "required": true,
+        "description": "Número de Gup; el mismo rango del check SQL gup BETWEEN 1 AND 10. El identificador canónico del borrador es gup_<n>.",
+        "schema": { "type": "integer", "minimum": 1, "maximum": 10 }
       }
     },
     "schemas": {
@@ -240,6 +260,35 @@
           "sequenceComplete": { "type": "boolean", "description": "false en secuencias parciales observadas." },
           "sequenceScope": { "type": ["string", "null"] },
           "steps": { "type": "array", "items": { "$ref": "#/components/schemas/TulStep" } },
+          "citations": { "type": "array", "items": { "$ref": "#/components/schemas/Citation" } }
+        }
+      },
+      "GupRequirements": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Los siete grupos del esquema curricular observado, tal como están vinculados en el borrador. Vacío = sin vínculos; nunca se rellenan desde otro Gup ni desde los JSON antiguos.",
+        "required": ["positionIds", "theoryIds", "vocabularyIds", "bodyToolIds", "kickIds", "tulIds", "combatIds"],
+        "properties": {
+          "positionIds": { "type": "array", "items": { "$ref": "#/components/schemas/CanonicalId" }, "uniqueItems": true },
+          "theoryIds": { "type": "array", "items": { "$ref": "#/components/schemas/CanonicalId" }, "uniqueItems": true },
+          "vocabularyIds": { "type": "array", "items": { "$ref": "#/components/schemas/CanonicalId" }, "uniqueItems": true },
+          "bodyToolIds": { "type": "array", "items": { "$ref": "#/components/schemas/CanonicalId" }, "uniqueItems": true },
+          "kickIds": { "type": "array", "items": { "$ref": "#/components/schemas/CanonicalId" }, "uniqueItems": true },
+          "tulIds": { "type": "array", "items": { "$ref": "#/components/schemas/CanonicalId" }, "uniqueItems": true },
+          "combatIds": { "type": "array", "items": { "$ref": "#/components/schemas/CanonicalId" }, "uniqueItems": true }
+        }
+      },
+      "Gup": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "gup", "name", "description", "reviewStatus", "requirements", "citations"],
+        "properties": {
+          "id": { "$ref": "#/components/schemas/CanonicalId" },
+          "gup": { "type": "integer", "minimum": 1, "maximum": 10 },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "reviewStatus": { "$ref": "#/components/schemas/ReviewStatus" },
+          "requirements": { "$ref": "#/components/schemas/GupRequirements" },
           "citations": { "type": "array", "items": { "$ref": "#/components/schemas/Citation" } }
         }
       }
