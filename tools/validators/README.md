@@ -55,6 +55,8 @@ Los tests del [lote de herramientas y ejercicios](../../knowledge/provenance/her
 
 ## Control PowerShell existente (sin dependencias)
 
+El contrato OpenAPI también tiene test anti-drift por método y ruta: ocho lecturas de contenido permanecen `denyAll`; login y `/me` documentan la identidad local C1 sin abrir contenido. `Test-Database.ps1` prueba upgrades hasta V7, cuatro roles sin cuentas sembradas y 11 rechazos adicionales de identidad, además de las revisiones editoriales y el currículo real en BD separada.
+
 Requiere PowerShell 5.1 o posterior y APIs integradas de .NET; no añade librerías al proyecto. Funciona sin cambiar el directorio actual.
 
 Desde la raíz, validar registros sin necesitar los PDFs (por ejemplo, en un clon):

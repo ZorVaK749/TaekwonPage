@@ -25,12 +25,14 @@ Flyway valida/aplica migraciones al arrancar. Hibernate usa `ddl-auto=validate`:
 
 - `content`: entidad base y **ocho tipos con lectura interna**: posición, teoría, vocabulario (`translation` + `aliases`), herramienta corporal, tul/ejercicio parcial (con pasos y citas por paso), kick, tipo de combate y Gup (esquema curricular con sus siete grupos de requisitos), cada uno con repositorio de solo lectura, servicio transaccional, DTO y controlador.
 - `shared/ids`: validación única de IDs canónicos (`CanonicalIds`), con la misma forma que el dominio SQL `canonical_id`, reutilizada por servicios y controladores.
-- `shared/security`: política temporal **deny-all**, salvo `GET /actuator/health`.
+- `shared/security`: JWT local HS256 y política **deny-all para contenido**; públicos solo salud y `POST /api/v1/auth/login`; `/api/v1/me` exige Bearer.
 - El DTO conserva `BigDecimal`, valores desconocidos `null` y estado de revisión; no expone entidades JPA. Incluye [citas con metadatos de la copia](../../docs/api/position-draft.md), página PDF, folio y estados, sin rutas de PDFs ni notas internas. El contrato de lectura está en [docs/openapi/taekwonpage-v1.json](../../docs/openapi/taekwonpage-v1.json), verificado contra los controladores por tests Node. La lectura de combate solo expone el borrador observado: ninguna modalidad se selecciona ni aprueba. La lectura de Gup expone el esquema curricular: con `gup_10` real en la base responde 200 (grupo de teoría y citas) y 404 para gups inexistentes; ningún grupo de requisitos se rellena desde otra ficha ni desde los JSON antiguos, y el HTTP sigue bloqueado por `denyAll` hasta C2.
-- No hay usuarios, credenciales por defecto, login Basic/formulario, sesiones ni elección implícita JWT/OIDC. CSRF no se deshabilita para simular una API abierta. No se habilita CORS permisivo.
+- `identity`/`auth`: V7 crea usuarios/roles/asignaciones; cuatro roles, cero cuentas o credenciales por defecto. Login BCrypt y `/me`; sin registro, refresh, Basic/formulario ni sesiones. CSRF deshabilitado por API Bearer stateless, no CORS permisivo. `JWT_SECRET` obligatorio ≥32 bytes aleatorios; `JWT_ISSUER` por defecto `taekwonpage-local`, `JWT_TTL_SECONDS` entero positivo, por defecto 1800.
 
 ```text
 GET /actuator/health                 -> 200 {"status":"UP"} con BD saludable
+POST /api/v1/auth/login              -> 200 token / 400 entrada inválida / 401 credenciales rechazadas
+GET /api/v1/me                      -> 200 identidad / 401 token ausente o inválido
 GET /api/v1/positions/{canonicalId}  -> 403 (bloqueado deliberadamente)
 GET /api/v1/theory/{canonicalId}     -> 403 (bloqueado deliberadamente)
 GET /api/v1/vocabulary/{canonicalId} -> 403 (bloqueado deliberadamente)
@@ -45,9 +47,9 @@ Incluso un usuario autenticado o un rol técnico no puede saltar el bloqueo actu
 
 ## Pruebas
 
-`mvn.cmd verify` exige Docker activo: Testcontainers levanta una BD aislada y aplica V1 con Flyway. Si Docker no está disponible, las pruebas de integración **fallan**, no se omiten. No usa la BD de desarrollo ni importa PDFs o contenido real; las filas de prueba son sintéticas y se revierten.
+`mvn.cmd verify` exige Docker activo: Testcontainers levanta una BD aislada y aplica V1–V7 con Flyway. Si Docker no está disponible, las pruebas de integración **fallan**, no se omiten. No usa la BD de desarrollo ni importa PDFs o contenido real; las filas de prueba son sintéticas y se revierten.
 
-Hoy hay 33 pruebas: esquema/migración, JPA → DTO con acentos y nulos, IDs inválidos (regla única `CanonicalIds`), rango 1–10 del Gup en servicio y controlador, ausencia de resultados en los ocho tipos, citas aisladas por ficha y copia/hash (incluida kick sin filtración a otra ficha ni a combate), localizadores independientes, metadatos desconocidos, colecciones inmutables (incluidos pasos y citas de tul), lectura de teoría/vocabulario/herramientas/ejercicios parciales/kick/combate/Gup con lagunas observadas y grupos de requisitos sin rellenar, y serialización sin información local. También salud sin detalles, bloqueo anónimo/autenticado de las ocho rutas (incluido un borrador existente), escritura y preflight no autorizado. El cliente Docker de prueba fija API 1.44 por compatibilidad con Engine 29.
+Las 33 pruebas originales cubren esquema/migración, JPA → DTO, IDs/rangos, ocho lecturas, citas y aislamiento, nulos y colecciones inmutables, serialización sin información local, salud y bloqueo HTTP anónimo/autenticado. Identidad añade 21 (total 54), incluido servidor HTTP real en puerto aleatorio. Docker de pruebas fija API 1.44 por compatibilidad con Engine 29.
 
 ## Dependencias
 
@@ -58,4 +60,6 @@ Hoy hay 33 pruebas: esquema/migración, JPA → DTO con acentos y nulos, IDs inv
 - Flyway Core + módulo PostgreSQL y driver JDBC: migraciones y conexión real.
 - Starter Test, Security Test y Testcontainers PostgreSQL/JUnit: pruebas unitarias, negativas y contra BD real; no se añade H2 ni Lombok.
 
-Siguiente bloque: la lectura de los ocho tipos está completa; `GET /api/v1/gups/10` con contenido real espera al currículo de la escuela, y abrir cualquier ruta exige identidad (JWT u OIDC) y publicación acordadas. La lectura interna de los ocho tipos ya tiene procedencia; no se crea un temario ficticio para mostrar una pantalla.
+Auditoría: 54 pruebas Java (33 originales y 21 de identidad). Regresiones de BCrypt en cuentas ausentes/deshabilitadas, límites de credenciales, JWT falsificados/expirados, claims mal tipados, roles desconocidos, JSON duplicado y cabeceras no soportadas. HTTP real conserva 400 en login inválido: se permite solo el despacho interno ERROR; `/error` directo y contenido siguen en 403, incluso con token válido en contenido.
+
+Límites: `/me` refleja el token, no consulta el estado actual de cuenta/roles; cambios posteriores no revocan tokens existentes antes de expirar. Sin limitación de intentos ni revocación inmediata; **no exponer públicamente**. Antes de abrir contenido: decisión C2, autorización por grado, revisión/publicación y endurecimiento operativo. Alta de alumnos pendiente de TKD-016/TKD-017. Contraseñas de login no vacías, máximo **72 bytes UTF-8** por BCrypt; username ASCII `[A-Za-z0-9._-]`, 3–64 caracteres.

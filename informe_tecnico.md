@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.31  
+**Version del documento:** 1.32  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 02-11-2026  
 
@@ -729,15 +729,14 @@ GET /api/v1/public/content
 
 ## Autenticacion
 
-Dependiendo de la estrategia seleccionada:
+Estrategia elegida (C1, implementada): **JWT local autoemitido**. Solo se han implementado estas dos operaciones:
 
 ```text
-POST /api/v1/auth/register
 POST /api/v1/auth/login
-POST /api/v1/auth/refresh
+GET  /api/v1/me
 ```
 
-o autenticacion delegada mediante OIDC.
+`POST /api/v1/auth/register` y `POST /api/v1/auth/refresh` **no existen**: el alta de usuarios espera al modelo de grado/verificacion (TKD-016/TKD-017) y el token de corta vida no tiene refresco. No se usa OIDC delegado.
 
 ## Alumno
 
@@ -1114,12 +1113,13 @@ DB_PASSWORD
 
 JWT_SECRET
 JWT_ISSUER
+JWT_TTL_SECONDS
 
 CORS_ALLOWED_ORIGINS
 SPRING_PROFILES_ACTIVE
 ```
 
-Nunca subir valores reales de produccion al repositorio.
+`JWT_SECRET` es obligatorio (sin valor por defecto): el arranque falla si falta o si mide menos de 32 bytes. `JWT_ISSUER` por defecto `taekwonpage-local` y `JWT_TTL_SECONDS` por defecto `1800`. Nunca subir valores reales de produccion al repositorio.
 
 ---
 
@@ -1480,6 +1480,8 @@ Objetivos:
 - bandeja administrativa;
 - auditoria.
 
+Estado (informe 1.32): la **autenticacion local** esta implementada (C1: JWT HS256 autoemitido, `POST /api/v1/auth/login`, `GET /api/v1/me`, BCrypt y cuatro roles en V7). **No** se ha implementado RBAC por ruta, autorizacion por grado, solicitud de verificacion, bandeja administrativa ni auditoria, y **ninguna ruta de contenido se abrio**: `denyAll` sigue vigente hasta la decision C2.
+
 ---
 
 # 43. Fase 4 - Angular
@@ -1727,7 +1729,7 @@ La base de conocimiento es el nucleo del producto.
 
 # 55. Estado actual y checklist de seguimiento
 
-**Corte verificado: 28-10-2026.** Un `[x]` indica exactamente el entregable descrito, no aprobacion humana del conocimiento ni una funcionalidad de la pagina disponible. Los estados parciales se mantienen abiertos.
+**Corte verificado: 02-11-2026.** Un `[x]` indica exactamente el entregable descrito, no aprobacion humana del conocimiento ni una funcionalidad de la pagina disponible. Los estados parciales se mantienen abiertos.
 
 Vista resumida para el responsable del proyecto: **[Plan de ataque con checks por fase](Plan_ataque.md)**. Se actualizara junto con este informe; no sustituye las decisiones originales ni sus criterios de cierre.
 
@@ -1754,7 +1756,11 @@ Para retomar el proyecto desde otro chat sin arrastrar contexto incompleto exist
 
 ## 55.2 Paso a paso respecto de la seccion 50
 
-**Bloque vigente — Fase 2: decisiones de la escuela y primer curriculum real de 10º Gup:** se registró la decisión de identidad **C1 (JWT local autoemitido, 01-11-2026)** y las respuestas **A1–A7** de la escuela en el [consolidado de decisiones](docs/phase0-decisiones-pendientes.md) y sus archivos enlazados (A1 programa = copias citadas; A2 aplican las tres copias, criterio de desempate pendiente; A3 aprobador designado, nombre real pendiente; A4 kupso fuera de 10º Gup; A5 adopción de `narani_junbi_sogi`; A6 números de Saju sin entregar; A7 contacto pactado propio, descripción pendiente). Con A1 se creó `knowledge/curricula/gups/gup_10.json`: el **primer currículo real**, solo teórico (los seis temas del temario WEB 27 / ONT 35 enlazando siete fichas existentes), con dos citas propias en `knowledge/provenance/gup_10.json` y `pending_human_review`; los otros seis grupos de requisitos quedan vacíos porque las copias no enuncian requisitos técnicos para 10º Gup. `validate:content` / `--require-content` **pasa por primera vez** (fue el fallo esperado hasta ahora). El importador explícito lo carga en la base (164 citas; `gup_10` con siete teorías y dos citas, verificado en la BD de desarrollo); el harness de BD gana una **base dedicada** con recarga idéntica y baseline V3 del currículo real, mientras la base del fixture carga borradores con `--skip-curricula` (el fixture sintético sigue siendo dueño de `gup_10` allí). `GET /api/v1/gups/10` ya dispone de datos internos; el HTTP sigue en 403 y C2 decide la apertura. 241 tests Node (antes 240), 33 pruebas Java, 22 PowerShell y harness de BD correctos. Sin migraciones, dependencias, aprobación ni apertura HTTP.
+**Auditoría solicitada por el usuario (02-11-2026, cierre de 1.32):** corregido el `||` de `AuthService` que omitía BCrypt para cuentas ausentes/deshabilitadas; ahora se verifica siempre un hash, sin prometer tiempos constantes de BD. Credenciales acotadas, contraseña ≤72 bytes UTF-8, rechazo de campos JSON desconocidos. JWT con tipos/tiempos estrictos, roles conocidos, ID canónico, límite de tamaño, JSON sin duplicados/trailing, firma Base64URL canónica y rechazo de cabeceras no soportadas/`nbf`; roles del principal inmutables, Authorization duplicado rechazado. Regresiones nuevas comprueban ejecución BCrypt, límites UTF-8 y expiración exacta. Se corrigió documentación contradictoria: CSRF se deshabilitó, `denyAll` de contenido permanece. JWT_SECRET local regenerado con CSPRNG tras impresión de `.env` en la sesión anterior; contraseña local PostgreSQL también expuesta, pendiente de rotación coordinada. Límites en [seguridad](docs/security/README.md): sin rate limiting ni revocación inmediata, `/me` refleja claims hasta expirar; JWT propio no equivale a JOSE auditado, evaluar soporte mantenido antes de exposición pública. No cerrar Fase 3 ni exponer una beta por tests verdes.
+
+**Bloque vigente — Fase 3: identidad local C1:** V7 crea usuarios/roles/asignaciones, cuatro roles y cero cuentas/credenciales. Login BCrypt, JWT HS256 local con JDK, Bearer y `/me` sin grado/correo. Secreto obligatorio ≥32 bytes, issuer y TTL configurable (1800 s por defecto). Públicos solo salud y login; `/me` exige token (401); contenido bajo `denyAll` (403 incluso con token válido). CSRF deshabilitado por API stateless, sin form/basic/sesiones o CORS permisivo. Permitido solo despacho interno ERROR para preservar 400 de login inválido; `/error` directo sigue 403, probado con HTTP real tras detectar el fallo en un smoke del JAR. Sin registro/refresh; alta pendiente de TKD-016/TKD-017. OpenAPI de diez rutas y anti-drift; harness V7 con 11 rechazos adicionales de identidad. Resultado: 242 Node, 54 Java, 22 PowerShell y harness PASS. **C2 pendiente, sin contenido abierto ni cierre de fase.**
+
+**Bloque anterior — Fase 2: decisiones de la escuela y primer curriculum real de 10º Gup:** se registró la decisión de identidad **C1 (JWT local autoemitido, 01-11-2026)** y las respuestas **A1–A7** de la escuela en el [consolidado de decisiones](docs/phase0-decisiones-pendientes.md) y sus archivos enlazados (A1 programa = copias citadas; A2 aplican las tres copias, criterio de desempate pendiente; A3 aprobador designado, nombre real pendiente; A4 kupso fuera de 10º Gup; A5 adopción de `narani_junbi_sogi`; A6 números de Saju sin entregar; A7 contacto pactado propio, descripción pendiente). Con A1 se creó `knowledge/curricula/gups/gup_10.json`: el **primer currículo real**, solo teórico (los seis temas del temario WEB 27 / ONT 35 enlazando siete fichas existentes), con dos citas propias en `knowledge/provenance/gup_10.json` y `pending_human_review`; los otros seis grupos de requisitos quedan vacíos porque las copias no enuncian requisitos técnicos para 10º Gup. `validate:content` / `--require-content` **pasa por primera vez** (fue el fallo esperado hasta ahora). El importador explícito lo carga en la base (164 citas; `gup_10` con siete teorías y dos citas, verificado en la BD de desarrollo); el harness de BD gana una **base dedicada** con recarga idéntica y baseline V3 del currículo real, mientras la base del fixture carga borradores con `--skip-curricula` (el fixture sintético sigue siendo dueño de `gup_10` allí). `GET /api/v1/gups/10` ya dispone de datos internos; el HTTP sigue en 403 y C2 decide la apertura. 241 tests Node (antes 240), 33 pruebas Java, 22 PowerShell y harness de BD correctos. Sin migraciones, dependencias, aprobación ni apertura HTTP. *(Estado superado por el bloque vigente: la identidad local ya está implementada.)*
 
 **Bloque anterior — Fase 2: lectura del esquema de Gup:** se implemento `GET /api/v1/gups/{gup}` como lectura interna del esquema curricular ya existente en la base (V1 + V3): entidad `@Immutable` `Gup`, `GupRepository` con las siete consultas de grupos de requisitos en el mismo orden estable (`COLLATE "C"`) que usa `curriculum_requirements_snapshot`, `GupService` con rango 1–10 validado en servicio y controlador, DTO inmutable `GupResponse` (numero de Gup, siete grupos de IDs de requisitos, citas de `content_source`) y controlador `GET` bloqueado por la politica global. **La base real tiene cero Gups: la ruta existe pero responde 404; no se creo ningun curriculum ni temario, y ningun grupo se rellena desde otra ficha ni desde los JSON antiguos** (depende de la escuela, A1–A3). El contrato se amplio con la ruta, el parametro `GupNumber` (entero 1–10, el mismo rango del check SQL `gup BETWEEN 1 AND 10`) y los esquemas `Gup`/`GupRequirements`; el test anti-drift ahora admite exactamente dos parametros de ruta (ID canonico o numero de Gup) y verifica los siete grupos. 33 pruebas Java (antes 31) y 240 tests Node. `--require-content` sigue fallando por diseno. Sin migraciones, dependencias, contenido marcial ni apertura HTTP. *(Estado superado por el bloque vigente: el currículo `gup_10` ya existe.)*
 
@@ -1808,13 +1814,13 @@ Bloque actual (17-10-2026): se completaron los tipos de contenido que quedaban v
 | 2 | Knowledge base | Cuatro PDFs; 90 fichas y 164 citas en revision, con siete tipos, matriz documental de seis temas teoricos, matrices completas de cobertura del vocabulario (tablas WEB 65 filas / ONT 71 filas, no identicas; nombres de tecnica extraidos salvo el doble Jirugi), secciones/division lateral del cuerpo y laguna de legibilidad del punto 3 de Saju Jirugi verificada por recortes ampliados. Extraccion dada por agotada; decisiones humanas pendientes consolidadas en un documento unico. Sin secuencias globales completas; primer curriculum real `gup_10` (solo teorico, pendiente de revision) |
 | 3 | JSON schemas | Contratos iniciales para los nueve tipos del informe y sus contenedores; requieren contraste con la extraccion completa |
 | 4 | 10º Gup | Programa confirmado (A1) y curriculum `gup_10` enlazado (solo teorico, `pending_human_review`); falta contenido tecnico cuando la escuela lo confirme y revision/aprobacion humanas |
-| 5 | PostgreSQL | Compose, ERD, V1–V6, mapeo/recarga y versionado de texto/requisitos/subtipos/citas probados; curriculum real/seed aprobado y evidencia de revision/publicacion pendientes |
-| 6 | Spring Boot modular | Base ejecutable Java 21 con Flyway, JPA, Security y Actuator; primer modulo de lectura de posiciones probado, ampliacion pendiente |
+| 5 | PostgreSQL | Compose, ERD, V1–V7, mapeo/recarga y versionado de texto/requisitos/subtipos/citas probados; V7 añade identidad local (4 roles, 0 usuarios); curriculum real/seed aprobado y evidencia de revision/publicacion pendientes |
+| 6 | Spring Boot modular | Base ejecutable Java 21 con Flyway, JPA, Security y Actuator; ocho modulos de lectura interna y bloque de identidad local (JWT HS256 propio, login y `/me`), ampliacion pendiente |
 | 7 | API de contenido | Ocho tipos con lectura interna (incluido `GET /api/v1/gups/{gup}`, que con `gup_10` en la base tiene datos), bloqueados por politica HTTP; sin API educativa accesible |
-| 8 | Usuarios y roles | Reglas documentadas; implementacion no iniciada |
+| 8 | Usuarios y roles | Reglas documentadas y esquema V7 (`role`/`app_user`/`user_role`) con cuatro roles sembrados y cero usuarios; alta de cuentas pendiente de TKD-016/TKD-017 |
 | 9 | Verificacion de grado | Flujo documentado; implementacion no iniciada |
 | 10 | Angular shell | No iniciado |
-| 11 | Login | No iniciado; identidad elegida (C1: JWT local), implementacion pendiente |
+| 11 | Login | **Identidad local implementada (C1)**: `POST /api/v1/auth/login` y `GET /api/v1/me` con Bearer HS256; registro y refresh sin implementar; apertura de contenido pendiente de C2 |
 | 12 | Dashboard | No iniciado |
 | 13 | Curriculum en la web | No iniciado |
 | 14 | Administracion | No iniciada |
@@ -1875,12 +1881,12 @@ TKD-010/TKD-011 (9º y 8º Gup) siguen pendientes y fuera de la ejecucion del Sp
 | Acciones documentadas | 15 registros, correspondientes a listas impresas 1–7 y 1–8; no representan totales globales ni ejercicios completos |
 | Curriculos nuevos | 1: `gup_10` (solo teórico, siete fichas y dos citas; los otros seis grupos vacíos por no enunciar las copias requisitos técnicos), `pending_human_review` |
 | Contenido con aprobacion humana registrada | 0 |
-| Tests Node | 241 correctos |
+| Tests Node | 242 correctos |
 | Tests PowerShell | 22 correctos |
-| Tests backend | 33 correctos, sin omitidos: unitarios y PostgreSQL Testcontainers; migracion, DTO con citas/identidad/localizadores, ocho tipos de lectura (posicion, teoria, vocabulario, herramienta, kick, combate, tul con pasos y citas por paso, y Gup con sus siete grupos de requisitos), regla unica de IDs `CanonicalIds`, rango 1–10 del Gup, no filtracion de citas entre fichas, serializacion sin datos locales y casos negativos HTTP |
-| Contrato OpenAPI | `docs/openapi/taekwonpage-v1.json` (3.1): ocho rutas de lectura con 200/400/403/404, sin securitySchemes ni hosts publicos; parametros de ruta restringidos a ID canonico o numero de Gup; testeado contra controladores Java y contra `denyAll` en `SecurityConfiguration` |
+| Tests backend | 54 correctos, sin omitidos: 33 originales, 11 JWT, 3 AuthService y 7 nuevos de integración de identidad. Incluye servidor HTTP real con puerto aleatorio: login inválido conserva 400 mediante despacho interno ERROR; `/error` directo y contenido siguen 403. PostgreSQL Testcontainers V1–V7, fixtures con rollback |
+| Contrato OpenAPI | `docs/openapi/taekwonpage-v1.json` (3.1): diez rutas — ocho de lectura con 200/400/403/404 sin `security`, mas `POST /api/v1/auth/login` (200/400/401, `security: []`) y `GET /api/v1/me` (200/401, `bearerAuth`); `securitySchemes.bearerAuth` (HTTP bearer JWT), sin hosts publicos; parametros de ruta de lectura restringidos a ID canonico o numero de Gup; testeado contra controladores Java, esquemas de identidad y `denyAll`/`permitAll` en `SecurityConfiguration` |
 | Arranque backend | JAR ejecutado contra Compose con importacion explicita de .env local; salud UP sin detalles, posiciones HTTP 403; proceso detenido al finalizar |
-| Persistencia | PostgreSQL/Flyway V1–V6: creacion/upgrades con datos; 16 rechazos de constraints, cinco conflictos de importacion, 18 textuales, 30 curriculares, 36 escalares, 39 de ejercicios y 37 de citas/propiedad; historial y rollback. Base dedicada del harness: doble recarga identica del currículo real y baseline V3 de `gup_10`; la base del fixture carga borradores con `--skip-curricula` |
+| Persistencia | PostgreSQL/Flyway V1–V7: creacion/upgrades con datos; 16 rechazos de constraints, cinco conflictos de importacion, 18 textuales, 30 curriculares, 36 escalares, 39 de ejercicios, 37 de citas/propiedad y 11 de identidad (V7); historial y rollback. Base dedicada del harness: doble recarga identica del currículo real y baseline V3 de `gup_10`; la base del fixture carga borradores con `--skip-curricula` |
 | Verificacion local de PDFs | Correcta: presencia, tamano, cabecera y SHA-256; no prueba de verdad marcial |
 | `validate:content` | **Pasa desde el 02-11-2026** con el primer currículo real (`gup_10`, 164 citas); control de presencia/consistencia de borradores, no de aprobación ni completitud marcial |
 | GitHub | Citas integradas en `76d90be`; teoria/matriz en `04ead83`; vocabulario integrado en `b570de6`; partes del cuerpo integradas en `3fcf524`; terminos generales integrados en `fa831ac`; secciones del cuerpo integradas en `5b8a640`; nombres de tecnica integrados en `66dcfda`; cierre de Fase 0 en `f0251aa`; servicios de lectura de backend en la rama `feat/backend-content-read-services`, con push e integracion revisada segun el flujo habitual; lectura de kick/combate en `feat/backend-kick-combat-reads`, integrada en `main` con merge `--no-ff` y push; lectura de Gup en `feat/backend-gup-read`, integrada por el mismo flujo; decisiones C1/A1–A7 en `docs/school-decision-answers` (merge `13cec02`); curriculum de 10º Gup en `feat/knowledge-gup-10-curriculum`, integrada por el mismo flujo. Sin borrado de referencias, PR, tags/releases o deploy |
@@ -1898,7 +1904,7 @@ node tools/validators/validate-knowledge.mjs --report-json --check-local-files
 2. Adopcion escolar del `junbi_sogi` generico: la fuente ya permite registrar y enlazar `narani_junbi_sogi` para sus tramos, pero no convertir todas las preparaciones en esa variante ni heredar la geometria del borrador previo.
 3. Sistema de medidas y orientaciones; no convertir angulos textuales a rotaciones de renderer sin referencias verificadas.
 4. Resolucion humana de divergencias entre manuales; no escoger uno por cantidad de paginas o fecha supuesta.
-5. Estrategia JWT local/OIDC y distincion entre estados del alumno y de su solicitud, antes de su implementacion.
+5. Estrategia JWT local/OIDC y distincion entre estados del alumno y de su solicitud: **C1 resuelta e implementada (JWT local autoemitido, bloque del 02-11-2026)**; siguen pendientes el alta de usuarios (TKD-016/TKD-017), los estados del alumno/solicitud y la apertura de contenido (C2).
 6. Derechos para el uso previsto y datos personales; un repo MIT no licencia fuentes de terceros.
 7. Flujo GitHub: primera integracion completada. Trabajar desde el `main` actualizado, hacer push de la rama e integrar checkpoints periodicamente sin PR. Las cuatro ramas anteriores ya estan integradas; eliminarlas local/remotamente requiere autorizacion separada. No confundir integracion tecnica con aprobacion marcial, release o deploy.
 8. Saju Jirugi/Saju Makgi: falta resolver la laguna del destino del golpe del punto 3 de Jirugi y confirmar el alcance completo/alterno. La preparacion de PDF 530 se enlazo a la definicion especifica de PDF 81; no sumar, espejar o heredar conteos de los JSON antiguos. `sequence_complete` permanece en `false`.
@@ -1913,10 +1919,10 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Milestone | Tag previsto | Estado |
 |---|---|---|
 | Content Foundation v0.1 | `v0.1.0` | En curso; faltan curriculum, persistencia y API |
-| Identity & Grade Access v0.2 | `v0.2.0` | No iniciado |
+| Identity & Grade Access v0.2 | `v0.2.0` | Parcial: identidad local implementada; faltan alta, grado, solicitud, autorización e historial |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.19` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.32` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
 
 ---
 
@@ -1959,7 +1965,7 @@ No avanzar a 9º Gup hasta que la estructura de 10º Gup haya demostrado ser reu
 
 ### Proximo bloque de trabajo
 
-**Prioridad vigente por confirmacion del usuario del 29-10-2026:** la Fase 0 quedo **cerrada tecnicamente** (extraccion agotada; decisiones humanas consolidadas en `docs/phase0-decisiones-pendientes.md`) y el bloque activo es **Fase 2 sin endpoints educativos**: ampliar lecturas internas, refactorizar y documentar OpenAPI con rutas protegidas, sin tocar `denyAll` ni abrir contenido. Fase 1 sigue abierta por sus dependencias humanas. No cerrar Fase 1 por pruebas sinteticas si faltan evidencia real o decisiones humanas. Para continuar desde otro chat, partir del [prompt de continuacion](docs/handoff/continuation-prompt.md) y validar su estado contra este informe.
+**Prioridad vigente:** identidad local C1 implementada y auditada tras autorización del usuario; contenido bajo `denyAll` hasta C2. Fase 0 con extracción agotada y decisiones humanas pendientes; Fase 1 abierta por revisión/publicación y alcance completo del currículo. Siguientes dependencias: TKD-016/TKD-017 para alta/grado/verificación, política de revocación, RBAC y decisión C2; no avanzar automáticamente a otro milestone. Para retomar, validar el [prompt de continuación](docs/handoff/continuation-prompt.md) contra este informe.
 
 1. Checkpoint acumulado integrado y publicado en `main` con historial preservado. En bloques futuros, partir de `origin/main` actualizado, trabajar y hacer push en una rama e integrar checkpoints coherentes periodicamente. Sin PR, force-push, tags o limpieza de ramas no autorizada.
 2. Contrastar y revisar los tramos encontrados en PDF 530 de la enciclopedia, resolver su legibilidad y alcance antes de completar secuencias; continuar consultas dirigidas para las lagunas de posiciones/herramientas. No convertir expresiones terminologicas en pasos ni generar el recorrido alterno por simetria.
@@ -2025,6 +2031,7 @@ Cuando OpenCode reciba una tarea:
 | 1.29 | 01-11-2026 | Lectura interna de kick y combate (KickService/CombatService, DTOs inmutables y controladores GET en /api/v1/kicks y /api/v1/combat-types) con denyAll intacto; contrato OpenAPI ampliado a siete rutas y verificado anti-drift; integracion que comprueba que las citas de una ficha no se filtran a otra. 31 pruebas Java y 240 tests Node. Ninguna modalidad de combate se selecciona ni aprueba; sin migraciones, dependencias, contenido marcial ni apertura HTTP |
 | 1.30 | 01-11-2026 | Lectura interna del esquema de Gup (GET /api/v1/gups/{gup}): entidad/repositorio/servicio/DTO inmutable/controlador sobre las siete tablas de requisitos, rango 1-10 validado en dos capas, denyAll intacto; contrato ampliado con parametro GupNumber y esquemas Gup/GupRequirements. La base real sin curriculum responde 404: cero curriculos creados ni grupos rellenados. 33 pruebas Java y 240 tests Node. Sin migraciones, dependencias, contenido marcial ni apertura HTTP |
 | 1.31 | 02-11-2026 | Registro de C1 (JWT local) y respuestas A1–A7 de la escuela (documentacion del 01-11-2026) y **primer curriculum real de 10º Gup**: `gup_10` con los seis temas teoricos (siete fichas existentes) y dos citas propias WEB 27 / ONT 35, `pending_human_review`, demas grupos vacios por no enunciar las copias requisitos tecnicos. `validate:content` pasa por primera vez; importador con `--skip-curricula` y harness con base dedicada (doble recarga + baseline V3); datos verificados en la BD de desarrollo. 241 tests Node, 33 Java, 22 PowerShell y harness de BD correctos. Sin migraciones, dependencias, aprobacion ni apertura HTTP (denyAll intacto, C2 pendiente) |
+| 1.32 | 02-11-2026 | **Identidad local C1 implementada y auditada:** V7 (4 roles, 0 usuarios), login BCrypt, JWT HS256 propio, Bearer y `/me`; sin registro/refresh. Corregidos cortocircuito BCrypt, límites de credenciales, claims laxos y error real HTTP 400 convertido a 403 (despacho interno ERROR permitido, `/error` directo bloqueado). CSRF deshabilitado; `denyAll` de contenido intacto. OpenAPI login/me, harness con 11 rechazos nuevos. 242 Node, 54 Java, 22 PowerShell y harness PASS. Documentados límites de JWT propio, revocación/rate limiting e incidente local de secretos. Sin contenido abierto (C2 pendiente), aprobación, nuevas dependencias ni cierre de fase |
 
 ---
 

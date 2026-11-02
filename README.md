@@ -4,7 +4,7 @@ Plataforma educativa y de gestión interna para **Taekwon-Do Nahuel Aukan**, des
 
 ## Estado y alcance
 
-**Knowledge Foundation en curso; base de persistencia y arranque Spring Boot implementados.** Hay PostgreSQL local, Flyway, exportador de borradores y lectura interna de posiciones con citas documentales, más el primer currículo real (`gup_10`, teórico, en revisión). El backend bloquea contenido por HTTP; solo expone salud sin detalles. Angular, autenticación funcional y CI/CD siguen pendientes, al igual que la aprobación marcial.
+**Knowledge Foundation en curso; persistencia, lecturas internas e identidad local implementadas parcialmente.** PostgreSQL/Flyway V1–V7, ocho tipos de lectura y currículo real `gup_10` (teórico, en revisión). Login JWT local y `/api/v1/me` disponibles; el contenido sigue bloqueado por HTTP incluso con token válido. Sin registro, autorización por grado, Angular, CI/CD ni aprobación marcial.
 
 La fuente principal de decisiones es [informe_tecnico.md](informe_tecnico.md). Los [ADR](docs/adr/README.md) registran decisiones ya aprobadas, no implementaciones terminadas. Este avance no completa la Fase 0 de conocimiento ni el milestone Content Foundation v0.1.
 
@@ -80,11 +80,11 @@ El [backend](backend/taekwonpage-api/README.md) se construye y prueba con Maven 
 
 ## Pendientes y límites de este sprint
 
-Consulta [pendientes de arquitectura](docs/architecture/README.md). No se eligieron proveedor de hosting ni estrategia JWT local/OIDC. El [plan de seguridad](docs/security/README.md) queda pendiente para su etapa, sin posponer los controles necesarios para exponer una beta.
+Consulta [pendientes de arquitectura](docs/architecture/README.md). Hosting sin elegir; C1 eligió JWT local y su base ya está implementada. El [plan de seguridad](docs/security/README.md) conserva límites pendientes: alta/grado/verificación, revocación y protección contra fuerza bruta antes de una beta.
 
 Repositorio: https://github.com/ZorVaK749/TaekwonPage, configurado como `origin`. El primer checkpoint del baseline **`83eb531`** y sus bloques posteriores se publicó en `main` mediante **`1ab81e7`**, conservando su historial. El flujo actual es **trabajo y push en ramas, con merges periódicos de checkpoints revisados a `main`, sin Pull Requests**. La licencia MIT no concede derechos sobre PDFs de terceros. Véase el [flujo de ramas y versiones](docs/development/README.md).
 
-Bloque actual: **Fase 2 sin endpoints educativos** (decisión del usuario del 29-10-2026), con [ocho tipos de lectura interna](backend/taekwonpage-api/README.md) —posición, teoría, vocabulario, herramientas, tuls con pasos/citas, kick, combate y esquema de Gup (`gup_10` con teoría; el HTTP sigue en 403 hasta C2)— y contrato [OpenAPI 3.1](docs/openapi/taekwonpage-v1.json) verificado contra los controladores, todo bajo `denyAll` intacto. La Fase 0 quedó **cerrada técnicamente**: la extracción sobre los cuatro PDFs locales está agotada y lo pendiente son [decisiones humanas](docs/phase0-decisiones-pendientes.md) (90 fichas y 164 citas en revisión, cero aprobaciones); con A1 se creó el [primer currículo real `gup_10`](knowledge/curricula/gups/gup_10.json) (02-11-2026, solo teórico). Fase 1 queda abierta; no se publica contenido ni se abre ninguna ruta. Para retomar el proyecto desde otro chat existe un [prompt de continuación](docs/handoff/continuation-prompt.md) actualizado con decisiones, estado y límites; el informe técnico prevalece ante discrepancias.
+Bloque actual: **Fase 3 — identidad local C1**, con auditoría y regresiones de seguridad. Ocho lecturas internas siguen bajo `denyAll`; solo se añaden login y `/me`, no contenido educativo (C2 pendiente). La extracción de Fase 0 está agotada, pero quedan [decisiones humanas](docs/phase0-decisiones-pendientes.md): 90 fichas y 164 citas en revisión, cero aprobaciones; currículo `gup_10` solo teórico. Fase 1 permanece abierta. Para retomar: [prompt de continuación](docs/handoff/continuation-prompt.md); el informe técnico prevalece.
 
 El [checkpoint publicado](https://github.com/ZorVaK749/TaekwonPage/tree/main) ya está disponible en la vista predeterminada de `main`. Los bloques nuevos partirán de ese estado, sin crear ramas acumulativas innecesarias.
 

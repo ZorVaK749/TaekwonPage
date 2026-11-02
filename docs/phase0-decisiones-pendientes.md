@@ -35,8 +35,10 @@
 
 ## Reglas que no cambian al responder
 
+**Implementación C1 (02-11-2026):** V7, login JWT y `/me` implementados y auditados; sin registro ni refresh, sin cuentas sembradas y sin apertura de contenido. C2 permanece sin responder.
+
 - Una respuesta aprueba **solo lo que pregunta esa fila**; no autoriza a sembrar datos ni a publicar.
-- Las migraciones V1–V6 siguen inmutables; los JSON antiguos de la raíz no se promueven.
+- Las migraciones V1–V7 siguen inmutables; los JSON antiguos de la raíz no se promueven.
 - El contenido sigue local: los PDFs de terceros no se redistribuyen.
 - Con A1 respondida ya existe currículo real (`gup_10`, teórico): `validate:content` pasa, pero **no aprueba contenido** ni cierra la fundación mientras falte revisión humana.
 

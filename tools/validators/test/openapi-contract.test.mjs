@@ -20,55 +20,127 @@ function collectJavaFiles(directory) {
   return files;
 }
 
-// Every controller route in the code, as the contract spells it: base + method path.
+// Every controller route in the code, as the contract spells it: "METHOD /base/path".
 const controllerRoutes = new Map();
 for (const file of collectJavaFiles(sourceRoot).filter((name) => name.endsWith('Controller.java'))) {
   const source = readFileSync(file, 'utf8');
+  const controller = path.basename(file);
   const base = source.match(/@RequestMapping\("([^"]+)"\)/)?.[1];
-  assert.ok(base, `${path.basename(file)} must declare a class-level request mapping`);
+  assert.ok(base, `${controller} must declare a class-level request mapping`);
   for (const mapping of source.matchAll(/@GetMapping\("([^"]+)"\)/g)) {
-    controllerRoutes.set(`${base}${mapping[1]}`, path.basename(file));
+    controllerRoutes.set(`GET ${base}${mapping[1]}`, controller);
   }
-  assert.ok(!/@(Post|Put|Patch|Delete)Mapping/.test(source),
-    `${path.basename(file)} must stay read-only until Fase 3`);
-  assert.match(source, /ResponseStatusException\(HttpStatus\.BAD_REQUEST\)/,
-    `${path.basename(file)} must reject malformed ids before querying`);
+  for (const mapping of source.matchAll(/@PostMapping\("([^"]+)"\)/g)) {
+    controllerRoutes.set(`POST ${base}${mapping[1]}`, controller);
+  }
+  // Only the credential exchange may write; everything else stays read-only.
+  const writes = source.match(/@(Put|Patch|Delete)Mapping/g) ?? [];
+  assert.deepEqual(writes, [], `${controller} must stay read-only`);
+  if (controller !== 'AuthController.java') {
+    assert.ok(!/@PostMapping/.test(source), `${controller} must not add POST routes`);
+  }
+  // Controllers that parse a path parameter must reject malformed ids with 400.
+  if (/@PathVariable/.test(source)) {
+    assert.match(source, /ResponseStatusException\(HttpStatus\.BAD_REQUEST\)/,
+      `${controller} must reject malformed ids before querying`);
+  }
 }
 
-test('the contract documents exactly the implemented read routes', () => {
+const readRoutes = (route) => !route.startsWith('/api/v1/auth/') && route !== '/api/v1/me';
+
+test('the contract documents exactly the implemented routes', () => {
   assert.match(contract.openapi, /^3\.1\./);
   assert.equal(contract.info.title, 'TaeKwonPage API');
   assert.ok(contract.info.description.includes('403'));
-  const documented = new Set(Object.keys(contract.paths).filter((route) => route.startsWith('/api/v1')));
+  const documented = new Set();
+  for (const [route, operations] of Object.entries(contract.paths)) {
+    for (const method of Object.keys(operations)) {
+      if (method === 'parameters') continue;
+      documented.add(`${method.toUpperCase()} ${route}`);
+    }
+  }
   assert.deepEqual([...documented].sort(), [...controllerRoutes.keys()].sort());
   for (const route of documented) assert.ok(controllerRoutes.has(route), `${route} has no controller`);
 });
 
-test('no server, schema or operation advertises an identity or a public host', () => {
+test('no server, schema or operation advertises a public host or a global auth requirement', () => {
   for (const server of contract.servers) {
     assert.match(server.url, /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/);
   }
-  assert.equal(contract.components.securitySchemes, undefined, 'identity (Fase 3) is still undecided');
-  assert.equal(contract.security, undefined, 'no auth scheme may be invented before JWT/OIDC is chosen');
+  // C1 is implemented, so the scheme exists; but no global requirement may be
+  // declared: content routes are still deny-all and cannot inherit bearer auth.
+  assert.equal(contract.security, undefined, 'content routes stay deny-all without a global security requirement');
+  const scheme = contract.components.securitySchemes?.bearerAuth;
+  assert.ok(scheme, 'the local bearer scheme (C1) must be documented');
+  assert.equal(scheme.type, 'http');
+  assert.equal(scheme.scheme, 'bearer');
+  assert.equal(scheme.bearerFormat, 'JWT');
   for (const [route, operations] of Object.entries(contract.paths)) {
-    assert.deepEqual(Object.keys(operations).filter((key) => key !== 'parameters'),
-      ['get'], `${route} must document GET only`);
-    const operation = operations.get;
-    assert.ok(operation.operationId, `${route} needs a stable operationId`);
-    for (const status of ['200', '400', '403', '404']) {
-      assert.ok(operation.responses[status], `${route} must document ${status}`);
+    const methods = Object.keys(operations).filter((key) => key !== 'parameters');
+    if (readRoutes(route)) {
+      assert.deepEqual(methods, ['get'], `${route} must document GET only`);
+      const operation = operations.get;
+      assert.ok(operation.operationId, `${route} needs a stable operationId`);
+      for (const status of ['200', '400', '403', '404']) {
+        assert.ok(operation.responses[status], `${route} must document ${status}`);
+      }
+      assert.match(operation.responses['403'].description, /deny-all/);
+      assert.match(operation.responses['404'].description, /no se rellena/);
+      assert.equal(operation.parameters.length, 1);
+      // Path parameters are restricted to these two: the canonical id or the raw gup number.
+      assert.ok([
+        '#/components/parameters/CanonicalId',
+        '#/components/parameters/GupNumber',
+      ].includes(operation.parameters[0].$ref), `${route} declares an unexpected path parameter`);
+      assert.equal(operation.security, undefined, `${route} must not require a token while deny-all applies`);
     }
-    assert.match(operation.responses['403'].description, /deny-all/);
-    assert.match(operation.responses['404'].description, /no se rellena/);
-    assert.equal(operation.parameters.length, 1);
-    // Path parameters are restricted to these two: the canonical id or the raw gup number.
-    assert.ok([
-      '#/components/parameters/CanonicalId',
-      '#/components/parameters/GupNumber',
-    ].includes(operation.parameters[0].$ref), `${route} declares an unexpected path parameter`);
   }
-  assert.equal(new Set(Object.values(contract.paths).map((route) => route.get.operationId)).size,
-    Object.keys(contract.paths).length, 'operationIds must be unique');
+  const operationIds = [];
+  for (const operations of Object.values(contract.paths)) {
+    for (const [method, operation] of Object.entries(operations)) {
+      if (method === 'parameters') continue;
+      operationIds.push(operation.operationId);
+    }
+  }
+  assert.equal(new Set(operationIds).size, operationIds.length, 'operationIds must be unique');
+});
+
+test('identity routes document the local token exchange without inventing a flow', () => {
+  const login = contract.paths['/api/v1/auth/login']?.post;
+  assert.ok(login, 'POST /api/v1/auth/login must be documented');
+  assert.deepEqual(login.security, [], 'login is public: no token is required to obtain one');
+  assert.equal(login.requestBody.required, true);
+  assert.equal(login.requestBody.content['application/json'].schema.$ref, '#/components/schemas/LoginRequest');
+  assert.deepEqual(Object.keys(login.responses).sort(), ['200', '400', '401']);
+  assert.equal(login.responses['200'].content['application/json'].schema.$ref, '#/components/schemas/TokenResponse');
+  assert.match(login.responses['401'].description, /no enumerar cuentas/);
+  assert.ok(!login.responses['403'], 'login is permitAll and must not document 403');
+  assert.ok(!('parameters' in login), 'login takes a body, not path parameters');
+
+  const me = contract.paths['/api/v1/me']?.get;
+  assert.ok(me, 'GET /api/v1/me must be documented');
+  assert.deepEqual(me.security, [{ bearerAuth: [] }], 'me requires the local bearer token');
+  assert.deepEqual(Object.keys(me.responses).sort(), ['200', '401']);
+  assert.equal(me.responses['200'].content['application/json'].schema.$ref, '#/components/schemas/MeResponse');
+  assert.ok(!('403' in me.responses), 'identity read answers 401, never the content 403');
+  assert.ok(!('parameters' in me), 'me takes no parameters');
+
+  const loginRequest = contract.components.schemas.LoginRequest;
+  assert.equal(loginRequest.additionalProperties, false);
+  assert.deepEqual(loginRequest.required, ['username', 'password']);
+  assert.equal(loginRequest.properties.username.pattern, '^[A-Za-z0-9._-]+$');
+  const token = contract.components.schemas.TokenResponse;
+  assert.deepEqual(token.required, ['access_token', 'token_type', 'expires_in']);
+  assert.deepEqual(token.properties.token_type.enum, ['Bearer']);
+  assert.ok(token.properties.expires_in.minimum >= 1);
+  const meResponse = contract.components.schemas.MeResponse;
+  assert.deepEqual(meResponse.required, ['id', 'username', 'roles']);
+  assert.equal(meResponse.properties.id.$ref, '#/components/schemas/CanonicalId');
+  assert.equal(meResponse.properties.roles.items.pattern, '^ROLE_[A-Z_]+$');
+  // The identity schemas must not leak grade, email or content fields.
+  for (const name of ['gup', 'grade', 'email', 'passwordHash', 'password_hash']) {
+    assert.ok(!(name in meResponse.properties), `me must not expose ${name}`);
+  }
 });
 
 test('canonical id and provenance limits are part of the published contract', () => {
@@ -137,6 +209,19 @@ test('schemas expose no local file paths, internal notes or unreviewed states', 
 
 test('the deny-all posture documented by the contract is still the one in code', () => {
   assert.match(securitySource, /\.anyRequest\(\)\.denyAll\(\)\)/);
-  assert.equal(securitySource.match(/permitAll\(\)/g).length, 1, 'only health may stay public');
-  assert.match(securitySource, /requestMatchers\(HttpMethod\.GET, "\/actuator\/health"\)/);
+  // Exactly two public entrances: health and the credential exchange.
+  assert.equal(securitySource.match(/permitAll\(\)/g).length, 3, 'health/login plus internal ERROR dispatch only');
+  assert.match(securitySource, /dispatcherTypeMatchers\(DispatcherType\.ERROR\)\.permitAll\(\)/);
+  assert.match(securitySource, /requestMatchers\(HttpMethod\.GET, "\/actuator\/health"\)\.permitAll\(\)/);
+  assert.match(securitySource, /requestMatchers\(HttpMethod\.POST, "\/api\/v1\/auth\/login"\)\.permitAll\(\)/);
+  assert.match(securitySource, /requestMatchers\("\/api\/v1\/me"\)\.authenticated\(\)/);
+  // Bearer-only, stateless API: no session, no CSRF surface, no form or basic fallback.
+  assert.match(securitySource, /new JwtAuthenticationFilter\(jwt\)/);
+  assert.match(securitySource, /\.csrf\(AbstractHttpConfigurer::disable\)/);
+  assert.match(securitySource, /SessionCreationPolicy\.STATELESS/);
+  assert.ok(!/formLogin\((?!AbstractHttpConfigurer::disable)/.test(securitySource), 'form login stays disabled');
+  assert.ok(!/httpBasic\((?!AbstractHttpConfigurer::disable)/.test(securitySource), 'basic auth stays disabled');
+  // Denied requests keep the historical 403 outside the identity read.
+  assert.match(securitySource, /SC_FORBIDDEN/);
+  assert.match(securitySource, /SC_UNAUTHORIZED/);
 });
