@@ -37,4 +37,4 @@ Ambas conservan `pending_human_review`.
 - [ ] Resolver la relación terminológica entre las secciones por altura y los términos `Nopunde`/`Kaunde`/`Najunde` del vocabulario.
 - [ ] Registrar quién revisa, con identidad y alcance reales. **Parcial (A3, 01-11-2026):** designado el usuario como mano derecha de la escuela; falta su nombre real en el registro.
 
-**Decisión escolar registrada el 01-11-2026 (kupso fuera de 10º Gup).** La matriz no autoriza a sembrar datos como aprobados, a abrir endpoints educativos ni a avanzar de fase por sí sola. `validate:content` debe seguir rechazando la ausencia de currículo hasta que exista uno real.
+**Decisión escolar registrada el 01-11-2026 (kupso fuera de 10º Gup).** La matriz no autoriza a sembrar datos como aprobados, a abrir endpoints educativos ni a avanzar de fase por sí sola. Con el primer currículo real (`gup_10`, solo teórico, 02-11-2026) `validate:content` pasa; esto no aprueba esta matriz ni cierra Fase 1.

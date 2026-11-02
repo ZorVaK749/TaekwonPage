@@ -27,4 +27,4 @@ La equivalencia documental entre grafías queda sujeta a revisión humana. No se
 
 Cotejar las cuatro glosas y los alias con sus citas; confirmar su presentación con la escuela y los derechos del uso previsto antes de publicar. El título marcial, los grados y `ROLE_ADMIN`/`ROLE_DEVELOPER` siguen siendo conceptos separados. La asignación administrativa funcional depende de las reglas del sistema, no de esta ficha de vocabulario.
 
-El conjunto de teoría y vocabulario se valida técnicamente de forma enlazada. Sigue faltando un currículo revisado de 10º Gup: `validate:content` debe rechazar su ausencia. No se avanza a 9º Gup ni a otro milestone.
+El conjunto de teoría y vocabulario se valida técnicamente de forma enlazada. Desde el 02-11-2026 existe el currículo teórico `gup_10` y `validate:content` pasa; sigue faltando un currículo **revisado y completo** de 10º Gup, y no se avanza a 9º Gup ni a otro milestone.

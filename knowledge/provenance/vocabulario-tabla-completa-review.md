@@ -47,4 +47,4 @@ Los IDs canónicos son globales, por lo que estas filas **no se duplican**; su a
 - [ ] Decidir la extracción de las partes del cuerpo restantes, sin duplicar IDs existentes. (Los nombres de técnica se [extrajeron como vocabulario](vocabulario-nombres-tecnica-review.md), pendientes de revisión.)
 - [ ] Registrar quién revisa, con identidad y alcance reales.
 
-**No hay persona, fecha de aprobación o programa escolar confirmados en este documento.** La matriz no autoriza a sembrar datos como aprobados, a abrir endpoints educativos ni a avanzar de fase. `validate:content` debe seguir rechazando la ausencia de currículo.
+**No hay persona, fecha de aprobación o programa escolar confirmados en este documento.** La matriz no autoriza a sembrar datos como aprobados, a abrir endpoints educativos ni a avanzar de fase. `validate:content` pasa desde el 02-11-2026 por el currículo teórico `gup_10`; es un control de presencia, no de aprobación.

@@ -46,7 +46,7 @@ Usar nombres ASCII en minusculas y un bloque coherente por rama. Objetivo: `main
    powershell -NoProfile -File tools/validators/Test-SourceInventory.Tests.ps1
    ```
 
-   `validate:local` requiere las copias PDF legitimas locales. `validate:content` sigue fallando esperadamente mientras falte curriculum; no ocultar este resultado ni presentarlo como aceptacion funcional.
+   `validate:local` requiere las copias PDF legitimas locales. `validate:content` pasa desde el 02-11-2026 con el primer currículo (`gup_10`, solo teorico); es control de presencia, no aceptacion funcional ni aprobacion marcial.
 
 4. Revisar `git status`, diferencias y archivos a incluir. Agregar rutas explicitas, no `git add -f`. Antes del commit revisar `git diff --cached --stat`, `git diff --cached` y `git diff --cached --check`. Ningun PDF, captura, secreto o dato personal debe entrar al indice.
 5. Crear commits pequenos con la convencion de la seccion 52: `tipo(ambito): descripcion`. Ejemplos: `chore(repo): establish project baseline`, `feat(knowledge): add source-backed content drafts`, `docs(plan): update sprint checklist`. No fingir una historia pasada ni alterar autoria para dividir cambios ya mezclados.
@@ -58,7 +58,7 @@ No se configuraron protecciones de ramas en GitHub. CI/CD sigue pendiente; el pi
 
 ## Integracion periodica en main
 
-No esperar a tener veinte ramas o a completar toda la aplicacion: cerrar checkpoints tecnicos coherentes, con tests aplicables correctos y pendientes claramente documentados. Un Sprint 1 parcial puede integrarse como borrador revisado sin presentarlo como v0.1 terminada. El fallo esperado de `validate:content` por curriculum ausente debe seguir visible; no se oculta para simular aceptacion funcional.
+No esperar a tener veinte ramas o a completar toda la aplicacion: cerrar checkpoints tecnicos coherentes, con tests aplicables correctos y pendientes claramente documentados. Un Sprint 1 parcial puede integrarse como borrador revisado sin presentarlo como v0.1 terminada. El exito de `validate:content` desde el 02-11-2026 por el currículo teórico `gup_10` no simula aceptacion funcional: revision humana y completitud siguen abiertas.
 
 1. Revisar el diff y el historial saliente, exclusiones de documentos/secretos, tests y estado limpio. Confirmar que `main` local coincide con `origin/main` tras `git fetch origin`; si no coincide, revisar antes de operar.
 2. Reutilizar la rama del bloque y su historia; no crear una rama adicional solo para ejecutar el merge.

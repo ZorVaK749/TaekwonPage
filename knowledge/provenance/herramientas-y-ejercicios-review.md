@@ -40,4 +40,4 @@ El contrato `tul` y la carpeta `tuls/` ya estaban previstos para Tuls **y ejerci
 4. Registrar revisión humana y autoridad curricular antes de asignar requisitos, publicar o producir seeds.
 5. Revisar derechos para el uso previsto; no presumir permiso de redistribución por haber creado estos JSON.
 
-La validación técnica y el reporte deben mostrar los dos ejercicios como secuencias parciales, no como TKD-012/TKD-013 terminados. La falta de currículo sigue siendo un fallo esperado de `validate:content`. No se inicia otro sprint ni el backend con este bloque.
+La validación técnica y el reporte deben mostrar los dos ejercicios como secuencias parciales, no como TKD-012/TKD-013 terminados. Desde el 02-11-2026 `validate:content` pasa por el currículo teórico `gup_10`; no por eso se cierra este lote. No se inicia otro sprint ni el backend con este bloque.

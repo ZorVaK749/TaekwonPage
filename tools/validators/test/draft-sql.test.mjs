@@ -17,11 +17,12 @@ test('actual drafts export atomically with typed rows and unknown counts preserv
   const sql = await exportDraftSql();
   const count = (table) => sql.split(`INSERT INTO ${table} (`).length - 1;
   assert.equal(count('source_document'), 4);
-  assert.equal(count('content_entry'), 89);
-  assert.equal(count('content_source'), 162);
+  assert.equal(count('content_entry'), 90);
+  assert.equal(count('content_source'), 164);
   assert.equal(count('tul_step'), 15);
   assert.equal(count('tul_step_source'), 15);
-  assert.equal(count('gup'), 0);
+  assert.equal(count('gup'), 1);
+  assert.ok(sql.includes("INSERT INTO gup (id, gup) VALUES (E'gup_10', 10)"));
   assert.match(sql, /BEGIN;\n/);
   assert.match(sql, /COMMIT;\n$/);
   assert.ok(sql.includes('ON CONFLICT (id) DO NOTHING'));
@@ -72,6 +73,19 @@ test('CLI requires explicit local-drafts consent and has no SQL on refusal', () 
   const result = spawnSync(process.execPath, [script], { encoding: 'utf8' });
   assert.equal(result.status, 1);
   assert.equal(result.stdout, '');
+  const skippedConsent = spawnSync(process.execPath, [script, '--skip-curricula'], { encoding: 'utf8' });
+  assert.equal(skippedConsent.status, 1);
+  assert.equal(skippedConsent.stdout, '');
   const sql = execFileSync(process.execPath, [script, '--local-drafts'], { encoding: 'utf8' });
   assert.match(sql, /LOCAL DRAFTS ONLY/);
+});
+
+test('skip-curricula still validates the full dataset but omits gup rows and their citations', async () => {
+  const sql = await exportDraftSql({ skipCurricula: true });
+  assert.ok(!sql.includes('INSERT INTO gup ('));
+  assert.ok(!sql.includes('citation_gup_10_temario_web_p27'));
+  assert.ok(sql.includes('INSERT INTO content_entry (id, content_type, name, description, review_status) VALUES (E\'def_taekwondo\''));
+  const script = path.join(repositoryRoot, 'tools/seeders/export-draft-sql.mjs');
+  const cliSql = execFileSync(process.execPath, [script, '--local-drafts', '--skip-curricula'], { encoding: 'utf8' });
+  assert.ok(!cliSql.includes('INSERT INTO gup ('));
 });

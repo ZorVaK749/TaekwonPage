@@ -21,11 +21,11 @@ Se preserva `def_taekwondo`, ya presente en el borrador previo. Se crean IDs esp
 ## Antes de publicar o asignar un grado
 
 1. El revisor marcial debe cotejar cada frase con sus citas y aceptar, corregir o rechazar el lote. No hay aprobación humana registrada.
-2. Confirmar con la escuela si corresponde incluir estos elementos en su currículo de 10º Gup. No se creó `gup_10` ni se asignaron requisitos automáticamente.
+2. Confirmar con la escuela si corresponde incluir estos elementos en su currículo de 10º Gup. Con A1 se creó `gup_10` (02-11-2026) enlazando estas fichas como teoría; no se asignó ningún requisito técnico automáticamente.
 3. Revisar derechos para el uso y distribución previstos. Esta extracción breve no declara que los documentos o sus derivados estén autorizados para cualquier publicación.
 
 Los folios impresos permanecen `null`: se usan páginas PDF desde 1, sin inventar equivalencias. No se almacenaron capturas ni PDFs en archivos versionables, ni se copiaron páginas completas.
 
 ## Punto de continuación
 
-El validador comprueba este lote real sin publicar PDFs. `validate:content` sigue rechazando la ausencia de currículo. La [matriz teórica posterior](temario_teorico_10gup-review.md) añade etimología y clasificación en otro archivo, conservando estas tres fichas intactas. La infraestructura/backend avanzaron por autorización posterior, sin aprobar conocimiento; el bloque actual vuelve a Fase 0, no a 9º Gup.
+El validador comprueba este lote real sin publicar PDFs. `validate:content` pasa desde el 02-11-2026 por el currículo teórico `gup_10` (control de presencia, no de aprobación). La [matriz teórica posterior](temario_teorico_10gup-review.md) añade etimología y clasificación en otro archivo, conservando estas tres fichas intactas. La infraestructura/backend avanzaron por autorización posterior, sin aprobar conocimiento; el bloque actual vuelve a Fase 0, no a 9º Gup.

@@ -20,13 +20,14 @@ function Invoke-Compose {
   if ($LASTEXITCODE -ne 0) { throw 'Database test command failed.' }
 }
 function Invoke-TestSql {
-  param([string[]]$Sql, [switch]$ExpectConflict, [string]$ExpectedError = '')
+  param([string[]]$Sql, [switch]$ExpectConflict, [string]$ExpectedError = '', [string]$TargetDatabase)
   $previousPreference = $ErrorActionPreference
+  $databaseName = if ($TargetDatabase) { $TargetDatabase } else { $database }
   try {
     # PowerShell 5 converts native stderr to error records. Expected SQL rejections
     # must be checked by exit code AND message, not terminate the harness early.
     $ErrorActionPreference = 'Continue'
-    $output = @($Sql | & docker compose --env-file $envFile -f $compose exec -T postgres sh -c ('psql -X -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d ' + $database) 2>&1)
+    $output = @($Sql | & docker compose --env-file $envFile -f $compose exec -T postgres sh -c ('psql -X -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d ' + $databaseName) 2>&1)
     $code = $LASTEXITCODE
   } finally { $ErrorActionPreference = $previousPreference }
   if ($ExpectConflict -or $ExpectedError) {
@@ -49,7 +50,9 @@ try {
   # Second execution must be a no-op; validate checks migration checksums.
   Invoke-Compose @('run', '--rm', '-e', $url, 'migrate', '-target=2', 'migrate')
   # Strict validate runs after all migrations below; later versions are intentionally pending here.
-  $sql = & node (Join-Path $root 'tools/seeders/export-draft-sql.mjs') --local-drafts
+  # Curricula are skipped here: the synthetic fixture owns gup_10 in this database;
+  # the real curriculum import runs end to end in a dedicated database below.
+  $sql = & node (Join-Path $root 'tools/seeders/export-draft-sql.mjs') --local-drafts --skip-curricula
   if ($LASTEXITCODE -ne 0) { throw 'Draft SQL export failed.' }
   Invoke-TestSql -Sql $sql
   Invoke-TestSql -Sql $sql
@@ -176,7 +179,53 @@ DO $$ BEGIN
   END IF;
 END; $$;
 '@
-  Write-Output 'PASS: populated upgrades V2-V6/reloads; previous checks plus 37 citation/ownership rejections; source/hash/page bounds, location swaps, reserved IDs and rollback.'
+  # Real curricula end to end in their own disposable database: unfiltered drafts
+  # (including curricula/gups) imported twice, then V3 must baseline the real gup_10.
+  $realDatabase = 'tkd_test_' + [guid]::NewGuid().ToString('N')
+  $realCreated = $false
+  try {
+    Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('createdb -U "$POSTGRES_USER" ' + $realDatabase))
+    $realCreated = $true
+    $realUrl = 'FLYWAY_URL=jdbc:postgresql://postgres:5432/' + $realDatabase
+    Invoke-Compose @('run', '--rm', '-e', $realUrl, 'migrate', '-target=2', 'migrate')
+    $realSql = & node (Join-Path $root 'tools/seeders/export-draft-sql.mjs') --local-drafts
+    if ($LASTEXITCODE -ne 0) { throw 'Draft SQL export failed.' }
+    Invoke-TestSql -Sql $realSql -TargetDatabase $realDatabase
+    # An identical reload must be a no-op against the exact stored rows.
+    Invoke-TestSql -Sql $realSql -TargetDatabase $realDatabase
+    $gupFiles = @(Get-ChildItem -LiteralPath (Join-Path $root 'knowledge/curricula/gups') -Filter '*.json').Count
+    $gupCheck = @'
+DO $$ BEGIN
+  IF (SELECT count(*) FROM gup) <> __GUP_FILES__ THEN
+    RAISE EXCEPTION 'real curriculum import count mismatch';
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM gup WHERE id = 'gup_10' AND gup = 10) THEN
+    RAISE EXCEPTION 'gup_10 was not imported';
+  END IF;
+  IF (SELECT count(*) FROM gup_theory WHERE gup_id = 'gup_10') < 1 THEN
+    RAISE EXCEPTION 'gup_10 lost its theory requirements';
+  END IF;
+  IF (SELECT count(*) FROM content_source WHERE content_id = 'gup_10') < 1 THEN
+    RAISE EXCEPTION 'gup_10 lost its citations';
+  END IF;
+END; $$;
+'@
+    $gupCheck = $gupCheck -replace '__GUP_FILES__', $gupFiles
+    Invoke-TestSql -Sql $gupCheck -TargetDatabase $realDatabase
+    Invoke-Compose @('run', '--rm', '-e', $realUrl, 'migrate', 'migrate')
+    Invoke-TestSql -TargetDatabase $realDatabase -Sql @'
+DO $$ BEGIN
+  IF (SELECT count(*) FROM curriculum_draft_revision WHERE content_id = 'gup_10' AND revision = 0) <> 1 THEN
+    RAISE EXCEPTION 'V3 did not baseline the real gup_10';
+  END IF;
+END; $$;
+'@
+  } finally {
+    if ($realCreated) {
+      Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('dropdb -U "$POSTGRES_USER" ' + $realDatabase))
+    }
+  }
+  Write-Output 'PASS: populated upgrades V2-V6/reloads; previous checks plus 37 citation/ownership rejections; source/hash/page bounds, location swaps, reserved IDs and rollback; real curriculum import reload and V3 baseline.'
 } finally {
   if ($created) {
     Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('dropdb -U "$POSTGRES_USER" ' + $database))
