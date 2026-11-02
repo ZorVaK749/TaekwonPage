@@ -4,7 +4,7 @@
 **Proyecto:** TaeKwonPage  
 **Escuela:** Taekwon-Do Nahuel Aukan  
 **Estado:** En desarrollo — Sprint 1 / Knowledge Foundation en curso  
-**Version del documento:** 1.32  
+**Version del documento:** 1.33  
 **Fecha de creacion:** 14-10-2026  
 **Ultima actualizacion:** 02-11-2026  
 
@@ -1756,6 +1756,8 @@ Para retomar el proyecto desde otro chat sin arrastrar contexto incompleto exist
 
 ## 55.2 Paso a paso respecto de la seccion 50
 
+**Cierre operativo para descanso (02-11-2026, 1.33):** identidad auditada integrada/publicada en `main` por `59b9ea5`. Se completó la rotación pendiente de PostgreSQL coordinando rol real y `.env`, sin mostrar el secreto. Nueva contraseña aceptada y anterior rechazada desde otro contenedor por JDBC; no se usó loopback interno como prueba de autenticación porque puede usar `trust`. Conteos de contenido/citas/currículos/cuentas/migraciones sin cambios. PostgreSQL recreado con el mismo volumen y saludable; Flyway valida siete migraciones; smoke del JAR con credenciales nuevas confirma login inválido 400, rechazado 401, `/me` 401 y contenido 403. API de prueba detenida, ningún usuario sembrado ni ruta educativa abierta. Los intentos fallidos previos restauraron credenciales antes de repetir; rotación finalmente confirmada. JWT ya regenerado con CSPRNG en el bloque anterior. El pendiente de rotación mencionado en la auditoría histórica siguiente queda **resuelto**; revocación, rate limiting, C2 y decisiones humanas siguen pendientes. No se inicia otro milestone.
+
 **Auditoría solicitada por el usuario (02-11-2026, cierre de 1.32):** corregido el `||` de `AuthService` que omitía BCrypt para cuentas ausentes/deshabilitadas; ahora se verifica siempre un hash, sin prometer tiempos constantes de BD. Credenciales acotadas, contraseña ≤72 bytes UTF-8, rechazo de campos JSON desconocidos. JWT con tipos/tiempos estrictos, roles conocidos, ID canónico, límite de tamaño, JSON sin duplicados/trailing, firma Base64URL canónica y rechazo de cabeceras no soportadas/`nbf`; roles del principal inmutables, Authorization duplicado rechazado. Regresiones nuevas comprueban ejecución BCrypt, límites UTF-8 y expiración exacta. Se corrigió documentación contradictoria: CSRF se deshabilitó, `denyAll` de contenido permanece. JWT_SECRET local regenerado con CSPRNG tras impresión de `.env` en la sesión anterior; contraseña local PostgreSQL también expuesta, pendiente de rotación coordinada. Límites en [seguridad](docs/security/README.md): sin rate limiting ni revocación inmediata, `/me` refleja claims hasta expirar; JWT propio no equivale a JOSE auditado, evaluar soporte mantenido antes de exposición pública. No cerrar Fase 3 ni exponer una beta por tests verdes.
 
 **Bloque vigente — Fase 3: identidad local C1:** V7 crea usuarios/roles/asignaciones, cuatro roles y cero cuentas/credenciales. Login BCrypt, JWT HS256 local con JDK, Bearer y `/me` sin grado/correo. Secreto obligatorio ≥32 bytes, issuer y TTL configurable (1800 s por defecto). Públicos solo salud y login; `/me` exige token (401); contenido bajo `denyAll` (403 incluso con token válido). CSRF deshabilitado por API stateless, sin form/basic/sesiones o CORS permisivo. Permitido solo despacho interno ERROR para preservar 400 de login inválido; `/error` directo sigue 403, probado con HTTP real tras detectar el fallo en un smoke del JAR. Sin registro/refresh; alta pendiente de TKD-016/TKD-017. OpenAPI de diez rutas y anti-drift; harness V7 con 11 rechazos adicionales de identidad. Resultado: 242 Node, 54 Java, 22 PowerShell y harness PASS. **C2 pendiente, sin contenido abierto ni cierre de fase.**
@@ -1922,7 +1924,7 @@ El plan de seguridad detallado sigue pendiente, sin posponer las reglas ya aprob
 | Identity & Grade Access v0.2 | `v0.2.0` | Parcial: identidad local implementada; faltan alta, grado, solicitud, autorización e historial |
 | Web v0.3 | `v0.3.0` | No iniciado |
 
-No se crearon tags, releases ni una beta. `1.32` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
+No se crearon tags, releases ni una beta. `1.33` es la version de este informe; las versiones de herramientas/JAR no equivalen a una release de la plataforma.
 
 ---
 
@@ -2032,6 +2034,8 @@ Cuando OpenCode reciba una tarea:
 | 1.30 | 01-11-2026 | Lectura interna del esquema de Gup (GET /api/v1/gups/{gup}): entidad/repositorio/servicio/DTO inmutable/controlador sobre las siete tablas de requisitos, rango 1-10 validado en dos capas, denyAll intacto; contrato ampliado con parametro GupNumber y esquemas Gup/GupRequirements. La base real sin curriculum responde 404: cero curriculos creados ni grupos rellenados. 33 pruebas Java y 240 tests Node. Sin migraciones, dependencias, contenido marcial ni apertura HTTP |
 | 1.31 | 02-11-2026 | Registro de C1 (JWT local) y respuestas A1–A7 de la escuela (documentacion del 01-11-2026) y **primer curriculum real de 10º Gup**: `gup_10` con los seis temas teoricos (siete fichas existentes) y dos citas propias WEB 27 / ONT 35, `pending_human_review`, demas grupos vacios por no enunciar las copias requisitos tecnicos. `validate:content` pasa por primera vez; importador con `--skip-curricula` y harness con base dedicada (doble recarga + baseline V3); datos verificados en la BD de desarrollo. 241 tests Node, 33 Java, 22 PowerShell y harness de BD correctos. Sin migraciones, dependencias, aprobacion ni apertura HTTP (denyAll intacto, C2 pendiente) |
 | 1.32 | 02-11-2026 | **Identidad local C1 implementada y auditada:** V7 (4 roles, 0 usuarios), login BCrypt, JWT HS256 propio, Bearer y `/me`; sin registro/refresh. Corregidos cortocircuito BCrypt, límites de credenciales, claims laxos y error real HTTP 400 convertido a 403 (despacho interno ERROR permitido, `/error` directo bloqueado). CSRF deshabilitado; `denyAll` de contenido intacto. OpenAPI login/me, harness con 11 rechazos nuevos. 242 Node, 54 Java, 22 PowerShell y harness PASS. Documentados límites de JWT propio, revocación/rate limiting e incidente local de secretos. Sin contenido abierto (C2 pendiente), aprobación, nuevas dependencias ni cierre de fase |
+
+| 1.33 | 02-11-2026 | Cierre operativo para descanso tras identidad auditada (`59b9ea5`): rotación CSPRNG de contraseña PostgreSQL coordinada con rol real/`.env`, nueva credencial JDBC aceptada y anterior rechazada; datos preservados, PostgreSQL saludable con mismo volumen, Flyway valida V1–V7 y smoke HTTP del JAR correcto. Sin cambios de aplicación, migraciones o contenido; API de prueba detenida, sin nueva fase ni apertura educativa. Suites del bloque 1.32: 54 Java, 242 Node, 22 PowerShell y harness PASS |
 
 ---
 

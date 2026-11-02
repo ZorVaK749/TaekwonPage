@@ -112,6 +112,8 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 
 ## Fase 3 — Seguridad, identidad y acceso
 
+- [x] Cierre operativo local (02-11-2026, informe 1.33): secretos JWT/BD rotados tras exposición en salida de herramientas; nueva credencial BD aceptada desde JDBC y anterior rechazada, datos intactos, Flyway V1–V7 válido y smoke HTTP correcto. API de prueba detenida; no se abre contenido ni otro milestone.
+
 - [x] Elegir JWT local u OIDC y documentar la estrategia: **C1 resuelta (01-11-2026)** — JWT local autoemitido (clave en `.env`, usuarios/roles en PostgreSQL); **implementada en el bloque del 02-11-2026 (informe 1.32)**.
 - [x] Login local con BCrypt y hash ficticio verificado incluso para cuentas ausentes/deshabilitadas (no garantía de tiempo constante); límites de username/contraseña y JWT estricto con regresiones. Token HS256 de 1800 s; `/me` refleja id/username/roles del token. Sin registro, refresh ni usuarios sembrados; alta depende de TKD-016/TKD-017.
 - [ ] Registro/alta de alumnos con `ROLE_STUDENT`, 10º Gup y `UNVERIFIED` (pendiente del modelo de grado/verificación).
