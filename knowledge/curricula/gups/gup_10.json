@@ -1,0 +1,27 @@
+{
+  "format_version": 1,
+  "id": "gup_10",
+  "gup": 10,
+  "requirements": {
+    "position_ids": [],
+    "theory_ids": [
+      "def_taekwondo",
+      "etimologia_taekwondo",
+      "fundador_taekwondo",
+      "principios_taekwondo",
+      "significado_dobok_blanco",
+      "significado_cinturon_blanco",
+      "clasificacion_instructores"
+    ],
+    "tul_ids": [],
+    "vocabulary_ids": [],
+    "body_tool_ids": [],
+    "kick_ids": [],
+    "combat_ids": []
+  },
+  "citation_ids": [
+    "citation_gup_10_temario_web_p27",
+    "citation_gup_10_temario_ont_p35"
+  ],
+  "review_status": "pending_human_review"
+}

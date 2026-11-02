@@ -94,8 +94,10 @@ test('new actual source evidence cannot be relabeled with a different PDF hash',
 test('all real drafts compose and report the two exercise sequences as partial', async () => {
   const catalogFiles = await discoverCatalogFiles(path.join(repositoryRoot, 'knowledge/catalogs'));
   const provenanceFiles = await discoverJsonFiles(path.join(repositoryRoot, 'knowledge/provenance'));
+  const curriculumFiles = await discoverJsonFiles(path.join(repositoryRoot, 'knowledge/curricula/gups'));
   const full = {
-    catalogs: await Promise.all(catalogFiles.map(({ file }) => readJson(file))), curricula: [],
+    catalogs: await Promise.all(catalogFiles.map(({ file }) => readJson(file))),
+    curricula: await Promise.all(curriculumFiles.map((file) => readJson(file))),
     provenance: await Promise.all(provenanceFiles.map((file) => readJson(file))),
   };
   assert.deepEqual(validator.validateDataset(full, inventory), []);

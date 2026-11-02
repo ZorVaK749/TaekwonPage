@@ -1,6 +1,6 @@
 # Fase 0 — decisiones pendientes consolidadas
 
-**Propósito:** un único punto de respuesta para cerrar la base de conocimiento. La extracción documental de la Fase 0 está **agotada**: con los cuatro PDFs locales se hizo todo lo que se puede hacer sin decidir. Cada fila de abajo es una decisión que **solo la escuela o el revisor marcial pueden tomar**; hasta entonces todo sigue en `pending_human_review` y `validate:content` sigue fallando a propósito.
+**Propósito:** un único punto de respuesta para cerrar la base de conocimiento. La extracción documental de la Fase 0 está **agotada**: con los cuatro PDFs locales se hizo todo lo que se puede hacer sin decidir. Cada fila de abajo es una decisión que **solo la escuela o el revisor marcial pueden tomar**; hasta entonces todo sigue en `pending_human_review`, y `validate:content` pasa desde el 02-11-2026 solo porque existe un currículo teórico, sin significar aprobación.
 
 **Uso:** entregar este documento al Busabonim/escuela y al revisor designado. Cada respuesta debe quedar registrada con **nombre real, fecha y alcance** en los archivos enlazados; una respuesta genérica de «sigan» no aprueba contenido marcial.
 
@@ -8,7 +8,7 @@
 
 | # | Pregunta | Qué desbloquea | Dónde registrar la respuesta |
 | --- | --- | --- | --- |
-| A1 | ~~¿Cuál es el **programa vigente de 10º Gup** y su examen?~~ **Resuelta 01-11-2026:** el programa vigente es el de las copias ya citadas (WEB/ONT/enciclopedia), confirmado por el representante de la escuela. | TKD-009: primer currículo real (solo con lo que las copias enuncian); cierre de la fundación de `validate:content` | [curricular-authority.md](../knowledge/provenance/curricular-authority.md) |
+| A1 | ~~¿Cuál es el **programa vigente de 10º Gup** y su examen?~~ **Resuelta 01-11-2026:** el programa vigente es el de las copias ya citadas (WEB/ONT/enciclopedia), confirmado por el representante de la escuela. | TKD-009: primer currículo real (solo con lo que las copias enuncian); cierre de la fundación de `validate:content` — **hecho 02-11-2026:** `gup_10` teórico, `pending_human_review` | [curricular-authority.md](../knowledge/provenance/curricular-authority.md) |
 | A2 | ~~¿Qué **manual(es)** aplican (WEB, ONT, enciclopedia) y cómo resolver sus diferencias?~~ **Parcial 01-11-2026:** aplican las tres copias; **criterio de desempate aún sin especificar** (las divergencias siguen documentadas sin resolver). | TKD-002: autoridad curricular; prioridad entre copias divergentes | [curricular-authority.md](../knowledge/provenance/curricular-authority.md) |
 | A3 | ~~¿**Quién revisa y aprueba** el contenido marcial, y cómo se registra esa aprobación?~~ **Parcial 01-11-2026:** designado el usuario (mano derecha de la escuela); **falta nombre real** y mecanismo de aprobación (el esquema aún solo admite `pending_human_review`). | Todas las fichas: pasar de `pending_human_review` a aprobadas con evidencia | [curricular-authority.md](../knowledge/provenance/curricular-authority.md) |
 | A4 | ~~¿Se exige el bloque de **puntos vitales (kupso)** en 10º Gup, y con qué alcance?~~ **Resuelta 01-11-2026:** **no** forma parte de 10º Gup; fuera de alcance y sin extraer. | Cierre de la única pregunta que mantenía observado el bloque kupso | [secciones-cuerpo-review.md](../knowledge/provenance/secciones-cuerpo-review.md) |
@@ -38,6 +38,6 @@
 - Una respuesta aprueba **solo lo que pregunta esa fila**; no autoriza a sembrar datos ni a publicar.
 - Las migraciones V1–V6 siguen inmutables; los JSON antiguos de la raíz no se promueven.
 - El contenido sigue local: los PDFs de terceros no se redistribuyen.
-- Sin currículo real (A1), `validate:content` debe seguir fallando.
+- Con A1 respondida ya existe currículo real (`gup_10`, teórico): `validate:content` pasa, pero **no aprueba contenido** ni cierra la fundación mientras falte revisión humana.
 
-**Estado de este documento:** creado el 29-10-2026; **C1 resuelta el 01-11-2026** (JWT local, decidida por el usuario de ZVK Tech) y **bloque A respondido el 01-11-2026** por el representante de la escuela (mismo usuario): A1, A4 y A5 **resueltas**; A2, A3, A6 y A7 **parciales** (detalle pendiente: criterio de desempate, nombre real, números de Saju y descripción de combate). Bloque B sin respuestas; C2 pendiente. Actualizar cada fila al recibir el detalle, con responsable y fecha.
+**Estado de este documento:** creado el 29-10-2026; **C1 resuelta el 01-11-2026** (JWT local, decidida por el usuario de ZVK Tech) y **bloque A respondido el 01-11-2026** por el representante de la escuela (mismo usuario): A1, A4 y A5 **resueltas**; A2, A3, A6 y A7 **parciales** (detalle pendiente: criterio de desempate, nombre real, números de Saju y descripción de combate). **02-11-2026:** con A1 se creó el primer currículo real `gup_10` (teórico, `pending_human_review`). Bloque B sin respuestas; C2 pendiente. Actualizar cada fila al recibir el detalle, con responsable y fecha.

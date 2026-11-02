@@ -34,9 +34,12 @@ test('JSON CLI report is parseable, counts real drafts and preserves pending rev
   assert.ok(!result.stdout.includes('description'), 'Summary should not duplicate source-derived content.');
 });
 
-test('JSON report with strict presence gate still fails until curriculum exists', () => {
+test('JSON report with strict presence gate passes once a real curriculum exists', () => {
   const result = spawnSync(process.execPath, [cli, '--report-json', '--require-content'], { encoding: 'utf8' });
-  assert.equal(result.status, 1);
-  assert.equal(result.stdout, '');
-  assert.match(result.stderr, /foundation incomplete/);
+  assert.equal(result.status, 0, result.stderr);
+  const report = JSON.parse(result.stdout);
+  assert.ok(report.counts.curricula >= 1, 'at least the 10th gup curriculum');
+  assert.ok(report.pending_human_review.curriculum_ids.includes('gup_10'));
+  assert.ok(!report.warnings.includes('NO_CURRICULUM_REGISTERED'));
+  assert.equal(report.validation.content_references_checked, true);
 });

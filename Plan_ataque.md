@@ -1,6 +1,6 @@
 # Plan de ataque — TaeKwonPage
 
-**Actualizado: 29-10-2026.** Vista de seguimiento del [informe técnico](informe_tecnico.md), no un plan nuevo que reemplace su arquitectura o alcance. Para continuar desde otro chat: **[prompt de continuación](docs/handoff/continuation-prompt.md)**, siempre contrastado contra el informe.
+**Actualizado: 02-11-2026.** Vista de seguimiento del [informe técnico](informe_tecnico.md), no un plan nuevo que reemplace su arquitectura o alcance. Para continuar desde otro chat: **[prompt de continuación](docs/handoff/continuation-prompt.md)**, siempre contrastado contra el informe.
 
 - `[x]` = el entregable descrito está implementado/verificado.
 - `[ ]` = pendiente o parcial; el texto indica cuál de los dos.
@@ -11,9 +11,9 @@
 
 | Fase original | Estado real |
 | --- | --- |
-| 0 — Base de conocimiento | **En cierre técnico:** 89 fichas y 162 citas pendientes; extracción agotada sobre los cuatro PDFs locales (matrices de teoría, vocabulario —WEB 65 / ONT 71 filas, no idénticas; nombres de técnica extraídos salvo el doble `Jirugi`—, cuerpo y secciones). Todo lo pendiente son decisiones humanas consolidadas en [docs/phase0-decisiones-pendientes.md](docs/phase0-decisiones-pendientes.md), sin currículo escolar confirmado |
+| 0 — Base de conocimiento | **En cierre técnico:** 90 fichas y 164 citas pendientes; extracción agotada sobre los cuatro PDFs locales (matrices de teoría, vocabulario —WEB 65 / ONT 71 filas, no idénticas; nombres de técnica extraídos salvo el doble `Jirugi`—, cuerpo y secciones). Decisiones humanas consolidadas en [docs/phase0-decisiones-pendientes.md](docs/phase0-decisiones-pendientes.md); con A1 se creó el primer currículo real `gup_10` (02-11-2026, solo teórico, `pending_human_review`) |
 | 1 — Persistencia | **Base técnica funcionando:** PostgreSQL, Flyway, tablas de contenido e importación de borradores probada; no persistencia educativa completa |
-| 2 — Backend | **En curso sin endpoints educativos:** ocho tipos con lectura interna (posición, teoría, vocabulario, herramientas, tuls con pasos, kick, combate y esquema de Gup) y [contrato OpenAPI](docs/openapi/taekwonpage-v1.json) verificado; contenido bloqueado por HTTP con `denyAll` intacto; sin currículo real la lectura de Gups responde 404 |
+| 2 — Backend | **En curso sin endpoints educativos:** ocho tipos con lectura interna (posición, teoría, vocabulario, herramientas, tuls con pasos, kick, combate y esquema de Gup) y [contrato OpenAPI](docs/openapi/taekwonpage-v1.json) verificado; contenido bloqueado por HTTP con `denyAll` intacto; la lectura de Gups ya tiene datos internos (`gup_10`, teoría) pero el HTTP sigue en 403 hasta C2 |
 | 3 — Seguridad funcional | No iniciada; existe solo el bloqueo preventivo de rutas y salud mínima |
 | 4 — Angular | No iniciada |
 | 5 — Visualización biomecánica | No iniciada |
@@ -41,14 +41,14 @@ Fuente: secciones 38–39 y checklist 55.4 del informe.
 
 ### Pendientes que impiden cerrar la fase
 
-- [ ] **TKD-002 — Autoridad curricular:** confirmar programa vigente de Nahuel Aukan, cómo resolver discrepancias y quién revisa/aprueba. Requiere decisión de la escuela: [preguntas y registro](knowledge/provenance/curricular-authority.md).
+- [ ] **TKD-002 — Autoridad curricular:** **parcial (A1–A3, 01-11-2026)** — programa vigente = copias citadas (A1), revisor designado = el usuario (A3, falta nombre real para el registro); pendiente el criterio de desempate entre manuales (A2) y las filas B1–B5 del revisor. Registro en [docs/phase0-decisiones-pendientes.md](docs/phase0-decisiones-pendientes.md).
 - [ ] **TKD-003 — Convenciones marciales:** romanización/alias, medidas, referencias geométricas, unidades y orientación. Los IDs técnicos ya están definidos; los ángulos del renderer no se pueden inventar.
 - [ ] **TKD-004 — Contrastar contratos con el contenido completo:** los schemas actuales son iniciales, no modelos marciales definitivos.
-- [ ] **TKD-005 — Completar posiciones iniciales:** cuatro fichas en revisión. Resolver adopción escolar del Junbi y geometría pendiente; `narani_junbi_sogi` documentado no hace equivalentes todas las variantes.
+- [ ] **TKD-005 — Completar posiciones iniciales:** cuatro fichas en revisión. **A5 resuelta (01-11-2026):** la escuela adopta `narani_junbi_sogi` con la geometría de PDF 81; siguen pendientes revisión humana y convenciones geométricas (TKD-003). `narani_junbi_sogi` documentado no hace equivalentes todas las variantes.
 - [ ] **TKD-006 — Completar teoría inicial:** hay nueve fichas, incluidas las [secciones del cuerpo y la división lateral](knowledge/provenance/secciones-cuerpo-review.md), y una matriz de seis temas de los manuales; faltan revisión, profundidad requerida y adopción escolar. El bloque de puntos vitales (kupso) quedó observado sin extraer. No se considera todo el temario completo.
 - [ ] **TKD-007 — Completar vocabulario inicial:** hay 44 entradas en revisión (cuatro iniciales, diecisiete de niveles/direcciones, [doce generales](knowledge/provenance/vocabulario-terminos-generales-review.md) y [once nombres de técnica](knowledge/provenance/vocabulario-nombres-tecnica-review.md)). La [matriz de cobertura](knowledge/provenance/vocabulario-tabla-completa-review.md) queda agotada salvo el doble uso de Jirugi, que depende del revisor.
 - [ ] **TKD-008 — Completar herramientas:** hay 24 entradas en revisión (las 10 iniciales y las [14 partes del cuerpo](knowledge/provenance/vocabulario-cuerpo-review.md) de las tablas de vocabulario). `Dwichook` queda excluido pendiente de TKD-003 y se documenta que la tabla WEB omite seis filas de mano presentes en ONT.
-- [ ] **TKD-009 — Construir y revisar 10º Gup:** cero currículos en `knowledge/curricula/gups/`. El temario observado solo enumera teoría; faltan requisitos técnicos confirmados, no solo crear un JSON.
+- [ ] **TKD-009 — Construir y revisar 10º Gup:** **primer currículo real `gup_10` creado (02-11-2026)** en `knowledge/curricula/gups/`, solo teórico (los seis temas del temario WEB 27 / ONT 35 enlazando siete fichas) con dos citas propias, `pending_human_review`. Faltan requisitos técnicos cuando la escuela los confirme (A6 sin entregar), revisión humana y aprobación; no basta crear el JSON.
 - [ ] **TKD-010 / TKD-011 — Estructurar 9º y 8º Gup:** siguen en el alcance de Fase 0, pero diferidos hasta demostrar una estructura reusable de 10º Gup. No se han cancelado.
 - [ ] **TKD-012 — Completar Saju Jirugi:** siete acciones documentadas, no total global. La laguna del destino del golpe del punto 3 se intentó recuperar el 29-10-2026 con recortes ampliados (resultado negativo: tinta erosionada); requiere otra copia o revisor. Faltan alcance alterno y conteo completo con evidencia.
 - [ ] **TKD-013 — Completar Saju Makgi:** ocho acciones documentadas, sin total global/alcance alterno confirmado. La preparación ya tiene enlace documental.
@@ -60,7 +60,7 @@ Fuente: secciones 38–39 y checklist 55.4 del informe.
 - [ ] Completar/revisar patadas y combate: tres fichas de cada tipo. Resolver ambigüedad de `cha_jirugi`, diferencias entre copias y variante de combate aplicable; no adoptar automáticamente el «sin contacto» del JSON antiguo.
 - [ ] Registrar revisión humana y derechos para el uso previsto. Actualmente **cero fichas tienen aprobación humana registrada**.
 
-**Criterio de cierre conservado:** 10º/9º/8º Gup estructurados, catálogos requeridos disponibles, ejercicios/Tul y posiciones modelados, validadores funcionando sobre datos reales, sin referencias curriculares rotas y contenido aprobado con fuente identificable. Hoy no se cumple. `validate:content` continúa fallando por ausencia de currículo, de forma esperada.
+**Criterio de cierre conservado:** 10º/9º/8º Gup estructurados, catálogos requeridos disponibles, ejercicios/Tul y posiciones modelados, validadores funcionando sobre datos reales, sin referencias curriculares rotas y contenido aprobado con fuente identificable. Hoy no se cumple. `validate:content` **pasa desde el 02-11-2026** con el primer currículo real (`gup_10`); control de presencia/consistencia, no de aprobación ni completitud marcial.
 
 ## Fase 1 — Persistencia: cómo vamos
 
@@ -86,14 +86,14 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 
 ### Falta para cerrar persistencia
 
-- [ ] Importar un **currículo real** con sus requisitos tipados y citas. El mapeo existe; falta el documento confirmado/revisado y su contraste real.
+- [x] Importar un **currículo real** con sus requisitos tipados y citas: `gup_10` importado y verificado (siete teorías y dos citas) en la BD de desarrollo y en una base dedicada del harness con recarga idéntica y baseline V3. Es teórico y `pending_human_review`; el alcance completo (requisitos técnicos) sigue pendiente de la escuela.
 - [ ] Preparar seed de contenido aprobado cuando exista aprobación; hoy solo hay borradores de prueba, no un seed educativo de producción.
 - [ ] Definir/persistir evidencia de revisión y publicación; el esquema actual solo admite `pending_human_review`.
 - [ ] Aplicar revisión humana explícita al contenido/evidencia antes de aprobarlo. El versionado técnico de datos y citas está implementado; no es aprobación ni autoriza cambios silenciosos.
 - [ ] Validar el recorrido completo de 10º Gup aprobado → importación → consulta desde backend.
 - [ ] Completar el modelo relacional de usuarios, roles, grados del alumno, solicitudes, historial y auditoría cuando se cierre su diseño funcional. Esas tablas del modelo preliminar aún no existen; no son parte del primer bloque de contenido.
 
-**Resumen:** ya tenemos la infraestructura y el esquema inicial, no toda la BD de la aplicación terminada. La BD local de desarrollo tiene el esquema, **sin contenido cargado**; las importaciones verificadas se hicieron en bases aisladas que se eliminan al terminar. Docker local no es hosting de la web final.
+**Resumen:** ya tenemos la infraestructura y el esquema inicial, no toda la BD de la aplicación terminada. La BD local de desarrollo tiene el esquema **y los borradores importados, incluido el currículo real `gup_10`** (pendiente de revisión humana); las demás importaciones verificadas se hicieron en bases aisladas que se eliminan al terminar. Docker local no es hosting de la web final.
 
 ## Fase 2 — Backend
 
@@ -101,18 +101,18 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 - [x] Flyway al arranque y Hibernate en modo validación, sin recrear tablas.
 - [x] Primer módulo de contenido: entidades, repositorios de lectura, servicio, mapeo a DTO y controlador de posiciones.
 - [x] Procedencia de posiciones con fuente/hash, metadatos, página PDF/folio y estados; sin rutas locales/PDFs en el DTO.
-- [x] Pruebas unitarias y con PostgreSQL aislado: **30 pruebas Java correctas** en el último bloque técnico.
+- [x] Pruebas unitarias y con PostgreSQL aislado: **33 pruebas Java correctas** en el último bloque técnico.
 - [x] Salud mínima y bloqueo HTTP preventivo de contenido; JAR probado contra Compose.
 - [x] Lectura interna (entidad, repositorio, servicio, DTO, controlador) de **cinco tipos**: posiciones, teoría, vocabulario, herramientas corporales y tuls/ejercicios (pasos con sus citas); regla única de IDs canónicos (`CanonicalIds`).
 - [x] Contrato [OpenAPI 3.1 de las rutas de lectura](docs/openapi/taekwonpage-v1.json) con 200/400/403/404, sin esquemas de identidad ni hosts públicos, verificado por tests Node contra los controladores Java y contra `denyAll`.
 - [x] Ampliar lectura a kick y combate (`/api/v1/kicks/{id}`, `/api/v1/combat-types/{id}`), sin seleccionar ni aprobar modalidad alguna; contrato OpenAPI ampliado a siete rutas.
-- [x] Lectura interna `GET /api/v1/gups/{gup}` del esquema curricular (siete grupos de requisitos, rango 1–10,400/404/403, contrato con `GupNumber`): la base real sin currículo responde 404; ningún grupo se rellena desde otra ficha ni desde los JSON antiguos.
-- [ ] Temario real de 10º Gup y currículo completo siguen pendientes de la escuela (`GET /api/v1/gups/10` con contenido, no solo forma).
+- [x] Lectura interna `GET /api/v1/gups/{gup}` del esquema curricular (siete grupos de requisitos, rango 1–10,400/404/403, contrato con `GupNumber`): con el currículo real `gup_10` la ruta tiene datos internos (teoría y citas); ningún grupo se rellena desde otra ficha ni desde los JSON antiguos.
+- [ ] Temario real de 10º Gup **parcial:** `GET /api/v1/gups/10` ya tiene el currículo teórico; faltan requisitos técnicos confirmados por la escuela (A6) y la apertura HTTP (C2) para verlo desde fuera.
 - [ ] Completar el flujo funcional sin exponer borradores ni saltarse la autorización de Fase 3.
 
 ## Fase 3 — Seguridad, identidad y acceso
 
-- [ ] Elegir JWT local u OIDC y documentar la estrategia.
+- [x] Elegir JWT local u OIDC y documentar la estrategia: **C1 resuelta (01-11-2026)** — JWT local autoemitido (clave en `.env`, usuarios/roles en PostgreSQL); la implementación sigue pendiente.
 - [ ] Registro/login/ciclo de sesión y tratamiento de credenciales según la elección.
 - [ ] Alta de alumnos con `ROLE_STUDENT`, 10º Gup y `UNVERIFIED`.
 - [ ] RBAC y acceso acumulativo por grado **en backend**, también al acceder directamente a contenido.
@@ -166,12 +166,12 @@ Un volumen persistente local y `/actuator/health` local no completan estos punto
 
 ## Orden para retomar sin arrastrar pendientes invisibles
 
-El bloque activo es **Fase 2 sin endpoints educativos**, por decisión del usuario del 29-10-2026 tras cerrar técnicamente la Fase 0; Fase 1 queda abierta por sus dependencias humanas. La lista siguiente expresa dependencias, no autorización para saltar directamente a la apertura de rutas ni dar por terminada la persistencia funcional.
+El bloque activo es **Fase 2 sin endpoints educativos**, por decisión del usuario del 29-10-2026 tras cerrar técnicamente la Fase 0; Fase 1 queda abierta por sus dependencias humanas. C1 (JWT local) quedó decidida el 01-11-2026 y las respuestas A1–A7 están registradas. La lista siguiente expresa dependencias, no autorización para saltar directamente a la apertura de rutas ni dar por terminada la persistencia funcional.
 
-1. Confirmar con la escuela autoridad, revisor y programa técnico de 10º Gup; no puede resolverlo un test ni la IA. Las preguntas están consolidadas en [docs/phase0-decisiones-pendientes.md](docs/phase0-decisiones-pendientes.md).
-2. Al llegar respuestas: registrarlas con responsable y fecha, extraer solo lo desbloqueado y construir el currículo de 10º Gup sin inventar requisitos (la Fase 0 ya no avanza por más extracción).
-3. Completar importación curricular/revisión/publicación y su consulta en backend; 9º/8º siguen después de demostrar 10º, como dispone el plan.
-4. Backend de lectura completo para los ocho tipos (el de Gup, sin currículo real, responde 404 por diseño); `GET /api/v1/gups/10` con contenido espera a la escuela. Sin tocar `denyAll`; elegir identidad (JWT u OIDC, C1) antes de implementarla o abrir rutas.
+1. **Hecho (parcial):** registrar autoridad, revisor y programa técnico de 10º Gup con la escuela — A1–A7 registrados el 01-11-2026; siguen abiertos el nombre real del aprobador (A3), el criterio de desempate (A2), los números de Saju (A6), la descripción del contacto pactado (A7) y las filas B1–B5 del revisor. No puede resolverlo un test ni la IA.
+2. Con respuestas desbloqueadas: completar el currículo de 10º Gup sin inventar requisitos (ya existe la base teórica `gup_10`; faltan requisitos técnicos y revisión humana).
+3. Completar revisión/publicación y su consulta en backend; 9º/8º siguen después de demostrar 10º, como dispone el plan.
+4. Backend de lectura completo para los ocho tipos (`GET /api/v1/gups/10` ya tiene datos internos). Sin tocar `denyAll`; la identidad ya está elegida (C1: JWT local), falta implementarla antes de abrir rutas.
 5. Integrar Angular cuando existan los contratos y acceso necesarios; preparar hosting al llegar a producción, no convertir el PC en servidor público.
 
 ### Mantenimiento de este checklist

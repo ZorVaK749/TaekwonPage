@@ -66,10 +66,12 @@ test('regression gate catches a changed real weight sum', () => {
 test('all discovered real drafts compose without cross-lot duplicates or missing citations', async () => {
   const catalogs = await discoverCatalogFiles(path.join(repositoryRoot, 'knowledge/catalogs'));
   const provenance = await discoverJsonFiles(path.join(repositoryRoot, 'knowledge/provenance'));
+  const curricula = await discoverJsonFiles(path.join(repositoryRoot, 'knowledge/curricula/gups'));
   const full = {
     catalogs: await Promise.all(catalogs.map(({ file }) => readJson(file))),
-    curricula: [], provenance: await Promise.all(provenance.map((file) => readJson(file))),
+    curricula: await Promise.all(curricula.map((file) => readJson(file))),
+    provenance: await Promise.all(provenance.map((file) => readJson(file))),
   };
   assert.deepEqual(validator.validateDataset(full, inventory), []);
-  assert.match(validator.validateDataset(full, inventory, { requireContent: true }).join(), /incomplete/);
+  assert.deepEqual(validator.validateDataset(full, inventory, { requireContent: true }), []);
 });

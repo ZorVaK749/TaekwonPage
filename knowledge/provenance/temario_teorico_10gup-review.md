@@ -17,7 +17,7 @@ Todas conservan `pending_human_review`. «Presente» significa que hay una sínt
 | Significado del cinturón blanco | `significado_cinturon_blanco` en [simbolismo](../catalogs/teoria/teoria_simbolismo_inicial.json) | WEB 15 / ONT 20 | Significado del blanco; no catálogo de grados/colores de la escuela |
 | Clasificación de instructores | `clasificacion_instructores` en [ampliación](../catalogs/teoria/teoria_temario_inicial.json) | WEB 6 / ONT 7 | Cuatro grupos y glosas españolas; romanizaciones divergentes pendientes |
 
-Las citas de las fichas están en [teoría inicial](teoria_inicial.json), [simbolismo](teoria_simbolismo_inicial.json) y [ampliación](teoria_temario_inicial.json). El temario de examen se localiza aquí documentalmente, sin crear citas de un `gup_10` que todavía no existe.
+Las citas de las fichas están en [teoría inicial](teoria_inicial.json), [simbolismo](teoria_simbolismo_inicial.json) y [ampliación](teoria_temario_inicial.json). El temario de examen se localiza aquí documentalmente; el currículo que lo enlaza es [`gup_10`](gup_10.json) (creado el 02-11-2026 con sus dos citas propias).
 
 ## Nuevos datos y discrepancias
 
@@ -43,6 +43,6 @@ La consulta visual dirigida incluyó WEB **2, 6, 15, 27** y ONT **2, 6, 7, 20, 3
 - [ ] Aportar requisitos técnicos de posiciones, ejercicios, patadas, vocabulario y combate, si son exigidos. No aparecen en estos apartados de teoría.
 - [ ] Resolver las lagunas técnicas existentes (incluidos Saju y convenciones geométricas) con evidencia, no a partir de esta matriz.
 - [ ] Revisar derechos para el uso previsto antes de publicar.
-- [ ] Registrar decisiones verificables y después construir/validar el currículo enlazado correspondiente.
+- [ ] Registrar el resto de decisiones verificables (A2/A3/A6/A7, filas B y revisión humana) y ampliar/validar el currículo enlazado: la base `gup_10` ya existe, pero solo cubre teoría y sigue `pending_human_review`.
 
-**No hay persona, fecha de aprobación o programa escolar confirmados en este documento.** La ausencia de categorías técnicas en estos apartados no significa que no se exijan en la escuela. La matriz no autoriza sembrar datos como aprobados, abrir endpoints educativos o avanzar a 9º/8º Gup. `validate:content` debe seguir rechazando la ausencia de currículo.
+**No hay persona, fecha de aprobación o programa escolar confirmados en este documento.** La ausencia de categorías técnicas en estos apartados no significa que no se exijan en la escuela. La matriz no autoriza sembrar datos como aprobados, abrir endpoints educativos o avanzar a 9º/8º Gup. `validate:content` pasa desde el 02-11-2026 por el currículo teórico `gup_10`; es un control de presencia, no de aprobación.

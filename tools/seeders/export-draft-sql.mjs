@@ -26,7 +26,7 @@ const tableKeys = {
   ...Object.fromEntries(Object.values(requirementTables).map(([table, column]) => [table, ['gup_id', column]])),
 };
 
-export async function exportDraftSql() {
+export async function exportDraftSql({ skipCurricula = false } = {}) {
   const root = path.join(repositoryRoot, 'knowledge');
   const inventory = await readJson(path.join(root, 'sources/inventory.json'));
   const catalogFiles = await discoverCatalogFiles(path.join(root, 'catalogs'));
@@ -37,14 +37,24 @@ export async function exportDraftSql() {
   }));
   const provenance = await Promise.all((await discoverJsonFiles(path.join(root, 'provenance'))).map(readJson));
   const curricula = await Promise.all((await discoverJsonFiles(path.join(root, 'curricula/gups'))).map(readJson));
-  return createDraftSql({ catalogs, curricula, provenance }, inventory);
+  return createDraftSql({ catalogs, curricula, provenance }, inventory, { skipCurricula });
 }
 
 // Injectable dataset is used by synthetic tests, never to invent a school curriculum.
-export async function createDraftSql({ catalogs, curricula, provenance }, inventory) {
+// skipCurricula: database tests that let the synthetic fixture own gup_10 load drafts
+// without curricula. The full dataset is still validated before anything is filtered.
+export async function createDraftSql({ catalogs, curricula, provenance }, inventory, { skipCurricula = false } = {}) {
   const validator = await createKnowledgeValidator();
   const errors = validator.validateDataset({ catalogs, curricula, provenance }, inventory);
   if (errors.length) throw new Error(errors.join('\n'));
+  if (skipCurricula) {
+    const curriculumIds = new Set(curricula.map((curriculum) => curriculum.id));
+    curricula = [];
+    provenance = provenance.map((document) => ({
+      ...document,
+      citations: document.citations.filter((citation) => !curriculumIds.has(citation.content_id)),
+    }));
+  }
   const lines = [
     '-- LOCAL DRAFTS ONLY. No approval or publication.', 'BEGIN;',
     `LOCK TABLE ${Object.keys(tableKeys).join(', ')} IN SHARE ROW EXCLUSIVE MODE;`,
@@ -148,8 +158,12 @@ $$;`,
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.join(repositoryRoot, 'tools/seeders/export-draft-sql.mjs')) {
   try {
-    if (process.argv.slice(2).join(' ') !== '--local-drafts') throw new Error('Usage: node tools/seeders/export-draft-sql.mjs --local-drafts');
-    process.stdout.write(await exportDraftSql());
+    const args = new Set(process.argv.slice(2));
+    const allowed = new Set(['--local-drafts', '--skip-curricula']);
+    if (!args.has('--local-drafts') || [...args].some((arg) => !allowed.has(arg))) {
+      throw new Error('Usage: node tools/seeders/export-draft-sql.mjs --local-drafts [--skip-curricula]');
+    }
+    process.stdout.write(await exportDraftSql({ skipCurricula: args.has('--skip-curricula') }));
   } catch (error) {
     console.error(`FAIL: ${error.message}`);
     process.exitCode = 1;

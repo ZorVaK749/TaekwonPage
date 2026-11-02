@@ -1,0 +1,27 @@
+{
+  "format_version": 1,
+  "citations": [
+    {
+      "id": "citation_gup_10_temario_web_p27",
+      "content_id": "gup_10",
+      "source_id": "source_teoria_completa_web",
+      "source_sha256": "6c146d460914f5572840e1d56e95a5360ff429fa84834823b242bd5e9201e602",
+      "pdf_page": 27,
+      "printed_page": null,
+      "section": "TEMARIO PARA CADA EXAMEN",
+      "review_status": "pending_human_review",
+      "notes": "Apartado «TEMARIO PARA CADA EXAMEN» para 10.º a 9.º Gup observado como imagen local: enumera los seis temas de TEORÍA enlazados por este currículo y no requisitos técnicos. La página respalda la existencia del temario, no su aprobación ni su publicación."
+    },
+    {
+      "id": "citation_gup_10_temario_ont_p35",
+      "content_id": "gup_10",
+      "source_id": "source_teoria_ont",
+      "source_sha256": "6877dab76ceb98a27ccc1dd0c8d35f00493b4b629e87b2bc823eaf5d84d45eed",
+      "pdf_page": 35,
+      "printed_page": null,
+      "section": "TEMARIO PARA CADA EXAMEN",
+      "review_status": "pending_human_review",
+      "notes": "Apartado equivalente en esta copia: los mismos seis temas de TEORÍA para 10.º a 9.º Gup. No se resuelven diferencias de redacción entre copias ni se declara cuál prevalece; el folio impreso queda null sin deducir desplazamiento."
+    }
+  ]
+}

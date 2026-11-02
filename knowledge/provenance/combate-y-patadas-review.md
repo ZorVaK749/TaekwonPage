@@ -33,4 +33,4 @@ Se renderizaron y observaron localmente páginas PDF de las copias registradas, 
 
 La escuela confirma que aplica su propia modalidad de **contacto pactado**; la forma «sin contacto» del archivo antiguo **no se adopta**. Falta la descripción textual de la modalidad (incluida la distinción «un paso» frente a «dos pasos»), que sigue en manos del revisor. Registrado por el usuario de ZVK Tech como representante de la escuela; el catálogo conserva lo observado mientras tanto.
 
-La falta de currículo sigue siendo un fallo esperado de `validate:content`. No se modifica ningún JSON antiguo de la raíz y no se inicia otro sprint con este bloque.
+`validate:content` pasa desde el 02-11-2026 por el currículo teórico `gup_10` (presencia, no aprobación); esta matriz sigue sin revisar. No se modifica ningún JSON antiguo de la raíz y no se inicia otro sprint con este bloque.

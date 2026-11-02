@@ -63,4 +63,4 @@ Ninguno de estos IDs existía previamente (los IDs son globales); las traduccion
 - [ ] Aprobar o corregir la grafía `Bandal Son`.
 - [ ] Registrar quién revisa, con identidad y alcance reales.
 
-**No hay persona, fecha de aprobación o programa escolar confirmados en este documento.** La matriz no autoriza a sembrar datos como aprobados, a abrir endpoints educativos ni a avanzar de fase. `validate:content` debe seguir rechazando la ausencia de currículo.
+**No hay persona, fecha de aprobación o programa escolar confirmados en este documento.** La matriz no autoriza a sembrar datos como aprobados, a abrir endpoints educativos ni a avanzar de fase. `validate:content` pasa desde el 02-11-2026 por el currículo teórico `gup_10`; es un control de presencia, no de aprobación.
