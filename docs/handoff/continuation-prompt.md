@@ -2,7 +2,7 @@
 
 **Uso:** copia el contenido de este archivo tal cual en un chat nuevo para retomar el proyecto sin perder contexto. Es una vista de traspaso, no una fuente de decisiones nueva: ante cualquier discrepancia, manda [informe_tecnico.md](../../informe_tecnico.md) y después [Plan_ataque.md](../../Plan_ataque.md).
 
-**Estado de este traspaso:** 02-11-2026, informe **v1.32**; bloque de identidad auditado en `feat/backend-local-jwt-identity`, por el flujo habitual de push e integración revisada a `main`. Base anterior: currículo en `a6ec4c9`. Verificar `git status` y log antes de continuar; este documento no sustituye evidencia Git.
+**Estado de este traspaso:** 02-11-2026, informe **v1.33**; identidad auditada integrada en `main` mediante `59b9ea5` (implementación `86543d1`). Cierre operativo en `chore/local-security-rest-checkpoint`: credenciales locales JWT/BD rotadas, nueva contraseña JDBC válida y anterior rechazada, datos intactos, Flyway V1–V7 válido y smoke del JAR correcto; API de prueba detenida, PostgreSQL local saludable. No hay tarea en ejecución ni autorización para abrir contenido o iniciar otro milestone. Verificar estado/log Git al retomar.
 
 ---
 
