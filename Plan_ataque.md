@@ -54,8 +54,8 @@ Fuente: secciones 38–39 y checklist 55.4 del informe.
 - [ ] **TKD-013 — Completar Saju Makgi:** ocho acciones documentadas, sin total global/alcance alterno confirmado. La preparación ya tiene enlace documental.
 - [ ] **TKD-014 — Modelar Chon-Ji con evidencia:** no iniciado como ficha de catálogo; no deducir pasos de listas terminológicas.
 - [ ] **TKD-015 — Confirmar catálogo de grados reconocido por la escuela.**
-- [ ] **TKD-016 — Completar matriz funcional rol/grado:** separación y acceso acumulativo aprobados; falta su especificación completa. No confundirlo con implementar RBAC de Fase 3.
-- [ ] **TKD-017 — Cerrar modelo de verificación:** distinguir estados del alumno de estados de solicitud y sus transiciones antes de implementar identidad.
+- [ ] **TKD-016 — Completar matriz funcional rol/grado:** separación y acceso acumulativo aprobados; falta su especificación completa. No confundirlo con implementar RBAC de Fase 3; hoy los cuatro roles existen en V7 pero ninguna ruta aplica permisos por rol.
+- [ ] **TKD-017 — Cerrar modelo de verificación:** distinguir estados del alumno de estados de solicitud y sus transiciones. La identidad local base ya está implementada (login/`me`), pero **el alta de usuarios y el flujo de verificación siguen sin implementar** y dependen de este modelo.
 - [ ] **TKD-018/019/020 — Validar el caso curricular real:** aplicar los controles existentes a contenido y currículos completos, no solo a fixtures/borradores.
 - [ ] Completar/revisar patadas y combate: tres fichas de cada tipo. Resolver ambigüedad de `cha_jirugi`, diferencias entre copias y variante de combate aplicable; no adoptar automáticamente el «sin contacto» del JSON antiguo.
 - [ ] Registrar revisión humana y derechos para el uso previsto. Actualmente **cero fichas tienen aprobación humana registrada**.
@@ -70,7 +70,7 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 
 - [x] ERD inicial del contenido, fuentes, citas, ejercicios y relaciones curriculares.
 - [x] PostgreSQL 17.7 local mediante Docker Compose, acceso solo por localhost y volumen persistente.
-- [x] Migraciones Flyway V1–V6 e historial/checksums: contenido, texto, requisitos, subtipos y citas documentales versionados; aplicadas localmente sin cargar contenido.
+- [x] Migraciones Flyway V1–V7 e historial/checksums: contenido, texto, requisitos, subtipos y citas documentales versionados, más identidad local (V7); aplicadas localmente sin cargar contenido.
 - [x] Tablas de contenido/procedencia, posiciones, teoría, vocabulario, herramientas, patadas, combate, ejercicios/pasos y relaciones por Gup.
 - [x] FKs tipadas, IDs, hashes, restricciones de peso/rotación y controles de secuencia/páginas; índices iniciales.
 - [x] Exportador JSON → SQL de **borradores locales**, validado, transaccional y con consentimiento explícito `--local-drafts`.
@@ -91,7 +91,7 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 - [ ] Definir/persistir evidencia de revisión y publicación; el esquema actual solo admite `pending_human_review`.
 - [ ] Aplicar revisión humana explícita al contenido/evidencia antes de aprobarlo. El versionado técnico de datos y citas está implementado; no es aprobación ni autoriza cambios silenciosos.
 - [ ] Validar el recorrido completo de 10º Gup aprobado → importación → consulta desde backend.
-- [ ] Completar el modelo relacional de usuarios, roles, grados del alumno, solicitudes, historial y auditoría cuando se cierre su diseño funcional. Esas tablas del modelo preliminar aún no existen; no son parte del primer bloque de contenido.
+- [ ] Completar el modelo relacional de grados del alumno, solicitudes, historial y auditoría cuando se cierre su diseño funcional. **Usuarios y roles ya existen** (V7: `role`, `app_user`, `user_role`, cuatro roles y cero cuentas); faltan grado del alumno, solicitudes e historial.
 
 **Resumen:** ya tenemos la infraestructura y el esquema inicial, no toda la BD de la aplicación terminada. La BD local de desarrollo tiene el esquema **y los borradores importados, incluido el currículo real `gup_10`** (pendiente de revisión humana); las demás importaciones verificadas se hicieron en bases aisladas que se eliminan al terminar. Docker local no es hosting de la web final.
 
@@ -101,10 +101,10 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 - [x] Flyway al arranque y Hibernate en modo validación, sin recrear tablas.
 - [x] Primer módulo de contenido: entidades, repositorios de lectura, servicio, mapeo a DTO y controlador de posiciones.
 - [x] Procedencia de posiciones con fuente/hash, metadatos, página PDF/folio y estados; sin rutas locales/PDFs en el DTO.
-- [x] Pruebas unitarias y con PostgreSQL aislado: **33 pruebas Java correctas** en el último bloque técnico.
+- [x] Pruebas unitarias y con PostgreSQL aislado: **54 pruebas Java correctas** tras auditoría (11 JWT, 3 AuthService, 7 nuevas de integración; 33 originales). Incluye servidor HTTP real: errores 400 conservados mediante despacho interno ERROR, sin abrir `/error` directamente.
 - [x] Salud mínima y bloqueo HTTP preventivo de contenido; JAR probado contra Compose.
 - [x] Lectura interna (entidad, repositorio, servicio, DTO, controlador) de **cinco tipos**: posiciones, teoría, vocabulario, herramientas corporales y tuls/ejercicios (pasos con sus citas); regla única de IDs canónicos (`CanonicalIds`).
-- [x] Contrato [OpenAPI 3.1 de las rutas de lectura](docs/openapi/taekwonpage-v1.json) con 200/400/403/404, sin esquemas de identidad ni hosts públicos, verificado por tests Node contra los controladores Java y contra `denyAll`.
+- [x] Contrato [OpenAPI 3.1](docs/openapi/taekwonpage-v1.json): ocho rutas de lectura con 200/400/403/404 sin `security`, más login (200/400/401) y `/me` (200/401) con `bearerAuth`, sin hosts públicos, verificado por tests Node contra los controladores Java, los esquemas de identidad y `denyAll`.
 - [x] Ampliar lectura a kick y combate (`/api/v1/kicks/{id}`, `/api/v1/combat-types/{id}`), sin seleccionar ni aprobar modalidad alguna; contrato OpenAPI ampliado a siete rutas.
 - [x] Lectura interna `GET /api/v1/gups/{gup}` del esquema curricular (siete grupos de requisitos, rango 1–10,400/404/403, contrato con `GupNumber`): con el currículo real `gup_10` la ruta tiene datos internos (teoría y citas); ningún grupo se rellena desde otra ficha ni desde los JSON antiguos.
 - [ ] Temario real de 10º Gup **parcial:** `GET /api/v1/gups/10` ya tiene el currículo teórico; faltan requisitos técnicos confirmados por la escuela (A6) y la apertura HTTP (C2) para verlo desde fuera.
@@ -112,15 +112,15 @@ Fuente: sección 40 del informe; detalle y límites en [manual de BD](docs/datab
 
 ## Fase 3 — Seguridad, identidad y acceso
 
-- [x] Elegir JWT local u OIDC y documentar la estrategia: **C1 resuelta (01-11-2026)** — JWT local autoemitido (clave en `.env`, usuarios/roles en PostgreSQL); la implementación sigue pendiente.
-- [ ] Registro/login/ciclo de sesión y tratamiento de credenciales según la elección.
-- [ ] Alta de alumnos con `ROLE_STUDENT`, 10º Gup y `UNVERIFIED`.
-- [ ] RBAC y acceso acumulativo por grado **en backend**, también al acceder directamente a contenido.
+- [x] Elegir JWT local u OIDC y documentar la estrategia: **C1 resuelta (01-11-2026)** — JWT local autoemitido (clave en `.env`, usuarios/roles en PostgreSQL); **implementada en el bloque del 02-11-2026 (informe 1.32)**.
+- [x] Login local con BCrypt y hash ficticio verificado incluso para cuentas ausentes/deshabilitadas (no garantía de tiempo constante); límites de username/contraseña y JWT estricto con regresiones. Token HS256 de 1800 s; `/me` refleja id/username/roles del token. Sin registro, refresh ni usuarios sembrados; alta depende de TKD-016/TKD-017.
+- [ ] Registro/alta de alumnos con `ROLE_STUDENT`, 10º Gup y `UNVERIFIED` (pendiente del modelo de grado/verificación).
+- [ ] RBAC y acceso acumulativo por grado **en backend**, también al acceder directamente a contenido. Hoy el token identifica pero **no autoriza**: `denyAll` sigue respondiendo 403 en contenido.
 - [ ] Solicitudes de verificación, bandeja administrativa, aprobación/rechazo e historial.
 - [ ] Evitar autoaprobación y solicitudes pendientes simultáneas; auditoría transaccional.
 - [ ] Completar privacidad, validación y pruebas negativas de seguridad antes de una beta.
 
-El `denyAll()` actual es una barrera preventiva, **no** autenticación, RBAC o verificación implementados.
+El `denyAll()` actual es una barrera preventiva, **no** autenticación, RBAC o verificación implementados; la identidad local (C1) ya autentica pero no cambia esa barrera. La apertura de rutas de contenido depende de la decisión **C2**, todavía no tomada.
 
 ## Fase 4 — Angular / web
 
@@ -161,17 +161,17 @@ Un volumen persistente local y `/actuator/health` local no completan estos punto
 ## Milestones: no confundirlos con las fases
 
 - [ ] **Content Foundation v0.1:** PDF → catálogo → currículo validado → PostgreSQL → API; primer caso completo 10º Gup. Aún no se demuestra el flujo completo.
-- [ ] **Identity & Grade Access v0.2:** registro/login, grado inicial, solicitud, aprobación administrativa, acceso actualizado e historial.
+- [ ] **Identity & Grade Access v0.2:** registro/login, grado inicial, solicitud, aprobación administrativa, acceso actualizado e historial. **Parcial:** login local (`POST /api/v1/auth/login`) implementado el 02-11-2026; falta registro, grado, solicitud e historial.
 - [ ] **Web v0.3:** web pública, alumno y administración con branding e integración funcional.
 
 ## Orden para retomar sin arrastrar pendientes invisibles
 
-El bloque activo es **Fase 2 sin endpoints educativos**, por decisión del usuario del 29-10-2026 tras cerrar técnicamente la Fase 0; Fase 1 queda abierta por sus dependencias humanas. C1 (JWT local) quedó decidida el 01-11-2026 y las respuestas A1–A7 están registradas. La lista siguiente expresa dependencias, no autorización para saltar directamente a la apertura de rutas ni dar por terminada la persistencia funcional.
+El bloque activo es **Fase 3: identidad local (C1)** — implementada en el bloque del 02-11-2026 sin abrir contenido; Fase 1 queda abierta por sus dependencias humanas y Fase 0 por decisiones de la escuela. Las respuestas A1–A7 están registradas. La lista siguiente expresa dependencias, no autorización para saltar directamente a la apertura de rutas ni dar por terminada la persistencia funcional.
 
 1. **Hecho (parcial):** registrar autoridad, revisor y programa técnico de 10º Gup con la escuela — A1–A7 registrados el 01-11-2026; siguen abiertos el nombre real del aprobador (A3), el criterio de desempate (A2), los números de Saju (A6), la descripción del contacto pactado (A7) y las filas B1–B5 del revisor. No puede resolverlo un test ni la IA.
 2. Con respuestas desbloqueadas: completar el currículo de 10º Gup sin inventar requisitos (ya existe la base teórica `gup_10`; faltan requisitos técnicos y revisión humana).
 3. Completar revisión/publicación y su consulta en backend; 9º/8º siguen después de demostrar 10º, como dispone el plan.
-4. Backend de lectura completo para los ocho tipos (`GET /api/v1/gups/10` ya tiene datos internos). Sin tocar `denyAll`; la identidad ya está elegida (C1: JWT local), falta implementarla antes de abrir rutas.
+4. Backend de lectura completo para los ocho tipos (`GET /api/v1/gups/10` ya tiene datos internos). `denyAll` intacto; la identidad local ya está implementada (C1), falta decidir **C2** (apertura de contenido), el alta de usuarios (TKD-016/TKD-017) y el RBAC por grado antes de exponer rutas.
 5. Integrar Angular cuando existan los contratos y acceso necesarios; preparar hosting al llegar a producción, no convertir el PC en servidor público.
 
 ### Mantenimiento de este checklist

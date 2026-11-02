@@ -4,15 +4,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.time.Instant;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.MediaType;
+import org.springframework.http.HttpHeaders;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -29,11 +37,16 @@ import tech.zvk.taekwonpage.content.PositionService;
 import tech.zvk.taekwonpage.content.TheoryService;
 import tech.zvk.taekwonpage.content.TulService;
 import tech.zvk.taekwonpage.content.VocabularyService;
+import tech.zvk.taekwonpage.shared.security.AuthenticatedUser;
+import tech.zvk.taekwonpage.shared.security.LocalJwtService;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @Testcontainers
 class BackendIntegrationTest {
+    // Test-only signing secret (>= 32 bytes). Never a production value.
+    static final String TEST_JWT_SECRET = "integration-test-secret-with-more-than-thirty-two-bytes!";
+
     @Container
     static final PostgreSQLContainer<?> POSTGRES = new PostgreSQLContainer<>("postgres:17.7-alpine");
 
@@ -42,10 +55,14 @@ class BackendIntegrationTest {
         registry.add("spring.datasource.url", POSTGRES::getJdbcUrl);
         registry.add("spring.datasource.username", POSTGRES::getUsername);
         registry.add("spring.datasource.password", POSTGRES::getPassword);
+        registry.add("taekwonpage.security.jwt.secret", () -> TEST_JWT_SECRET);
     }
 
     @Autowired MockMvc mvc;
+    @Autowired TestRestTemplate http;
     @Autowired JdbcTemplate jdbc;
+    @Autowired PasswordEncoder passwords;
+    @Autowired LocalJwtService jwt;
     @Autowired PositionService positions;
     @Autowired TheoryService theory;
     @Autowired VocabularyService vocabulary;
@@ -58,7 +75,7 @@ class BackendIntegrationTest {
 
     @Test
     void migrationsRunAtStartup() {
-        assertThat(jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history WHERE success", Integer.class)).isEqualTo(6);
+        assertThat(jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history WHERE success", Integer.class)).isEqualTo(7);
         assertThat(jdbc.queryForObject("SELECT count(*) FROM content_entry", Integer.class)).isZero();
     }
 
@@ -97,6 +114,128 @@ class BackendIntegrationTest {
                 .header("Origin", "https://untrusted.invalid")
                 .header("Access-Control-Request-Method", "GET"))
             .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void identityFoundationSeedsFourRolesAndNoUsers() {
+        assertThat(jdbc.queryForObject("SELECT count(*) FROM role", Integer.class)).isEqualTo(4);
+        assertThat(jdbc.queryForObject("SELECT count(*) FROM app_user", Integer.class)).isZero();
+        assertThat(jdbc.queryForObject("SELECT count(*) FROM user_role", Integer.class)).isZero();
+    }
+
+    @Test
+    @Transactional
+    void loginIssuesALocalTokenThatAuthenticatesIdentityButNeverContent() throws Exception {
+        insertLocalUser("user_alice", "alice", "s3cret-pass", "ROLE_STUDENT");
+        String body = mvc.perform(post("/api/v1/auth/login").contentType("application/json")
+                .content("{\"username\":\"alice\",\"password\":\"s3cret-pass\"}"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.token_type").value("Bearer"))
+            .andExpect(jsonPath("$.expires_in").value(1800))
+            .andReturn().getResponse().getContentAsString();
+        String token = json.readTree(body).path("access_token").asText();
+        assertThat(token.split("\\.")).hasSize(3);
+
+        mvc.perform(get("/api/v1/me").header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.username").value("alice"))
+            .andExpect(jsonPath("$.roles[0]").value("ROLE_STUDENT"))
+            .andExpect(jsonPath("$.roles.length()").value(1));
+
+        // C1 only: the token never opens content, even for its own subject.
+        for (String route : new String[] {"/api/v1/gups/10", "/api/v1/positions/test_position",
+                "/api/v1/tuls/test_tul"}) {
+            mvc.perform(get(route).header(HttpHeaders.AUTHORIZATION, "Bearer " + token))
+                .andExpect(status().isForbidden());
+        }
+    }
+
+    @Test
+    @Transactional
+    void unknownWrongPasswordAndDisabledAccountsAnswerTheSame() throws Exception {
+        insertLocalUser("user_bob", "bob", "right-password", "ROLE_STUDENT");
+        insertLocalUser("user_disabled", "disabled", "right-password", "ROLE_STUDENT");
+        jdbc.update("UPDATE app_user SET enabled = FALSE WHERE id = 'user_disabled'");
+        for (String attempt : new String[] {
+                "{\"username\":\"ghost\",\"password\":\"right-password\"}",
+                "{\"username\":\"bob\",\"password\":\"wrong-password\"}",
+                "{\"username\":\"disabled\",\"password\":\"right-password\"}"}) {
+            mvc.perform(post("/api/v1/auth/login").contentType("application/json").content(attempt))
+                .andExpect(status().isUnauthorized())
+                .andExpect(header().string(HttpHeaders.WWW_AUTHENTICATE, "Bearer"));
+        }
+    }
+
+    @Test
+    @Transactional
+    void loginWithoutCredentialsIsRejectedBeforeAnyLookup() throws Exception {
+        for (String body : new String[] {"", "{}", "{\"username\":\"alice\"}",
+                "{\"username\":\"alice\",\"password\":\"x\",\"roles\":[\"ROLE_ADMIN\"]}",
+                "{\"password\":\"x\"}", "{\"username\":\" \",\"password\":\" \"}"}) {
+            mvc.perform(post("/api/v1/auth/login").contentType("application/json").content(body))
+                .andExpect(status().isBadRequest());
+        }
+    }
+
+    @Test
+    @Transactional
+    void meRejectsMissingTamperedAndExpiredTokens() throws Exception {
+        mvc.perform(get("/api/v1/me"))
+            .andExpect(status().isUnauthorized())
+            .andExpect(header().string(HttpHeaders.WWW_AUTHENTICATE, "Bearer"));
+
+        var identity = new AuthenticatedUser("user_alice", "alice", Set.of("ROLE_STUDENT"));
+        String valid = jwt.issue(identity);
+        mvc.perform(get("/api/v1/me").header(HttpHeaders.AUTHORIZATION, "Bearer " + valid, "Bearer " + valid))
+            .andExpect(status().isUnauthorized());
+        String[] parts = valid.split("\\.");
+        char[] signature = parts[2].toCharArray();
+        signature[10] = signature[10] == 'A' ? 'B' : 'A';
+        String forged = parts[0] + "." + parts[1] + "." + new String(signature);
+        mvc.perform(get("/api/v1/me").header(HttpHeaders.AUTHORIZATION, "Bearer " + forged))
+            .andExpect(status().isUnauthorized());
+
+        String expired = jwt.issue(identity, Instant.now().minusSeconds(7200));
+        mvc.perform(get("/api/v1/me").header(HttpHeaders.AUTHORIZATION, "Bearer " + expired))
+            .andExpect(status().isUnauthorized());
+
+        mvc.perform(get("/api/v1/me").header(HttpHeaders.AUTHORIZATION, "Bearer not-a-token"))
+            .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void loginBoundsCredentialsIncludingUtf8BcryptLimit() throws Exception {
+        for (String username : new String[] {"ab", "a".repeat(65), "bad name!"}) {
+            mvc.perform(post("/api/v1/auth/login").contentType("application/json")
+                    .content(json.writeValueAsString(java.util.Map.of("username", username, "password", "password"))))
+                .andExpect(status().isBadRequest());
+        }
+        for (String password : new String[] {"a".repeat(73), "é".repeat(37)}) {
+            mvc.perform(post("/api/v1/auth/login").contentType("application/json")
+                    .content(json.writeValueAsString(java.util.Map.of("username", "alice", "password", password))))
+                .andExpect(status().isBadRequest());
+        }
+        mvc.perform(post("/api/v1/auth/login").contentType("application/json")
+                .content(json.writeValueAsString(java.util.Map.of("username", "ghost", "password", "é".repeat(36)))))
+            .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void realHttpPreservesBadRequestDuringInternalErrorDispatch() {
+        var headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        for (String body : new String[] {"{}", "{", "{\"username\":\"alice\"}"}) {
+            var response = http.postForEntity("/api/v1/auth/login", new HttpEntity<>(body, headers), String.class);
+            assertThat(response.getStatusCode().value()).isEqualTo(400);
+            assertThat(response.getBody()).doesNotContain("password_hash", "stackTrace", "JWT_SECRET");
+        }
+        assertThat(http.postForEntity("/api/v1/auth/login", new HttpEntity<>(
+            "{\"username\":\"ghost\",\"password\":\"synthetic\"}", headers), String.class)
+            .getStatusCode().value()).isEqualTo(401);
+        assertThat(http.getForEntity("/api/v1/me", String.class).getStatusCode().value()).isEqualTo(401);
+        for (String route : new String[] {"/error", "/api/v1/gups/10"}) {
+            assertThat(http.getForEntity(route, String.class).getStatusCode().value()).isEqualTo(403);
+        }
     }
 
     @Test
@@ -336,5 +475,14 @@ class BackendIntegrationTest {
             INSERT INTO content_source(id, content_id, source_id, source_sha256, pdf_page, printed_page, section, notes)
             VALUES (?, ?, ?, ?, ?, ?, ?, 'internal_note_marker')
             """, id, contentId, sourceId, hash, page, printedPage, section);
+    }
+
+    // Provisioned by tests only; production has no seeded accounts (C1).
+    private void insertLocalUser(String id, String username, String rawPassword, String... roles) {
+        jdbc.update("INSERT INTO app_user(id, username, password_hash, enabled) VALUES (?, ?, ?, TRUE)",
+            id, username, passwords.encode(rawPassword));
+        for (String role : roles) {
+            jdbc.update("INSERT INTO user_role(user_id, role_name) VALUES (?, ?)", id, role);
+        }
     }
 }

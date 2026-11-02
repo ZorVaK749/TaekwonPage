@@ -10,7 +10,7 @@ Fuente principal: [informe_tecnico.md](../../informe_tecnico.md), leído complet
 - Roles independientes del grado y autorización curricular en backend.
 - Docker y variables de entorno para portabilidad; presupuesto objetivo US$0.
 
-Los módulos internos de la sección 5 del informe son una propuesta de organización para la futura aplicación. Este sprint no crea paquetes ni fija contratos entre módulos.
+Los módulos internos de la sección 5 del informe son una propuesta de organización. El backend ya implementa lecturas en `content`, identidad persistida en `identity`, login en `auth` y seguridad transversal en `shared/security`; grado/verificación siguen pendientes.
 
 ## Hallazgos y decisiones pendientes
 
@@ -22,7 +22,7 @@ Los módulos internos de la sección 5 del informe son una propuesta de organiza
 | JSON previos | Nueve archivos en las carpetas de la raíz; tres vacíos; sin procedencia documental explícita en los demás | Se preservan sin mover, completar ni aprobar; revisión y migración requieren una tarea posterior |
 | Estados de verificación | Sección 8: estados de solicitud `PENDING`, `APPROVED`, `REJECTED`, `CANCELLED`; TKD-017: `UNVERIFIED`, `PENDING`, `VERIFIED`, `REJECTED` | No se unifican enums; falta precisar ciclo de vida del estado del alumno frente al de la solicitud |
 | Cambios de grado | Secciones 6.3 y 18 contemplan asignación administrativa directa; la tarea enfatiza el flujo de solicitudes | No se implementa un atajo ni se elimina la previsión del informe; confirmar condiciones antes de desarrollar esa operación |
-| Autenticación | Secciones 18 y 19 admiten JWT local u OIDC | No se selecciona estrategia ni proveedor |
+| Autenticación | C1 eligió JWT local autoemitido el 01-11-2026; base implementada/auditada el 02-11-2026 | Login y `/me`, sin registro/refresh ni contenido abierto; C2, revocación y alta/grado/verificación pendientes |
 | Autoridad curricular | TKD-002 exige resolver discrepancias; la escuela decide los requisitos de examen | No se elige automáticamente una fuente dominante ni se validan datos marciales |
 | Infraestructura y herramientas | Proveedor y versiones de aplicaciones pendientes; herramientas de conocimiento ya usan Node 24 y Ajv fijado en lockfile | La herramienta no fija la version del futuro frontend; sin aprovisionamiento o aplicaciones generadas |
 | Fases y sprints | La Fase 0 abarca mucho más que el bootstrap | Sprint 0 no completa Fase 0 ni inicia Sprint 1 |

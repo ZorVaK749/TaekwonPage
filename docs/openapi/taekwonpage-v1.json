@@ -3,7 +3,7 @@
   "info": {
     "title": "TaeKwonPage API",
     "version": "0.1.0",
-    "description": "Contrato de las rutas de lectura de borradores internos. No es una API educativa publicada: hasta que Fase 3 implemente identidad y autorización por grado, toda ruta /api/v1 devuelve 403 por la política deny-all vigente, incluso con roles autenticados. Los datos responden a revision pending_human_review sobre PDFs locales citados; ningún campo implica aprobación marcial ni currículo escolar.",
+    "description": "Contrato de las rutas de lectura de borradores internos y de la identidad local (C1: JWT local autoemitido, Fase 3). No es una API educativa publicada: las rutas de contenido siguen devolviendo 403 por la política deny-all vigente, incluso con un token válido, y /api/v1/me exige Bearer (401 sin token o con token inválido). Los datos responden a revision pending_human_review sobre PDFs locales citados; ningún campo implica aprobación marcial ni currículo escolar.",
     "contact": { "name": "ZVK Tech", "url": "https://github.com/ZorVaK749/TaekwonPage" }
   },
   "servers": [
@@ -113,9 +113,44 @@
           "404": { "description": "Borrador inexistente; la ausencia no se rellena con datos de otra ficha." }
         }
       }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "operationId": "postLogin",
+        "summary": "Intercambio de credenciales por un token local",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/LoginRequest" } } }
+        },
+        "responses": {
+          "200": { "description": "Credenciales válidas; token local de corta vida, sin refresh token.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/TokenResponse" } } } },
+          "400": { "description": "Cuerpo ausente o inválido; username ASCII permitido de 3–64 caracteres, contraseña no vacía de hasta 72 bytes UTF-8 (límite BCrypt)." },
+          "401": { "description": "Usuario inexistente, contraseña incorrecta o cuenta deshabilitada; respuesta idéntica en todos los casos para no enumerar cuentas. Cabecera WWW-Authenticate: Bearer." }
+        }
+      }
+    },
+    "/api/v1/me": {
+      "get": {
+        "operationId": "getIdentity",
+        "summary": "Identidad que transporta el token",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": { "description": "Id, username y roles del token; sin correo, sin grado y sin contenido.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MeResponse" } } } },
+          "401": { "description": "Sin cabecera Authorization, token ausente, falsificado o expirado. Cabecera WWW-Authenticate: Bearer." }
+        }
+      }
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "JWT HS256 autoemitido por este servidor (C1: JWT local autoemitido). Identifica al usuario; nunca abre rutas de contenido por sí solo."
+      }
+    },
     "parameters": {
       "CanonicalId": {
         "name": "id",
@@ -135,6 +170,38 @@
     "schemas": {
       "CanonicalId": { "type": "string", "pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)*$" },
       "ReviewStatus": { "type": "string", "enum": ["pending_human_review"] },
+      "LoginRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["username", "password"],
+        "description": "Credenciales locales; nunca se registra, nunca se refleja en la respuesta y no se almacena en claro.",
+        "properties": {
+          "username": { "type": "string", "minLength": 3, "maxLength": 64, "pattern": "^[A-Za-z0-9._-]+$" },
+          "password": { "type": "string", "minLength": 1, "maxLength": 72, "writeOnly": true, "description": "Máximo 72 bytes UTF-8, no solo 72 caracteres; sin truncamiento." }
+        }
+      },
+      "TokenResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["access_token", "token_type", "expires_in"],
+        "description": "Token local de corta vida; no hay refresh token y el token no otorga acceso a contenido.",
+        "properties": {
+          "access_token": { "type": "string" },
+          "token_type": { "type": "string", "enum": ["Bearer"] },
+          "expires_in": { "type": "integer", "minimum": 1 }
+        }
+      },
+      "MeResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "username", "roles"],
+        "description": "Eco de identidad: id canónico, username y roles ROLE_*; sin correo, sin grado marcial y sin contenido.",
+        "properties": {
+          "id": { "$ref": "#/components/schemas/CanonicalId" },
+          "username": { "type": "string" },
+          "roles": { "type": "array", "items": { "type": "string", "pattern": "^ROLE_[A-Z_]+$" }, "uniqueItems": true }
+        }
+      },
       "Citation": {
         "type": "object",
         "additionalProperties": false,

@@ -6,6 +6,8 @@ Base técnica de la Fase 1 del [plan](../../informe_tecnico.md), no cierre de Sp
 
 ```mermaid
 erDiagram
+    app_user ||--o{ user_role : holds
+    role ||--o{ user_role : assigns
     content_entry ||--o| position : subtype
     content_entry ||--o| theory_content : subtype
     content_entry ||--o| vocabulary : subtype
@@ -31,13 +33,14 @@ Las otras seis relaciones curriculares son `gup_theory`, `gup_vocabulary`, `gup_
 - `source_document` conserva la copia exacta por SHA-256; `content_source` exige que ID/hash coincidan. Página PDF y folio impreso son independientes. Triggers comprueban los límites de página también al reducir el total de una fuente.
 - Pesos y rotaciones usan `NUMERIC`; desconocido es `NULL`, nunca cero por defecto. No se añaden coordenadas ni medidas no verificadas. La BD no distingue `biomechanics: null` de un objeto con todos sus componentes desconocidos; los JSON originales siguen siendo la fuente editorial.
 - Los pasos referencian posiciones y citas del mismo ejercicio. Triggers diferibles comprueban alcance parcial, conteo y continuidad al confirmar una transacción; no prueban corrección marcial. Las identidades de ficha/fuente/paso no se renombran mediante `UPDATE`.
-- Todos los registros son **borradores**. El contrato SQL deliberadamente rechaza `approved`: publicación y evidencia de revisión necesitan una migración propia. No hay usuarios, roles, sesiones ni solicitudes implementados en este bloque.
+- Todo el contenido es **borrador**. SQL rechaza `approved`: publicación y evidencia de revisión necesitan una migración propia. V7 añade usuarios/roles; aún no hay grados de alumno, solicitudes ni auditoría funcional.
 - El inventario JSON conserva cobertura y metadatos completos; su lista orientativa `coverage` no se importa como contenido educativo ni se sustituye por la BD.
 - V2 incorpora [revisiones textuales de borradores](draft-revisions.md): contador esperado, historial de texto/citas y operación explícita sin aprobación. No sustituye auditoría funcional de usuarios o grados.
 - V3 incorpora [revisiones de requisitos curriculares](curriculum-revisions.md): baseline observado, historial de relaciones/citas y reemplazo atómico tipado por Gup, sin alterar estados ni aprobar contenido.
 - V4 añade [detalles de posiciones/vocabulario](catalog-detail-revisions.md), con baseline observado, cadena global de revisiones y comprobación de valores/nulos. No cambia la geometría o terminología de las fichas reales por sí sola.
 - V5 añade [datos y pasos de ejercicios/Tuls](tul-revisions.md), con sus posiciones/citas tipadas, alcance parcial y totales desconocidos preservados, sin inferir ejecución marcial.
 - V6 añade [citas documentales versionadas](citation-revisions.md), con reserva permanente de IDs por propietario, validación de copia/localizadores y protección de enlaces de pasos. Las fuentes registradas y sus derechos no cambian.
+- V7 añade `app_user`, `role` y `user_role` para C1: cuatro roles documentados, cero usuarios/asignaciones. Username único sensible a mayúsculas de 3–64 caracteres ASCII permitidos, hash con forma BCrypt y FK de asignaciones. La forma del hash en SQL no verifica su coste ni demuestra que corresponda a una contraseña; aprovisionamiento pendiente, sin credenciales por defecto.
 
 ## Ejecución local
 
@@ -52,13 +55,13 @@ docker compose run --rm migrate validate
 powershell -NoProfile -File tools/validators/Test-Database.ps1
 ```
 
-El test crea una BD aleatoria `tkd_test_<uuid>`, carga borradores bajo V2 y actualiza con datos hasta V6. Comprueba checksums, recarga, 16 restricciones SQL y cinco conflictos de importación; revisiones textuales (18 rechazos), curriculares (30), escalares (36), ejercicios (39) y citas/propiedad (37), con cadenas mixtas y rollback. Las ediciones/currículos son **sintéticos**. Elimina solo esa BD en `finally`, sin borrar volúmenes ni datos de aplicación. Requiere Docker Desktop iniciado.
+El test crea una BD aleatoria `tkd_test_<uuid>`, carga borradores bajo V2 y actualiza hasta V7. Comprueba checksums, recarga, 16 restricciones y cinco conflictos de importación; revisiones textuales (18 rechazos), curriculares (30), escalares (36), ejercicios (39), citas/propiedad (37) e identidad (11). Ediciones sintéticas con rollback; una segunda BD comprueba el currículo real `gup_10`, recarga y baseline V3. Solo elimina esas BD en `finally`, nunca volúmenes o datos de aplicación. Requiere Docker Desktop.
 
 Las migraciones viven en [resources/db/migration](../../backend/taekwonpage-api/src/main/resources/db/migration/). Flyway lleva su historial: no editar una migración ya aplicada, usar una nueva `V2__...sql`. Nunca usar `clean` ni `down -v` para resolver diferencias sin autorización y copia de seguridad.
 
 ## Importación
 
-[Exportador](../../tools/seeders/export-draft-sql.mjs): requiere `--local-drafts`; valida todo antes de producir SQL, genera una única transacción y escapa literales explícitamente. No conecta por sí mismo a una BD ni escribe archivos. La prueba integra las 33 fichas y 55 citas actuales en una BD desechable; no carga esos borradores en desarrollo como contenido aprobado.
+[Exportador](../../tools/seeders/export-draft-sql.mjs): requiere `--local-drafts`; valida todo antes de producir SQL, genera una única transacción y escapa literales explícitamente. No conecta por sí mismo a una BD ni escribe archivos. Pruebas con 89 entradas de catálogo, `gup_10` y 164 citas en bases desechables; también están cargados en desarrollo como borradores, nunca contenido aprobado.
 
 No hay seed marcial de producción. La recarga idéntica no duplica ni cambia datos: `ON CONFLICT DO NOTHING` va acompañado de comprobación exacta de cada fila y de sus relaciones. Una diferencia provoca rollback, no una actualización silenciosa. Una transacción bloquea escrituras sobre las tablas involucradas durante la carga local. Se permite agregar fichas nuevas; omitir una ficha completa no la borra. No usar la salida como migración Flyway ni como importación en caliente de producción.
 
@@ -66,8 +69,8 @@ El mapeo curricular implementa `gup` y las siete tablas `gup_*`, con IDs referen
 
 ## Falta para cerrar persistencia / comenzar API funcional
 
-1. Prueba PostgreSQL/Flyway ejecutada correctamente el 18-10-2026: migraciones desde cero, repetición, checksums e importación de borradores/revisiones. La BD de desarrollo tiene el esquema sin contenido cargado. Repetir el test al cambiar persistencia.
+1. Pruebas PostgreSQL/Flyway actualizadas hasta V7: migraciones desde cero, repetición, checksums e importación de borradores/revisiones. Desarrollo contiene borradores incluido `gup_10`; repetir el test al cambiar persistencia.
 2. Confirmar programa/revisor y resolver lagunas de contenido antes de declarar cerrado 10º Gup. Esto no impide construir infraestructura local con borradores, pero sí aprobar/publicar o simular un temario completo.
-3. Mapeo, recarga y versionado de texto/requisitos/subtipos/citas implementados/probados. Faltan currículo real y revisión/publicación/seed aprobado; no inventar requisitos ni reemplazar conflictos por un `upsert` sin revisión.
-4. Arranque Spring Boot Java 21 implementado con Flyway, primer repositorio/servicio/DTO de posiciones y bloqueo HTTP preventivo. Falta ampliar otros catálogos, procedencia y currículo; identidad/verificación vendrá en su bloque y JWT/OIDC sigue por decidir.
+3. Mapeo, recarga y versionado de texto/requisitos/subtipos/citas implementados/probados. Currículo real teórico presente; faltan alcance completo y revisión/publicación/seed aprobado. No reemplazar conflictos por un `upsert` sin revisión.
+4. Spring Boot Java 21 con ocho lecturas internas, procedencia, currículo e identidad local C1; contenido HTTP bloqueado. Faltan alta/grado/verificación, auditoría funcional y autorización por grado.
 5. Angular consumirá los contratos de API después de ese bloque; no se declara listo un frontend ni una beta por tener tablas.

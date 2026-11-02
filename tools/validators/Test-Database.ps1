@@ -87,6 +87,8 @@ END; $$;
   }
   Invoke-TestSql -Sql (Get-Content -Raw -Encoding UTF8 (Join-Path $PSScriptRoot 'database-import-checks.sql'))
   Invoke-TestSql -Sql (Get-Content -Raw -Encoding UTF8 (Join-Path $PSScriptRoot 'database-draft-revisions.sql'))
+  # V7 identity: four roles and zero accounts are seeded; every bad shape is rejected.
+  Invoke-TestSql -Sql (Get-Content -Raw -Encoding UTF8 (Join-Path $PSScriptRoot 'database-identity.sql'))
   $edit = & node $fixtureScript apply-text-edit
   if ($LASTEXITCODE -ne 0) { throw 'Text edit fixture export failed.' }
   Invoke-TestSql -Sql $edit
@@ -225,7 +227,7 @@ END; $$;
       Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('dropdb -U "$POSTGRES_USER" ' + $realDatabase))
     }
   }
-  Write-Output 'PASS: populated upgrades V2-V6/reloads; previous checks plus 37 citation/ownership rejections; source/hash/page bounds, location swaps, reserved IDs and rollback; real curriculum import reload and V3 baseline.'
+  Write-Output 'PASS: populated upgrades V2-V7/reloads; previous checks plus 48 citation/ownership/identity rejections; source/hash/page bounds, location swaps, reserved IDs and rollback; V7 identity seed (4 roles, 0 users) and bcrypt shape; real curriculum import reload and V3 baseline.'
 } finally {
   if ($created) {
     Invoke-Compose @('exec', '-T', 'postgres', 'sh', '-c', ('dropdb -U "$POSTGRES_USER" ' + $database))

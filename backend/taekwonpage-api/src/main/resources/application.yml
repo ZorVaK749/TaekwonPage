@@ -7,6 +7,9 @@ server:
 spring:
   application:
     name: taekwonpage-api
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
   datasource:
     url: ${DB_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:taekwonpage}}
     username: ${DB_USERNAME:taekwonpage}
@@ -30,3 +33,10 @@ management:
     health:
       show-details: never
       show-components: never
+taekwonpage:
+  security:
+    jwt:
+      # C1: JWT local autoemitido. No default on purpose: startup fails without it.
+      secret: ${JWT_SECRET}
+      issuer: ${JWT_ISSUER:taekwonpage-local}
+      ttl-seconds: ${JWT_TTL_SECONDS:1800}
